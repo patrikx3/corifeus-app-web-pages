@@ -1,0 +1,26 @@
+checks:
+  javascript: true
+filter:
+  excluded_paths:
+    - test/*
+    - node_modules/*
+    - build/*
+    - docs/*
+
+build:
+  environment:
+    node: 7.8
+
+  dependencies:
+    before:
+      - npm install grunt-cli -g
+      - npm install
+      - node_modules/protractor/bin/webdriver-manager update
+
+  tests:
+    override:
+      -
+        command: 'grunt coverage'
+        coverage:
+          file: 'build/coverage/clover.xml'
+          format: 'clover'

@@ -1,0 +1,21 @@
+{
+  "title": {
+    "developer": "Laszlo Patrik &copy; 2016",
+    "packages": "Csomagok",
+    "sponsored": "IntelliJ IDEA",
+    "travis": "Kiépítettség",
+    "scrunitizer": {
+      "quality": "Scrutinizer kód minőség",
+      "coverage": "Kódlefedettséget"
+    }
+  },
+  "menu": {
+    "menu-corifeus-code-style": "Kód stílus",
+    "menu-corifeus-architecture": "Szerkezet",
+    "menu-corifeus-architecture-overview": "Áttekintés",
+    "menu-corifeus-patterns": "Minták",
+    "menu-corifeus-more": "Több",
+    "menu-corifeus-more-github": "Github oldalok",
+    "menu-corifeus-more-origin": "Corifeus név eredete "
+  }
+}

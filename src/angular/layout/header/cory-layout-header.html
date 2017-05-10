@@ -1,0 +1,91 @@
+<div class="cory-mat-header" [style.z-index]="parent.menuSidenav.opened ? 0 : 1">
+    <md-toolbar color="primary" class="cory-layout-menus">
+
+        <button md-button (click)="parent.navigate()" class="cory-layout-header-title" >
+                <i [class]="parent.icon"></i>
+               {{ extractTitle(parent.packageJson) }}
+        </button>
+        <div class="cory-layout-header-top">
+            <span *ngIf="parent.packageJson.corifeus.type === undefined && parent.packageJson.name !== 'corifeus'" style="text-transform: capitalize;">
+                {{ this.settings.github.repoNames }}
+            </span>
+            <span *ngIf="parent.packageJson.corifeus.type !== undefined" class="cory-layout-header-top-{{ parent.packageJson.corifeus.type }}">
+                {{ parent.packageJson.corifeus.type }}
+            </span>
+            {{ parent.packageJson.corifeus.code }}
+        </div>
+
+
+        <span class="cory-mat-fill-horizontal"></span>
+
+        <!-- trello -->
+        <a md-button [href]="settings.trello.url" target="_blank">
+            <i class="fa fa-trello"></i>
+            <span class="cory-mat-hide-xsmall">
+                Trello
+            </span>
+        </a>
+
+        <!-- menu -->
+        <span *ngIf="parent.packageJson.corifeus.menu">
+        <md-menu #menuItems="mdMenu"  y-position="below" x-position="before" >
+            <button disabled md-menu-item>
+                {{ i18n.material.title.menu }}
+            </button>
+            <button
+                    md-menu-item
+                    *ngFor="let menu of parent.packageJson.corifeus.menu"
+                    (click)="navigateMenu(menu.link); parent.menuMenuActive = menu.link"
+                    [class.cory-mat-menu-item-active]="parent.menuMenuActive == menu.link"
+            >
+                 <span style="min-width: 24px !important; display: inline-block; text-align: center;">
+                    <i class="fa fa-{{ linkExternal(menu.link) ? 'external-link' : 'caret-right' }}"></i>
+                </span>
+
+                {{ i18n.pages.menu[menu.name] }}
+            </button>
+        </md-menu>
+
+        <button md-button [mdMenuTriggerFor]="menuItems">
+            <md-icon>menu</md-icon>
+            <span class="cory-mat-hide-xsmall">
+                {{ i18n.material.title.menu }}
+            </span>
+        </button>
+
+        </span>
+
+        <!-- packages -->
+        <md-menu #menuModules="mdMenu"  y-position="below" x-position="before" >
+            <button disabled md-menu-item>
+                {{ i18n.pages.title.packages }}
+            </button>
+            <button md-menu-item
+                    *ngFor="let repo of parent.repos"
+                    (click)="parent.navigate('github/' + repo.name + '/index.html' ); parent.menuRepoActive = repo.name; parent.menuMenuActive = undefined; "
+                    [class.cory-mat-menu-item-active]="parent.menuRepoActive == repo.name"
+            >
+                <span *ngIf="parent.packages[repo.name]">
+                    <span style="min-width: 24px !important; display: inline-block; text-align: center;">
+                        <i *ngIf="parent.packages[repo.name]" [class]="parent.packages[repo.name].corifeus.icon"></i>
+                    </span>
+                    {{ extractTitle(parent.packages[repo.name]) }}
+
+                    <div style="float: right; margin-left: 5px; opacity: 0.25;">
+                    {{ parent.packages[repo.name].corifeus.code }}
+                    </div>
+                </span>
+            </button>
+        </md-menu>
+
+<!--        <button md-button [mdMenuTriggerFor]="menuModules" (click)="parent.menuSidenev.toggle()"> -->
+        <button md-button (click)="parent.packageMenuOpen()">
+            <md-icon>apps</md-icon>
+            <span class="cory-mat-hide-xsmall">
+               {{ i18n.pages.title.packages }}
+            </span>
+        </button>
+
+
+    </md-toolbar>
+</div>

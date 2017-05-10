@@ -1,0 +1,29 @@
+.cory-layout-header-top {
+  opacity: 0.5;
+  font-size: 14px;
+  position: relative;
+  top: 20px;
+  left: -65px;
+  z-index: 10;
+
+  .cory-layout-header-top-p3x {
+    position: relative;
+    left: 20px !important;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 700px) {
+    top: 15px;
+  }
+}
+
+.cory-layout-header-title {
+  font-size: 30px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  top: -5px;
+  @media screen and (max-width: 700px) {
+    font-size: 16px !important;
+  }
+}

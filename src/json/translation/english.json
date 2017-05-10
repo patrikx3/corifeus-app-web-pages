@@ -1,0 +1,21 @@
+{
+  "title": {
+    "developer": "Patrik Laszlo &copy; 2016",
+    "packages": "Packages",
+    "sponsored": "IntelliJ IDEA",
+    "travis": "Build status",
+    "scrunitizer": {
+      "quality": "Scrutinizer Code Quality",
+      "coverage": "Code Coverage"
+    }
+  },
+  "menu": {
+    "menu-corifeus-code-style": "Code style",
+    "menu-corifeus-architecture": "Architecture",
+    "menu-corifeus-architecture-overview": "Overview",
+    "menu-corifeus-patterns": "Patterns",
+    "menu-corifeus-more": "More",
+    "menu-corifeus-more-github": "Github pages",
+    "menu-corifeus-more-origin": "Corifeus name origin"
+  }
+}

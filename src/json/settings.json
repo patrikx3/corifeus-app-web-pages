@@ -1,0 +1,22 @@
+{
+  "trello": {
+    "url": "https://trello.com/b/3NArfcD1/corifeus"
+  },
+  "github": {
+    "defaultRepo": "corifeus",
+    "token": "M2IzMGM5NzBmMGI3YTFiY2U4MDBkNTYzOTVlODI1Y2MyZjlmNjJjZQ==",
+    "user": "patrikx3",
+    "repoNames": "corifeus",
+    "exclude-starts-with": [
+      "address-book",
+      "fortune-cookie",
+      "resume",
+      "service-manager-tray-for-windows"
+    ],
+    "url": {
+      "repos": "https://api.github.com/users/${github.user}/repos",
+      "repo": "https://api.github.com/repos/${user}/${repo}",
+      "file": "https://${user}.github.io/${repo}/${path}"
+    }
+  }
+}

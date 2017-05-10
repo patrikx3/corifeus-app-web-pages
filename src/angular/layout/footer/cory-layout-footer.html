@@ -1,0 +1,41 @@
+<div class="cory-mat-footer"  [style.z-index]="parent.menuSidenav.opened ? 0 : 1">
+
+    <md-toolbar class="cory-layout-menus" color="primary">
+        <a md-button [href]="linkGithub" target="_blank"  [mdTooltip]="tooltip.GitHub" [mdTooltipPosition]="tooltipPosition">
+            <i class="fa fa-github cory-layout-fa"></i>
+            <span class="cory-mat-hide-xsmall">
+            GitHub
+            </span>
+        </a>
+
+
+        <span class="cory-mat-fill-horizontal"></span>
+
+
+        <cory-mat-translation-button
+                [cory-tooltip-position]="tooltipPosition"
+        ></cory-mat-translation-button>
+
+        <cory-mat-theme-button
+                [cory-tooltip-position]="tooltipPosition"
+        ></cory-mat-theme-button>
+
+        <a md-button href="https://www.jetbrains.com/buy/opensource/?product=idea" target="_blank" [mdTooltip]="tooltip.Sponsored"  [mdTooltipPosition]="tooltipPosition">
+            <md-icon>favorite</md-icon>
+            <span class="cory-mat-hide-xsmall">
+                <span [innerHTML]="i18n.pages.title.sponsored"></span>
+            </span>
+        </a>
+
+        <a md-button [href]="linkDeveloper" target="_blank" [mdTooltip]="tooltip.Developer"  [mdTooltipPosition]="tooltipPosition">
+            <md-icon>flash_on</md-icon>
+            <span class="cory-mat-hide-xsmall">
+                <span [innerHTML]="decodeEntities(i18n.pages.title.developer)"></span>
+            </span>
+        </a>
+
+
+    </md-toolbar>
+
+
+</div>

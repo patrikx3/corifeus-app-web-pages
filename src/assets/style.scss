@@ -1,0 +1,113 @@
+@import "_variables";
+@import '~corifeus-web-material/src/scss/all';
+@import '~@angular/material/theming';
+
+
+
+.cory-mat-theme-light {
+    @import 'CSS:../../node_modules/highlight.js/styles/default';
+}
+
+.cory-mat-theme-dark {
+    @import 'CSS:../../node_modules/highlight.js/styles/tomorrow-night';
+
+}
+
+img[src^="https://cdn.rawgit.com/"]
+{
+    width: 100%;
+    height: auto;
+}
+
+
+.mat-toolbar {
+    @media screen and (max-width: $cory-mat-size-xsmall) {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}
+
+
+.cory-layout-menus {
+    max-width: $cory-mat-size-medium;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px !important;
+}
+
+
+.cory-layout-fa {
+    font-size: 22px;
+    margin-top: -2px;
+}
+
+.cory-mat-footer {
+    .mat-button {
+        text-overflow: ellipsis;
+//        overflow: hidden;
+    }
+}
+
+.cory-mat-header, .cory-mat-footer {
+    @media screen and (max-width: $cory-mat-size-xsmall) {
+        .mat-button {
+            min-width: 36px !important;
+        }
+    };
+}
+
+
+
+.cory-mat-theme-light {
+    .cory-mat-header {
+        border-bottom: 5px solid rgba(0,0,0,0.1);
+    }
+    .cory-mat-footer {
+        border-top: 5px solid rgba(0,0,0,0.1);
+    }
+    .cory-mat-header,
+    .cory-mat-footer
+    {
+        box-shadow: 0px 0px 100px 10px rgba(0,0,0,0.25);
+    }
+}
+.cory-mat-theme-dark {
+    .cory-mat-header {
+        border-bottom: 5px solid rgba(255,255,255,0.1);
+    }
+    .cory-mat-footer {
+        border-top: 5px solid rgba(255,255,255,0.1);
+    }
+    .cory-mat-header,
+    .cory-mat-footer
+    {
+        box-shadow: 0px 0px 100px 10px rgba(255,255,255,0.15);
+    }
+}
+
+.cory-layout-link-external {
+    .fa {
+        opacity: 0.5;
+    }
+    &:hover {
+        .fa {
+            opacity: 1;
+        }
+    }
+}
+
+.cory-layout-sidenav-container {
+    background: none !important;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+//corifeus-inject
+@import '../angular/layout/header/cory-layout-header.scss';
+//corifeus-inject:end
+
+
