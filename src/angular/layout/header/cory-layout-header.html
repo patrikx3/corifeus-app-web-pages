@@ -1,4 +1,4 @@
-<div class="cory-mat-header" [style.z-index]="parent.menuSidenav.opened ? 0 : 1">
+<div class="cory-mat-header">
     <md-toolbar color="primary" class="cory-layout-menus">
 
         <button md-button (click)="parent.navigate()" class="cory-layout-header-title" >
@@ -18,13 +18,14 @@
 
         <span class="cory-mat-fill-horizontal"></span>
 
-        <!-- trello -->
+        <!-- trello
         <a md-button [href]="settings.trello.url" target="_blank">
             <i class="fa fa-trello"></i>
             <span class="cory-mat-hide-xsmall">
                 Trello
             </span>
         </a>
+        -->
 
         <!-- menu -->
         <span *ngIf="parent.packageJson.corifeus.menu">

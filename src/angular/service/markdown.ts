@@ -12,17 +12,24 @@ hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescri
 
 import * as marked from 'marked';
 
+import { Layout } from '../layout/cory-layout';
+
 @Injectable()
 export class MarkdownService {
     markdownRenderer: any = new marked.Renderer();
 
     public context : any;
 
+    layout: Layout;
+
     constructor() {
 
         this.markdownRenderer.image = (href: string, title: string, text: string) => {
             title = title || '';
             text = text || '';
+            if (!href.startsWith('http')) {
+                href = `https://cdn.corifeus.tk/git/${this.layout.currentRepo}/${href}`;
+            }
             const result = `
 <span style="display: block; font-size: 125%; opacity: 0.5">
 ${title}
@@ -55,13 +62,11 @@ ${text}
         }
 
         this.markdownRenderer.code = (code :string, language :string) => {
-            if (language === undefined) {
-                return this.markdownRenderer.codespan(code);
-            }
             if (hljs.getLanguage(language) === undefined) {
                 console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}                
 We are not loading everything, since it is about 500kb`)
             }
+           language = language === 'text' || language === undefined ? 'html' : language;
             const validLang = !!(language && hljs.getLanguage(language));
             const highlighted = validLang ? hljs.highlight(language, code).value : code;
             return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
@@ -88,7 +93,9 @@ We are not loading everything, since it is about 500kb`)
         return result;
     }
 
-    public render(md: string) {
+    public render(md: string, layout: Layout ) {
+        this.layout = layout;
+
         md = this.extract(md, 'corifeus-header');
         md = this.extract(md, 'corifeus-footer');
 

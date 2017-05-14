@@ -70,7 +70,7 @@ ${text}
 \`\`\`                    
 `
             }
-            this.content = this.markdown.render(text);
+            this.content = this.markdown.render(text, this.parent);
 
         } catch(e) {
             this.router.navigateTop(['/github/corifeus/404']);

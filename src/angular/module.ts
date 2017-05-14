@@ -73,7 +73,7 @@ export class Module {
         })
 
         if (!theme.usingCookie) {
-            theme.setTheme('cory-mat-theme-dark-wood');
+            theme.setTheme('cory-mat-theme-light-forest');
         }
     }
 }

@@ -1,19 +1,19 @@
 <cory-mat-loading></cory-mat-loading>
 
-<md-sidenav-container class="cory-layout-sidenav-container">
-    <md-sidenav #menuSidenav align="end">
-        <button md-button (click)="packageMenuClose()">Close</button>
+<md-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
+    <md-sidenav #menuSidenav align="end" class="cory-layout-sindenav">
+
         <button disabled md-menu-item>
             {{ i18n.title.packages }}
         </button>
         <button md-menu-item
                 *ngFor="let repo of repos"
-                (click)="navigate('github/' + repo.name + '/index.html' ); menuRepoActive = repo.name; menuMenuActive = undefined; "
+                (click)="navigate('github/' + repo.name + '/index.html' ); menuRepoActive = repo.name; menuMenuActive = undefined; packageMenuClose()"
                 [class.cory-mat-menu-item-active]="menuRepoActive == repo.name"
         >
                 <span *ngIf="packages[repo.name]">
                     <span style="min-width: 24px !important; display: inline-block; text-align: center;">
-                        <i *ngIf="packages[repo.name]" [class]="packages[repo.name].corifeus.icon"></i>
+                        <i *ngIf="packages[repo.name]" [class]="packages[repo.name].corifeus.icon||'fa fa-bolt' "></i>
                     </span>
                     {{ extractTitle(packages[repo.name]) }}
 
@@ -22,34 +22,32 @@
                     </div>
                 </span>
         </button>
+
+
     </md-sidenav>
 
-
-    <div class="cory-mat-container cory-mat-container-fixed">
-
-        <cory-layout-header></cory-layout-header>
+    <div class="cory-mat-container">
 
         <md-card>
             <md-card-content style="position: relative;">
 
-
+<!--
                 <cory-web-pages-build-status style="float: left;" [cory-repo]="currentRepo"></cory-web-pages-build-status>
+-->
 
 
                 <div style="float: right; font-weight: bold; font-size: 125%;">
                     v{{ packageJson.version }}
-                    &nbsp;|&nbsp;
-                    {{ moment(packageJson.corifeus['time-stamp']).format('llll') }}
                 </div>
 
-                <div style="clear: both;"></div>
-
+                <!--
                 <div *ngIf="packageJson.corifeus.publish">
                     <br/>
                     <a href="https://npmjs.com/package/{{ packageJson.name }}/" target="_blank">
                         <img src="https://nodei.co/npm/{{ packageJson.name }}.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="NPM" class="badge badge" style="max-width: 408px; width: 100%;">
                     </a>
                 </div>
+                -->
 
 
 
@@ -59,9 +57,17 @@
             </md-card-content>
         </md-card>
 
-        <cory-layout-footer></cory-layout-footer>
     </div>
 
 </md-sidenav-container>
+
+<cory-layout-header></cory-layout-header>
+<cory-layout-footer></cory-layout-footer>
+
+<div *ngIf="menuSidenav.opened" style="position: fixed; top: 5px; right: 15px; z-index: 3">
+    <button md-icon-button color="primary"  (click)="packageMenuClose()">
+        <md-icon>close</md-icon>
+    </button>
+</div>
 
 

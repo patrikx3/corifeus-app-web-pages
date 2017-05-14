@@ -26,6 +26,7 @@ import * as moment from 'moment';
 import { GitHubService} from '../service';
 
 import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
+import {NotifyService} from 'corifeus-web-material';
 
 import { Observable } from 'rxjs';
 
@@ -82,6 +83,7 @@ export class Layout  {
         private gitHub: GitHubService,
         private router: RouterService,
         private route: ActivatedRoute,
+        protected notify: NotifyService,
         private http: Http,
         protected locale: LocaleService,
         protected settingsAll: SettingsService
@@ -122,7 +124,7 @@ export class Layout  {
         ]);
         this.packageJson = JSON.parse(packageJsonResponse.text());
         this.title = this.packageJson.description;
-        this.icon = `fa ${this.packageJson.corifeus.icon}`;
+        this.icon = this.packageJson.corifeus.icon !== undefined ? `fa ${this.packageJson.corifeus.icon}` : 'fa fa-bolt';
         document.title = this.title;
         this.noScript.innerHTML = '';
         this.repos.forEach((repo : any) => {

@@ -1,18 +1,22 @@
 [//]: #@corifeus-header
 
-[![Build Status](https://travis-ci.org/patrikx3/corifeus-app-web-pages.svg?branch=master)](https://travis-ci.org/patrikx3/corifeus-app-web-pages)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/?branch=master)  [![Code Coverage](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/?branch=master)  [![Trello](https://img.shields.io/badge/Trello-Corifeus-026aa7.svg)](https://trello.com/b/3NArfcD1/corifeus)
-
----
 
 # Corifeus App Web Pages - Support
 
 ### Node Version Requirement 
-``` >=7.8.0 ```  
+``` 
+>=7.8.0 
+```  
    
 The ```async``` and ```await``` keywords are required.
 
+Install NodeJs:    
+https://nodejs.org/en/download/package-manager/    
+  
 # Description
 
+
+---
 
 [//]: #@corifeus-header:end
 
@@ -44,9 +48,9 @@ npm rebuild node-sass
 [//]: #@corifeus-footer
 
 ---
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.tk/corifeus-app-web-pages) Build v4.1.682-1555 on 5/6/2017, 12:10:26 PM
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.tk/corifeus-app-web-pages) Build v4.1.722-38
 
-[Corifeus](http://github.com/patrikx3/corifeus) by [Patrik Laszlo](http://patrikx3.tk)
+[Corifeus](http://www.corifeus.tk) by [Patrik Laszlo](http://patrikx3.tk)
  
 
 [//]: #@corifeus-footer:end
