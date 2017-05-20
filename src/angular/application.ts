@@ -9,11 +9,4 @@ import {
   `
 })
 export class Application {
-
-    constructor(
-    ) {
-
-    }
-
-
 }

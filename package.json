@@ -1,6 +1,6 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "4.1.724-41",
+    "version": "4.1.742-62",
     "corifeus": {
         "icon": "fa fa-sitemap",
         "code": "Support",
@@ -30,15 +30,15 @@
     "homepage": "https://pages.corifeus.tk/corifeus-app-web-pages",
     "dependencies": {
         "@types/marked": "0.0.28",
-        "corifeus-utils": "^1.1.134-24",
-        "corifeus-web": "^4.1.310-23",
-        "corifeus-web-material": "^4.1.317-17",
+        "corifeus-utils": "^1.1.260-49",
+        "corifeus-web": "^4.1.329-37",
+        "corifeus-web-material": "^4.1.338-32",
         "highlight.js": "^9.11.0",
         "marked": "^0.3.6",
-        "p3x-angular-compile": "^4.1.253-10"
+        "p3x-angular-compile": "^4.1.295-26"
     },
     "devDependencies": {
-        "corifeus-builder-angular": "^4.1.318-22"
+        "corifeus-builder-angular": "^4.1.341-36"
     },
     "engines": {
         "node": ">=7.8.0"

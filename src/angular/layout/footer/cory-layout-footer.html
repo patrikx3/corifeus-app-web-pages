@@ -8,6 +8,9 @@
             </span>
         </a>
 
+        <a *ngIf="parent.packageJson.corifeus.publish" md-button [href]="linkNpm" target="_blank"  [mdTooltip]="tooltip.Npm" [mdTooltipPosition]="tooltipPosition">
+            NPM
+        </a>
 
         <span class="cory-mat-fill-horizontal"></span>
 

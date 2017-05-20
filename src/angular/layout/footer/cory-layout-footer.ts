@@ -18,6 +18,7 @@ import {
 
 class Tooltip {
     GitHub: string
+    Npm: string
     Translation: string
     Theme: string
     Developer: string
@@ -84,6 +85,7 @@ export class Footer {
         switch (this.currentWidthAlias) {
             case 'small':
                 this.tooltip.GitHub = 'GitHub';
+                this.tooltip.Npm = 'NPM';
                 this.tooltip.Developer = decodeEntities(this.i18n.pages.title.developer);
                 this.tooltip.Sponsored = this.i18n.pages.title.sponsored;
 
@@ -91,6 +93,7 @@ export class Footer {
 
             default:
                 this.tooltip.GitHub = undefined;
+                this.tooltip.Npm = undefined;
                 this.tooltip.Developer = undefined;
                 this.tooltip.Sponsored = undefined;
                 break;
@@ -99,6 +102,10 @@ export class Footer {
 
     public  get linkDeveloper() {
         return `http://patrikx3.tk/${this.locale.current}`;
+    }
+
+    public  get linkNpm() {
+        return `https://www.npmjs.com/package/${this.parent.packageJson.name}`;
     }
 
     public  get linkGithub() {

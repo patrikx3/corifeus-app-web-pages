@@ -8,7 +8,7 @@ export function extractTitle(pkg: any) : string {
         return;
     }
     if (pkg.name  === 'corifeus' ) {
-        return 'Corifeus One';
+        return 'Corifeus';
     }
     let result = pkg.name.split('-').map((word: string) => {
         return word[0].toUpperCase() + word.substr(1)
