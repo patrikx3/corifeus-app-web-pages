@@ -30,15 +30,15 @@
     "homepage": "https://pages.corifeus.tk/corifeus-app-web-pages",
     "dependencies": {
         "@types/marked": "0.0.28",
-        "corifeus-utils": "^1.1.260-49",
-        "corifeus-web": "^4.1.329-37",
-        "corifeus-web-material": "^4.1.338-32",
+        "corifeus-utils": "^1.1.269-54",
+        "corifeus-web": "^4.1.337-41",
+        "corifeus-web-material": "^4.1.346-36",
         "highlight.js": "^9.11.0",
         "marked": "^0.3.6",
-        "p3x-angular-compile": "^4.1.295-26"
+        "p3x-angular-compile": "^4.1.333-30"
     },
     "devDependencies": {
-        "corifeus-builder-angular": "^4.1.341-36"
+        "corifeus-builder-angular": "^4.1.349-40"
     },
     "engines": {
         "node": ">=7.8.0"
