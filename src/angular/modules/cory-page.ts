@@ -1,6 +1,7 @@
 import {
     Component,
-    Host
+    Host,
+    NgModule,
 } from '@angular/core';
 
 import {
@@ -13,8 +14,6 @@ import {
 
 import { RouterService } from 'corifeus-web';
 
-import { MaterialModule } from '@angular/material';
-
 import { Layout } from '../layout/cory-layout';
 
 import { GitHubService, MarkdownService  } from '../service';
@@ -24,17 +23,14 @@ import { SettingsService } from 'corifeus-web';
 @Component({
     selector: 'cory-page',
     template: `    
-    <span [p3x-compile]="content" [p3x-compile-ctx]="context" [p3x-compile-imports]="imports">
+    <span [p3x-compile]="content" [p3x-compile-ctx]="context">
     </span>
 `
 })
 
-
 export class Page  {
 
     context: Page;
-    imports: any[] = [ MaterialModule ];
-
     content: any;
 
     constructor(

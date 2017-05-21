@@ -17,6 +17,7 @@ import { routes } from './routes';
 
 const template = require('lodash/template');
 
+import { MaterialModule } from '@angular/material';
 
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!
@@ -25,7 +26,11 @@ const template = require('lodash/template');
 @NgModule({
     imports: [
         CorifeusMaterialModule,
-        CompileModule,
+        CompileModule.forRoot({
+            module: {
+                imports: [ MaterialModule ]
+            }
+        }),
 
         RouterModule.forRoot(routes),
     ],
@@ -71,9 +76,5 @@ export class Module {
             en: require('../json/translation/english.json'),
             hu: require('../json/translation/hungarian.json'),
         })
-
-        if (!theme.usingCookie) {
-            theme.setTheme('cory-mat-theme-light-forest');
-        }
     }
 }
