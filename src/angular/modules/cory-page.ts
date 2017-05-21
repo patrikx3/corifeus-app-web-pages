@@ -23,14 +23,13 @@ import { SettingsService } from 'corifeus-web';
 @Component({
     selector: 'cory-page',
     template: `    
-    <span [p3x-compile]="content" [p3x-compile-ctx]="context">
+    <span [p3x-compile]="content" [p3x-compile-ctx]="this">
     </span>
 `
 })
 
 export class Page  {
 
-    context: Page;
     content: any;
 
     constructor(
@@ -42,7 +41,6 @@ export class Page  {
         public http: Http,
         private settings: SettingsService
     ) {
-        this.context = this;
         this.markdown.context = this;
 
         this.route.url.subscribe((segment) => {
