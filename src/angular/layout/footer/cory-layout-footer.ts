@@ -92,10 +92,10 @@ export class Footer {
                 break;
 
             default:
-                this.tooltip.GitHub = undefined;
-                this.tooltip.Npm = undefined;
-                this.tooltip.Developer = undefined;
-                this.tooltip.Sponsored = undefined;
+                this.tooltip.GitHub = "";
+                this.tooltip.Npm = "";
+                this.tooltip.Developer = "";
+                this.tooltip.Sponsored = "";
                 break;
         }
     }

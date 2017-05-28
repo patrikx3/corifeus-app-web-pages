@@ -21,9 +21,7 @@ import  { extractTitle } from '../../utils/extracTitle';
 @Component({
     selector: 'cory-layout-header',
     templateUrl: 'cory-layout-header.html',
-    styles: [
-        require('./cory-layout-header.scss').toString()
-    ]
+
 })
 export class Header {
 

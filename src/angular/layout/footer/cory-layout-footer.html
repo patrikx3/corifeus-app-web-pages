@@ -1,26 +1,34 @@
 <div class="cory-mat-footer">
 
     <md-toolbar class="cory-layout-menus" color="primary">
-        <a md-button [href]="linkGithub" target="_blank"  [mdTooltip]="tooltip.GitHub" [mdTooltipPosition]="tooltipPosition">
+
+        <a md-button [href]="linkGithub" target="_blank" [mdTooltip]="tooltip.GitHub" [mdTooltipPosition]="tooltipPosition">
             <i class="fa fa-github cory-layout-fa"></i>
             <span class="cory-mat-hide-xsmall">
             GitHub
             </span>
         </a>
 
-        <a *ngIf="parent.packageJson.corifeus.publish" md-button [href]="linkNpm" target="_blank"  [mdTooltip]="tooltip.Npm" [mdTooltipPosition]="tooltipPosition">
+
+        <a *ngIf="parent.packageJson.corifeus.publish" md-button [href]="linkNpm" target="_blank" [mdTooltip]="tooltip.Npm" [mdTooltipPosition]="tooltipPosition">
             NPM
         </a>
 
         <span class="cory-mat-fill-horizontal"></span>
 
 
+        <!--
+        [cory-tooltip-position]="tooltipPosition"
+        -->
         <cory-mat-translation-button
-                [cory-tooltip-position]="tooltipPosition"
+
         ></cory-mat-translation-button>
 
+        <!--
+         [cory-tooltip-position]="tooltipPosition"
+        -->
         <cory-mat-theme-button
-                [cory-tooltip-position]="tooltipPosition"
+
         ></cory-mat-theme-button>
 
         <a md-button href="https://www.jetbrains.com/buy/opensource/?product=idea" target="_blank" [mdTooltip]="tooltip.Sponsored"  [mdTooltipPosition]="tooltipPosition">
@@ -30,7 +38,7 @@
             </span>
         </a>
 
-        <a md-button [href]="linkDeveloper" target="_blank" [mdTooltip]="tooltip.Developer"  [mdTooltipPosition]="tooltipPosition">
+        <a md-button [href]="linkDeveloper" target="_blank"  [mdTooltip]="tooltip.Developer"  [mdTooltipPosition]="tooltipPosition">
             <md-icon>flash_on</md-icon>
             <span class="cory-mat-hide-xsmall">
                 <span [innerHTML]="decodeEntities(i18n.pages.title.developer)"></span>

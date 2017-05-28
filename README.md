@@ -59,7 +59,7 @@ npm rebuild node-sass
 [//]: #@corifeus-footer
 
 ---
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.tk/corifeus-app-web-pages) Build v4.1.751-71
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.tk/corifeus-app-web-pages) Build v4.1.777-107
 
 [Corifeus](http://www.corifeus.tk) by [Patrik Laszlo](http://patrikx3.tk)
 

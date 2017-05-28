@@ -5,8 +5,6 @@ module.exports = (grunt) => {
     const loader = new builder.loader(grunt);
     loader.angular();
 
-    const destAssets = 'assets/';
-
     grunt.config.merge({
         watch: {
             wait: {

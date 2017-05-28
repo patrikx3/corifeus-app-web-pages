@@ -55,14 +55,19 @@ ${text}
                 if (href.endsWith('.md')) {
                     href = href.substr(0, href.length - 3) + '.html';
                 }
-                const path = `github/${this.context.parent.currentRepo}/${href}`;
+                let path;
+                if (href.startsWith('/')) {
+                    path = `/${href}`;
+                } else {
+                    path = `github/${this.context.parent.currentRepo}/${href}`;
+                }
                 a = `<a href="/${path}" onclick="return false;" (click)="this.context.parent.navigate('${path}')" ${tooltip}>${text}</a>`;
             }
             return a;
         }
 
         this.markdownRenderer.code = (code :string, language :string) => {
-            if (hljs.getLanguage(language) === undefined) {
+            if (hljs.getLanguage(language) === undefined && language !== 'text') {
                 console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}                
 We are not loading everything, since it is about 500kb`)
             }
