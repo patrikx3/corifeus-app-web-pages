@@ -46,7 +46,7 @@ export class GitHubService {
                             break;
                         }
                     }
-                    return repo.fork === false && !excluded;
+                    return !excluded;
                 });
                 return result;
             });

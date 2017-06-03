@@ -1,7 +1,4 @@
 {
-  "trello": {
-    "url": "https://trello.com/b/3NArfcD1/corifeus"
-  },
   "github": {
     "defaultRepo": "corifeus",
     "token": "OWY3MDgzMTllOWYyNWQwNjc3MTgwMTUwMzQ2ZDljNzY5ZmExYjU4Yg==",
@@ -14,7 +11,13 @@
       "service-manager-tray-for-windows",
       "gitter",
       "gitlist-workspace",
-      "gitlist"
+      "gitlist",
+      "cookie",
+      "jgrowl",
+      "electron-apps",
+      "grunt-angular-templates",
+      "stackicons",
+      "npm-check-updates"
     ],
     "url": {
       "repos": "https://api.github.com/users/${github.user}/repos?per_page=100000",

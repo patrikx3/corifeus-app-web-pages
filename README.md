@@ -56,10 +56,11 @@ nodejs node_modules/node-sass/scripts/install.js
 npm rebuild node-sass
 ```
 
+
 [//]: #@corifeus-footer
 
 ---
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.tk/corifeus-app-web-pages) Build v4.1.777-107
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.tk/corifeus-app-web-pages) Build v4.1.779-6
 
 [Corifeus](http://www.corifeus.tk) by [Patrik Laszlo](http://patrikx3.tk)
 

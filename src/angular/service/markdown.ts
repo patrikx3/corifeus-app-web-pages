@@ -49,7 +49,7 @@ ${text}
                 tooltip = `mdTooltip="${title}" mdTooltipPosition="above"`;
             }
 
-            if (href.startsWith('https:/') || href.startsWith('http:/')) {
+            if (!href.startsWith(location.origin) && (href.startsWith('https:/') || href.startsWith('http:/'))) {
                 a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fa fa-external-link"></i></span>`;
             } else {
                 if (href.endsWith('.md')) {
@@ -58,6 +58,8 @@ ${text}
                 let path;
                 if (href.startsWith('/')) {
                     path = `/${href}`;
+                } else if (href.startsWith(location.origin)) {
+                    path = href.substring(location.origin.length + 1)
                 } else {
                     path = `github/${this.context.parent.currentRepo}/${href}`;
                 }

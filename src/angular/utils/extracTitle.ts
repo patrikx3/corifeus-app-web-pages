@@ -10,9 +10,18 @@ export function extractTitle(pkg: any) : string {
     if (pkg.name  === 'corifeus' ) {
         return 'Corifeus';
     }
-    let result = pkg.name.split('-').map((word: string) => {
-        return word[0].toUpperCase() + word.substr(1)
-    }).slice(1).join(' ');
-    return result;
+    if (pkg.name.startsWith('grunt')) {
+        let result = pkg.name.split('-').map((word: string) => {
+            return word[0].toUpperCase() + word.substr(1)
+        });
+        result = result.slice();
+        result.splice(1, 1);
+        return result.join(' ');
+    } else {
+        let result = pkg.name.split('-').map((word: string) => {
+            return word[0].toUpperCase() + word.substr(1)
+        }).slice(1).join(' ');
+        return result;
+    }
 }
 
