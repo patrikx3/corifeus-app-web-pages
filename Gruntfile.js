@@ -44,10 +44,9 @@ module.exports = (grunt) => {
 
     grunt.registerTask('default', defaults.concat(builder.config.task.build.angularAotJit));
 
+    grunt.registerTask('dev', defaults.concat(builder.config.task.build.angular));
     grunt.registerTask('aot', defaults.concat(builder.config.task.build.angularAot));
     grunt.registerTask('aot-jit', defaults.concat(builder.config.task.build.angularAotJit));
-
-    grunt.registerTask('test-build', defaults.concat(builder.config.task.build.angular));
 
     grunt.registerTask('run', defaults.concat(builder.config.task.run.angular));
     grunt.registerTask('coverage', 'karma:cory-angular');

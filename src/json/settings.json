@@ -17,7 +17,8 @@
       "electron-apps",
       "grunt-angular-templates",
       "stackicons",
-      "npm-check-updates"
+      "npm-check-updates",
+      "node-v8-workers"
     ],
     "url": {
       "repos": "https://api.github.com/users/${github.user}/repos?per_page=100000",
