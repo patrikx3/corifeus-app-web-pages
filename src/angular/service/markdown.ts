@@ -69,7 +69,11 @@ ${text}
         }
 
         this.markdownRenderer.code = (code :string, language :string) => {
-            if (hljs.getLanguage(language) === undefined && language !== 'text') {
+            if (language === undefined) {
+                language = 'text';
+            }
+
+            if ((hljs.getLanguage(language) === 'undefined' ||  hljs.getLanguage(language) === undefined) && language !== 'text') {
                 console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}                
 We are not loading everything, since it is about 500kb`)
             }

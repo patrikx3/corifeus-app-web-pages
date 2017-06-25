@@ -20,7 +20,7 @@ Besides, when I can support, please note, I cannot support old versions, only th
    
 ### Built on Node 
 ``` 
-v8.0.0
+v8.1.2
 ```   
    
 The ```async``` and ```await``` keywords are required.
@@ -65,7 +65,7 @@ npm rebuild node-sass
 [//]: #@corifeus-footer
 
 ---
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.tk/corifeus-app-web-pages) Build v4.1.795-28
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.tk/corifeus-app-web-pages) Build v4.2.803-43
 
 [Corifeus](http://www.corifeus.tk) by [Patrik Laszlo](http://patrikx3.tk)
 
