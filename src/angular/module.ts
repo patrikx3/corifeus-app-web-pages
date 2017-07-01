@@ -47,7 +47,6 @@ import { MaterialModule } from '@angular/material';
         Status
     ],
     providers: [
-
         GitHubService,
         MarkdownService,
     ],
