@@ -28,7 +28,7 @@ export class MarkdownService {
             title = title || '';
             text = text || '';
             if (!href.startsWith('http')) {
-                href = `https://cdn.corifeus.tk/git/${this.layout.currentRepo}/${href}`;
+                href = `https://cdn.corifeus.com/git/${this.layout.currentRepo}/${href}`;
             }
             const result = `
 <span style="display: block; font-size: 125%; opacity: 0.5">

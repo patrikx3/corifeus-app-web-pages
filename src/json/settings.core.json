@@ -1,15 +1,8 @@
 {
   "integration": {
-    "yandex": {
-      "verification": "b371056193ed3f84"
-    },
     "google": {
-      "site-verification": "rdN1Y1Enwd9L5Kwt6B9llOnOIRCcf7D1K4uWkUF63HU",
-      "analytics": "UA-93781019-1",
+      "analytics": "UA-102164992-1",
       "tag": "GTM-N4H9QTM"
-    },
-    "microsoft": {
-      "msvalidate.01": "399AA37B8CB122803932681E0F0EE79D"
     }
   }
 }

@@ -75,7 +75,7 @@ export class GitHubService {
         if (path.endsWith(postfix)){
             path = path.substr(0, path.length - postfix.length) + '.md';
         }
-        const url = `https://cdn.corifeus.tk/git/${repo}/${path}`;
+        const url = `https://cdn.corifeus.com/git/${repo}/${path}`;
         if (cache[url] === undefined) {
             cache[url] = await this.http.get(url).toPromise();
         }

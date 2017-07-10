@@ -2,6 +2,10 @@
 
     <md-toolbar class="cory-layout-menus" color="primary">
 
+        <a *ngIf="parent.packageJson.corifeus.publish" md-button [href]="linkNpm" target="_blank" [mdTooltip]="tooltip.Npm" [mdTooltipPosition]="tooltipPosition">
+            <img [src]="npmSvg" style="width: auto; height: 20px;"/>
+        </a>
+
         <a md-button [href]="linkGithub" target="_blank" [mdTooltip]="tooltip.GitHub" [mdTooltipPosition]="tooltipPosition">
             <i class="fa fa-github cory-layout-fa"></i>
             <span class="cory-mat-hide-xsmall">
@@ -9,10 +13,6 @@
             </span>
         </a>
 
-
-        <a *ngIf="parent.packageJson.corifeus.publish" md-button [href]="linkNpm" target="_blank" [mdTooltip]="tooltip.Npm" [mdTooltipPosition]="tooltipPosition">
-            NPM
-        </a>
 
         <span class="cory-mat-fill-horizontal"></span>
 

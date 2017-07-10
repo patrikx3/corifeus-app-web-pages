@@ -4,6 +4,11 @@ import {
     Host,
 } from '@angular/core';
 
+import {
+    DomSanitizer,
+    SafeUrl,
+} from '@angular/platform-browser';
+
 
 import {
     LocaleService, SettingsService, LocaleSubject, decodeEntities,
@@ -25,6 +30,7 @@ class Tooltip {
     Sponsored: string
 }
 
+
 @Component({
     selector: 'cory-layout-footer',
     templateUrl: 'cory-layout-footer.html',
@@ -32,6 +38,7 @@ class Tooltip {
 @Injectable()
 export class Footer {
 
+    npmSvg: SafeUrl  = require('../../../assets/npm-logo.svg');
     settings : any;
     i18n : any;
 
@@ -48,9 +55,12 @@ export class Footer {
         @Host() public parent: Layout,
         protected locale: LocaleService,
         protected settingsAll: SettingsService,
-        private mediaQuery: MediaQueryService
+        private mediaQuery: MediaQueryService,
+        private domSanitizer: DomSanitizer
     ) {
         this.settings = settingsAll.data.pages;
+
+        this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../assets/npm-logo.svg'))
 
         this.locale.subscribe((data: LocaleSubject) => {
             this.i18n = data.locale.data;
@@ -101,7 +111,7 @@ export class Footer {
     }
 
     public  get linkDeveloper() {
-        return `http://patrikx3.tk/${this.locale.current}`;
+        return `http://patrikx3.com/${this.locale.current}`;
     }
 
     public  get linkNpm() {
