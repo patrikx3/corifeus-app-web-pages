@@ -16,7 +16,7 @@ import { RouterService } from 'corifeus-web';
 
 import { Layout } from '../layout/cory-layout';
 
-import { GitHubService, MarkdownService  } from '../service';
+import { CdnService, MarkdownService  } from '../service';
 
 import { SettingsService } from 'corifeus-web';
 
@@ -35,7 +35,7 @@ export class Page  {
     constructor(
         @Host() public parent: Layout,
         private markdown: MarkdownService,
-        private gitHub: GitHubService,
+        private cdn: CdnService,
         private router: RouterService,
         private route: ActivatedRoute,
         public http: Http,
@@ -55,8 +55,9 @@ export class Page  {
         };
         try {
 
-            const response = await this.gitHub.file(this.parent.currentRepo, path);
+            const response = await this.cdn.file(this.parent.currentRepo, path);
             let text = response.text();
+
             if (path.toLowerCase().endsWith('.json')) {
                text = `
 \`\`\`json

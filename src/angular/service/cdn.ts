@@ -11,7 +11,7 @@ const cache : any = {};
 
 
 @Injectable()
-export class GitHubService {
+export class CdnService {
 
     private _repos : Promise<any[]>;
 

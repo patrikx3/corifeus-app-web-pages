@@ -10,7 +10,7 @@ import { Application } from './application';
 import { Layout, Header, Footer } from './layout';
 import { Status} from './component/cory-web-pages-build-status';
 import { Page } from './modules';
-import { GitHubService,  MarkdownService } from './service';
+import { CdnService,  MarkdownService } from './service';
 
 
 import { routes } from './routes';
@@ -47,7 +47,7 @@ import { MaterialModule } from '@angular/material';
         Status
     ],
     providers: [
-        GitHubService,
+        CdnService,
         MarkdownService,
     ],
     bootstrap: [

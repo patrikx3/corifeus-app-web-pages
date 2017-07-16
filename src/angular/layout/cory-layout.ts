@@ -23,7 +23,7 @@ import {
 
 import * as moment from 'moment';
 
-import { GitHubService} from '../service';
+import { CdnService} from '../service';
 
 import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
 import {NotifyService} from 'corifeus-web-material';
@@ -80,7 +80,7 @@ export class Layout  {
     noScript: any;
 
     constructor(
-        private gitHub: GitHubService,
+        private cdn: CdnService,
         private router: RouterService,
         private route: ActivatedRoute,
         protected notify: NotifyService,
@@ -103,9 +103,11 @@ export class Layout  {
                 this.currentRepo = this.settings.github.defaultRepo;
             }
             this.load();
+            /*
             if (!location.pathname.endsWith('.html')) {
                 this.navigate();
             }
+            */
         })
     }
 
@@ -118,9 +120,9 @@ export class Layout  {
             packageJsonResponse
         ] = await Promise.all([
 
-            this.gitHub.repos(),
-            this.gitHub.repo(this.currentRepo),
-            this.gitHub.file(this.currentRepo, 'package.json'),
+            this.cdn.repos(),
+            this.cdn.repo(this.currentRepo),
+            this.cdn.file(this.currentRepo, 'package.json'),
         ]);
         this.packageJson = JSON.parse(packageJsonResponse.text());
         this.title = this.packageJson.description;
@@ -138,7 +140,7 @@ export class Layout  {
         const packages = this.repos.map((repo) => {
             return new Promise(async(resolve, reject) => {
                 try {
-                    const pkg = await this.gitHub.file(repo.name, 'package.json');
+                    const pkg = await this.cdn.file(repo.name, 'package.json');
                     resolve({
                         pkgResponse: pkg,
                         repo: repo.name,

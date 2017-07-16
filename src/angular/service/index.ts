@@ -1,4 +1,4 @@
-export { GitHubService } from "./github";
+export { CdnService } from "./cdn";
 export {MarkdownService } from "./markdown";
 
 
