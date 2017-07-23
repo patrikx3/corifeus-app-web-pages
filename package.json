@@ -1,45 +1,45 @@
 {
-  "name": "corifeus-app-web-pages",
-  "version": "4.3.845-94",
-  "corifeus": {
-    "icon": "fa fa-sitemap",
-    "code": "Support",
-    "cdn": true
-  },
-  "description": "Corifeus App Web Pages - Support",
-  "main": "src/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "grunt"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/patrikx3/corifeus-app-web-pages.git"
-  },
-  "keywords": [
-    "corifeus",
-    "pages"
-  ],
-  "author": "Patrik Laszlo <alabard@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/patrikx3/corifeus-app-web-pages/issues"
-  },
-  "homepage": "https://pages.corifeus.com/corifeus-app-web-pages",
-  "dependencies": {
-    "@types/marked": "0.0.28",
-    "corifeus-utils": "^1.1.365-59",
-    "corifeus-web-material": "^4.2.496-70",
-    "highlight.js": "^9.12.0",
-    "marked": "^0.3.6",
-    "p3x-angular-compile": "^4.2.523-52"
-  },
-  "devDependencies": {
-    "corifeus-builder-angular": "^4.3.465-67"
-  },
-  "engines": {
-    "node": ">=7.8.0"
-  }
+    "name": "corifeus-app-web-pages",
+    "version": "4.3.849-98",
+    "corifeus": {
+        "icon": "fa fa-sitemap",
+        "code": "Support",
+        "cdn": true
+    },
+    "description": "Corifeus App Web Pages - Support",
+    "main": "src/index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "grunt"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/patrikx3/corifeus-app-web-pages.git"
+    },
+    "keywords": [
+        "corifeus",
+        "pages"
+    ],
+    "author": "Patrik Laszlo <alabard@gmail.com>",
+    "bugs": {
+        "url": "https://github.com/patrikx3/corifeus-app-web-pages/issues"
+    },
+    "homepage": "https://pages.corifeus.com/corifeus-app-web-pages",
+    "dependencies": {
+        "@types/marked": "0.0.28",
+        "corifeus-utils": "^1.1.367-61",
+        "corifeus-web-material": "^4.3.3-73",
+        "highlight.js": "^9.12.0",
+        "marked": "^0.3.6",
+        "p3x-angular-compile": "^4.3.0-53"
+    },
+    "devDependencies": {
+        "corifeus-builder-angular": "^4.3.469-71"
+    },
+    "engines": {
+        "node": ">=7.8.0"
+    }
 }

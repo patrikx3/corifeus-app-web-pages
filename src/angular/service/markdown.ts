@@ -14,6 +14,8 @@ import * as marked from 'marked';
 
 import { Layout } from '../layout/cory-layout';
 
+import { IsBot } from 'corifeus-web';
+
 @Injectable()
 export class MarkdownService {
     markdownRenderer: any = new marked.Renderer();
@@ -63,7 +65,7 @@ ${text}
                 } else {
                     path = `github/${this.context.parent.currentRepo}/${href}`;
                 }
-                a = `<a href="/${path}" onclick="return false;" (click)="this.context.parent.navigate('${path}')" ${tooltip}>${text}</a>`;
+                a = `<a href="/${path}" ${IsBot() ? '' : 'onclick="return false;"'} (click)="this.context.parent.navigate('${path}')" ${tooltip}>${text}</a>`;
             }
             return a;
         }
