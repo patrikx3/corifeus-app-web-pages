@@ -1,6 +1,7 @@
 [//]: #@corifeus-header
 
  [![Build Status](https://travis-ci.org/patrikx3/corifeus-app-web-pages.svg?branch=master)](https://travis-ci.org/patrikx3/corifeus-app-web-pages)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/?branch=master)  [![Code Coverage](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/?branch=master)  
+ 
 ---
 # Corifeus App Web Pages - Support
 
@@ -56,7 +57,7 @@ npm rebuild node-sass
 
 ---
 
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v4.3.853-107
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v4.3.855-133
 
 [Corifeus](http://www.corifeus.com) by [Patrik Laszlo](http://patrikx3.com)
 

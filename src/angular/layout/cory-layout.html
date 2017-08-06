@@ -2,10 +2,10 @@
 
 <md-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
     <md-sidenav #menuSidenav align="end" class="cory-layout-sindenav">
-
         <button disabled md-menu-item>
             {{ i18n.title.packages }}
         </button>
+
         <button md-menu-item
                 *ngFor="let repo of repos"
                 (click)="navigate('github/' + repo.name + '/index.html' ); menuRepoActive = repo.name; menuMenuActive = undefined; packageMenuClose()"
@@ -23,22 +23,16 @@
                 </span>
         </button>
 
-
     </md-sidenav>
 
     <div class="cory-mat-container">
-
         <md-card>
             <md-card-content style="position: relative;">
-
                 <cory-web-pages-build-status style="float: left;" [cory-repo]="currentRepo"></cory-web-pages-build-status>
-
                 <div style="float: right; font-weight: bold; font-size: 125%;">
                     v{{ packageJson.version }}
                 </div>
-
                 <div style="clear: both"></div>
-
                 <!--
                 <div *ngIf="packageJson.corifeus.publish">
                     <br/>
@@ -47,26 +41,20 @@
                     </a>
                 </div>
                 -->
-
-
-
                 <router-outlet>
                 </router-outlet>
-
             </md-card-content>
         </md-card>
-
     </div>
-
 </md-sidenav-container>
 
 <cory-layout-header></cory-layout-header>
 <cory-layout-footer></cory-layout-footer>
+
+
 
 <div *ngIf="menuSidenav.opened" style="position: fixed; top: 5px; right: 15px; z-index: 3">
     <button md-icon-button color="primary"  (click)="packageMenuClose()">
         <md-icon>close</md-icon>
     </button>
 </div>
-
-
