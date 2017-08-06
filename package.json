@@ -34,7 +34,7 @@
     "corifeus-web-material": "^4.3.24-93",
     "highlight.js": "^9.12.0",
     "marked": "^0.3.6",
-    "p3x-angular-compile": "^4.3.19-71"
+    "p3x-angular-compile": "^4.3.20-72"
   },
   "devDependencies": {
     "corifeus-builder-angular": "^4.3.488-91"
