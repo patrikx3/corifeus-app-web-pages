@@ -19,7 +19,8 @@
       "stackicons",
       "npm-check-updates",
       "node-v8-workers",
-      "js-written-number"
+      "js-written-number",
+      "VS2015-Dark-Npp"
     ],
     "url": {
       "repos": "https://api.github.com/users/${github.user}/repos?per_page=100000",

@@ -34,9 +34,11 @@ export class CdnService {
 
     async repos() : Promise<any[]>  {
         if (this._repos === undefined) {
-            const patternExcludes = this.settings.github['exclude-starts-with'];
+            const patternExcludes : any = this.settings.github['exclude-starts-with'].map((exclude : any)  => {
+                return exclude.toLowerCase();
+            });
 
-            this._repos = this.http.get(this.settings.github.url.repos, this.requestOptions).toPromise().then((response) => {
+            this._repos = this.http.get(this.settings.github.url.repos, this.requestOptions).toPromise().then((response: Response) => {
                 const result = response.json().filter((repo : any) => {
                     const name = repo.name.toLowerCase();
                     let excluded = false;
