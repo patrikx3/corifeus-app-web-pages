@@ -50,22 +50,32 @@ ${text}
             if (title !== null ) {
                 tooltip = `mdTooltip="${title}" mdTooltipPosition="above"`;
             }
-
+            let fixed = false;
+            let path;
+            if (href.includes(`/${this.context.settings.data.pages.defaultDomain}/`)) {
+                const url = new URL(href);
+                href = url.pathname.substr(1);
+                path = `github/${href}/index.html`;
+                fixed = true;
+            }
             if (!href.startsWith(location.origin) && (href.startsWith('https:/') || href.startsWith('http:/'))) {
                 a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fa fa-external-link"></i></span>`;
             } else {
-                if (href.endsWith('.md')) {
-                    href = href.substr(0, href.length - 3) + '.html';
-                }
-                let path;
-                if (href.startsWith('/')) {
-                    path = `/${href}`;
-                } else if (href.startsWith(location.origin)) {
-                    path = href.substring(location.origin.length + 1)
-                } else {
-                    path = `github/${this.context.parent.currentRepo}/${href}`;
+                if (!fixed) {
+//                    console.log('not fixed');
+//                    console.log(href);
+                    if (href.endsWith('.md')) {
+                        href = href.substr(0, href.length - 3) + '.html';
+                    }
+                    if (href.startsWith(location.origin)) {
+                        path = href.substring(location.origin.length + 1)
+                    } else {
+                        path = `github/${this.context.parent.currentRepo}/${href}`;
+                    }
                 }
                 a = `<a href="/${path}" ${IsBot() ? '' : 'onclick="return false;"'} (click)="this.context.parent.navigate('${path}')" ${tooltip}>${text}</a>`;
+//                console.log(path);
+//                console.log(a);
             }
             return a;
         }
