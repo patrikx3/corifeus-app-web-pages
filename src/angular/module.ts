@@ -17,7 +17,39 @@ import { routes } from './routes';
 
 const template = require('lodash/template');
 
-import { MaterialModule } from '@angular/material';
+import {    MdAutocompleteModule,
+    MdButtonModule,
+    MdButtonToggleModule,
+    MdCardModule,
+    MdCheckboxModule,
+    MdChipsModule,
+    MdCommonModule,
+    MdDatepickerModule,
+    MdDialogModule,
+    MdExpansionModule,
+    MdGridListModule,
+    MdIconModule,
+    MdInputModule,
+    MdLineModule,
+    MdListModule,
+    MdMenuModule,
+    MdNativeDateModule,
+    MdOptionModule,
+    MdPaginatorModule,
+    MdProgressBarModule,
+    MdProgressSpinnerModule,
+    MdRadioModule,
+    MdRippleModule,
+    MdSelectModule,
+    MdSidenavModule,
+    MdSliderModule,
+    MdSlideToggleModule,
+    MdSnackBarModule,
+    MdSortModule,
+    MdTableModule,
+    MdTabsModule,
+    MdToolbarModule,
+    MdTooltipModule, } from '@angular/material';
 
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!
@@ -28,7 +60,39 @@ import { MaterialModule } from '@angular/material';
         CorifeusMaterialModule,
         CompileModule.forRoot({
             module: {
-                imports: [ MaterialModule ]
+                imports: [    MdAutocompleteModule,
+                    MdButtonModule,
+                    MdButtonToggleModule,
+                    MdCardModule,
+                    MdCheckboxModule,
+                    MdChipsModule,
+                    MdCommonModule,
+                    MdDatepickerModule,
+                    MdDialogModule,
+                    MdExpansionModule,
+                    MdGridListModule,
+                    MdIconModule,
+                    MdInputModule,
+                    MdLineModule,
+                    MdListModule,
+                    MdMenuModule,
+                    MdNativeDateModule,
+                    MdOptionModule,
+                    MdPaginatorModule,
+                    MdProgressBarModule,
+                    MdProgressSpinnerModule,
+                    MdRadioModule,
+                    MdRippleModule,
+                    MdSelectModule,
+                    MdSidenavModule,
+                    MdSliderModule,
+                    MdSlideToggleModule,
+                    MdSnackBarModule,
+                    MdSortModule,
+                    MdTableModule,
+                    MdTabsModule,
+                    MdToolbarModule,
+                    MdTooltipModule, ]
             }
         }),
 
