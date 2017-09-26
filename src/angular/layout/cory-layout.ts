@@ -57,7 +57,7 @@ export class Layout  {
     config: any;
 
     repos: any[];
-    public repo: any;
+    public repo: any[];
 
     packages: any = {};
 
@@ -114,9 +114,11 @@ export class Layout  {
 
     async load() {
         let packageJsonResponse : any;
+        let repos : any;
+        let repo: any;
         [
-            this.repos,
-            this.repo,
+            repos,
+            repo,
             packageJsonResponse
         ] = await Promise.all([
 
@@ -124,6 +126,8 @@ export class Layout  {
             this.cdn.repo(this.currentRepo),
             this.cdn.file(this.currentRepo, 'package.json'),
         ]);
+        this.repos = <Array<any>>repos;
+        this.repo = <Array<any>>repo;
         this.packageJson = JSON.parse(packageJsonResponse.text());
         this.title = this.packageJson.description;
         this.icon = this.packageJson.corifeus.icon !== undefined ? `fa ${this.packageJson.corifeus.icon}` : 'fa fa-bolt';
