@@ -13,10 +13,6 @@ const cache : any = {};
 @Injectable()
 export class CdnService {
 
-    private _repos : Promise<any[]>;
-
-    private requestOptions: any
-
     private settings : any;
 
     constructor(
@@ -24,47 +20,8 @@ export class CdnService {
         private settingsAll: SettingsService
     ) {
         this.settings = settingsAll.data.pages;
-
-        const headers = new Headers();
-        headers.append('Authorization', `token ${atob(this.settings.github.token)}`);
-        this.requestOptions = {
-          headers: headers
-        };
     }
 
-    async repos() : Promise<any[]>  {
-        if (this._repos === undefined) {
-            const patternExcludes : any = this.settings.github['exclude-starts-with'].map((exclude : any)  => {
-                return exclude.toLowerCase();
-            });
-
-            this._repos = this.http.get(this.settings.github.url.repos, this.requestOptions).toPromise().then((response: Response) => {
-                const result = response.json().filter((repo : any) => {
-                    const name = repo.name.toLowerCase();
-                    let excluded = false;
-                    for(let patternExclude of patternExcludes) {
-                        if (name.startsWith(patternExclude)) {
-                            excluded = true;
-                            break;
-                        }
-                    }
-                    return !excluded;
-                });
-                return result;
-            });
-        }
-        return this._repos;
-    }
-
-    url(repo: string, path: string) : string {
-        const params = {
-            user: this.settings.github.user,
-            path: path,
-            repo: repo
-        };
-        const url =template(this.settings.github.url.file)(params);
-        return url;
-    }
 
     async file(repo: string, path : string) : Promise<Response> {
         const postfix = '.html';
@@ -84,9 +41,5 @@ export class CdnService {
         return cache[url];
     }
 
-    async repo(name: string) : Promise<any> {
 
-        const repos = await this.repos();
-        return repos.find((repo: any) => repo.name === name);
-    }
 }

@@ -16,11 +16,11 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
 `],
     template: `
 <span>
-    <a target="_blank" href="https://travis-ci.org/patrikx3/{{ repo}}"><img src="https://travis-ci.org/patrikx3/{{ repo}}.svg?branch=master" [mdTooltip]="i18n.pages.title.travis" [mdTooltipPosition]="tooltipPosition"></a>
+    <a target="_blank" href="https://travis-ci.org/patrikx3/{{ repo}}"><img src="https://travis-ci.org/patrikx3/{{ repo}}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
     
-    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/badges/quality-score.png?b=master" [mdTooltip]="i18n.pages.title.scrunitizer.quality" [mdTooltipPosition]="tooltipPosition"></a>
+    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/badges/quality-score.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.quality" [matTooltipPosition]="tooltipPosition"></a>
     
-    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/badges/coverage.png?b=master"  [mdTooltip]="i18n.pages.title.scrunitizer.coverage" [mdTooltipPosition]="tooltipPosition"></a>
+    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/badges/coverage.png?b=master"  [matTooltip]="i18n.pages.title.scrunitizer.coverage" [matTooltipPosition]="tooltipPosition"></a>
 </span>
 `
 })

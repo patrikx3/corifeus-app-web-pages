@@ -1,33 +1,33 @@
 <cory-mat-loading></cory-mat-loading>
 
-<md-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
-    <md-sidenav #menuSidenav align="end" class="cory-layout-sindenav">
-        <button disabled md-menu-item>
+<mat-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
+    <mat-sidenav #menuSidenav align="end" class="cory-layout-sindenav">
+        <button disabled mat-menu-item>
             {{ i18n.title.packages }}
         </button>
 
-        <button md-menu-item
+        <button mat-menu-item
                 *ngFor="let repo of repos"
-                (click)="navigate('github/' + repo.name + '/index.html' ); menuRepoActive = repo.name; menuMenuActive = undefined; packageMenuClose()"
-                [class.cory-mat-menu-item-active]="menuRepoActive == repo.name"
+                (click)="navigate('github/' + repo + '/index.html' ); menuRepoActive = repo; menuMenuActive = undefined; packageMenuClose()"
+                [class.cory-mat-menu-item-active]="menuRepoActive == repo"
         >
-                <span *ngIf="packages[repo.name]">
+                <span *ngIf="packages[repo]">
                     <span style="min-width: 24px !important; display: inline-block; text-align: center;">
-                        <i *ngIf="packages[repo.name]" [class]="packages[repo.name].corifeus.icon||'fa fa-bolt' "></i>
+                        <i *ngIf="packages[repo]" [class]="packages[repo].corifeus.icon||'fa fa-bolt' "></i>
                     </span>
-                    {{ extractTitle(packages[repo.name]) }}
+                    {{ extractTitle(packages[repo]) }}
 
                     <div style="float: right; margin-left: 5px; opacity: 0.25;">
-                    {{ packages[repo.name].corifeus.code }}
+                    {{ packages[repo].corifeus.code }}
                     </div>
                 </span>
         </button>
 
-    </md-sidenav>
+    </mat-sidenav>
 
     <div class="cory-mat-container">
-        <md-card>
-            <md-card-content style="position: relative;">
+        <mat-card>
+            <mat-card-content style="position: relative;">
                 <cory-web-pages-build-status style="float: left;" [cory-repo]="currentRepo"></cory-web-pages-build-status>
                 <div style="float: right; font-weight: bold; font-size: 125%;">
                     v{{ packageJson.version }}
@@ -43,10 +43,10 @@
                 -->
                 <router-outlet>
                 </router-outlet>
-            </md-card-content>
-        </md-card>
+            </mat-card-content>
+        </mat-card>
     </div>
-</md-sidenav-container>
+</mat-sidenav-container>
 
 <cory-layout-header></cory-layout-header>
 <cory-layout-footer></cory-layout-footer>
@@ -54,7 +54,7 @@
 
 
 <div *ngIf="menuSidenav.opened" style="position: fixed; top: 5px; right: 15px; z-index: 3">
-    <button md-icon-button color="primary"  (click)="packageMenuClose()">
-        <md-icon>close</md-icon>
+    <button mat-icon-button color="primary"  (click)="packageMenuClose()">
+        <mat-icon>close</mat-icon>
     </button>
 </div>

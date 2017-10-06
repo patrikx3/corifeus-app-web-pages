@@ -48,7 +48,7 @@ ${text}
             let a;
             let tooltip = '';
             if (title !== null ) {
-                tooltip = `mdTooltip="${title}" mdTooltipPosition="above"`;
+                tooltip = `matTooltip="${title}" matTooltipPosition="above"`;
             }
             let fixed = false;
             let path;

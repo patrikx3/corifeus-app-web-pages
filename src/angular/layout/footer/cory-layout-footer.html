@@ -1,12 +1,12 @@
 <div class="cory-mat-footer">
 
-    <md-toolbar class="cory-layout-menus" color="primary">
+    <mat-toolbar class="cory-layout-menus" color="primary">
 
-        <a *ngIf="parent.packageJson.corifeus.publish" md-button [href]="linkNpm" target="_blank" [mdTooltip]="tooltip.Npm" [mdTooltipPosition]="tooltipPosition">
+        <a *ngIf="parent.packageJson.corifeus.publish" mat-button [href]="linkNpm" target="_blank" [matTooltip]="tooltip.Npm" [matTooltipPosition]="tooltipPosition">
             <img [src]="npmSvg" style="width: auto; height: 20px;"/>
         </a>
 
-        <a md-button [href]="linkGithub" target="_blank" [mdTooltip]="tooltip.GitHub" [mdTooltipPosition]="tooltipPosition">
+        <a mat-button [href]="linkGithub" target="_blank" [matTooltip]="tooltip.GitHub" [matTooltipPosition]="tooltipPosition">
             <i class="fa fa-github cory-layout-fa"></i>
             <span class="cory-mat-hide-xsmall">
             GitHub
@@ -31,22 +31,22 @@
 
         ></cory-mat-theme-button>
 
-        <a md-button href="https://www.jetbrains.com/buy/opensource/?product=idea" target="_blank" [mdTooltip]="tooltip.Sponsored"  [mdTooltipPosition]="tooltipPosition">
-            <md-icon>favorite</md-icon>
+        <a mat-button href="https://www.jetbrains.com/buy/opensource/?product=idea" target="_blank" [matTooltip]="tooltip.Sponsored"  [matTooltipPosition]="tooltipPosition">
+            <mat-icon>favorite</mat-icon>
             <span class="cory-mat-hide-xsmall">
                 <span [innerHTML]="i18n.pages.title.sponsored"></span>
             </span>
         </a>
 
-        <a md-button [href]="linkDeveloper" target="_blank"  [mdTooltip]="tooltip.Developer"  [mdTooltipPosition]="tooltipPosition">
-            <md-icon>flash_on</md-icon>
+        <a mat-button [href]="linkDeveloper" target="_blank"  [matTooltip]="tooltip.Developer"  [matTooltipPosition]="tooltipPosition">
+            <mat-icon>flash_on</mat-icon>
             <span class="cory-mat-hide-xsmall">
                 <span [innerHTML]="decodeEntities(i18n.pages.title.developer)"></span>
             </span>
         </a>
 
 
-    </md-toolbar>
+    </mat-toolbar>
 
 
 </div>

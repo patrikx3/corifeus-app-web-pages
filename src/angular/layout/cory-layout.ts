@@ -10,7 +10,7 @@ import {
 } from '@angular/router';
 
 import {
-    MdSidenav
+    MatSidenav
 } from '@angular/material'
 
 import {
@@ -46,8 +46,8 @@ export class Layout  {
 
     extractTitle = extractTitle;
 
-    @ViewChild('menuSidenav', {read: MdSidenav})
-    public menuSidenav : MdSidenav;
+    @ViewChild('menuSidenav', {read: MatSidenav})
+    public menuSidenav : MatSidenav;
 
     currentRepo: string;
 
@@ -57,9 +57,8 @@ export class Layout  {
     config: any;
 
     repos: any[];
-    public repo: any[];
 
-    packages: any = {};
+    packages: any;
 
     settings: any;
 
@@ -113,53 +112,21 @@ export class Layout  {
 
 
     async load() {
-        let packageJsonResponse : any;
-        let repos : any;
-        let repo: any;
-        [
-            repos,
-            repo,
-            packageJsonResponse
-        ] = await Promise.all([
-
-            this.cdn.repos(),
-            this.cdn.repo(this.currentRepo),
-            this.cdn.file(this.currentRepo, 'package.json'),
-        ]);
-        this.repos = <Array<any>>repos;
-        this.repo = <Array<any>>repo;
-        this.packageJson = JSON.parse(packageJsonResponse.text());
+        if (this.packages === undefined) {
+            this.packages = (await this.http.get(this.settings.p3x.git.url).toPromise()).json().repo;
+            this.repos = Object.keys(this.packages);
+        }
+        this.packageJson = this.packages[this.currentRepo];
         this.title = this.packageJson.description;
         this.icon = this.packageJson.corifeus.icon !== undefined ? `fa ${this.packageJson.corifeus.icon}` : 'fa fa-bolt';
         document.title = this.title;
         this.noScript.innerHTML = '';
         this.repos.forEach((repo : any) => {
             const a = document.createElement('a');
-            a.href = `/${repo.name}`;
+            a.href = `/${repo}`;
             a.innerText = repo.description;
             this.noScript.appendChild(a)
         })
-
-
-        const packages = this.repos.map((repo) => {
-            return new Promise(async(resolve, reject) => {
-                try {
-                    const pkg = await this.cdn.file(repo.name, 'package.json');
-                    resolve({
-                        pkgResponse: pkg,
-                        repo: repo.name,
-                    })
-                } catch(e) {
-                    reject(e);
-                }
-            })
-        })
-        const packageResult = await Promise.all(packages);
-        packageResult.forEach((packageResultItem: any) => {
-            const packageItem = JSON.parse(packageResultItem.pkgResponse.text());
-            this.packages[packageResultItem.repo] = packageItem;
-        })
-
     }
 
     async navigate(path? : string) {

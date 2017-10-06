@@ -1,32 +1,12 @@
 {
   "defaultDomain": "pages.corifeus.com",
+  "p3x": {
+    "git": {
+      "url": "https://server.patrikx3.com/api/patrikx3/git/repos"
+    }
+  },
   "github": {
     "defaultRepo": "corifeus",
-    "token": "OWY3MDgzMTllOWYyNWQwNjc3MTgwMTUwMzQ2ZDljNzY5ZmExYjU4Yg==",
-    "user": "patrikx3",
-    "repoNames": "corifeus",
-    "exclude-starts-with": [
-      "address-book",
-      "fortune-cookie",
-      "resume",
-      "service-manager-tray-for-windows",
-      "gitter",
-      "gitlist-workspace",
-      "gitlist",
-      "cookie",
-      "jgrowl",
-      "electron-apps",
-      "grunt-angular-templates",
-      "stackicons",
-      "npm-check-updates",
-      "node-v8-workers",
-      "js-written-number",
-      "VS2015-Dark-Npp"
-    ],
-    "url": {
-      "repos": "https://api.github.com/users/${github.user}/repos?per_page=100000",
-      "repo": "https://api.github.com/repos/${user}/${repo}",
-      "file": "https://${user}.github.io/${repo}/${path}"
-    }
+    "repoNames": "corifeus"
   }
 }

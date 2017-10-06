@@ -64,6 +64,13 @@ export class Page  {
 ${text}
 \`\`\`                    
 `
+            } else if (path.toLowerCase().endsWith('.yml ')) {
+                text = `
+\`\`\`yml
+${text}
+\`\`\`                    
+`
+
             }
             this.content = this.markdown.render(text, this.parent);
 

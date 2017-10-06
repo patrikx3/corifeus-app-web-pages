@@ -57,7 +57,7 @@ npm rebuild node-sass
 
 ---
 
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v4.4.45-233
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v4.4.47-245
 
 [Corifeus](http://www.corifeus.com) by [Patrik Laszlo](http://patrikx3.com)
 
