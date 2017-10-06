@@ -31,9 +31,9 @@
     "homepage": "https://pages.corifeus.com/corifeus-app-web-pages",
     "dependencies": {
         "@types/marked": "0.3.0",
-        "corifeus-builder-angular": "^4.4.60-176",
+        "corifeus-builder-angular": "^4.4.61-177",
         "corifeus-utils": "^1.1.532-168",
-        "corifeus-web-material": "^4.4.82-190",
+        "corifeus-web-material": "^4.4.83-191",
         "highlight.js": "^9.12.0",
         "marked": "^0.3.6",
         "p3x-angular-compile": "^4.4.59-146"
