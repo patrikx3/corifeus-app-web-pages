@@ -4,6 +4,7 @@ const hljs = require('highlight.js/lib/highlight.js');
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml.js'));
 hljs.registerLanguage('css', require('highlight.js/lib/languages/css.js'));
 hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss.js'));
+hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml.js'));
 hljs.registerLanguage('powershell', require('highlight.js/lib/languages/powershell.js'));
 hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript.js'));
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json.js'));
