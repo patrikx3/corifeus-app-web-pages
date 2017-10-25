@@ -14,7 +14,7 @@ This is an open source project. Just code.
    
 ### Built on Node 
 ``` 
-v8.7.0
+v8.8.0
 ```   
    
 The ```async``` and ```await``` keywords are required.
@@ -57,7 +57,7 @@ npm rebuild node-sass
 
 ---
 
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v4.4.65-280 
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v4.4.71-284 
 
 [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) 
  
