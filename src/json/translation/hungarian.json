@@ -7,7 +7,8 @@
     "scrunitizer": {
       "quality": "Scrutinizer kód minőség",
       "coverage": "Kódlefedettséget"
-    }
+    },
+    "donate": "Adományozzon a Corifeus / P3X-hez"
   },
   "menu": {
     "menu-corifeus-code-style": "Kód stílus",

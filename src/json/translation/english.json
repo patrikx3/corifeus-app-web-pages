@@ -7,7 +7,8 @@
     "scrunitizer": {
       "quality": "Scrutinizer Code Quality",
       "coverage": "Code Coverage"
-    }
+    },
+    "donate": "Donate to Corifeus / P3X"
   },
   "menu": {
     "menu-corifeus-code-style": "Code style",
