@@ -5,7 +5,6 @@ if (process.env.ENV === 'production') {
 }
 import './bundle.common';
 
-
 import {Module} from './module';
 
 platformBrowserDynamic().bootstrapModule(Module);

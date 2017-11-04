@@ -124,7 +124,7 @@ export class Layout  {
         this.repos.forEach((repo : any) => {
             const a = document.createElement('a');
             a.href = `/${repo}`;
-            a.innerText = repo.description;
+            a.innerText = repo;
             this.noScript.appendChild(a)
         })
     }
