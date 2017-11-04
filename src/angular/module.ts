@@ -17,39 +17,7 @@ import { routes } from './routes';
 
 const template = require('lodash/template');
 
-import {    MatAutocompleteModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatCommonModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatLineModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatOptionModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule, } from '@angular/material';
+
 
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!
@@ -59,46 +27,6 @@ import {    MatAutocompleteModule,
     imports: [
         CorifeusMaterialModule,
         CompileModule,
-        /*
-        CompileModule.forRoot({
-            module: {
-                imports: [
-                    MatAutocompleteModule,
-                    MatButtonModule,
-                    MatButtonToggleModule,
-                    MatCardModule,
-                    MatCheckboxModule,
-                    MatChipsModule,
-                    MatCommonModule,
-                    MatDatepickerModule,
-                    MatDialogModule,
-                    MatExpansionModule,
-                    MatGridListModule,
-                    MatIconModule,
-                    MatInputModule,
-                    MatLineModule,
-                    MatListModule,
-                    MatMenuModule,
-                    MatNativeDateModule,
-                    MatOptionModule,
-                    MatPaginatorModule,
-                    MatProgressBarModule,
-                    MatProgressSpinnerModule,
-                    MatRadioModule,
-                    MatRippleModule,
-                    MatSelectModule,
-                    MatSidenavModule,
-                    MatSliderModule,
-                    MatSlideToggleModule,
-                    MatSnackBarModule,
-                    MatSortModule,
-                    MatTableModule,
-                    MatTabsModule,
-                    MatToolbarModule,
-                    MatTooltipModule, ]
-            }
-        }),
-*/
         RouterModule.forRoot(routes),
     ],
     entryComponents: [
