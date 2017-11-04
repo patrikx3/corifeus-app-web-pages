@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { CorifeusMaterialModule, ThemeService } from 'corifeus-web-material';
 import { LocaleService, SettingsService } from 'corifeus-web';
-//import { CompileModule} from "p3x-angular-compile"
+import { CompileModule} from "p3x-angular-compile"
 
 import { Application } from './application';
 import { Layout, Header, Footer } from './layout';
@@ -58,6 +58,7 @@ import {    MatAutocompleteModule,
 @NgModule({
     imports: [
         CorifeusMaterialModule,
+        CompileModule,
         /*
         CompileModule.forRoot({
             module: {
