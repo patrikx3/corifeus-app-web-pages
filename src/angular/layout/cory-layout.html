@@ -27,7 +27,7 @@
 
     <div class="cory-mat-container">
         <mat-card>
-            <mat-card-content style="position: relative;">
+            <mat-card-content style="position: relative;" *ngIf="packageJson !== undefined">
                 <cory-web-pages-build-status style="float: left;" [cory-repo]="currentRepo"></cory-web-pages-build-status>
                 <div style="float: right; font-weight: bold; font-size: 125%;">
                     v{{ packageJson.version }}

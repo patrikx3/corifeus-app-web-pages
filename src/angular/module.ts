@@ -15,10 +15,6 @@ import { CdnService,  MarkdownService } from './service';
 
 import { routes } from './routes';
 
-const template = require('lodash/template');
-
-
-
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!
  */

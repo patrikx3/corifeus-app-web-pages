@@ -3,7 +3,6 @@ import {
     Host
 } from '@angular/core';
 
-const hasIn = require('lodash/hasIn');
 const capitalize = require('lodash/capitalize');
 
 import {

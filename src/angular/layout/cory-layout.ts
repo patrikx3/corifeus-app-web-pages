@@ -116,6 +116,9 @@ export class Layout  {
             this.packages = (await this.http.get(this.settings.p3x.git.url).toPromise()).json().repo;
             this.repos = Object.keys(this.packages);
         }
+        if (!this.packages.hasOwnProperty(this.currentRepo)) {
+            this.currentRepo = 'corifeus';
+        }
         this.packageJson = this.packages[this.currentRepo];
         this.title = this.packageJson.description;
         this.icon = this.packageJson.corifeus.icon !== undefined ? `fa ${this.packageJson.corifeus.icon}` : 'fa fa-bolt';

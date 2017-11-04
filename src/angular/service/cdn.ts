@@ -3,8 +3,6 @@ import { Http, Response, Headers, RequestOptionsArgs } from '@angular/http';
 
 import { SettingsService } from 'corifeus-web';
 
-const template = require('lodash/template');
-
 import 'rxjs/add/operator/toPromise';
 
 const cache : any = {};
@@ -36,7 +34,10 @@ export class CdnService {
         }
         const url = `https://cdn.corifeus.com/git/${repo}/${path}`;
         if (cache[url] === undefined) {
-            cache[url] = await this.http.get(url).toPromise();
+            try {
+                cache[url] = await this.http.get(url).toPromise();
+            } catch (e) {
+            }
         }
         return cache[url];
     }

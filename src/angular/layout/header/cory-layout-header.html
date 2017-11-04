@@ -1,4 +1,4 @@
-<div class="cory-mat-header">
+<div class="cory-mat-header" *ngIf="parent.packageJson !== undefined">
     <mat-toolbar color="primary" class="cory-layout-menus">
 
         <button mat-button (click)="parent.navigate()" class="cory-layout-header-title" >
