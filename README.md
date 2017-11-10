@@ -3,7 +3,7 @@
  [![Build Status](https://travis-ci.org/patrikx3/corifeus-app-web-pages.svg?branch=master)](https://travis-ci.org/patrikx3/corifeus-app-web-pages)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/?branch=master)  [![Code Coverage](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/?branch=master)  
  
 ---
-# Corifeus App Web Pages - Support v5.0.18-314  
+# Corifeus App Web Pages - Support v5.0.19-318  
 
 This is an open source project. Just code.
 
@@ -14,7 +14,7 @@ This is an open source project. Just code.
    
 ### Built on Node 
 ``` 
-v9.0.0
+v9.1.0
 ```   
    
 The ```async``` and ```await``` keywords are required.
@@ -57,7 +57,7 @@ npm rebuild node-sass
 
 ---
 
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v5.0.18-314 
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v5.0.19-318 
 
 [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LFRV89WPRMMVE&lc=HU&item_name=Patrik%20Laszlo&item_number=patrikx3&currency_code=HUF&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted) 
 
