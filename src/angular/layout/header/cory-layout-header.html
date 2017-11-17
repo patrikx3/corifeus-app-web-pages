@@ -9,7 +9,7 @@
             <span *ngIf="parent.packageJson.corifeus.type === undefined && parent.packageJson.name !== 'corifeus'" style="text-transform: capitalize;">
                 {{ this.settings.github.repoNames }}
             </span>
-            <span *ngIf="parent.packageJson.corifeus.type !== undefined && parent.packageJson.corifeus.type !== 'lede'" class="cory-layout-header-top-{{ parent.packageJson.corifeus.type }}" style="text-transform: capitalize;">
+            <span *ngIf="parent.packageJson.corifeus.type !== undefined && parent.packageJson.corifeus.type !== 'lede'" class="cory-layout-header-top-{{ parent.packageJson.corifeus.type }}" style="text-transform: {{ parent.packageJson.corifeus.type === 'p3x' ? 'uppercase' : 'capitalize' }};">
                 {{ parent.packageJson.corifeus.type }}
             </span>
             {{ parent.packageJson.corifeus.code }}
