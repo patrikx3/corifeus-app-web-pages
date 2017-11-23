@@ -49,7 +49,7 @@ ${text}
             let a;
             let tooltip = '';
             if (title !== null ) {
-                tooltip = `matTooltip="${title}" matTooltipPosition="above"`;
+                tooltip = `tooltip="${title}"`;
             }
             let fixed = false;
             let path;
@@ -74,7 +74,9 @@ ${text}
                         path = `github/${this.context.parent.currentRepo}/${href}`;
                     }
                 }
-                a = `<a href="/${path}" ${IsBot() ? '' : 'onclick="return false;"'} (click)="this.context.parent.navigate('${path}')" ${tooltip}>${text}</a>`;
+                // this.context.parent.navigate
+                const navClick = !IsBot() ? `onclick="window.coryAppWebPagesNavigate('${path}'); return false;"` : '';
+                a = `<a href="/${path}" ${navClick} ${tooltip}>${text}</a>`;
 //                console.log(path);
 //                console.log(a);
             }

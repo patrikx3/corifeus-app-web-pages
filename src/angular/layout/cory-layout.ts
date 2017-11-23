@@ -3,6 +3,7 @@ import {
     Injectable,
     ViewEncapsulation,
     ViewChild,
+    NgZone,
 } from '@angular/core';
 
 import {
@@ -31,6 +32,13 @@ import {NotifyService} from 'corifeus-web-material';
 import { Observable } from 'rxjs';
 
 import  { extractTitle } from '../utils/extracTitle';
+
+declare global {
+    interface Window {
+        coryAppWebPagesNavigate: any
+    }
+}
+
 
 @Component({
     selector: 'cory-layout',
@@ -85,7 +93,8 @@ export class Layout  {
         protected notify: NotifyService,
         private http: Http,
         protected locale: LocaleService,
-        protected settingsAll: SettingsService
+        protected settingsAll: SettingsService,
+        private zone: NgZone,
     ) {
         this.settings = settingsAll.data.pages;
         this.currentRepo = this.settings.github.defaultRepo;
@@ -130,6 +139,11 @@ export class Layout  {
             a.innerText = repo;
             this.noScript.appendChild(a)
         })
+        window.coryAppWebPagesNavigate = async (path? : string) => {
+            this.zone.run(() => {
+                this.navigate(path);
+            });
+        };
     }
 
     async navigate(path? : string) {

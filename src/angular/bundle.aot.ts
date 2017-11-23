@@ -4,7 +4,7 @@ enableProdMode();
 
 import './bundle.common';
 
-import {ModuleNgFactory} from '.module.ngfactory';
+import {ModuleNgFactory} from './module.ngfactory';
 
 platformBrowser().bootstrapModuleFactory(ModuleNgFactory);
 

@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 
 import { CorifeusMaterialModule, ThemeService } from 'corifeus-web-material';
 import { LocaleService, SettingsService } from 'corifeus-web';
-import { CompileModule} from "p3x-angular-compile"
 
 import { Application } from './application';
 import { Layout, Header, Footer } from './layout';
@@ -22,7 +21,6 @@ import { routes } from './routes';
 @NgModule({
     imports: [
         CorifeusMaterialModule,
-        CompileModule,
         RouterModule.forRoot(routes),
     ],
     entryComponents: [

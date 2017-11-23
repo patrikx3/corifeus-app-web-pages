@@ -23,8 +23,7 @@ import { SettingsService } from 'corifeus-web';
 @Component({
     selector: 'cory-page',
     template: `
-        <span [p3x-compile]="content" [p3x-compile-ctx]="this">
-    </span>
+        <span [innerHTML]="content | coryHtml"></span>
     `
 })
 
