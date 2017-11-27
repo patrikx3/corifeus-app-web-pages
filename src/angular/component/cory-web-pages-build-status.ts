@@ -22,9 +22,11 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
     &nbsp;
     <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/badges/coverage.png?b=master"  [matTooltip]="i18n.pages.title.scrunitizer.coverage" [matTooltipPosition]="tooltipPosition"></a>
     &nbsp;
-     <a target="_blank" href="https://www.facebook.com/corifeus.software"><img src="https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg"  matTooltip="Corifeus Software Engineering" [matTooltipPosition]="tooltipPosition"></a>
+     <a target="_blank" href="https://www.facebook.com/corifeus.software"><img [src]="i18n.pages.badge.like"  matTooltip="Corifeus Software Engineering" [matTooltipPosition]="tooltipPosition"></a>
     &nbsp;
-    <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=LFRV89WPRMMVE&amp;lc=HU&amp;item_name=Patrik%20Laszlo&amp;item_number=patrikx3&amp;currency_code=HUF&amp;bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"><img src="https://img.shields.io/badge/Donate-Corifeus-003087.svg" [matTooltip]="i18n.pages.title.donate" [matTooltipPosition]="tooltipPosition"></a>
+    <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=LFRV89WPRMMVE&amp;lc=HU&amp;item_name=Patrik%20Laszlo&amp;item_number=patrikx3&amp;currency_code=HUF&amp;bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"><img [src]="i18n.pages.badge.donate" [matTooltip]="i18n.pages.title.donate" [matTooltipPosition]="tooltipPosition"></a>
+    &nbsp;
+    <a target="_blank" [href]="i18n.pages.url.contact"><img [src]="i18n.pages.badge.contact" [matTooltip]="i18n.pages.title.contact" [matTooltipPosition]="tooltipPosition"></a>
     &nbsp;
 </span>
     `

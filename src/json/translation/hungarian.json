@@ -8,7 +8,17 @@
       "quality": "Scrutinizer kód minőség",
       "coverage": "Kódlefedettséget"
     },
-    "donate": "Adományozzon a Corifeus / P3X-hez"
+    "donate": "Adományozzon a Corifeus / P3X-hez",
+    "contact": "Contact",
+    "like": "Tetszik"
+  },
+  "url": {
+    "contact": "https://www.patrikx3.com/hu/ajto/kapcsolat"
+  },
+  "badge": {
+    "contact": "https://img.shields.io/badge/Kapcsolat-P3X-ff9900.svg",
+    "donate": "https://img.shields.io/badge/Adományozzon-Corifeus-003087.svg",
+    "like": "https://img.shields.io/badge/TETSZIK-Corifeus-3b5998.svg"
   },
   "menu": {
     "menu-corifeus-code-style": "Kód stílus",
