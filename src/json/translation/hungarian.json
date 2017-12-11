@@ -4,6 +4,7 @@
     "packages": "Csomagok",
     "sponsored": "IntelliJ IDEA",
     "travis": "Kiépítettség",
+    "githubStars": "GitHub Csillagok",
     "scrunitizer": {
       "quality": "Scrutinizer kód minőség",
       "coverage": "Kódlefedettséget"

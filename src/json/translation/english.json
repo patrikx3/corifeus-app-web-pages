@@ -4,6 +4,7 @@
     "packages": "Packages",
     "sponsored": "IntelliJ IDEA",
     "travis": "Build status",
+    "githubStars": "GitHub Stars",
     "scrunitizer": {
       "quality": "Scrutinizer Code Quality",
       "coverage": "Code Coverage"
