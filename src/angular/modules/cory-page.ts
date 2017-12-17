@@ -8,9 +8,7 @@ import {
     ActivatedRoute,
 } from '@angular/router';
 
-import {
-    Http
-} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { RouterService } from 'corifeus-web';
 
@@ -37,7 +35,7 @@ export class Page  {
         private cdn: CdnService,
         private router: RouterService,
         private route: ActivatedRoute,
-        public http: Http,
+        public http: HttpClient,
         private settings: SettingsService
     ) {
         this.markdown.context = this;
@@ -54,8 +52,7 @@ export class Page  {
         };
         try {
 
-            const response = await this.cdn.file(this.parent.currentRepo, path);
-            let text = response.text();
+            let text = await this.cdn.file(this.parent.currentRepo, path);
 
             if (path.toLowerCase().endsWith('.json')) {
                 text = `

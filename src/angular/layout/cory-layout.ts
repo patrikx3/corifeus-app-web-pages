@@ -18,9 +18,7 @@ import {
     RouterService,
 } from 'corifeus-web';
 
-import {
-    Http
-} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import * as moment from 'moment';
 
@@ -91,7 +89,7 @@ export class Layout  {
         private router: RouterService,
         private route: ActivatedRoute,
         protected notify: NotifyService,
-        private http: Http,
+        private http: HttpClient,
         protected locale: LocaleService,
         protected settingsAll: SettingsService,
         private zone: NgZone,
@@ -122,7 +120,8 @@ export class Layout  {
 
     async load() {
         if (this.packages === undefined) {
-            this.packages = (await this.http.get(this.settings.p3x.git.url).toPromise()).json().repo;
+            const response : any = await this.http.get(this.settings.p3x.git.url).toPromise()
+            this.packages = response.repo;
             this.repos = Object.keys(this.packages);
         }
         if (!this.packages.hasOwnProperty(this.currentRepo)) {
