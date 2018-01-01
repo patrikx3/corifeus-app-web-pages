@@ -4,11 +4,12 @@
     "developer": "Laszlo Patrik &copy; 2016",
     "packages": "Csomagok",
     "sponsored": "IntelliJ IDEA",
-    "travis": "Kiépítettség",
+    "travis": "Travis Kiépítettség",
     "githubStars": "GitHub Csillagok",
     "scrunitizer": {
       "quality": "Scrutinizer kód minőség",
-      "coverage": "Kódlefedettséget"
+      "coverage": "Scrutinizer Kódlefedettséget",
+      "build": "Scrutinizer Kiépítettség"
     },
     "donate": "Adományozzon a Corifeus / P3X-hez",
     "contact": "Kapcsolat",

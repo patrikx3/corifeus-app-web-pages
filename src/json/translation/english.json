@@ -4,11 +4,12 @@
     "developer": "Patrik Laszlo &copy; 2016",
     "packages": "Packages",
     "sponsored": "IntelliJ IDEA",
-    "travis": "Build status",
+    "travis": "Travis Build status",
     "githubStars": "GitHub Stars",
     "scrunitizer": {
       "quality": "Scrutinizer Code Quality",
-      "coverage": "Code Coverage"
+      "coverage": "Scrutinizer Code Coverage",
+      "build": "Scrutinizer Build Status"
     },
     "donate": "Donate to Corifeus / P3X",
     "contact": "Contact",
