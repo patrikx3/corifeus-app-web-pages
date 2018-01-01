@@ -1,5 +1,6 @@
 {
   "title": {
+    "travis-error": "Jelenleg Travis hibákat ad (kvóta hibákat a párhuzamosan építésekkel), habár a Scrutinizer 100% -ban működik - építés, kódminőség, kód lefedettség.",
     "developer": "Laszlo Patrik &copy; 2016",
     "packages": "Csomagok",
     "sponsored": "IntelliJ IDEA",
