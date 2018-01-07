@@ -1,6 +1,5 @@
 {
   "title": {
-    "travis-error": "Right now, Travis is giving errors (quota errors with parallel builds), though Scrutinizer is working 100% - building, code quality, coverage.",
     "developer": "Patrik Laszlo &copy; 2016",
     "packages": "Packages",
     "sponsored": "IntelliJ IDEA",
