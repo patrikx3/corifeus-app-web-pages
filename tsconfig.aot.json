@@ -21,15 +21,19 @@
       "es2017"
     ]
   },
-  "includes": [
+  "include": [
     "src/angular/**/*",
-    "test/angular-webpack/**/*"
+    "test/angular-webpack/**/*",
+    "node_modules/corifeus-web",
+    "node_modules/corifeus-web-material"
   ],
   "exclude": [
-    "node_modules",
     "src/angular/bundle.ts",
     "test/angular-webpack/angular/bundle.ts",
-    "build/browser"
+    "test/angular-karma",
+    "build/browser",
+    "node_modules/corifeus-web/test",
+    "node_modules/corifeus-web-material/test"
   ],
   "angularCompilerOptions": {
     "annotationsAs": "decorators",
