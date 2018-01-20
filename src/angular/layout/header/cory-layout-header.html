@@ -11,7 +11,7 @@
             </span>
             <span *ngIf="parent.packageJson.corifeus.type !== undefined && (parent.packageJson.corifeus.type !== 'lede' || parent.packageJson.corifeus.type !== 'build')"
                   class="cory-layout-header-top-{{ parent.packageJson.corifeus.type }}"
-                  style="text-transform: {{ parent.packageJson.corifeus.type === 'p3x' ? 'uppercase' : 'capitalize' }};">
+                  style="text-transform: uppercase;">
                 {{ parent.packageJson.corifeus.type }}
             </span>
             {{ parent.packageJson.corifeus.code }}
