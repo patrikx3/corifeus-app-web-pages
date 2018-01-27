@@ -39,8 +39,11 @@ class Tooltip {
 export class Footer {
 
     npmSvg: SafeUrl  = require('../../../assets/npm-logo.svg');
+    jetbrainsSvg: SafeUrl = require('../../../assets/jetbrains-logo.svg');
     settings : any;
     i18n : any;
+
+    linkJetBrains: string = "https://www.jetbrains.com"
 
     decodeEntities: Function = decodeEntities;
 
@@ -61,6 +64,7 @@ export class Footer {
         this.settings = settingsAll.data.pages;
 
         this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../assets/npm-logo.svg'))
+        this.jetbrainsSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../assets/jetbrains-logo.svg'))
 
         this.locale.subscribe((data: LocaleSubject) => {
             this.i18n = data.locale.data;

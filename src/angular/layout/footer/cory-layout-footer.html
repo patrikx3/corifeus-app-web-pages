@@ -20,25 +20,21 @@
         <!--
         [cory-tooltip-position]="tooltipPosition"
         -->
-        <cory-mat-translation-button
-
-        ></cory-mat-translation-button>
+        <cory-mat-translation-button></cory-mat-translation-button>
 
         <!--
          [cory-tooltip-position]="tooltipPosition"
         -->
-        <cory-mat-theme-button
+        <cory-mat-theme-button></cory-mat-theme-button>
 
-        ></cory-mat-theme-button>
-
-        <a mat-button href="https://www.jetbrains.com/buy/opensource/?product=idea" target="_blank" [matTooltip]="tooltip.Sponsored"  [matTooltipPosition]="tooltipPosition">
-            <mat-icon>favorite</mat-icon>
+        <a mat-button [href]="linkJetBrains" target="_blank" [matTooltip]="tooltip.Sponsored" [matTooltipPosition]="tooltipPosition">
+            <img [src]="jetbrainsSvg" style="width: auto; height: 20px;"/>
             <span class="cory-mat-hide-xsmall">
-                <span [innerHTML]="i18n.pages.title.sponsored"></span>
+                &nbsp;<span [innerHTML]="i18n.pages.title.sponsored"></span>
             </span>
         </a>
 
-        <a mat-button [href]="linkDeveloper" target="_blank"  [matTooltip]="tooltip.Developer"  [matTooltipPosition]="tooltipPosition">
+        <a mat-button [href]="linkDeveloper" target="_blank" [matTooltip]="tooltip.Developer"  [matTooltipPosition]="tooltipPosition">
             <mat-icon>flash_on</mat-icon>
             <span class="cory-mat-hide-xsmall">
                 <span [innerHTML]="decodeEntities(i18n.pages.title.developer)"></span>
