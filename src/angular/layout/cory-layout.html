@@ -46,6 +46,9 @@
                 </div>
                 -->
                 <br/>
+                <div *ngIf="isOpenWrt()" style="font-weight: bold; font-size: 150%">
+                    {{ i18n.title.openwrt }}
+                </div>
                 <router-outlet>
                 </router-outlet>
             </mat-card-content>

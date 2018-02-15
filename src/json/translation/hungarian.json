@@ -12,7 +12,8 @@
     },
     "donate": "Adományozzon a Corifeus / P3X-hez",
     "contact": "Kapcsolat",
-    "like": "Tetszik"
+    "like": "Tetszik",
+    "openwrt": "A legújabb OpenWrt nagyon kísérleti!!!"
   },
   "url": {
     "contact": "https://www.patrikx3.com/hu/ajto/kapcsolat"

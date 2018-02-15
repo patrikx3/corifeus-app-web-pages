@@ -12,7 +12,8 @@
     },
     "donate": "Donate to Corifeus / P3X",
     "contact": "Contact",
-    "like": "Like"
+    "like": "Like",
+    "openwrt": "The latest OpenWrt is highly EXPERIMENTAL!!!"
   },
   "url": {
     "contact": "https://www.patrikx3.com/en/front/contact"

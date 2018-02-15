@@ -153,6 +153,10 @@ export class Layout  {
         this.router.navigateTop([path]);
     }
 
+    isOpenWrt() {
+        return this.packageJson !== undefined && this.packageJson.name !== undefined && this.packageJson.name.startsWith('p3x-openwrt');
+    }
+
     packageMenuClose() {
 //        this.body.style.overflowY = 'auto';
         this.menuSidenav.close();

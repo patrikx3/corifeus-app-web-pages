@@ -18,9 +18,12 @@ export function extractTitle(pkg: any) : string {
         result.splice(1, 1);
         return result.join(' ');
     } else {
-        let result = pkg.name.split('-').map((word: string) => {
+        let result : string = pkg.name.split('-').map((word: string) => {
             return word[0].toUpperCase() + word.substr(1)
         }).slice(1).join(' ');
+        if (result !== undefined && result.startsWith('Openwrt')) {
+            result = result.replace('Openwrt', 'OpenWrt')
+        }
         return result;
     }
 }
