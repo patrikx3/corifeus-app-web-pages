@@ -1,11 +1,11 @@
 {
   "name": "corifeus-app-web-pages",
-  "version": "5.2.53-429",
+  "version": "5.2.55-431",
   "corifeus": {
     "icon": "fa fa-sitemap",
     "code": "Support",
     "cdn": true,
-    "nodejs": "v9.5.0"
+    "nodejs": "v9.6.1"
   },
   "description": "Corifeus App Web Pages - Support",
   "main": "src/index.js",
@@ -31,12 +31,12 @@
   "homepage": "https://pages.corifeus.com/corifeus-app-web-pages",
   "dependencies": {
     "@types/marked": "0.3.0",
-    "corifeus-builder-angular": "^5.2.95-326",
-    "corifeus-utils": "^1.1.828-288",
-    "corifeus-web-material": "^5.2.68-332",
+    "corifeus-builder-angular": "^5.2.99-329",
+    "corifeus-utils": "^1.1.832-290",
+    "corifeus-web-material": "^5.2.72-335",
     "highlight.js": "^9.12.0",
-    "marked": "^0.3.14",
-    "p3x-angular-compile": "^5.2.58-278"
+    "marked": "^0.3.16",
+    "p3x-angular-compile": "^5.2.62-280"
   },
   "engines": {
     "node": ">=8.9.0"
