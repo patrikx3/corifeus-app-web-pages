@@ -43,7 +43,7 @@ module.exports = (grunt) => {
     ];
 
 //    grunt.registerTask('default', defaults.concat(builder.config.task.build.angularAot));
-    grunt.registerTask('default', defaults.concat(builder.config.task.build.angular));
+    grunt.registerTask('default', defaults.concat(builder.config.task.build.angularAot));
 
     grunt.registerTask('dev', defaults.concat(builder.config.task.build.angular));
     grunt.registerTask('aot', defaults.concat(builder.config.task.build.angularAot));
