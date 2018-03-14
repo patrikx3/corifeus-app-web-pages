@@ -154,7 +154,7 @@ export class Layout  {
     }
 
     isOpenWrt() {
-        return this.packageJson !== undefined && this.packageJson.name !== undefined && this.packageJson.name.startsWith('p3x-openwrt');
+        return this.packageJson !== undefined && this.packageJson.corifeus !== undefined && this.packageJson.corifeus.hasOwnProperty('type') && this.packageJson.corifeus.type === 'openwrt';
     }
 
     packageMenuClose() {

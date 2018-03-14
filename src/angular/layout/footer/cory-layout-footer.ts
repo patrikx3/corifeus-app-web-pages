@@ -52,6 +52,8 @@ export class Footer {
 
     currentWidthAlias: string;
 
+    currentYear = new Date().getFullYear();
+
     constructor(
         private notify: NotifyService,
         private theme: ThemeService,
@@ -125,7 +127,5 @@ export class Footer {
     public  get linkGithub() {
         return `https://github.com/patrikx3/${this.parent.currentRepo}`;
     }
-
-
 
 }

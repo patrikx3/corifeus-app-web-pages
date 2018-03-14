@@ -37,7 +37,7 @@
         <a mat-button [href]="linkDeveloper" target="_blank" [matTooltip]="tooltip.Developer"  [matTooltipPosition]="tooltipPosition">
             <mat-icon>flash_on</mat-icon>
             <span class="cory-mat-hide-xsmall">
-                <span [innerHTML]="decodeEntities(i18n.pages.title.developer)"></span>
+                <span [innerHTML]="decodeEntities(i18n.pages.title.developer)"></span> {{ currentYear }}
             </span>
         </a>
 
