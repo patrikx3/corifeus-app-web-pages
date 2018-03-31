@@ -15,7 +15,7 @@ before_script:
 - sleep 3
 - npm install grunt-cli -g
 - npm install
-- node_modules/protractor/bin/webdriver-manager update
+- node_modules/protractor/bin/webdriver-manager update --gecko=false
 env:
   global:
     secure: emj2v120eW3MO+d7+suL12+lemDtE6OcAX2B/DbprqyU+RLtmUOQ//PWq9Nz3Krmc1tlzVW+LiNP9yCZOkbXDePEVSZcduOG8vpLbJlcm00KTTk+GNPVyHz47Y+ZLxdCi1pHS6BSk8WORnKh0zubrGNZQcNd0el3MgSoFFM08rkEpFXgsuB8oLDB6DlA20v4hmDbQTwAuZTWiMdMzQT/y0x9PYU2Z0e0cvWu9l6yTtmoddRyArs5Yr3dOCNeRNgiVOo5h3GGDDAsE9E5sMQ5h8EFFd2idRwtUmq8V7uaaaD+r2nbBWgfpB11GTCmzdya88Gpom4JrAnfeWHpT9ZML63cR9DS98UutJLY1cO8UGTlnVcf0xKAcnR43ySiNqpqZHWCgqpduhlIYMm5TZ3qJ84B6DEE4WS2Jxww7JBtfhXKa79AhKUXY3haHraVeqwh7aJytcA94UvW/DTqPdXSc/8GBQg7MEb/bCimulPrJaMcahsIKoAMQAtT1lUkZiVlH4JNpOxMAt+ElXra+Viagg7Cch1jbRQOy3sYboSttl7VhGzsmR6LdvVOyMl8hLWzRwpiCo0+c3OqNUpj8My/lupXdSfIBJVCfjLVN5Jk7iq/cOTYXVe1pOObSHIZbB37kLq0wOUEoI6XnOFruQUDL7/NeySzrHlwgQDnV9fcwcw=
