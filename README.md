@@ -19,7 +19,7 @@ All my domains (patrikx3.com and corifeus.com) could have errors since I am deve
    
 ### Built on Node 
 ``` 
-v9.10.0
+v9.10.1
 ```   
    
 The ```async``` and ```await``` keywords are required.
