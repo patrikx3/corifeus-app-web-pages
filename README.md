@@ -3,7 +3,7 @@
  [![Build Status](https://travis-ci.org/patrikx3/corifeus-app-web-pages.svg?branch=master)](https://travis-ci.org/patrikx3/corifeus-app-web-pages)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/?branch=master)  [![Code Coverage](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/patrikx3/corifeus-app-web-pages/?branch=master)  
  
 ---
-# Corifeus App Web Pages - Support v5.2.74-506  
+# 🕸️ Corifeus App Web Pages - Support v5.2.74-506  
 
 This is an open-source project. Star this repository if you like it, or even donate!  Thank you so much! :)
 

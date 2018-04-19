@@ -5,6 +5,7 @@ import {
     ViewChild,
     NgZone,
     OnInit,
+    ElementRef,
 } from '@angular/core';
 
 import {
@@ -59,6 +60,9 @@ export class Layout implements OnInit {
 
     @ViewChild('menuSidenav', {read: MatSidenav})
     public menuSidenav : MatSidenav;
+
+    @ViewChild('searchText')
+    public searchTextInput: ElementRef;
 
     currentRepo: string;
 
@@ -205,6 +209,20 @@ export class Layout implements OnInit {
     packageMenuOpen() {
 //        this.body.style.overflowY = 'hidden';
         this.menuSidenav.open();
+        setTimeout(() => {
+            this.searchTextInput.nativeElement.blur()
+
+//            /**
+            const e = document.querySelector('.cory-mat-menu-item-active')
+            if (e) {
+//                e.scrollIntoView(true);
+//                const viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+//                window.scrollBy(0, (e.getBoundingClientRect().height-viewportH)/2);
+                e.scrollIntoView();
+            }
+//             **/
+
+        }, 1000)
     }
 
     search(searchText: string) {

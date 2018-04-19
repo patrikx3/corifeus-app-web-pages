@@ -6,7 +6,13 @@
             {{ i18n.title.packages }}
         </button>
 
+
         <form class="cory-layout-sidenav-search">
+
+            <!--
+            <input type="text" style="position: absolute; top: 0; left: 0; opacity: 1.0; height: 0; border: none; padding: 0; margin: 0; line-height: 0;" tabindex="0">
+            -->
+
             <mat-form-field style="width: 100%;">
                 <input matInput #searchText (keyup)="search(searchText.value)" placeholder="{{ i18n.title.search }}"/>
                 <mat-icon *ngIf="searchText.value.trim() != ''" style="cursor: pointer;" matSuffix (click)="searchText.value = ''; search('')">delete</mat-icon>
