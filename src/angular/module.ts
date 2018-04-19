@@ -55,7 +55,11 @@ export class Module {
 
         const module = 'pages';
 
-        let settingsJson = require('../json/settings.json');
+        const settingsJson = require('../json/settings.json');
+
+        if (location.origin === 'http://localhost:8080') {
+            settingsJson.defaultDomain = 'localhost:8080'
+        }
         settings.register(module, settingsJson);
 
         loc.register(module, {

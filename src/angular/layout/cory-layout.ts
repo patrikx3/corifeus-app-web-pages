@@ -4,6 +4,7 @@ import {
     ViewEncapsulation,
     ViewChild,
     NgZone,
+    OnInit,
 } from '@angular/core';
 
 import {
@@ -27,7 +28,7 @@ import { CdnService} from '../service';
 import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
 import {NotifyService} from 'corifeus-web-material';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import  { extractTitle } from '../utils/extracTitle';
 
@@ -45,10 +46,14 @@ declare global {
 })
 
 @Injectable()
-export class Layout  {
+export class Layout implements OnInit {
+
+    private subject: Subject<string> = new Subject();
 
     menuMenuActive: any;
     menuRepoActive: any
+
+    searchText: string;
 
     extractTitle = extractTitle;
 
@@ -117,6 +122,40 @@ export class Layout  {
         })
     }
 
+    ngOnInit() {
+        this.subject.debounceTime(this.settings.debounce.default).subscribe(searchText => {
+            this.handleSearch(searchText);
+        });
+    }
+
+    handleSearch(searchText: string) {
+        this.searchText = searchText.trim();
+    }
+
+    get reposSearch() {
+        if (this.searchText === '' || this.searchText === undefined) {
+            return this.repos;
+        }
+        const regexes : Array<RegExp> = [];
+        this.searchText.split(/[\s,]+/).forEach(search => {
+            if (search === '') {
+                return;
+            }
+            regexes.push(
+                new RegExp('.*' + search + '.*')
+            )
+        })
+        return this.repos.filter(repo => {
+            let found = false;
+            for(let regex of regexes) {
+                if (regex.test(repo)) {
+                    found = true;
+                    break;
+                }
+            }
+            return found;
+        })
+    }
 
     async load() {
         if (this.packages === undefined) {
@@ -168,4 +207,7 @@ export class Layout  {
         this.menuSidenav.open();
     }
 
+    search(searchText: string) {
+        this.subject.next(searchText);
+    }
 }

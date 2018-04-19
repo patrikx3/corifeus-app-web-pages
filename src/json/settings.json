@@ -1,4 +1,7 @@
 {
+  "debounce": {
+    "default": 250
+  },
   "defaultDomain": "pages.corifeus.com",
   "p3x": {
     "git": {

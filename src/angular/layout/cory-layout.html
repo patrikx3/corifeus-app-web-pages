@@ -6,8 +6,16 @@
             {{ i18n.title.packages }}
         </button>
 
+        <form class="cory-layout-sidenav-search">
+            <mat-form-field style="width: 100%;">
+                <input matInput #searchText (keyup)="search(searchText.value)" placeholder="{{ i18n.title.search }}"/>
+                <mat-icon *ngIf="searchText.value.trim() != ''" style="cursor: pointer;" matSuffix (click)="searchText.value = ''; search('')">delete</mat-icon>
+            </mat-form-field>
+        </form>
+
+
         <button mat-menu-item
-                *ngFor="let repo of repos"
+                *ngFor="let repo of reposSearch"
                 (click)="navigate('github/' + repo + '/index.html' ); menuRepoActive = repo; menuMenuActive = undefined; packageMenuClose()"
                 [class.cory-mat-menu-item-active]="menuRepoActive == repo"
         >
@@ -46,6 +54,8 @@
                 </div>
                 -->
                 <br/>
+                <span class="cory-layout-title">{{ packageJson.description }}</span>
+                <br/>&nbsp;
                 <div *ngIf="isOpenWrt()" style="font-weight: bold; font-size: 150%">
                     {{ i18n.title.openwrt }}
                 </div>

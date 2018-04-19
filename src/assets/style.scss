@@ -27,12 +27,21 @@ img
     }
 }
 
+a code {
+    font-weight: bold;
+}
 
 .cory-layout-menus {
 //    max-width: $cory-mat-size-medium;
     margin-left: auto;
     margin-right: auto;
     height: 50px !important;
+}
+
+.cory-layout-title {
+    font-size: 250%;
+    text-shadow: 2px 2px rgba(128, 128, 128, 0.5);
+    font-weight: bold;
 }
 
 
@@ -114,6 +123,20 @@ img
 }
 */
 
+.cory-layout-markdown-reference {
+    float: right;
+    display: none;
+}
+
+.cory-layout-markdown-header:hover > a {
+    display: inline;
+}
+
+.cory-layout-sidenav-search {
+    $padding: 15px;
+    padding-left: $padding;
+    padding-right: $padding;
+}
 
 .cory-layout-sidenav-container {
     background: none !important;

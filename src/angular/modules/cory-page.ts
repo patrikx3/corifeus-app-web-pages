@@ -1,7 +1,8 @@
 import {
     Component,
     Host,
-    NgModule,
+    NgZone,
+    AfterViewChecked,
 } from '@angular/core';
 
 import {
@@ -25,7 +26,9 @@ import { SettingsService } from 'corifeus-web';
     `
 })
 
-export class Page  {
+export class Page implements AfterViewChecked{
+
+    loaded: boolean = false;
 
     content: any;
 
@@ -36,7 +39,8 @@ export class Page  {
         private router: RouterService,
         private route: ActivatedRoute,
         public http: HttpClient,
-        private settings: SettingsService
+        private settings: SettingsService,
+        private zone: NgZone,
     ) {
         this.markdown.context = this;
 
@@ -73,8 +77,19 @@ ${text}
             this.content = this.markdown.render(text, this.parent);
 
         } catch(e) {
+            console.error(e);
             this.router.navigateTop(['/github/corifeus/404']);
         }
     }
+
+    ngAfterViewChecked() {
+        const e = document.querySelector(`${location.hash}-parent`);
+        if (e && !this.loaded) {
+            this.loaded = true;
+            e.scrollIntoView()
+        }
+    }
 }
+
+
 

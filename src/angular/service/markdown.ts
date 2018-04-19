@@ -13,6 +13,8 @@ hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescri
 
 import * as marked from 'marked';
 
+import { kebabCase } from 'lodash';
+
 import { Layout } from '../layout/cory-layout';
 
 import { IsBot } from 'corifeus-web';
@@ -26,6 +28,11 @@ export class MarkdownService {
     layout: Layout;
 
     constructor() {
+
+        this.markdownRenderer.heading = (text: string, level: number, raw: string) => {
+            const ref = kebabCase(raw)
+            return `<h${level} id="${ref}-parent" class="cory-layout-markdown-header">${text}<a class="cory-layout-markdown-reference" id="${ref}" href="${location.origin}${location.pathname}#${ref}"><i class="fa fa-link"></i></a></h${level}>`;
+        }
 
         this.markdownRenderer.image = (href: string, title: string, text: string) => {
             title = title || '';
@@ -59,24 +66,32 @@ ${text}
                 path = `github/${href}/index.html`;
                 fixed = true;
             }
+
             if (!href.startsWith(location.origin) && (href.startsWith('https:/') || href.startsWith('http:/'))) {
                 a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fa fa-external-link"></i></span>`;
             } else {
                 if (!fixed) {
-//                    console.log('not fixed');
-//                    console.log(href);
                     if (href.endsWith('.md')) {
                         href = href.substr(0, href.length - 3) + '.html';
                     }
                     if (href.startsWith(location.origin)) {
-                        path = href.substring(location.origin.length + 1)
+                        path = `/${href.substring(location.origin.length + 1)}`;
+                    } else if (href.startsWith('./')) {
+                        let base = location.href
+                        if (!base.includes('.')) {
+                            base = location.href + '/';
+                        }
+                        path = `${new URL(href, base).pathname}`;
+//                        console.log(path)
                     } else {
-                        path = `github/${this.context.parent.currentRepo}/${href}`;
+                        path = `/github/${this.context.parent.currentRepo}/${href}`;
                     }
                 }
+
+//                console.log(path)
                 // this.context.parent.navigate
                 const navClick = !IsBot() ? `onclick="window.coryAppWebPagesNavigate('${path}'); return false;"` : '';
-                a = `<a href="/${path}" ${navClick} ${tooltip}>${text}</a>`;
+                a = `<a href="${path}" ${navClick} ${tooltip}>${text}</a>`;
 //                console.log(path);
 //                console.log(a);
             }
@@ -92,7 +107,7 @@ ${text}
                 console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}                
 We are not loading everything, since it is about 500kb`)
             }
-           language = language === 'text' || language === undefined ? 'html' : language;
+            language = language === 'text' || language === undefined ? 'html' : language;
             const validLang = !!(language && hljs.getLanguage(language));
             const highlighted = validLang ? hljs.highlight(language, code).value : code;
             return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
