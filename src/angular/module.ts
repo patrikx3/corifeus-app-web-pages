@@ -11,6 +11,7 @@ import { Status} from './component/cory-web-pages-build-status';
 import { Page } from './modules';
 import { CdnService,  MarkdownService } from './service';
 
+const twemoji =require('twemoji');
 
 import { routes } from './routes';
 
@@ -49,6 +50,14 @@ export class Module {
         private settings: SettingsService,
         private theme: ThemeService,
     ) {
+        const twemoji =require('twemoji');
+        twemoji.folder = 'svg';
+        twemoji.ext = '.svg';
+
+        if (process.env.ENV === 'production') {
+            twemoji.base = '/twemoji/';
+        }
+
         let settingsExtendJson= require('../json/settings.core.json');
         settings.extend('core', settingsExtendJson);
         settings.afterInit();

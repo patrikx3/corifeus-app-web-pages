@@ -15,7 +15,7 @@ import {
 
 import { LocaleService, SettingsService, LocaleSubject } from "corifeus-web";
 
-import  { extractTitle } from '../../utils/extracTitle';
+import  { extractTitle } from '../../utils/extrac-title';
 
 @Component({
     selector: 'cory-layout-header',
@@ -56,6 +56,10 @@ export class Header {
             return window.open(link);
         }
         this.parent.navigate('github/' + this.parent.currentRepo + '/' + link );
+    }
+
+    generateIcon() {
+        return `<i class="${this.parent.packageJson.corifeus.icon}"></i>`;
     }
 
 }

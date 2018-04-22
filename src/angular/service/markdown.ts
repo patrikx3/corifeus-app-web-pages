@@ -17,7 +17,11 @@ import { kebabCase } from 'lodash';
 
 import { Layout } from '../layout/cory-layout';
 
+import { htmlStrip} from "../utils/html-strip";
+
 import { IsBot } from 'corifeus-web';
+
+const twemoji = require('twemoji');
 
 @Injectable()
 export class MarkdownService {
@@ -30,8 +34,11 @@ export class MarkdownService {
     constructor() {
 
         this.markdownRenderer.heading = (text: string, level: number, raw: string) => {
-            const ref = kebabCase(raw)
-            return `<h${level} id="${ref}-parent" class="cory-layout-markdown-header">${text}<a class="cory-layout-markdown-reference" id="${ref}" href="${location.origin}${location.pathname}#${ref}"><i class="fa fa-link"></i></a></h${level}>`;
+//            console.log('text', text,)
+//            console.log('raw', raw)
+            const ref = kebabCase(htmlStrip(raw))
+//            console.log('ref', ref)
+            return `<h${level} id="${ref}-parent" class="cory-layout-markdown-header">${text}&nbsp;<a class="cory-layout-markdown-reference" id="${ref}" href="${location.origin}${location.pathname}#${ref}"><i class="fas fa-link"></i></a></h${level}>`;
         }
 
         this.markdownRenderer.image = (href: string, title: string, text: string) => {
@@ -68,7 +75,7 @@ ${text}
             }
 
             if (!href.startsWith(location.origin) && (href.startsWith('https:/') || href.startsWith('http:/'))) {
-                a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fa fa-external-link"></i></span>`;
+                a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fas fa-external-link-alt"></i></span>`;
             } else {
                 if (!fixed) {
                     if (href.endsWith('.md')) {
@@ -84,7 +91,7 @@ ${text}
                         path = `${new URL(href, base).pathname}`;
 //                        console.log(path)
                     } else {
-                        path = `/github/${this.context.parent.currentRepo}/${href}`;
+                        path = `github/${this.context.parent.currentRepo}/${href}`;
                     }
                 }
 
@@ -136,6 +143,12 @@ We are not loading everything, since it is about 500kb`)
 
     public render(md: string, layout: Layout ) {
         this.layout = layout;
+
+        md = twemoji.parse(md, {
+            folder: 'svg',
+            ext: '.svg',
+        })
+
 
         md = this.extract(md, 'corifeus-header');
         md = this.extract(md, 'corifeus-footer');

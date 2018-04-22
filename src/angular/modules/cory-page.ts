@@ -83,8 +83,9 @@ ${text}
     }
 
     ngAfterViewChecked() {
+//        const e = document.querySelector(`${decodeURI(location.hash)}-parent`);
         const e = document.querySelector(`${location.hash}-parent`);
-        if (e && !this.loaded) {
+        if (!this.loaded && e) {
             this.loaded = true;
             e.scrollIntoView()
         }

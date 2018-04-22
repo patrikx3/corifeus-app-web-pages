@@ -2,7 +2,7 @@
     <mat-toolbar color="primary" class="cory-layout-menus">
 
         <button mat-button (click)="parent.navigate()" class="cory-layout-header-title" >
-                <i [class]="parent.icon"></i>
+                <span [innerHTML]="generateIcon()"></span>
                {{ extractTitle(parent.packageJson) }}
         </button>
         <div class="cory-layout-header-top">
@@ -22,7 +22,7 @@
 
         <!-- trello
         <a mat-button [href]="settings.trello.url" target="_blank">
-            <i class="fa fa-trello"></i>
+            <i class="fab fa-trello"></i>
             <span class="cory-mat-hide-xsmall">
                 Trello
             </span>
@@ -42,7 +42,7 @@
                     [class.cory-mat-menu-item-active]="parent.menuMenuActive == menu.link"
             >
                  <span style="min-width: 24px !important; display: inline-block; text-align: center;">
-                    <i class="fa fa-{{ linkExternal(menu.link) ? 'external-link' : 'caret-right' }}"></i>
+                    <i class="{{ linkExternal(menu.link) ? 'fas fa-external-link-alt' : 'fas fa-caret-right' }}"></i>
                 </span>
 
                 {{ i18n.pages.menu[menu.name] }}
@@ -70,7 +70,7 @@
             >
                 <span *ngIf="parent.packages[repo]">
                     <span style="min-width: 24px !important; display: inline-block; text-align: center;">
-                        <i *ngIf="parent.packages[repo]" [class]="parent.packages[repo].corifeus.icon"></i>
+                        <i *ngIf="parent.packages[repo]" class="{{parent.packages[repo].corifeus.icon}}"></i>
                     </span>
                     {{ extractTitle(parent.packages[repo]) }}
 

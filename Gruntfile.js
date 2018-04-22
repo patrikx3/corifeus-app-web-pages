@@ -6,6 +6,29 @@ module.exports = (grunt) => {
     loader.angular();
 
     grunt.config.merge({
+        copy: {
+            'cory-twemoji': {
+                files: [
+                    {
+                        cwd: 'node_modules/twemoji/2/svg',
+                        expand: true,
+                        src: [
+                            '**',
+                        ],
+                        dest: './build/browser/twemoji/svg'
+                    },
+                    {
+                        cwd: 'test/angular-webpack/public',
+                        expand: true,
+                        src: [
+                            '**',
+                        ],
+                        dest: './build/browser/'
+                    },
+
+                ]
+            }
+        },
         watch: {
             wait: {
                 files: ['**/*.js'],
@@ -42,12 +65,16 @@ module.exports = (grunt) => {
         'cory-inject'
     ];
 
-//    grunt.registerTask('default', defaults.concat(builder.config.task.build.angularAot));
-    grunt.registerTask('default', defaults.concat(builder.config.task.build.angularAot));
+    const postProcess= [
+        'copy:cory-twemoji',
+    ]
 
-    grunt.registerTask('dev', defaults.concat(builder.config.task.build.angular));
-    grunt.registerTask('aot', defaults.concat(builder.config.task.build.angularAot));
-    grunt.registerTask('aot-jit', defaults.concat(builder.config.task.build.angularAotJit));
+//    grunt.registerTask('default', defaults.concat(builder.config.task.build.angularAot));
+    grunt.registerTask('default', defaults.concat(builder.config.task.build.angularAot).concat(postProcess));
+
+    grunt.registerTask('dev', defaults.concat(builder.config.task.build.angular).concat(postProcess));
+    grunt.registerTask('aot', defaults.concat(builder.config.task.build.angularAot).concat(postProcess));
+    grunt.registerTask('aot-jit', defaults.concat(builder.config.task.build.angularAotJit).concat(postProcess));
 
     grunt.registerTask('run', defaults.concat(builder.config.task.run.angular));
     grunt.registerTask('coverage', 'karma:cory-angular');

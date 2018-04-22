@@ -31,7 +31,17 @@ import {NotifyService} from 'corifeus-web-material';
 
 import { Observable, Subject } from 'rxjs';
 
-import  { extractTitle } from '../utils/extracTitle';
+import  { extractTitle } from '../utils/extrac-title';
+import { isMobile } from '../utils/is-mobile';
+//import {clearTimeout} from "timers";
+
+import {
+    DomSanitizer,
+} from '@angular/platform-browser';
+
+
+
+const twemoji =require('twemoji');
 
 declare global {
     interface Window {
@@ -93,6 +103,8 @@ export class Layout implements OnInit {
 
     noScript: any;
 
+    public isMobile: boolean = false;
+
     constructor(
         private cdn: CdnService,
         private router: RouterService,
@@ -102,7 +114,9 @@ export class Layout implements OnInit {
         protected locale: LocaleService,
         protected settingsAll: SettingsService,
         private zone: NgZone,
+        private sanitizer: DomSanitizer,
     ) {
+        this.isMobile = isMobile();
         this.settings = settingsAll.data.pages;
         this.currentRepo = this.settings.github.defaultRepo;
 
@@ -136,7 +150,7 @@ export class Layout implements OnInit {
         this.searchText = searchText.trim();
     }
 
-    get reposSearch() {
+    get reposSearch() : Array<any> {
         if (this.searchText === '' || this.searchText === undefined) {
             return this.repos;
         }
@@ -172,7 +186,7 @@ export class Layout implements OnInit {
         }
         this.packageJson = this.packages[this.currentRepo];
         this.title = this.packageJson.description;
-        this.icon = this.packageJson.corifeus.icon !== undefined ? `fa ${this.packageJson.corifeus.icon}` : 'fa fa-bolt';
+        this.icon = this.packageJson.corifeus.icon !== undefined ? `${this.packageJson.corifeus.icon}` : 'fas fa-bolt';
         document.title = this.title;
         this.noScript.innerHTML = '';
         this.repos.forEach((repo : any) => {
@@ -181,7 +195,7 @@ export class Layout implements OnInit {
             a.innerText = repo;
             this.noScript.appendChild(a)
         })
-        window.coryAppWebPagesNavigate = async (path? : string) => {
+        window.coryAppWebPagesNavigate = (path? : string) => {
             this.zone.run(() => {
                 this.navigate(path);
             });
@@ -210,7 +224,9 @@ export class Layout implements OnInit {
 //        this.body.style.overflowY = 'hidden';
         this.menuSidenav.open();
         setTimeout(() => {
-            this.searchTextInput.nativeElement.blur()
+            if (this.isMobile) {
+                this.searchTextInput.nativeElement.blur()
+            }
 
 //            /**
             const e = document.querySelector('.cory-mat-menu-item-active')
@@ -222,10 +238,30 @@ export class Layout implements OnInit {
             }
 //             **/
 
-        }, 1000)
+        }, 500)
     }
 
     search(searchText: string) {
         this.subject.next(searchText);
+    }
+
+    getDescription(title: string) {
+        return !title  ? title : this.sanitizer.bypassSecurityTrustHtml(twemoji.parse(title, {
+            folder: 'svg',
+            ext: '.svg',
+        }))
+    }
+
+    keyDownFunction(event: any) {
+        const repos = this.reposSearch;
+//        console.log(event.keyCode, repos.length)
+        if(event.keyCode == 13 && repos.length === 1) {
+//            console.log('found 1 repo and enter')
+//            this.zone.run(() => {
+                const navigate = `github/${repos[0]}/index.html`
+//                console.log('navigate', navigate)
+                this.navigate(navigate);
+//            });
+        }
     }
 }

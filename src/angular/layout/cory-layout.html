@@ -7,7 +7,7 @@
         </button>
 
 
-        <form class="cory-layout-sidenav-search">
+        <form class="cory-layout-sidenav-search" (keydown)="keyDownFunction($event)">
 
             <!--
             <input type="text" style="position: absolute; top: 0; left: 0; opacity: 1.0; height: 0; border: none; padding: 0; margin: 0; line-height: 0;" tabindex="0">
@@ -27,7 +27,7 @@
         >
                 <span *ngIf="packages[repo]">
                     <span style="min-width: 24px !important; display: inline-block; text-align: center;">
-                        <i *ngIf="packages[repo]" [class]="packages[repo].corifeus.icon||'fa fa-bolt' "></i>
+                        <i *ngIf="packages[repo]" [class]="packages[repo].corifeus.icon||'fas fa-bolt' "></i>
                     </span>
                     {{ extractTitle(packages[repo]) }}
 
@@ -46,7 +46,7 @@
                 <div style="float: right; font-weight: bold; font-size: 125%;">
                     v{{ packageJson.version }}
                     <div *ngIf="packageJson.corifeus.stargazers_count > 0" style="text-align: right;">
-                        <i class="fa fa-star"></i>&nbsp;<span [matTooltip]="i18n.title.githubStars" matTooltipPosition="below">{{ packageJson.corifeus.stargazers_count }}</span>
+                        <i class="fas fa-star"></i>&nbsp;<span [matTooltip]="i18n.title.githubStars" matTooltipPosition="below">{{ packageJson.corifeus.stargazers_count }}</span>
                     </div>
 
                 </div>
@@ -60,7 +60,7 @@
                 </div>
                 -->
                 <br/>
-                <span class="cory-layout-title">{{ packageJson.description }}</span>
+                <span id="cory-mat-pages-title" class="cory-layout-title" [innerHTML]="getDescription(packageJson.description)"></span>
                 <br/>&nbsp;
                 <div *ngIf="isOpenWrt()" style="font-weight: bold; font-size: 150%">
                     {{ i18n.title.openwrt }}

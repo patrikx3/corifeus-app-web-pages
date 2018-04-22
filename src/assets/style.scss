@@ -3,6 +3,12 @@
 @import '@angular/material/theming';
 
 
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+}
 
 .cory-mat-theme-light {
     @import 'CSS:../../node_modules/highlight.js/styles/github';
@@ -94,11 +100,11 @@ a code {
 }
 
 .cory-layout-link-external {
-    .fa {
+    .fas, .fab, .far {
         opacity: 0.5;
     }
     &:hover {
-        .fa {
+        .fas, .fab, .far {
             opacity: 1;
         }
     }
@@ -124,7 +130,7 @@ a code {
 */
 
 .cory-layout-markdown-reference {
-    float: right;
+///    float: right;
     display: none;
 }
 
