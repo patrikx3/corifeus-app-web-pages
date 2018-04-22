@@ -23,6 +23,7 @@ import { IsBot } from 'corifeus-web';
 
 const twemoji = require('twemoji');
 
+
 @Injectable()
 export class MarkdownService {
     markdownRenderer: any = new marked.Renderer();
@@ -67,7 +68,9 @@ ${text}
             }
             let fixed = false;
             let path;
-            if (href.includes(`/${this.context.settings.data.pages.defaultDomain}/`)) {
+
+            const testHref = href.toLowerCase();
+            if (testHref.includes(`${this.context.settings.data.pages.defaultDomain}`) || testHref.includes('localhost:8080') ) {
                 const url = new URL(href);
                 href = url.pathname.substr(1);
                 path = `github/${href}/index.html`;
@@ -91,7 +94,7 @@ ${text}
                         path = `${new URL(href, base).pathname}`;
 //                        console.log(path)
                     } else {
-                        path = `github/${this.context.parent.currentRepo}/${href}`;
+                        path = `/github/${this.context.parent.currentRepo}/${href}`;
                     }
                 }
 

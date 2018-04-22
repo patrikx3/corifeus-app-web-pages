@@ -59,7 +59,7 @@ export class Header {
     }
 
     generateIcon() {
-        return `<i class="${this.parent.packageJson.corifeus.icon}"></i>`;
+        return `<i class="${this.parent.icon}"></i>`;
     }
 
 }

@@ -20,19 +20,19 @@ import {
     RouterService,
 } from 'corifeus-web';
 
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 import * as moment from 'moment';
 
-import { CdnService} from '../service';
+import {CdnService} from '../service';
 
 import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
 import {NotifyService} from 'corifeus-web-material';
 
-import { Observable, Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
-import  { extractTitle } from '../utils/extrac-title';
-import { isMobile } from '../utils/is-mobile';
+import {extractTitle} from '../utils/extrac-title';
+import {isMobile} from '../utils/is-mobile';
 //import {clearTimeout} from "timers";
 
 import {
@@ -40,8 +40,7 @@ import {
 } from '@angular/platform-browser';
 
 
-
-const twemoji =require('twemoji');
+const twemoji = require('twemoji');
 
 declare global {
     interface Window {
@@ -59,7 +58,7 @@ declare global {
 @Injectable()
 export class Layout implements OnInit {
 
-    private subject: Subject<string> = new Subject();
+    private searchSubject: Subject<string> = new Subject();
 
     menuMenuActive: any;
     menuRepoActive: any
@@ -69,7 +68,7 @@ export class Layout implements OnInit {
     extractTitle = extractTitle;
 
     @ViewChild('menuSidenav', {read: MatSidenav})
-    public menuSidenav : MatSidenav;
+    public menuSidenav: MatSidenav;
 
     @ViewChild('searchText')
     public searchTextInput: ElementRef;
@@ -91,7 +90,7 @@ export class Layout implements OnInit {
         version: undefined,
         corifeus: {
             ['time-stamp']: undefined,
-            code : '',
+            code: '',
             publish: false,
         }
     }
@@ -141,7 +140,7 @@ export class Layout implements OnInit {
     }
 
     ngOnInit() {
-        this.subject.debounceTime(this.settings.debounce.default).subscribe(searchText => {
+        this.searchSubject.debounceTime(this.settings.debounce.default).subscribe(searchText => {
             this.handleSearch(searchText);
         });
     }
@@ -150,11 +149,11 @@ export class Layout implements OnInit {
         this.searchText = searchText.trim();
     }
 
-    get reposSearch() : Array<any> {
+    get reposSearch(): Array<any> {
         if (this.searchText === '' || this.searchText === undefined) {
             return this.repos;
         }
-        const regexes : Array<RegExp> = [];
+        const regexes: Array<RegExp> = [];
         this.searchText.split(/[\s,]+/).forEach(search => {
             if (search === '') {
                 return;
@@ -165,7 +164,7 @@ export class Layout implements OnInit {
         })
         return this.repos.filter(repo => {
             let found = false;
-            for(let regex of regexes) {
+            for (let regex of regexes) {
                 if (regex.test(repo)) {
                     found = true;
                     break;
@@ -177,7 +176,7 @@ export class Layout implements OnInit {
 
     async load() {
         if (this.packages === undefined) {
-            const response : any = await this.http.get(this.settings.p3x.git.url).toPromise()
+            const response: any = await this.http.get(this.settings.p3x.git.url).toPromise()
             this.packages = response.repo;
             this.repos = Object.keys(this.packages);
         }
@@ -189,20 +188,20 @@ export class Layout implements OnInit {
         this.icon = this.packageJson.corifeus.icon !== undefined ? `${this.packageJson.corifeus.icon}` : 'fas fa-bolt';
         document.title = this.title;
         this.noScript.innerHTML = '';
-        this.repos.forEach((repo : any) => {
+        this.repos.forEach((repo: any) => {
             const a = document.createElement('a');
             a.href = `/${repo}`;
             a.innerText = repo;
             this.noScript.appendChild(a)
         })
-        window.coryAppWebPagesNavigate = (path? : string) => {
+        window.coryAppWebPagesNavigate = (path?: string) => {
             this.zone.run(() => {
                 this.navigate(path);
             });
         };
     }
 
-    async navigate(path? : string) {
+    async navigate(path?: string) {
         if (path === undefined) {
             path = `github/${this.currentRepo}/index.html`;
         }
@@ -242,11 +241,11 @@ export class Layout implements OnInit {
     }
 
     search(searchText: string) {
-        this.subject.next(searchText);
+        this.searchSubject.next(searchText);
     }
 
     getDescription(title: string) {
-        return !title  ? title : this.sanitizer.bypassSecurityTrustHtml(twemoji.parse(title, {
+        return !title ? title : this.sanitizer.bypassSecurityTrustHtml(twemoji.parse(title, {
             folder: 'svg',
             ext: '.svg',
         }))
@@ -254,14 +253,15 @@ export class Layout implements OnInit {
 
     keyDownFunction(event: any) {
         const repos = this.reposSearch;
-//        console.log(event.keyCode, repos.length)
-        if(event.keyCode == 13 && repos.length === 1) {
-//            console.log('found 1 repo and enter')
-//            this.zone.run(() => {
+        if (event.keyCode == 13 && repos.length === 1) {
+            this.zone.run(() => {
                 const navigate = `github/${repos[0]}/index.html`
-//                console.log('navigate', navigate)
+                this.searchSubject.next('');
+                this.searchTextInput.nativeElement.blur()
+                this.searchTextInput.nativeElement.value = '';
+                this.packageMenuClose();
                 this.navigate(navigate);
-//            });
+            });
         }
     }
 }

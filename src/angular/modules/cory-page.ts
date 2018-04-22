@@ -7,6 +7,8 @@ import {
 
 import {
     ActivatedRoute,
+    NavigationStart,
+    NavigationEnd,
 } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
@@ -37,15 +39,38 @@ export class Page implements AfterViewChecked{
         private markdown: MarkdownService,
         private cdn: CdnService,
         private router: RouterService,
-        private route: ActivatedRoute,
+        private activatedRoute: ActivatedRoute,
         public http: HttpClient,
         private settings: SettingsService,
         private zone: NgZone,
     ) {
         this.markdown.context = this;
 
-        this.route.url.subscribe((segment) => {
+        let currentUrlPathTimeout : any;
+
+        let usingActivatedUrl = true;
+
+        this.router.events.subscribe(event => {
+            if(event instanceof NavigationStart) {
+                usingActivatedUrl = false;
+                const urlPath = event.url.substr(1)
+
+                clearTimeout(currentUrlPathTimeout);
+                currentUrlPathTimeout = setTimeout(() => {
+//                    console.log('router', urlPath, 'usingActivatedUrl', usingActivatedUrl);
+                    if (usingActivatedUrl === false) {
+                        usingActivatedUrl = true;
+//                        console.log('have to navigate', urlPath)
+                        this.navigate()
+                    }
+                }, 250)
+            }
+        })
+
+        this.activatedRoute.url.subscribe((segment) => {
+            usingActivatedUrl = true;
             const path = segment.join('/');
+//            console.log('update activated route', path)
             this.navigate(path);
         })
     }
