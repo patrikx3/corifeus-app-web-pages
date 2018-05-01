@@ -21,13 +21,20 @@ import { CdnService, MarkdownService  } from '../service';
 
 import { SettingsService } from 'corifeus-web';
 
+
+import {
+    NotifyService
+} from 'corifeus-web-material';
+
+
+let testing = false
+
 @Component({
     selector: 'cory-page',
     template: `
         <span [innerHTML]="content | coryHtml"></span>
     `
 })
-
 export class Page implements AfterViewChecked{
 
     loaded: boolean = false;
@@ -43,6 +50,7 @@ export class Page implements AfterViewChecked{
         public http: HttpClient,
         private settings: SettingsService,
         private zone: NgZone,
+        protected notify: NotifyService,
     ) {
         this.markdown.context = this;
 
@@ -104,6 +112,12 @@ ${text}
         } catch(e) {
             console.error(e);
             this.router.navigateTop(['/github/corifeus/404']);
+        } finally {
+            if (!testing) {
+                testing = true;
+                this.notify.info(this.parent.i18n.title.ready);
+            }
+
         }
     }
 
@@ -112,7 +126,11 @@ ${text}
         const e = document.querySelector(`${location.hash}-parent`);
         if (!this.loaded && e) {
             this.loaded = true;
-            e.scrollIntoView()
+            e.scrollIntoView({
+                behavior: 'smooth',
+                block: "center",
+
+            })
         }
     }
 }

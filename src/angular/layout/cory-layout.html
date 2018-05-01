@@ -23,16 +23,22 @@
         <button mat-menu-item
                 *ngFor="let repo of reposSearch"
                 (click)="navigate('github/' + repo + '/index.html' ); menuRepoActive = repo; menuMenuActive = undefined; packageMenuClose()"
-                [class.cory-mat-menu-item-active]="menuRepoActive == repo"
+             [class.cory-mat-menu-item-active]="menuRepoActive == repo"
         >
                 <span *ngIf="packages[repo]">
-                    <span style="min-width: 24px !important; display: inline-block; text-align: center;">
+                    <span style="float: left; min-width: 24px !important; display: inline-block; text-align: center; position: relative; left: -7px;">
                         <i *ngIf="packages[repo]" [class]="packages[repo].corifeus.icon||'fas fa-bolt' "></i>
                     </span>
-                    {{ extractTitle(packages[repo]) }}
+                    <span style="display: inline-block; max-width: 240px !important; text-overflow: ellipsis;  white-space: nowrap; overflow: hidden;">
+                        {{ extractTitle(packages[repo]) }}
+                        <span *ngIf="packages[repo].corifeus.stargazers_count > 0" style="opacity: 0.25; position: relative; top: -10px; right: 3px; font-size: 10px;">
+                            <i class="fas fa-star"></i>&nbsp;{{ packages[repo].corifeus.stargazers_count }}
+                        </span>
+                    </span>
+
 
                     <div style="float: right; margin-left: 5px; opacity: 0.25;">
-                    {{ packages[repo].corifeus.code }}
+                        {{ packages[repo].corifeus.code }}
                     </div>
                 </span>
         </button>
@@ -42,15 +48,15 @@
     <div class="cory-mat-container">
         <mat-card>
             <mat-card-content style="position: relative;" *ngIf="packageJson !== undefined">
-                <cory-web-pages-build-status style="float: left;" [cory-repo]="currentRepo"></cory-web-pages-build-status>
+                <cory-web-pages-build-status style="float: left;" [cory-repo]="currentRepo"  *ngIf="showTitle"></cory-web-pages-build-status>
                 <div style="float: right; font-weight: bold; font-size: 125%;">
-                    v{{ packageJson.version }}
+                    <span  *ngIf="showTitle">v{{ packageJson.version }}</span>
                     <div *ngIf="packageJson.corifeus.stargazers_count > 0" style="text-align: right;">
                         <i class="fas fa-star"></i>&nbsp;<span [matTooltip]="i18n.title.githubStars" matTooltipPosition="below">{{ packageJson.corifeus.stargazers_count }}</span>
                     </div>
 
                 </div>
-                <div style="clear: both"></div>
+                <div *ngIf="showTitle" style="clear: both"></div>
                 <!--
                 <div *ngIf="packageJson.corifeus.publish">
                     <br/>
@@ -59,12 +65,14 @@
                     </a>
                 </div>
                 -->
-                <br/>
-                <span id="cory-mat-pages-title" class="cory-layout-title" [innerHTML]="getDescription(packageJson.description)"></span>
-                <br/>&nbsp;
-                <div *ngIf="isOpenWrt()" style="font-weight: bold; font-size: 150%">
-                    {{ i18n.title.openwrt }}
-                </div>
+                <span *ngIf="showTitle">
+                    <br/>
+                    <span id="cory-mat-pages-title" class="cory-layout-title" [innerHTML]="getDescription(packageJson.description)"></span>
+                    <br/>&nbsp;
+                    <div *ngIf="isOpenWrt()" style="font-weight: bold; font-size: 150%">
+                        {{ i18n.title.openwrt }}
+                    </div>
+                </span>
                 <router-outlet>
                 </router-outlet>
             </mat-card-content>

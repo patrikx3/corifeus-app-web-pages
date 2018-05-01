@@ -1,9 +1,13 @@
 {
   "title": {
+    "ready": "Bugs are evident.",
     "search": "Search",
     "developer": "Patrik Laszlo &copy; ",
     "packages": "Packages",
-    "sponsored": "IntelliJ IDEA",
+    "sponsor": {
+      "jetbrains": "JetBrains",
+      "nosqlbooster": "NoSQLBooster"
+    },
     "travis": "Travis Build status",
     "githubStars": "GitHub Stars",
     "scrunitizer": {

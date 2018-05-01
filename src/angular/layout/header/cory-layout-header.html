@@ -49,7 +49,7 @@
             </button>
         </mat-menu>
 
-        <button mat-button [matMenuTriggerFor]="menuItems">
+        <button mat-button [matMenuTriggerFor]="menuItems" class="cory-pages-menu-effect">
             <mat-icon>menu</mat-icon>
             <span class="cory-mat-hide-xsmall">
                 {{ i18n.material.title.menu }}
@@ -82,7 +82,7 @@
         </mat-menu>
 
 <!--        <button mat-button [matMenuTriggerFor]="menuModules" (click)="parent.menuSidenev.toggle()"> -->
-        <button mat-button (click)="parent.packageMenuOpen()">
+        <button mat-button (click)="parent.packageMenuOpen()" class="cory-pages-menu-effect">
             <mat-icon>apps</mat-icon>
             <span class="cory-mat-hide-xsmall">
                {{ i18n.pages.title.packages }}

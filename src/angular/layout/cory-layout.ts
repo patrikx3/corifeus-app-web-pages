@@ -44,7 +44,8 @@ const twemoji = require('twemoji');
 
 declare global {
     interface Window {
-        coryAppWebPagesNavigate: any
+        coryAppWebPagesNavigate: any,
+        coryAppWebPagesNavigateHash: any,
     }
 }
 
@@ -178,6 +179,24 @@ export class Layout implements OnInit {
         if (this.packages === undefined) {
             const response: any = await this.http.get(this.settings.p3x.git.url).toPromise()
             this.packages = response.repo;
+
+            let sortedObject = {}
+            sortedObject = Object.keys(this.packages).sort((a, b) => {
+                return this.packages[b].corifeus.stargazers_count - this.packages[a].corifeus.stargazers_count
+            }).reduce((prev, curr, i) => {
+                prev[i] = this.packages[curr]
+                return prev
+            }, {})
+            this.packages = {};
+            Object.keys(sortedObject).forEach(key => {
+                const item = sortedObject[key]
+                if (item.corifeus.prefix !== undefined) {
+                    this.packages[item.name.substr(item.corifeus.prefix.length)] = item;
+                } else {
+                    this.packages[item.name] = item;
+                }
+            })
+
             this.repos = Object.keys(this.packages);
         }
         if (!this.packages.hasOwnProperty(this.currentRepo)) {
@@ -199,6 +218,41 @@ export class Layout implements OnInit {
                 this.navigate(path);
             });
         };
+
+        window.coryAppWebPagesNavigateHash = (id: any) => {
+
+            const scroll = (id: string) => {
+                const el = document.getElementById(id);
+
+                if (el === null) {
+                    return;
+                }
+                el.scrollIntoView({
+                    behavior: 'smooth',
+                    block: "center",
+
+                })
+            }
+
+            if (typeof id === 'string') {
+                const hash = `#${id.replace(/-parent$/, '')}`;
+                if(history.pushState) {
+                    history.pushState(null, null, `${location.pathname}${hash}`);
+                }
+                else {
+                    location.hash = hash;
+                }
+
+                scroll(id);
+            } else {
+                id = `${id.id}`;
+                setTimeout(() => {
+                    scroll(id)
+                }, 500)
+            }
+
+            return false;
+        }
     }
 
     async navigate(path?: string) {
@@ -206,6 +260,7 @@ export class Layout implements OnInit {
             path = `github/${this.currentRepo}/index.html`;
         }
         this.menuMenuActive = '';
+//console.log('cory-layout', path);
         this.router.navigateTop([path]);
     }
 
@@ -233,7 +288,11 @@ export class Layout implements OnInit {
 //                e.scrollIntoView(true);
 //                const viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 //                window.scrollBy(0, (e.getBoundingClientRect().height-viewportH)/2);
-                e.scrollIntoView();
+                e.scrollIntoView({
+                    behavior: 'smooth',
+                    block: "center",
+
+                });
             }
 //             **/
 
@@ -263,5 +322,10 @@ export class Layout implements OnInit {
                 this.navigate(navigate);
             });
         }
+    }
+
+    get showTitle() {
+        const showTitle = location.pathname.endsWith('index.html') || !location.pathname.includes('.');
+        return showTitle;
     }
 }

@@ -27,7 +27,8 @@ class Tooltip {
     Translation: string
     Theme: string
     Developer: string
-    Sponsored: string
+    JetBrains: string
+    NoSQLBooster: string
 }
 
 
@@ -40,15 +41,17 @@ export class Footer {
 
     npmSvg: SafeUrl  = require('../../../assets/npm-logo.svg');
     jetbrainsSvg: SafeUrl = require('../../../assets/jetbrains-logo.svg');
+    nosqlboosterImage: string = "https://cdn.corifeus.com/assets/png/nosqlbooster-128x128.png";
     settings : any;
     i18n : any;
 
     linkJetBrains: string = "https://www.jetbrains.com"
+    linkNoSQLBooster: string = "https://www.nosqlbooster.com"
 
     decodeEntities: Function = decodeEntities;
 
     tooltip: Tooltip = new Tooltip()
-    tooltipPosition: string = 'above'
+    tooltipPosition: string = 'left'
 
     currentWidthAlias: string;
 
@@ -75,17 +78,23 @@ export class Footer {
 
         this.mediaQuery.register([
             <MediaQuerySetting>{
-                name: 'small',
+                name: 'pages-small',
                 min: 0,
-                max: 710,
+                max: 599,
                 type: MediaQuerySettingType.Width
             },
             <MediaQuerySetting>{
-                name: 'large',
-                min: 711,
+                name: 'pages-medium',
+                min: 600,
+                max: 840,
+                type: MediaQuerySettingType.Width
+            },
+            <MediaQuerySetting>{
+                name: 'pages-large',
+                min: 841,
                 max: Infinity,
                 type: MediaQuerySettingType.Width
-            }
+            },
         ])
 
         this.mediaQuery.subscribe((settings : MediaQuerySetting[]) => {
@@ -99,19 +108,30 @@ export class Footer {
             this.currentWidthAlias= alias;
         }
         switch (this.currentWidthAlias) {
-            case 'small':
+            case 'pages-small':
                 this.tooltip.GitHub = 'GitHub';
                 this.tooltip.Npm = 'NPM';
-                this.tooltip.Developer = decodeEntities(this.i18n.pages.title.developer);
-                this.tooltip.Sponsored = this.i18n.pages.title.sponsored;
+                this.tooltip.Developer = decodeEntities(this.i18n.pages.title.developer + ' ' + this.currentYear);
+                this.tooltip.NoSQLBooster = decodeEntities(this.i18n.pages.title.sponsor.nosqlbooster);
+                this.tooltip.JetBrains= decodeEntities(this.i18n.pages.title.sponsor.jetbrains);
 
                 break;
 
-            default:
+            case 'pages-medium':
+                this.tooltip.GitHub = "";
+                this.tooltip.Npm = "";
+                this.tooltip.Developer = decodeEntities(this.i18n.pages.title.developer + ' ' + this.currentYear);
+                this.tooltip.NoSQLBooster = decodeEntities(this.i18n.pages.title.sponsor.nosqlbooster);
+                this.tooltip.JetBrains= decodeEntities(this.i18n.pages.title.sponsor.jetbrains);
+                break;
+
+            case 'pages-large':
+                this.tooltip.GitHub = "";
                 this.tooltip.GitHub = "";
                 this.tooltip.Npm = "";
                 this.tooltip.Developer = "";
-                this.tooltip.Sponsored = "";
+                this.tooltip.NoSQLBooster = "";
+                this.tooltip.JetBrains = "";
                 break;
         }
     }

@@ -15,7 +15,7 @@ module.exports = (grunt) => {
                         src: [
                             '**',
                         ],
-                        dest: './build/browser/twemoji/svg'
+                        dest: './build/browser/assets/twemoji/svg'
                     },
                     {
                         cwd: 'test/angular-webpack/public',

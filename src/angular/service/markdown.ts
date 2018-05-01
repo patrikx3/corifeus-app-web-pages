@@ -7,9 +7,11 @@ hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss.js'));
 hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml.js'));
 hljs.registerLanguage('powershell', require('highlight.js/lib/languages/powershell.js'));
 hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript.js'));
+hljs.registerLanguage('js', require('highlight.js/lib/languages/javascript.js'));
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json.js'));
 hljs.registerLanguage('bash', require('highlight.js/lib/languages/shell.js'));
 hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript.js'));
+hljs.registerLanguage('ts', require('highlight.js/lib/languages/typescript.js'));
 
 import * as marked from 'marked';
 
@@ -32,14 +34,24 @@ export class MarkdownService {
 
     layout: Layout;
 
-    constructor() {
+    constructor( ) {
 
         this.markdownRenderer.heading = (text: string, level: number, raw: string) => {
 //            console.log('text', text,)
 //            console.log('raw', raw)
-            const ref = kebabCase(htmlStrip(raw))
+            const ref = kebabCase(htmlStrip(raw)).replace(/[^\x00-\xFF]/g, "");
 //            console.log('ref', ref)
-            return `<h${level} id="${ref}-parent" class="cory-layout-markdown-header">${text}&nbsp;<a class="cory-layout-markdown-reference" id="${ref}" href="${location.origin}${location.pathname}#${ref}"><i class="fas fa-link"></i></a></h${level}>`;
+            const id = `${ref}-parent`;
+//console.log(ref);
+            let navClick = ''
+            if (!IsBot()) {
+                navClick = `onclick="return window.coryAppWebPagesNavigateHash('${id}');"`;
+            }
+
+            let element = `<h${level} id="${id}" class="cory-layout-markdown-header">${text}&nbsp;<a class="cory-layout-markdown-reference" id="${ref}" ${navClick} href="${location.origin}${location.pathname}#${ref}"><i class="fas fa-link"></i></a></h${level}>`;
+
+//            console.log('ref', ref)
+            return element
         }
 
         this.markdownRenderer.image = (href: string, title: string, text: string) => {
@@ -70,11 +82,13 @@ ${text}
             let path;
 
             const testHref = href.toLowerCase();
+//console.log(testHref)
             if (testHref.includes(`${this.context.settings.data.pages.defaultDomain}`) || testHref.includes('localhost:8080') ) {
                 const url = new URL(href);
                 href = url.pathname.substr(1);
-                path = `github/${href}/index.html`;
+                path = `${href}`;
                 fixed = true;
+//console.log('fixed')
             }
 
             if (!href.startsWith(location.origin) && (href.startsWith('https:/') || href.startsWith('http:/'))) {
@@ -100,6 +114,7 @@ ${text}
 
 //                console.log(path)
                 // this.context.parent.navigate
+
                 const navClick = !IsBot() ? `onclick="window.coryAppWebPagesNavigate('${path}'); return false;"` : '';
                 a = `<a href="${path}" ${navClick} ${tooltip}>${text}</a>`;
 //                console.log(path);
@@ -112,6 +127,8 @@ ${text}
             if (language === undefined) {
                 language = 'text';
             }
+
+            language = language.toLowerCase()
 
             if ((hljs.getLanguage(language) === 'undefined' ||  hljs.getLanguage(language) === undefined) && language !== 'text') {
                 console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}                

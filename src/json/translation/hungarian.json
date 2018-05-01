@@ -1,9 +1,13 @@
 {
   "title": {
+    "ready": "A hibák nyilvánvalóak.",
     "search": "Keresés",
     "developer": "Laszlo Patrik &copy; ",
     "packages": "Csomagok",
-    "sponsored": "IntelliJ IDEA",
+    "sponsor": {
+      "jetbrains": "JetBrains",
+      "nosqlbooster": "NoSQLBooster"
+    },
     "travis": "Travis Kiépítettség",
     "githubStars": "GitHub Csillagok",
     "scrunitizer": {
