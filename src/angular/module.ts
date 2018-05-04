@@ -8,7 +8,7 @@ import { LocaleService, SettingsService } from 'corifeus-web';
 import { Application } from './application';
 import { Layout, Header, Footer } from './layout';
 import { Status} from './component/cory-web-pages-build-status';
-import { Page } from './modules';
+import { Page, OpenCollective } from './modules';
 import { CdnService,  MarkdownService } from './service';
 
 import { routes } from './routes';
@@ -31,6 +31,7 @@ import { routes } from './routes';
         Header,
         Footer,
         Page,
+        OpenCollective,
 
         Status
     ],

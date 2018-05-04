@@ -12,6 +12,8 @@ import {
     ActivatedRoute,
 } from '@angular/router';
 
+import { debounce } from 'lodash'
+
 import {
     MatSidenav
 } from '@angular/material'
@@ -28,8 +30,6 @@ import {CdnService} from '../service';
 
 import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
 import {NotifyService} from 'corifeus-web-material';
-
-import {Observable, Subject} from 'rxjs';
 
 import {extractTitle} from '../utils/extrac-title';
 import {isMobile} from '../utils/is-mobile';
@@ -59,7 +59,7 @@ declare global {
 @Injectable()
 export class Layout implements OnInit {
 
-    private searchSubject: Subject<string> = new Subject();
+    private debounceSearchText: Function;
 
     menuMenuActive: any;
     menuRepoActive: any
@@ -141,9 +141,7 @@ export class Layout implements OnInit {
     }
 
     ngOnInit() {
-        this.searchSubject.debounceTime(this.settings.debounce.default).subscribe(searchText => {
-            this.handleSearch(searchText);
-        });
+        this.debounceSearchText = debounce(this.handleSearch, this.settings.debounce.default)
     }
 
     handleSearch(searchText: string) {
@@ -300,7 +298,7 @@ export class Layout implements OnInit {
     }
 
     search(searchText: string) {
-        this.searchSubject.next(searchText);
+        this.debounceSearchText(searchText);
     }
 
     getDescription(title: string) {
@@ -315,7 +313,7 @@ export class Layout implements OnInit {
         if (event.keyCode == 13 && repos.length === 1) {
             this.zone.run(() => {
                 const navigate = `github/${repos[0]}/index.html`
-                this.searchSubject.next('');
+                this.debounceSearchText('');
                 this.searchTextInput.nativeElement.blur()
                 this.searchTextInput.nativeElement.value = '';
                 this.packageMenuClose();
@@ -327,5 +325,9 @@ export class Layout implements OnInit {
     get showTitle() {
         const showTitle = location.pathname.endsWith('index.html') || !location.pathname.includes('.');
         return showTitle;
+    }
+
+    get counter() {
+        return window.corifeus.core.http.counter;
     }
 }

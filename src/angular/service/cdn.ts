@@ -3,10 +3,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {SettingsService} from 'corifeus-web';
 
-import 'rxjs/add/operator/toPromise';
-
 const cache: any = {};
-
 
 @Injectable()
 export class CdnService {

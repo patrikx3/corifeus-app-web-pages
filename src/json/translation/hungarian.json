@@ -8,6 +8,10 @@
       "jetbrains": "JetBrains",
       "nosqlbooster": "NoSQLBooster"
     },
+    "opencollective": {
+      "backers": "Backers az Open Collective-on",
+      "sponsors": "Szponzorok az Open Collective-on"
+    },
     "travis": "Travis Kiépítettség",
     "githubStars": "GitHub Csillagok",
     "scrunitizer": {

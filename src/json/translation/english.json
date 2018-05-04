@@ -8,6 +8,10 @@
       "jetbrains": "JetBrains",
       "nosqlbooster": "NoSQLBooster"
     },
+    "opencollective": {
+      "backers": "Backers on Open Collective",
+      "sponsors": "Sponsors on Open Collective"
+    },
     "travis": "Travis Build status",
     "githubStars": "GitHub Stars",
     "scrunitizer": {

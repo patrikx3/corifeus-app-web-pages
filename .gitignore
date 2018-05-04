@@ -9,8 +9,8 @@
 .idea/inspectionProfiles/profiles_settings.xml
 
 node_modules/.yarn-integrity
-package-lock.json
+
 
 .npmrc
 yarn.lock
-package-lock.json
+

@@ -14,17 +14,17 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
             top: 3px;
         }
     `],
-    template: `
-        <span>
-    <a target="_blank" href="https://travis-ci.org/patrikx3/{{ repo}}"><img src="https://travis-ci.org/patrikx3/{{ repo}}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
+    template: `        
+    <span *ngIf="pkg.corifeus.reponame !== undefined">
+    <a target="_blank" href="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
 <!--            
     &nbsp;
-    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ repo }}/badges/build.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.build" [matTooltipPosition]="tooltipPosition"></a>
+    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/build.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.build" [matTooltipPosition]="tooltipPosition"></a>
 -->    
+    &nbsp; 
+    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/quality-score.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.quality" [matTooltipPosition]="tooltipPosition"></a>
     &nbsp;
-    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/badges/quality-score.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.quality" [matTooltipPosition]="tooltipPosition"></a>
-    &nbsp;
-    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ repo}}/badges/coverage.png?b=master"  [matTooltip]="i18n.pages.title.scrunitizer.coverage" [matTooltipPosition]="tooltipPosition"></a>
+    <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/coverage.png?b=master"  [matTooltip]="i18n.pages.title.scrunitizer.coverage" [matTooltipPosition]="tooltipPosition"></a>
     &nbsp;
      <a target="_blank" href="https://www.facebook.com/corifeus.software"><img [src]="i18n.pages.badge.like"  matTooltip="Corifeus Software Engineering" [matTooltipPosition]="tooltipPosition"></a>
     &nbsp;
@@ -32,11 +32,16 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
     &nbsp;
     <a target="_blank" [href]="i18n.pages.url.contact"><img [src]="i18n.pages.badge.contact" [matTooltip]="i18n.pages.title.contact" [matTooltipPosition]="tooltipPosition"></a>
     &nbsp;
+    <a *ngIf="pkg.collective !== undefined" target="_blank" href="#opencollective-backers"><img src="https://opencollective.com/{{pkg.name}}/backers/badge.svg" [matTooltip]="i18n.pages.title.opencollective.backers" [matTooltipPosition]="tooltipPosition"></a>
+    &nbsp;
+    <a *ngIf="pkg.collective !== undefined" target="_blank" href="#opencollective-sponsors"><img src="https://opencollective.com/{{pkg.name}}/sponsors/badge.svg" [matTooltip]="i18n.pages.title.opencollective.sponsors" [matTooltipPosition]="tooltipPosition"></a>
+    &nbsp;
+            
 </span>
     `
 })
 export class Status  {
-    @Input('cory-repo') repo: string;
+    @Input('cory-pkg') pkg: any;
 
     tooltipPosition: string = 'above'
     i18n: any

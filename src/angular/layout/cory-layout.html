@@ -1,7 +1,7 @@
 <cory-mat-loading></cory-mat-loading>
 
 <mat-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
-    <mat-sidenav #menuSidenav align="end" class="cory-layout-sindenav">
+    <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav">
         <button disabled mat-menu-item>
             {{ i18n.title.packages }}
         </button>
@@ -47,8 +47,9 @@
 
     <div class="cory-mat-container">
         <mat-card>
+            <!-- Counter: {{ counter }} -->
             <mat-card-content style="position: relative;" *ngIf="packageJson !== undefined">
-                <cory-web-pages-build-status style="float: left;" [cory-repo]="currentRepo"  *ngIf="showTitle"></cory-web-pages-build-status>
+                <cory-web-pages-build-status style="float: left;" [cory-pkg]="packageJson"  *ngIf="showTitle"></cory-web-pages-build-status>
                 <div style="float: right; font-weight: bold; font-size: 125%;">
                     <span  *ngIf="showTitle">v{{ packageJson.version }}</span>
                     <div *ngIf="packageJson.corifeus.stargazers_count > 0" style="text-align: right;">
@@ -73,6 +74,13 @@
                         {{ i18n.title.openwrt }}
                     </div>
                 </span>
+
+                <!--
+                <span *ngIf="packageJson.collective !== undefined">
+                    Open Collective
+                </span>
+                -->
+
                 <router-outlet>
                 </router-outlet>
             </mat-card-content>
