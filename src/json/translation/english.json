@@ -9,6 +9,7 @@
       "nosqlbooster": "NoSQLBooster"
     },
     "opencollective": {
+      "label": "Open collective !!!",
       "backers": "Backers on Open Collective",
       "sponsors": "Sponsors on Open Collective"
     },
@@ -31,6 +32,16 @@
     "contact": "https://img.shields.io/badge/Contact-P3X-ff9900.svg",
     "donate": "https://img.shields.io/badge/Donate-Corifeus-003087.svg",
     "like": "https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg"
+  },
+  "opencollective": {
+    "contributors": "Contributors",
+    "contributorsMessage": "This project exists thanks to all the people who contribute.",
+    "backers": "Backers",
+    "backersMessage": "Thank you to all our backers!",
+    "backersLink": "Become a backer",
+    "sponsors": "Sponsors",
+    "sponsorsMessage": "Support this project by becoming a sponsor. Your logo will show up here with a link to your website.",
+    "sponsorsMessageLink": "Become a sponsor"
   },
   "menu": {
     "menu-corifeus-code-style": "Code style",

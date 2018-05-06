@@ -323,7 +323,7 @@ export class Layout implements OnInit {
     }
 
     get showTitle() {
-        const showTitle = location.pathname.endsWith('index.html') || !location.pathname.includes('.');
+        const showTitle = location.pathname.endsWith('index.html') || (!location.pathname.includes('.') && !location.pathname.includes('open-collective'));
         return showTitle;
     }
 

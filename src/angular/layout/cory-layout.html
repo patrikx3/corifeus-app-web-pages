@@ -57,7 +57,10 @@
                     </div>
 
                 </div>
+
                 <div *ngIf="showTitle" style="clear: both"></div>
+
+
                 <!--
                 <div *ngIf="packageJson.corifeus.publish">
                     <br/>
@@ -66,20 +69,25 @@
                     </a>
                 </div>
                 -->
+
                 <span *ngIf="showTitle">
                     <br/>
                     <span id="cory-mat-pages-title" class="cory-layout-title" [innerHTML]="getDescription(packageJson.description)"></span>
-                    <br/>&nbsp;
-                    <div *ngIf="isOpenWrt()" style="font-weight: bold; font-size: 150%">
+                    <br/>
+
+                    <div *ngIf="packageJson.collective">
+                        <br/>
+                        <a routerLink="/github/{{ packageJson.corifeus.reponame }}/open-collective" style="font-weight: bold; font-size: 125%;">
+                            {{ i18n.title.opencollective.label }}
+                        </a>
+                        <br/>
+                    </div>
+
+                    <div *ngIf="isOpenWrt()" style="font-weight: bold; font-size: 150%; opacity: 0.7;">
+                        <br/>
                         {{ i18n.title.openwrt }}
                     </div>
                 </span>
-
-                <!--
-                <span *ngIf="packageJson.collective !== undefined">
-                    Open Collective
-                </span>
-                -->
 
                 <router-outlet>
                 </router-outlet>

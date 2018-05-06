@@ -9,6 +9,7 @@
       "nosqlbooster": "NoSQLBooster"
     },
     "opencollective": {
+      "label": "Open collective - a nyílt csoport!!!",
       "backers": "Backers az Open Collective-on",
       "sponsors": "Szponzorok az Open Collective-on"
     },
@@ -31,6 +32,16 @@
     "contact": "https://img.shields.io/badge/Kapcsolat-P3X-ff9900.svg",
     "donate": "https://img.shields.io/badge/Adományozzon-Corifeus-003087.svg",
     "like": "https://img.shields.io/badge/TETSZIK-Corifeus-3b5998.svg"
+  },
+  "opencollective": {
+    "contributors": "Közreműködők",
+    "contributorsMessage": "Az alábbi emberek dolgoztak ebben a projektben.",
+    "backers": "Támogatók",
+    "backersMessage": "Köszönjük a támogatást!",
+    "backersLink": "Legyél támogató",
+    "sponsors": "Szponzorok",
+    "sponsorsMessage": "Legyél szponzor és a logódat megjelentítjük.",
+    "sponsorsMessageLink": "Legyél szponzor"
   },
   "menu": {
     "menu-corifeus-code-style": "Kód stílus",
