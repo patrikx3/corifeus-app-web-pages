@@ -33,12 +33,12 @@
   "homepage": "https://pages.corifeus.com/corifeus-app-web-pages",
   "dependencies": {
     "@types/marked": "^0.3.0",
-    "corifeus-builder-angular": "^6.0.30-431",
-    "corifeus-utils": "^1.2.49-378",
-    "corifeus-web-material": "^6.0.23-455",
+    "corifeus-builder-angular": "^6.0.38-433",
+    "corifeus-utils": "^1.2.57-380",
+    "corifeus-web-material": "^6.0.24-456",
     "highlight.js": "^9.12.0",
     "marked": "^0.3.19",
-    "p3x-angular-compile": "^6.0.11-368",
+    "p3x-angular-compile": "^6.0.12-369",
     "twemoji": "^2.5.1"
   },
   "engines": {
