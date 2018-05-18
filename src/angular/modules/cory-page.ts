@@ -127,7 +127,6 @@ ${text}
         if (!this.loaded && e) {
             this.loaded = true;
             e.scrollIntoView({
-                behavior: 'smooth',
                 block: "center",
 
             })

@@ -226,9 +226,7 @@ export class Layout implements OnInit {
                     return;
                 }
                 el.scrollIntoView({
-                    behavior: 'smooth',
                     block: "center",
-
                 })
             }
 
@@ -287,9 +285,7 @@ export class Layout implements OnInit {
 //                const viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 //                window.scrollBy(0, (e.getBoundingClientRect().height-viewportH)/2);
                 e.scrollIntoView({
-                    behavior: 'smooth',
                     block: "center",
-
                 });
             }
 //             **/

@@ -1,7 +1,4 @@
-import {
-    Component,
-    Input
-} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 
 import {LocaleService, LocaleSubject} from "corifeus-web";
@@ -16,7 +13,8 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
     `],
     template: `        
     <span *ngIf="pkg.corifeus.reponame !== undefined">
-    <a target="_blank" href="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
+    <span  *ngIf="pkg.corifeus.build !== false" >
+        <a target="_blank" href="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
 <!--            
     &nbsp;
     <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/build.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.build" [matTooltipPosition]="tooltipPosition"></a>
@@ -26,6 +24,8 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
     &nbsp;
     <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/coverage.png?b=master"  [matTooltip]="i18n.pages.title.scrunitizer.coverage" [matTooltipPosition]="tooltipPosition"></a>
     &nbsp;
+    </span>
+
      <a target="_blank" href="https://www.facebook.com/corifeus.software"><img [src]="i18n.pages.badge.like"  matTooltip="Corifeus Software Engineering" [matTooltipPosition]="tooltipPosition"></a>
     &nbsp;
     <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6"><img [src]="i18n.pages.badge.donate" [matTooltip]="i18n.pages.title.donate" [matTooltipPosition]="tooltipPosition"></a>
