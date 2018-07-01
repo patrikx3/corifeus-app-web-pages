@@ -42,8 +42,11 @@ https://nodejs.org/en/download/package-manager/
                         
 [//]: #@corifeus-header:end
 
-
 It is the common GitHub pages for all Corifeus projects.
+
+# Issues
+
+Angular `6.0.7` is broken with latest `Angular Material 2`.
 
 
 # AOT
