@@ -1,12 +1,13 @@
 <div class="cory-mat-header" *ngIf="parent.packageJson !== undefined">
     <mat-toolbar color="primary" class="cory-layout-menus">
 
-        <button mat-button (click)="parent.navigate()" class="cory-layout-header-title" >
-                <span [innerHTML]="generateIcon()"></span>
-               {{ extractTitle(parent.packageJson) }}
+        <button mat-button (click)="parent.navigate()" class="cory-layout-header-title">
+            <span [innerHTML]="generateIcon()"></span>
+            <span [matTooltip]="extractTitle(parent.packageJson)" matTooltipPosition="below" class="cory-pages-layout-header-title">{{ extractTitle(parent.packageJson) }}</span>
         </button>
         <div class="cory-layout-header-top">
-            <span *ngIf="parent.packageJson.corifeus.type === undefined && parent.packageJson.name !== 'corifeus'" style="text-transform: capitalize;">
+            <span *ngIf="parent.packageJson.corifeus.type === undefined && parent.packageJson.name !== 'corifeus'"
+                  style="text-transform: capitalize;">
                 {{ this.settings.github.repoNames }}
             </span>
             <span *ngIf="parent.packageJson.corifeus.type !== undefined && (parent.packageJson.corifeus.type !== 'lede' || parent.packageJson.corifeus.type !== 'build')"
@@ -31,7 +32,7 @@
 
         <!-- menu -->
         <span *ngIf="parent.packageJson.corifeus.menu">
-        <mat-menu #menuItems="matMenu"  y-position="below" x-position="before" >
+        <mat-menu #menuItems="matMenu" y-position="below" x-position="before">
             <button disabled mat-menu-item>
                 {{ i18n.material.title.menu }}
             </button>
@@ -59,7 +60,7 @@
         </span>
 
         <!-- packages -->
-        <mat-menu #menuModules="matMenu"  y-position="below" x-position="before" >
+        <mat-menu #menuModules="matMenu" y-position="below" x-position="before">
             <button disabled mat-menu-item>
                 {{ i18n.pages.title.packages }}
             </button>
@@ -81,7 +82,7 @@
             </button>
         </mat-menu>
 
-<!--        <button mat-button [matMenuTriggerFor]="menuModules" (click)="parent.menuSidenev.toggle()"> -->
+        <!--        <button mat-button [matMenuTriggerFor]="menuModules" (click)="parent.menuSidenev.toggle()"> -->
         <button mat-button (click)="parent.packageMenuOpen()" class="cory-pages-menu-effect">
             <mat-icon>apps</mat-icon>
             <span class="cory-mat-hide-xsmall">

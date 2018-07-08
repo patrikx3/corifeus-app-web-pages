@@ -21,7 +21,26 @@
   text-overflow: ellipsis;
   position: relative;
   top: -5px;
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 800px) {
     font-size: 16px !important;
   }
 }
+
+/*
+  @media screen and (max-width: 700px) {
+    font-size: 16px !important;
+  }
+
+ */
+.cory-pages-layout-header-title {
+  margin-left: 5px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  @media screen and (min-width: 400px) and (max-width: 1000px) {
+    max-width: 500px !important;
+  }
+  @media screen and (max-width: 399px) {
+    max-width: 220px !important;
+  }}

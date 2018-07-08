@@ -32,7 +32,7 @@ let testing = false
 @Component({
     selector: 'cory-page',
     template: `
-        <span [innerHTML]="content | coryHtml"></span>
+        <span *ngIf="content" [innerHTML]="content | coryHtml"></span>
     `
 })
 export class Page implements AfterViewChecked{

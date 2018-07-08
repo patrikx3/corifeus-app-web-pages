@@ -15,7 +15,7 @@
 
             <mat-form-field style="width: 100%;">
                 <input matInput #searchText (keyup)="search(searchText.value)" placeholder="{{ i18n.title.search }}"/>
-                <mat-icon *ngIf="searchText.value.trim() != ''" style="cursor: pointer;" matSuffix (click)="searchText.value = ''; search('')">delete</mat-icon>
+                <mat-icon *ngIf="searchText.value.trim() != ''" style="cursor: pointer;" matSuffix (click)="searchText.value = ''; search('')" color="primary">clear</mat-icon>
             </mat-form-field>
         </form>
 
@@ -26,10 +26,10 @@
              [class.cory-mat-menu-item-active]="menuRepoActive == repo"
         >
                 <span *ngIf="packages[repo]">
-                    <span style="float: left; min-width: 24px !important; display: inline-block; text-align: center; position: relative; left: -7px;">
+                    <span id="cory-pages-layout-menu-main-icon">
                         <i *ngIf="packages[repo]" [class]="packages[repo].corifeus.icon||'fas fa-bolt' "></i>
                     </span>
-                    <span style="display: inline-block; max-width: 240px !important; text-overflow: ellipsis;  white-space: nowrap; overflow: hidden;">
+                    <span class="cory-pages-layout-menu-main-title" [matTooltip]="extractTitle(packages[repo])" matTooltipPosition="above">
                         {{ extractTitle(packages[repo]) }}
                         <span *ngIf="packages[repo].corifeus.stargazers_count > 0" style="opacity: 0.25; position: relative; top: -10px; right: 3px; font-size: 10px;">
                             <i class="fas fa-star"></i>&nbsp;{{ packages[repo].corifeus.stargazers_count }}
@@ -101,7 +101,7 @@
 
 
 
-<div *ngIf="menuSidenav.opened" style="position: fixed; top: 5px; right: 15px; z-index: 3">
+<div *ngIf="menuSidenav.opened" id="cory-pages-layout-menu-main-close" style="">
     <button mat-icon-button color="primary"  (click)="packageMenuClose()">
         <mat-icon>close</mat-icon>
     </button>
