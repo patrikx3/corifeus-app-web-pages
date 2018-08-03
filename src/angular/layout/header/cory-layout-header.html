@@ -3,7 +3,7 @@
 
         <button mat-button (click)="parent.navigate()" class="cory-layout-header-title">
             <span [innerHTML]="generateIcon()"></span>
-            <span [matTooltip]="extractTitle(parent.packageJson)" matTooltipPosition="below" class="cory-pages-layout-header-title">{{ extractTitle(parent.packageJson) }}</span>
+            <span [matTooltip]="extractTitleWithStars(parent.packageJson)" matTooltipPosition="below" class="cory-pages-layout-header-title">{{ extractTitle(parent.packageJson) }}</span>
         </button>
         <div class="cory-layout-header-top">
             <span *ngIf="parent.packageJson.corifeus.type === undefined && parent.packageJson.name !== 'corifeus'"

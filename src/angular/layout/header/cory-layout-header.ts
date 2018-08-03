@@ -16,6 +16,7 @@ import {
 import { LocaleService, SettingsService, LocaleSubject } from "corifeus-web";
 
 import  { extractTitle } from '../../utils/extrac-title';
+import  { extractTitleWithStars } from '../../utils/extrac-title';
 
 @Component({
     selector: 'cory-layout-header',
@@ -30,6 +31,7 @@ export class Header {
     settings: any;
 
     extractTitle = extractTitle;
+    extractTitleWithStars = extractTitleWithStars;
 
     constructor(
         @Host() public parent: Layout,

@@ -32,6 +32,7 @@ import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
 import {NotifyService} from 'corifeus-web-material';
 
 import {extractTitle} from '../utils/extrac-title';
+import {extractTitleWithStars} from '../utils/extrac-title';
 import {isMobile} from '../utils/is-mobile';
 //import {clearTimeout} from "timers";
 
@@ -67,6 +68,7 @@ export class Layout implements OnInit {
     searchText: string;
 
     extractTitle = extractTitle;
+    extractTitleWithStars = extractTitleWithStars;
 
     @ViewChild('menuSidenav', {read: MatSidenav})
     public menuSidenav: MatSidenav;

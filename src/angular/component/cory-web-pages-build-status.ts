@@ -14,7 +14,13 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
     template: `        
     <span *ngIf="pkg.corifeus.reponame !== undefined">
     <span  *ngIf="pkg.corifeus.build !== false" >
-        <a target="_blank" href="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
+        
+        <a target="cory-pages-status-travis" href="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://travis-ci.org/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
+        
+        &nbsp;
+        
+        <a target="cory-pages-status-uptimerobot" href="https://uptimerobot.patrikx3.com/"><img src="https://img.shields.io/uptimerobot/ratio/m780749701-41bcade28c1ea8154eda7cca.svg" alt="Uptime Robot ratio (30 days)"></a>
+
 <!--            
         &nbsp;
         <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/build.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.build" [matTooltipPosition]="tooltipPosition"></a>

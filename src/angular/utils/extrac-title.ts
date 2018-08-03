@@ -4,10 +4,10 @@ const cache = {
 
 export function extractTitle(pkg: any) : string {
     if (pkg === undefined) {
-        return;
+        return '';
     }
     if (pkg.name === undefined) {
-        return;
+        return '';
     }
     if (cache.hasOwnProperty(pkg.name)) {
         return cache[pkg.name];
@@ -39,3 +39,10 @@ export function extractTitle(pkg: any) : string {
     }
 }
 
+export function extractTitleWithStars(pkg: any) : string {
+    let title = extractTitle(pkg);
+    if (pkg !== undefined && pkg !== null && pkg.corifeus.stargazers_count < 1) {
+        return title
+    }
+    return `${title} ⭐${pkg.corifeus.stargazers_count}`;
+}
