@@ -22,8 +22,7 @@
     },
     "donate": "Adományozzon a Corifeus / P3X-hez",
     "contact": "Kapcsolat",
-    "like": "Tetszik",
-    "openwrt": "A legújabb OpenWrt még mindig KÍSÉRLETI, de már kiadásra jelölt ... Ami biztos, hogy ez hamarosan stabil lesz."
+    "like": "Tetszik"
   },
   "url": {
     "contact": "https://www.patrikx3.com/hu/ajto/kapcsolat"

@@ -68,7 +68,6 @@ export class Layout implements OnInit {
     searchText: string;
 
     extractTitle = extractTitle;
-    extractTitleWithStars = extractTitleWithStars;
 
     @ViewChild('menuSidenav', {read: MatSidenav})
     public menuSidenav: MatSidenav;
@@ -234,7 +233,7 @@ export class Layout implements OnInit {
 
             if (typeof id === 'string') {
                 const hash = `#${id.replace(/-parent$/, '')}`;
-                if(history.pushState) {
+                if (history.pushState) {
                     history.pushState(null, null, `${location.pathname}${hash}`);
                 }
                 else {
@@ -328,4 +327,10 @@ export class Layout implements OnInit {
     get counter() {
         return window.corifeus.core.http.counter;
     }
+
+    extractTitleWithStars(pkg: any) {
+        const title = extractTitleWithStars(pkg);
+        return title;
+    }
+
 }

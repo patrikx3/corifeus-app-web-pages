@@ -1,11 +1,11 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "6.1.0-676",
+    "version": "6.1.3-684",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
         "cdn": true,
-        "nodejs": "v10.6.0",
+        "nodejs": "v10.8.0",
         "opencollective": false,
         "reponame": "corifeus-app-web-pages",
         "build": true

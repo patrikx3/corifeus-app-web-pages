@@ -19,8 +19,7 @@ import { Layout } from '../layout/cory-layout';
 
 import { CdnService, MarkdownService  } from '../service';
 
-import { SettingsService } from 'corifeus-web';
-
+import { SettingsService, LocaleService } from 'corifeus-web';
 
 import {
     NotifyService
@@ -51,6 +50,7 @@ export class Page implements AfterViewChecked{
         private settings: SettingsService,
         private zone: NgZone,
         protected notify: NotifyService,
+        protected locale: LocaleService,
     ) {
         this.markdown.context = this;
 
@@ -110,8 +110,22 @@ ${text}
             this.content = this.markdown.render(text, this.parent);
 
         } catch(e) {
+            //this.router.navigateTop(['/github/corifeus/404']);
+
+            this.content = `
+                <div style="margin-top: 20px; font-size: 6em; opacity: 0.25;">
+                    404                   
+                </div>
+                <div style="font-size: 3em; opacity: 0.75;">
+                <i class="fas fa-thumbs-down"></i> ${this.locale.data.material.http['404']}
+                </div>
+                <div style="text-overflow: ellipsis; overflow: hidden;">
+                ${location.toString()}
+                </div>
+`
+
             console.error(e);
-            this.router.navigateTop(['/github/corifeus/404']);
+
         } finally {
             if (!testing) {
                 testing = true;

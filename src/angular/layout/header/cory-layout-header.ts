@@ -31,7 +31,6 @@ export class Header {
     settings: any;
 
     extractTitle = extractTitle;
-    extractTitleWithStars = extractTitleWithStars;
 
     constructor(
         @Host() public parent: Layout,
@@ -64,4 +63,7 @@ export class Header {
         return `<i class="${this.parent.icon}"></i>`;
     }
 
+    extractTitleWithStars(pkg: any) {
+        return this.parent.extractTitleWithStars(pkg);
+    }
 }
