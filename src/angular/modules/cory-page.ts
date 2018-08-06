@@ -21,6 +21,8 @@ import { CdnService, MarkdownService  } from '../service';
 
 import { SettingsService, LocaleService } from 'corifeus-web';
 
+
+import { State } from 'corifeus-web';
 import {
     NotifyService
 } from 'corifeus-web-material';
@@ -88,6 +90,8 @@ export class Page implements AfterViewChecked{
             path = `index.html`;
         };
         try {
+            State.NotFound = false;
+            window.corifeus.core.http.status = 200;
 
             let text = await this.cdn.file(this.parent.currentRepo, path);
 
@@ -108,10 +112,10 @@ ${text}
             }
 
             this.content = this.markdown.render(text, this.parent);
-
         } catch(e) {
             //this.router.navigateTop(['/github/corifeus/404']);
-
+            State.NotFound = true;
+            window.corifeus.core.http.status = 404;
             this.content = `
                 <div style="margin-top: 20px; font-size: 6em; opacity: 0.25;">
                     404                   
