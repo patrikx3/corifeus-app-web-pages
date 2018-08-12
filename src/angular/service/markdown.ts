@@ -23,8 +23,7 @@ import { htmlStrip} from "../utils/html-strip";
 
 import { IsBot } from 'corifeus-web';
 
-const twemoji = require('twemoji');
-
+const twemoji = require('twemoji').default;
 
 @Injectable()
 export class MarkdownService {

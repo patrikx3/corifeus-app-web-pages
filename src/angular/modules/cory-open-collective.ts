@@ -10,7 +10,7 @@ import { Layout } from '../layout/cory-layout';
 
 import {LocaleService, LocaleSubject} from "corifeus-web";
 
-const twemoji = require('twemoji');
+const twemoji = require('twemoji').default;
 
 @Component({
     selector: 'cory-open-collective',

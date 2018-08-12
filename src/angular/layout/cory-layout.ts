@@ -41,7 +41,7 @@ import {
 } from '@angular/platform-browser';
 
 
-const twemoji = require('twemoji');
+const twemoji = require('twemoji').default;
 
 declare global {
     interface Window {

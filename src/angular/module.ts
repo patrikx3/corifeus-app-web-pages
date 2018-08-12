@@ -48,7 +48,7 @@ export class Module {
         private loc : LocaleService,
         private settings: SettingsService,
     ) {
-        const twemoji =require('twemoji');
+        const twemoji = require('twemoji').default;
         twemoji.folder = 'svg';
         twemoji.ext = '.svg';
 
