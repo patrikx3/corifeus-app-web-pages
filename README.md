@@ -23,7 +23,7 @@ All my domains (patrikx3.com and corifeus.com) could have errors, since I am dev
    
 ### Built on Node 
 ``` 
-v10.8.0
+v10.9.0
 ```   
    
 The ```async``` and ```await``` keywords are required.
@@ -35,7 +35,7 @@ https://nodejs.org/en/download/package-manager/
 # Built on Angular
 
 ```text
-6.1.2
+6.1.4
 ```
             
 
