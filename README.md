@@ -35,7 +35,7 @@ https://nodejs.org/en/download/package-manager/
 # Built on Angular
 
 ```text
-6.1.4
+6.1.6
 ```
             
 
