@@ -33,7 +33,16 @@ export function extractTitle(pkg: any) : string {
         if (result !== undefined && result.startsWith('Openwrt')) {
             result = result.replace('Openwrt', 'OpenWrt')
         }
-
+        result = result.split(' ').map((elem: string) => {
+            if (elem.length === 2) {
+                elem = elem.toUpperCase()
+            } else if (elem.toLowerCase() === 'pdf') {
+                elem = elem.toUpperCase()
+            } else if (elem.endsWith('db')) {
+                elem = elem.substr(0, elem.length - 2) + 'DB'
+            }
+            return elem
+        }).join(' ')
         cache[pkg.name] = result;
         return cache[pkg.name];
     }

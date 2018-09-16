@@ -75,6 +75,12 @@
                     <span id="cory-mat-pages-title" class="cory-layout-title" [innerHTML]="getDescription(packageJson.description)"></span>
                     <br/>
 
+                    <div *ngIf="packageJson.corifeus.angular">
+
+                        <h2>Built on Angular v{{packageJson.corifeus.angular}}</h2>
+
+                    </div>
+
                     <div *ngIf="packageJson.collective">
                         <br/>
                         <a routerLink="/github/{{ packageJson.corifeus.reponame }}/open-collective" style="font-weight: bold; font-size: 125%;">
