@@ -1,6 +1,9 @@
 import { NgModule , Injectable  } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import {
+    MatSidenavModule,
+} from '@angular/material';
 
 import { CorifeusMaterialModule, ThemeService } from 'corifeus-web-material';
 import { LocaleService, SettingsService } from 'corifeus-web';
@@ -19,6 +22,7 @@ import { routes } from './routes';
 
 @NgModule({
     imports: [
+        MatSidenavModule,
         CorifeusMaterialModule,
         RouterModule.forRoot(routes),
     ],

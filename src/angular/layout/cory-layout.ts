@@ -159,7 +159,7 @@ export class Layout implements OnInit {
                 return;
             }
             regexes.push(
-                new RegExp('.*' + search + '.*')
+                new RegExp('.*' + search + '.*', 'i')
             )
         })
         return this.repos.filter(repo => {
