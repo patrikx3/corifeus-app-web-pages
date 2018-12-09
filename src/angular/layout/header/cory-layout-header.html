@@ -30,6 +30,15 @@
         </a>
         -->
 
+
+        <button *ngIf="parent.packageJson.name !== 'corifeus'" mat-button class="cory-pages-menu-effect" (click)="parent.navigate('/');">
+            <mat-icon>home</mat-icon>
+            <span class="cory-mat-hide-xsmall">
+                {{ i18n.pages.title.home }}
+            </span>
+        </button>
+
+
         <!-- menu -->
         <span *ngIf="parent.packageJson.corifeus.menu">
         <mat-menu #menuItems="matMenu" y-position="below" x-position="before">
@@ -60,6 +69,7 @@
         </span>
 
         <!-- packages -->
+
         <mat-menu #menuModules="matMenu" y-position="below" x-position="before">
             <button disabled mat-menu-item>
                 {{ i18n.pages.title.packages }}
