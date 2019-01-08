@@ -72,7 +72,7 @@
 
                 <span *ngIf="showTitle">
                     <br/>
-                    <span id="cory-mat-pages-title" class="cory-layout-title" [innerHTML]="getDescription(packageJson.description)"></span>
+                    <span id="cory-mat-pages-title" class="cory-layout-title" [innerHTML]="renderTwemoji(packageJson.description)"></span>
                     <br/>
 
                     <div *ngIf="packageJson.corifeus.angular">
@@ -83,8 +83,8 @@
 
                     <div *ngIf="packageJson.collective">
                         <br/>
-                        <a routerLink="/github/{{ packageJson.corifeus.reponame }}/open-collective" style="font-weight: bold; font-size: 125%;">
-                            {{ i18n.title.opencollective.label }}
+                        <a routerLink="/github/{{ packageJson.corifeus.reponame }}/open-collective" style="font-weight: bold; font-size: 125%;"  [innerHTML]="renderTwemoji(i18n.title.opencollective.label)">
+
                         </a>
                         <br/>
                     </div>

@@ -305,6 +305,13 @@ export class Layout implements OnInit {
         }))
     }
 
+    renderTwemoji(text: string) {
+        return !text ? text : this.sanitizer.bypassSecurityTrustHtml(twemoji.parse(text, {
+            folder: 'svg',
+            ext: '.svg',
+        }))
+    }
+
     keyDownFunction(event: any) {
         const repos = this.reposSearch;
         if (event.keyCode == 13 && repos.length === 1) {
