@@ -45,7 +45,7 @@ export class Footer {
     settings : any;
     i18n : any;
 
-    linkJetBrains: string = "https://www.jetbrains.com"
+    linkJetBrains: string = "https://www.jetbrains.com/?from=patrikx3"
     linkNoSQLBooster: string = "https://www.nosqlbooster.com"
 
     decodeEntities: Function = decodeEntities;
