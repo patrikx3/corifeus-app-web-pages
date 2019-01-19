@@ -70,6 +70,8 @@ a code {
 }
 
 .cory-mat-header, .cory-mat-footer {
+    height: 56px !important;
+
     @media screen and (max-width: $cory-mat-size-xsmall) {
         .mat-button {
             $padding: 8px;
@@ -177,8 +179,8 @@ a code {
     padding-bottom: $cory-mat-fixed-height-collapsed;
 
     @media screen and (min-width: $cory-mat-size-xsmall) {
-        padding-top: $cory-mat-fixed-height-top;
-        padding-bottom: $cory-mat-fixed-height-bottom;
+//        padding-top: $cory-mat-fixed-height-top;
+//        padding-bottom: $cory-mat-fixed-height-bottom;
     }
 
     @media screen and (min-width: $cory-mat-size-medium) {

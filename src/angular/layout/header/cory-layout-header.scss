@@ -3,14 +3,14 @@
   font-size: 12px;
   position: relative;
   top: 19px;
-  left: -65px;
+  left: -55px;
   z-index: 10;
 
   .cory-layout-header-top-p3x {
     text-transform: uppercase;
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: $cory-mat-size-small) {
     top: 15px;
   }
 }

@@ -13,6 +13,7 @@ hljs.registerLanguage('json', require('highlight.js/lib/languages/json.js'));
 hljs.registerLanguage('bash', require('highlight.js/lib/languages/shell.js'));
 hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript.js'));
 hljs.registerLanguage('ts', require('highlight.js/lib/languages/typescript.js'));
+hljs.registerLanguage('ini', require('highlight.js/lib/languages/ini.js'));
 
 import * as marked from 'marked';
 

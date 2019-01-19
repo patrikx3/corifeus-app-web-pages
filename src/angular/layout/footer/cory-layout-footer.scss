@@ -1,13 +1,28 @@
-.cory-pages-footer-shrink-text {
-  @media screen and (min-width:600px) and (max-width:840px) {
-    display: none !important;
+cory-layout-footer {
+
+  .cory-mat-footer {
+
+    .cory-layout-footer-container {
+      position: relative;
+      top: -3px;
+    }
+
   }
 
-}
 
-.cory-pages-footer-shrink-icon {
-  @media screen and (min-width:600px) and (max-width:840px) {
-    min-width: 0px !important;
+  .cory-pages-footer-shrink-text {
+    @media screen and (min-width:600px) and (max-width:840px) {
+      display: none !important;
+    }
+
   }
+
+  .cory-pages-footer-shrink-icon {
+    @media screen and (min-width:600px) and (max-width:840px) {
+      min-width: 0px !important;
+    }
+
+  }
+
 
 }
