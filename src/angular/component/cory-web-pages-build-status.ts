@@ -15,7 +15,7 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
     <span *ngIf="pkg.corifeus.reponame !== undefined">
     <span  *ngIf="pkg.corifeus.build !== false" >
         
-        <a target="cory-pages-status-travis" href="https://travis-com.org/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://api.travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="cory-pages-status-travis" href="https://travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://api.travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
         
         &nbsp;
         

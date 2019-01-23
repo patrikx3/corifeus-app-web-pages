@@ -211,6 +211,10 @@ export class Layout implements OnInit {
             a.href = `/${repo}`;
             a.innerText = repo;
             this.noScript.appendChild(a)
+            const a2 = document.createElement('a');
+            a2.href = `https://github.com/patrikx3/${repo}`;
+            a2.innerText = 'Github ' + repo;
+            this.noScript.appendChild(a2)
         })
         window.coryAppWebPagesNavigate = (path?: string) => {
             this.zone.run(() => {
