@@ -24,7 +24,7 @@
     },
     "donate": "Donate to Corifeus / P3X",
     "contact": "Contact",
-    "like": "Like"
+    "facebook": "Facebook"
   },
   "url": {
     "contact": "https://www.patrikx3.com/en/front/contact"
@@ -32,7 +32,7 @@
   "badge": {
     "contact": "https://img.shields.io/badge/Contact-P3X-ff9900.svg",
     "donate": "https://img.shields.io/badge/Donate-Corifeus-003087.svg",
-    "like": "https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg"
+    "facebook": "https://img.shields.io/badge/Facebook-Corifeus-3b5998.svg"
   },
   "opencollective": {
     "contributors": "Contributors",

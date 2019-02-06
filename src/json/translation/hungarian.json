@@ -24,7 +24,7 @@
     },
     "donate": "Adományozzon a Corifeus / P3X-hez",
     "contact": "Kapcsolat",
-    "like": "Tetszik"
+    "facebook": "Facebook"
   },
   "url": {
     "contact": "https://www.patrikx3.com/hu/ajto/kapcsolat"
@@ -32,7 +32,7 @@
   "badge": {
     "contact": "https://img.shields.io/badge/Kapcsolat-P3X-ff9900.svg",
     "donate": "https://img.shields.io/badge/Adományozzon-Corifeus-003087.svg",
-    "like": "https://img.shields.io/badge/TETSZIK-Corifeus-3b5998.svg"
+    "facebook": "https://img.shields.io/badge/Facebook-Corifeus-3b5998.svg"
   },
   "opencollective": {
     "contributors": "Közreműködők",
