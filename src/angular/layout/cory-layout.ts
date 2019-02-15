@@ -218,7 +218,15 @@ export class Layout implements OnInit {
         })
         window.coryAppWebPagesNavigate = (path?: string) => {
             this.zone.run(() => {
-                this.navigate(path);
+                if (path.includes('#')) {
+                    const hashIndex = path.indexOf('#')
+                    const pathMainPath = path.substring(0, hashIndex)
+                    const hash = path.substring(hashIndex + 1)
+                    this.navigate(pathMainPath);
+                    window.coryAppWebPagesNavigateHash(hash)
+                } else {
+                    this.navigate(path);
+                }
             });
         };
 
