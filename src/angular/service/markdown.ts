@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 const hljs = require('highlight.js/lib/highlight.js');
+hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx.js'));
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml.js'));
 hljs.registerLanguage('css', require('highlight.js/lib/languages/css.js'));
 hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss.js'));

@@ -95,19 +95,27 @@ export class Page implements AfterViewChecked{
 
             let text = await this.cdn.file(this.parent.currentRepo, path);
 
-            if (path.toLowerCase().endsWith('.json')) {
+            const pathLower = path.toLowerCase()
+
+            if (pathLower.endsWith('.json')) {
                 text = `
 \`\`\`json
 ${text}
 \`\`\`                    
 `
-            } else if (path.toLowerCase().endsWith('.yml')) {
+            } else if (pathLower.endsWith('.yml')) {
                 text = `
 \`\`\`yaml
 ${text}
 \`\`\`                    
 `
 
+            } else if (pathLower.endsWith('.conf')) {
+                text = `
+\`\`\`nginxconf
+${text}
+\`\`\`                    
+`
 
             }
 
