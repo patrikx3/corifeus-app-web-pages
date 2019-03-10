@@ -6,13 +6,13 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
 @Component({
     selector: 'cory-web-pages-build-status',
     styles: [`
-        span {
+        .cory-web-pages-build-status {
             position: relative;
             top: 3px;
         }
     `],
     template: `        
-    <span *ngIf="pkg.corifeus.reponame !== undefined">
+    <span *ngIf="pkg.corifeus.reponame !== undefined" class="cory-web-pages-build-status">
     <span  *ngIf="pkg.corifeus.build !== false" >
         
         <a target="cory-pages-status-travis" href="https://travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://api.travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
