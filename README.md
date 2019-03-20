@@ -8,14 +8,16 @@
   
  
 ---
-# 🕸️ Corifeus App Web Pages - Support v2019.3.18-0  
+# 🕸️ Corifeus App Web Pages - Support v2019.4.1  
 
   
 🙏 This is an open-source project. Star this repository, if you like it, or even donate to maintain the servers and the development. Thank you so much!
 
-Possible, this mini server, rarely, is down, please hang on for 15-30 minutes and the server will be back up.
+Possible, this server, rarely, is down, please hang on for 15-30 minutes and the server will be back up.
 
 All my domains ([patrikx3.com](https://patrikx3.com) and [corifeus.com](https://corifeus.com)) could have minor errors, since I am developing in my free time. However, it is usually stable.
+
+**Note about versioning:** Versions are cut in Major.Minor.Patch schema. Major is always the current year. Minor is either 4 (January - June) or 10 (July - December). Patch is incremental by every build. If there is a breaking change, it should be noted in the readme.
 
 **Bugs are evident™ - MATRIX️**  
     
@@ -39,7 +41,7 @@ https://nodejs.org/en/download/package-manager/
 # Built on Angular
 
 ```text
-7.2.8
+7.2.10
 ```
             
 
@@ -82,7 +84,7 @@ npm rebuild node-sass
 
 ---
 
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v2019.3.18-0 
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v2019.4.1 
 
 [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6)  [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) 
 
