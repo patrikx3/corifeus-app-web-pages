@@ -62,7 +62,13 @@ export class MarkdownService {
             if (!href.startsWith('http')) {
                 href = `https://cdn.corifeus.com/git/${this.layout.currentRepo}/${href}`;
             }
-            const result = `
+
+            let result
+            if (text.toLowerCase().trim() === 'link') {
+                result = `<img src="${href}"/>`;
+
+            } else {
+                result = `
 <span style="display: block; font-size: 125%; opacity: 0.5">
 ${title}
 </span>
@@ -71,6 +77,9 @@ ${title}
 ${text}
 </span>
 `;
+
+            }
+
             return result;
         };
 
@@ -93,8 +102,13 @@ ${text}
 //console.log('fixed')
             }
 
+            console.log('href', href)
             if (!href.startsWith(location.origin) && (href.startsWith('https:/') || href.startsWith('http:/'))) {
-                a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fas fa-external-link-alt"></i></span>`;
+                if (href.endsWith('#cory-non-external')) {
+                    a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a>`;
+                } else {
+                    a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fas fa-external-link-alt"></i></span>`;
+                }
             } else {
                 if (!fixed) {
                     if (href.endsWith('.md')) {

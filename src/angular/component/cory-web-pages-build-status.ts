@@ -13,6 +13,12 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
     `],
     template: `        
     <span *ngIf="pkg.corifeus.reponame !== undefined" class="cory-web-pages-build-status">
+    <span *ngIf="pkg.corifeus.snap === true">
+        <a href="https://snapcraft.io/{{ pkg.name }}" target="cory-pages-status-snap" matTooltip="Snap" [matTooltipPosition]="tooltipPosition">
+            <img alt="{{ pkg.description }}" src="https://snapcraft.io/{{ pkg.name }}/badge.svg" />
+        </a>
+        &nbsp;
+    </span>
     <span  *ngIf="pkg.corifeus.build !== false" >
         
         <a target="cory-pages-status-travis" href="https://travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://api.travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
