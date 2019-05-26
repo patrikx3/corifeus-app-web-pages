@@ -102,7 +102,7 @@ ${text}
 //console.log('fixed')
             }
 
-            console.log('href', href)
+//            console.log('href', href)
             if (!href.startsWith(location.origin) && (href.startsWith('https:/') || href.startsWith('http:/'))) {
                 if (href.endsWith('#cory-non-external')) {
                     a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a>`;

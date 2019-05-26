@@ -8,7 +8,7 @@
   
  
 ---
-# 🕸️ Corifeus App Web Pages - Support v2019.4.8  
+# 🕸️ Corifeus App Web Pages v2019.4.101  
 
   
 🙏 This is an open-source project. Star this repository, if you like it, or even donate to maintain the servers and the development. Thank you so much!
@@ -29,7 +29,7 @@ All my domains ([patrikx3.com](https://patrikx3.com) and [corifeus.com](https://
    
 ### Built on Node 
 ``` 
-v11.14.0
+v12.3.1
 ```   
    
 The ```async``` and ```await``` keywords are required.
@@ -41,7 +41,7 @@ https://nodejs.org/en/download/package-manager/
 # Built on Angular
 
 ```text
-7.2.13
+7.2.15
 ```
             
 
@@ -84,7 +84,7 @@ npm rebuild node-sass
 
 ---
 
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v2019.4.8 
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v2019.4.101 
 
 [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6)  [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) 
 
