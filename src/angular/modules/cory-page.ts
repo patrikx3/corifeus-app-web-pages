@@ -6,6 +6,10 @@ import {
 } from '@angular/core';
 
 import {
+    DomSanitizer
+} from '@angular/platform-browser'
+
+import {
     ActivatedRoute,
     NavigationStart,
     NavigationEnd,
@@ -27,13 +31,14 @@ import {
     NotifyService
 } from 'corifeus-web-material';
 
+const cache = {}
 
 let testing = false
 
 @Component({
     selector: 'cory-page',
     template: `
-        <span *ngIf="content" [innerHTML]="content | coryHtml"></span>
+        <span *ngIf="content" [innerHTML]="transformHtml(content)"></span>
     `
 })
 export class Page implements AfterViewChecked{
@@ -53,6 +58,7 @@ export class Page implements AfterViewChecked{
         private zone: NgZone,
         protected notify: NotifyService,
         protected locale: LocaleService,
+        private _sanitizer: DomSanitizer,
     ) {
         this.markdown.context = this;
 
@@ -90,6 +96,14 @@ export class Page implements AfterViewChecked{
             path = `index.html`;
         };
         try {
+            const cacheKey = JSON.stringify({
+                repo: this.parent.currentRepo,
+                path: path
+            })
+            if (cache.hasOwnProperty(cacheKey)) {
+                this.content = cache[cacheKey]
+                return
+            }
             State.NotFound = false;
             window.corifeus.core.http.status = 200;
 
@@ -119,7 +133,11 @@ ${text}
 
             }
 
-            this.content = this.markdown.render(text, this.parent);
+            const html = this.markdown.render(text, this.parent);
+
+            cache[cacheKey] = html
+
+            this.content = html
         } catch(e) {
             //this.router.navigateTop(['/github/corifeus/404']);
             State.NotFound = true;
@@ -157,6 +175,10 @@ ${text}
 
             })
         }
+    }
+
+    transformHtml(html: string) : any {
+        return this._sanitizer.bypassSecurityTrustHtml(html);
     }
 }
 

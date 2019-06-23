@@ -1,15 +1,15 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2019.4.102",
+    "version": "2019.4.124",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
         "cdn": true,
-        "nodejs": "v12.3.1",
+        "nodejs": "v12.4.0",
         "opencollective": false,
         "reponame": "corifeus-app-web-pages",
         "build": true,
-        "angular": "7.2.15"
+        "angular": "8.0.2"
     },
     "description": "🕸️ Corifeus App Web Pages",
     "main": "src/index.js",
@@ -17,7 +17,8 @@
         "test": "test"
     },
     "scripts": {
-        "test": "grunt"
+        "test": "grunt",
+        "postinstall": "node node_modules/corifeus-builder/src/utils/twemoji-install.js"
     },
     "license": "MIT",
     "repository": {
@@ -35,13 +36,12 @@
     "homepage": "https://pages.corifeus.com/corifeus-app-web-pages",
     "dependencies": {
         "@types/marked": "^0.6.5",
-        "corifeus-builder-angular": "^2019.4.108",
-        "corifeus-utils": "^2019.4.103",
-        "corifeus-web-material": "^2019.4.106",
-        "highlight.js": "^9.15.6",
+        "corifeus-builder-angular": "^2019.4.146",
+        "corifeus-utils": "^2019.4.106",
+        "corifeus-web-material": "^2019.4.163",
+        "highlight.js": "^9.15.8",
         "marked": "^0.6.2",
-        "p3x-angular-compile": "^2019.4.108",
-        "twemoji": "^12.0.1"
+        "twemoji": "=12.0.4"
     },
     "engines": {
         "node": ">=10.13.0"

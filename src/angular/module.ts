@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import {
     MatSidenavModule,
-} from '@angular/material';
+} from '@angular/material/sidenav';
 
 import { CorifeusMaterialModule, ThemeService } from 'corifeus-web-material';
 import { LocaleService, SettingsService } from 'corifeus-web';

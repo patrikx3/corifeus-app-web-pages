@@ -3,8 +3,6 @@ import {HttpClient} from '@angular/common/http';
 
 import {SettingsService} from 'corifeus-web';
 
-const cache: any = {};
-
 @Injectable()
 export class CdnService {
 
@@ -28,14 +26,8 @@ export class CdnService {
             path = path.substr(0, path.length - postfix.length) + '.md';
         }
         const url = `https://cdn.corifeus.com/git/${repo}/${path}`;
-        if (cache[url] === undefined) {
-            try {
-                cache[url] = await this.http.get(url, {responseType: 'text'}).toPromise();
-            } catch (e) {
-                console.error(e);
-            }
-        }
-        return cache[url];
+        const text = await this.http.get(url, {responseType: 'text'}).toPromise();
+        return text;
     }
 
 

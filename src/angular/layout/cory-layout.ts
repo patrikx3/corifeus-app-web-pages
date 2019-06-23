@@ -16,7 +16,7 @@ import { debounce } from 'lodash'
 
 import {
     MatSidenav
-} from '@angular/material'
+} from '@angular/material/sidenav'
 
 import {
     RouterService,
@@ -25,8 +25,6 @@ import {
 import {HttpClient} from '@angular/common/http';
 
 import * as moment from 'moment';
-
-import {CdnService} from '../service';
 
 import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
 import {NotifyService} from 'corifeus-web-material';
@@ -69,10 +67,10 @@ export class Layout implements OnInit {
 
     extractTitle = extractTitle;
 
-    @ViewChild('menuSidenav', {read: MatSidenav})
+    @ViewChild('menuSidenav', {read: MatSidenav, static: false})
     public menuSidenav: MatSidenav;
 
-    @ViewChild('searchText')
+    @ViewChild('searchText', {read: ElementRef, static: false})
     public searchTextInput: ElementRef;
 
     currentRepo: string;
@@ -107,7 +105,6 @@ export class Layout implements OnInit {
     public isMobile: boolean = false;
 
     constructor(
-        private cdn: CdnService,
         private router: RouterService,
         private route: ActivatedRoute,
         protected notify: NotifyService,
