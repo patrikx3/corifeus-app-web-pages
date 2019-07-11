@@ -15,18 +15,18 @@ import {
     NavigationEnd,
 } from '@angular/router';
 
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
-import { RouterService } from 'corifeus-web';
+import {RouterService} from 'corifeus-web';
 
-import { Layout } from '../layout/cory-layout';
+import {Layout} from '../layout/cory-layout';
 
-import { CdnService, MarkdownService  } from '../service';
+import {CdnService, MarkdownService} from '../service';
 
-import { SettingsService, LocaleService } from 'corifeus-web';
+import {SettingsService, LocaleService} from 'corifeus-web';
 
 
-import { State } from 'corifeus-web';
+import {State} from 'corifeus-web';
 import {
     NotifyService
 } from 'corifeus-web-material';
@@ -41,7 +41,7 @@ let testing = false
         <span *ngIf="content" [innerHTML]="transformHtml(content)"></span>
     `
 })
-export class Page implements AfterViewChecked{
+export class Page implements AfterViewChecked {
 
     loaded: boolean = false;
 
@@ -62,12 +62,12 @@ export class Page implements AfterViewChecked{
     ) {
         this.markdown.context = this;
 
-        let currentUrlPathTimeout : any;
+        let currentUrlPathTimeout: any;
 
         let usingActivatedUrl = true;
 
         this.router.events.subscribe(event => {
-            if(event instanceof NavigationStart) {
+            if (event instanceof NavigationStart) {
                 usingActivatedUrl = false;
                 const urlPath = event.url.substr(1)
 
@@ -91,10 +91,11 @@ export class Page implements AfterViewChecked{
         })
     }
 
-    async navigate(path? : string) {
+    async navigate(path?: string) {
         if (path === undefined || path === '') {
             path = `index.html`;
-        };
+        }
+        ;
         try {
             const cacheKey = JSON.stringify({
                 repo: this.parent.currentRepo,
@@ -138,7 +139,7 @@ ${text}
             cache[cacheKey] = html
 
             this.content = html
-        } catch(e) {
+        } catch (e) {
             //this.router.navigateTop(['/github/corifeus/404']);
             State.NotFound = true;
             window.corifeus.core.http.status = 404;
@@ -177,7 +178,7 @@ ${text}
         }
     }
 
-    transformHtml(html: string) : any {
+    transformHtml(html: string): any {
         return this._sanitizer.bypassSecurityTrustHtml(html);
     }
 }

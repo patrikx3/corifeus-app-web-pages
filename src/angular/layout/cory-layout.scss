@@ -1,23 +1,23 @@
 #cory-pages-layout-menu-main-icon {
-  float: left;
-  min-width: 24px !important;
-  display: inline-block;
-  text-align: center;
-  position: relative;
-  left: -7px;
+    float: left;
+    min-width: 24px !important;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    left: -7px;
 }
 
 .cory-pages-layout-menu-main-title {
-  display: inline-block;
-  max-width: 240px !important;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+    display: inline-block;
+    max-width: 240px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #cory-pages-layout-menu-main-close {
-  position: fixed;
-  top: 5px;
-  right: 15px;
-  z-index: 3
+    position: fixed;
+    top: 5px;
+    right: 15px;
+    z-index: 3
 }

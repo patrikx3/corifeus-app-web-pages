@@ -1,56 +1,56 @@
 {
-  "title": {
-    "ready": "A hibák eredetiek™ - MATRIX",
-    "search": "Keresés",
-    "developer": "Laszlo Patrik &copy; ",
-    "packages": "Csomagok",
-    "sponsor": {
-      "jetbrains": "JetBrains",
-      "nosqlbooster": "NoSQLBooster"
+    "title": {
+        "ready": "A hibák eredetiek™ - MATRIX",
+        "search": "Keresés",
+        "developer": "Laszlo Patrik &copy; ",
+        "packages": "Csomagok",
+        "sponsor": {
+            "jetbrains": "JetBrains",
+            "nosqlbooster": "NoSQLBooster"
+        },
+        "opencollective": {
+            "label": "\uD83D\uDE4F️ Adományával támogathatja a fejlesztésünket. Legyen támogató vagy szponzor az Open Collective-on ...",
+            "backers": "Backers az Open Collective-on",
+            "sponsors": "Szponzorok az Open Collective-on"
+        },
+        "home": "Matrix",
+        "travis": "Travis Kiépítettség",
+        "uptime": "Uptime Robot hányados (30 nap)",
+        "githubStars": "GitHub Csillagok",
+        "scrunitizer": {
+            "quality": "Scrutinizer kód minőség",
+            "coverage": "Scrutinizer Kódlefedettséget",
+            "build": "Scrutinizer Kiépítettség"
+        },
+        "donate": "Adományozzon a Corifeus / P3X-nak",
+        "contact": "Kapcsolat",
+        "facebook": "Facebook"
+    },
+    "url": {
+        "contact": "https://www.patrikx3.com/hu/ajto/kapcsolat"
+    },
+    "badge": {
+        "contact": "https://img.shields.io/badge/Kapcsolat-P3X-ff9900.svg",
+        "donate": "https://img.shields.io/badge/Adományozzon-Corifeus-003087.svg",
+        "facebook": "https://img.shields.io/badge/Facebook-Corifeus-3b5998.svg"
     },
     "opencollective": {
-      "label": "\uD83D\uDE4F️ Adományával támogathatja a fejlesztésünket. Legyen támogató vagy szponzor az Open Collective-on ...",
-      "backers": "Backers az Open Collective-on",
-      "sponsors": "Szponzorok az Open Collective-on"
+        "contributors": "Közreműködők",
+        "contributorsMessage": "Az alábbi emberek dolgoztak ebben a projektben.",
+        "backers": "Támogatók",
+        "backersMessage": "Köszönjük a támogatást!",
+        "backersLink": "Legyél támogató",
+        "sponsors": "Szponzorok",
+        "sponsorsMessage": "Legyél szponzor és a logódat megjelentítjük.",
+        "sponsorsMessageLink": "Legyél szponzor"
     },
-    "home": "Matrix",
-    "travis": "Travis Kiépítettség",
-    "uptime": "Uptime Robot hányados (30 nap)",
-    "githubStars": "GitHub Csillagok",
-    "scrunitizer": {
-      "quality": "Scrutinizer kód minőség",
-      "coverage": "Scrutinizer Kódlefedettséget",
-      "build": "Scrutinizer Kiépítettség"
-    },
-    "donate": "Adományozzon a Corifeus / P3X-nak",
-    "contact": "Kapcsolat",
-    "facebook": "Facebook"
-  },
-  "url": {
-    "contact": "https://www.patrikx3.com/hu/ajto/kapcsolat"
-  },
-  "badge": {
-    "contact": "https://img.shields.io/badge/Kapcsolat-P3X-ff9900.svg",
-    "donate": "https://img.shields.io/badge/Adományozzon-Corifeus-003087.svg",
-    "facebook": "https://img.shields.io/badge/Facebook-Corifeus-3b5998.svg"
-  },
-  "opencollective": {
-    "contributors": "Közreműködők",
-    "contributorsMessage": "Az alábbi emberek dolgoztak ebben a projektben.",
-    "backers": "Támogatók",
-    "backersMessage": "Köszönjük a támogatást!",
-    "backersLink": "Legyél támogató",
-    "sponsors": "Szponzorok",
-    "sponsorsMessage": "Legyél szponzor és a logódat megjelentítjük.",
-    "sponsorsMessageLink": "Legyél szponzor"
-  },
-  "menu": {
-    "menu-corifeus-code-style": "Kód stílus",
-    "menu-corifeus-architecture": "Szerkezet",
-    "menu-corifeus-architecture-overview": "Áttekintés",
-    "menu-corifeus-patterns": "Minták",
-    "menu-corifeus-more": "Több",
-    "menu-corifeus-more-github": "Github oldalok",
-    "menu-corifeus-more-origin": "Corifeus név eredete "
-  }
+    "menu": {
+        "menu-corifeus-code-style": "Kód stílus",
+        "menu-corifeus-architecture": "Szerkezet",
+        "menu-corifeus-architecture-overview": "Áttekintés",
+        "menu-corifeus-patterns": "Minták",
+        "menu-corifeus-more": "Több",
+        "menu-corifeus-more-github": "Github oldalok",
+        "menu-corifeus-more-origin": "Corifeus név eredete "
+    }
 }

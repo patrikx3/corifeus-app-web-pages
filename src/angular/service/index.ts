@@ -1,4 +1,4 @@
-export { CdnService } from "./cdn";
-export {MarkdownService } from "./markdown";
+export {CdnService} from "./cdn";
+export {MarkdownService} from "./markdown";
 
 

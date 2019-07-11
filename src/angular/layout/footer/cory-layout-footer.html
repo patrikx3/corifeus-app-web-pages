@@ -1,13 +1,16 @@
-<div class="cory-mat-footer"  *ngIf="parent.packageJson !== undefined">
+<div class="cory-mat-footer" *ngIf="parent.packageJson !== undefined">
 
     <mat-toolbar class="cory-layout-menus" color="primary">
 
         <span class="cory-layout-footer-container">
-        <a *ngIf="parent.packageJson.corifeus.publish" mat-button [href]="linkNpm" target="_blank" [matTooltip]="tooltip.Npm" [matTooltipPosition]="tooltipPosition" class="cory-hover-scale" style="position: relative; top: 2px">
+        <a *ngIf="parent.packageJson.corifeus.publish" mat-button [href]="linkNpm" target="_blank"
+           [matTooltip]="tooltip.Npm" [matTooltipPosition]="tooltipPosition" class="cory-hover-scale"
+           style="position: relative; top: 2px">
             <img [src]="npmSvg" style="width: auto; height: 20px; min-height: 20px; min-width: 51px"/>
         </a>
 
-        <a mat-button [href]="linkGithub" target="_blank" [matTooltip]="tooltip.GitHub" [matTooltipPosition]="tooltipPosition" class="cory-pages-menu-effect">
+        <a mat-button [href]="linkGithub" target="_blank" [matTooltip]="tooltip.GitHub"
+           [matTooltipPosition]="tooltipPosition" class="cory-pages-menu-effect">
             <i class="fab fa-github cory-layout-fa"></i>
             <span class="cory-mat-hide-xsmall" style="position: relative; top: 2px">
             GitHub
@@ -29,7 +32,8 @@
             -->
             <cory-mat-theme-button class="cory-pages-menu-effect"></cory-mat-theme-button>
 
-            <a mat-button [href]="linkJetBrains" class="cory-hover-rotate cory-pages-footer-shrink-icon" target="_blank" [matTooltip]="tooltip.JetBrains" [matTooltipPosition]="tooltipPosition">
+            <a mat-button [href]="linkJetBrains" class="cory-hover-rotate cory-pages-footer-shrink-icon" target="_blank"
+               [matTooltip]="tooltip.JetBrains" [matTooltipPosition]="tooltipPosition">
                 <img [src]="jetbrainsSvg" style="width: 20px; height: 20px; min-height: 20px; min-width: 20px;"/>
                 <span class="cory-mat-hide-xsmall cory-pages-footer-shrink-text cory-pages-menu-effect">
                 &nbsp;<span [innerHTML]="i18n.pages.title.sponsor.jetbrains"></span>
@@ -37,14 +41,16 @@
             </a>
 
 
-            <a mat-button [href]="linkNoSQLBooster" class="cory-hover-rotate cory-pages-footer-shrink-icon" target="_blank" [matTooltip]="tooltip.NoSQLBooster" [matTooltipPosition]="tooltipPosition">
+            <a mat-button [href]="linkNoSQLBooster" class="cory-hover-rotate cory-pages-footer-shrink-icon"
+               target="_blank" [matTooltip]="tooltip.NoSQLBooster" [matTooltipPosition]="tooltipPosition">
                 <img [src]="nosqlboosterImage" style="width: 20px; height: 20px; min-height: 20px; min-width: 20px;"/>
                 <span class="cory-mat-hide-xsmall cory-pages-footer-shrink-text cory-pages-menu-effect">
                 &nbsp;<span [innerHTML]="i18n.pages.title.sponsor.nosqlbooster"></span>
             </span>
             </a>
 
-            <a mat-button [href]="linkDeveloper" class="cory-pages-footer-shrink-icon cory-pages-menu-effect" target="_blank" [matTooltip]="tooltip.Developer"  [matTooltipPosition]="tooltipPosition">
+            <a mat-button [href]="linkDeveloper" class="cory-pages-footer-shrink-icon cory-pages-menu-effect"
+               target="_blank" [matTooltip]="tooltip.Developer" [matTooltipPosition]="tooltipPosition">
                 <mat-icon>flash_on</mat-icon>
                 <span class="cory-mat-hide-xsmall cory-pages-footer-shrink-text">
                 <span [innerHTML]="decodeEntities(i18n.pages.title.developer)"></span> {{ currentYear }}

@@ -1,29 +1,29 @@
 .cory-layout-header-top {
-  opacity: 0.5;
-  font-size: 12px;
-  position: relative;
-  top: 19px;
-  left: -55px;
-  z-index: 10;
+    opacity: 0.5;
+    font-size: 12px;
+    position: relative;
+    top: 19px;
+    left: -55px;
+    z-index: 10;
 
-  .cory-layout-header-top-p3x {
-    text-transform: uppercase;
-  }
+    .cory-layout-header-top-p3x {
+        text-transform: uppercase;
+    }
 
-  @media screen and (max-width: $cory-mat-size-small) {
-    top: 15px;
-  }
+    @media screen and (max-width: $cory-mat-size-small) {
+        top: 15px;
+    }
 }
 
 .cory-layout-header-title {
-  font-size: 30px !important;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  position: relative;
-  top: -5px;
-  @media screen and (max-width: 800px) {
-    font-size: 16px !important;
-  }
+    font-size: 30px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    top: -5px;
+    @media screen and (max-width: 800px) {
+        font-size: 16px !important;
+    }
 }
 
 /*
@@ -33,14 +33,15 @@
 
  */
 .cory-pages-layout-header-title {
-  margin-left: 5px;
-  display: inline-block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  @media screen and (min-width: 400px) and (max-width: 1000px) {
-    max-width: 500px !important;
-  }
-  @media screen and (max-width: 399px) {
-    max-width: 220px !important;
-  }}
+    margin-left: 5px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    @media screen and (min-width: 400px) and (max-width: 1000px) {
+        max-width: 500px !important;
+    }
+    @media screen and (max-width: 399px) {
+        max-width: 220px !important;
+    }
+}

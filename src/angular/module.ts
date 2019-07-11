@@ -1,20 +1,20 @@
-import { NgModule , Injectable  } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule, Injectable} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
 import {
     MatSidenavModule,
 } from '@angular/material/sidenav';
 
-import { CorifeusMaterialModule, ThemeService } from 'corifeus-web-material';
-import { LocaleService, SettingsService } from 'corifeus-web';
+import {CorifeusMaterialModule, ThemeService} from 'corifeus-web-material';
+import {LocaleService, SettingsService} from 'corifeus-web';
 
-import { Application } from './application';
-import { Layout, Header, Footer } from './layout';
-import { Status} from './component/cory-web-pages-build-status';
-import { Page, OpenCollective } from './modules';
-import { CdnService,  MarkdownService } from './service';
+import {Application} from './application';
+import {Layout, Header, Footer} from './layout';
+import {Status} from './component/cory-web-pages-build-status';
+import {Page, OpenCollective} from './modules';
+import {CdnService, MarkdownService} from './service';
 
-import { routes } from './routes';
+import {routes} from './routes';
 
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!
@@ -26,9 +26,7 @@ import { routes } from './routes';
         CorifeusMaterialModule,
         RouterModule.forRoot(routes),
     ],
-    entryComponents: [
-
-    ],
+    entryComponents: [],
     declarations: [
         Application,
         Layout,
@@ -49,7 +47,7 @@ import { routes } from './routes';
 })
 export class Module {
     constructor(
-        private loc : LocaleService,
+        private loc: LocaleService,
         private settings: SettingsService,
     ) {
         const twemoji = require('twemoji').default;
@@ -60,7 +58,7 @@ export class Module {
             twemoji.base = '/assets/twemoji/';
         }
 
-        let settingsExtendJson= require('../json/settings.core.json');
+        let settingsExtendJson = require('../json/settings.core.json');
         settings.extend('core', settingsExtendJson);
         settings.afterInit();
 

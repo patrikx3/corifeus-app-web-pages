@@ -4,9 +4,9 @@ import {
     AfterContentChecked,
 } from '@angular/core';
 
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
-import { Layout } from '../layout/cory-layout';
+import {Layout} from '../layout/cory-layout';
 
 import {LocaleService, LocaleSubject} from "corifeus-web";
 
@@ -71,7 +71,7 @@ const twemoji = require('twemoji').default;
 </span>        
     `
 })
-export class OpenCollective implements AfterContentChecked{
+export class OpenCollective implements AfterContentChecked {
 
     public pkg: any;
     public twemojiPraise: SafeHtml;
@@ -91,12 +91,12 @@ export class OpenCollective implements AfterContentChecked{
             this.i18n = subject.locale.data.pages
         });
 
-   }
+    }
 
-   ngAfterContentChecked() {
-       this.pkg = this.parent.packageJson;
+    ngAfterContentChecked() {
+        this.pkg = this.parent.packageJson;
 
-   }
+    }
 }
 
 

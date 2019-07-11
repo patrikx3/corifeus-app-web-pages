@@ -1,8 +1,6 @@
-const cache = {
+const cache = {};
 
-};
-
-export function extractTitle(pkg: any) : string {
+export function extractTitle(pkg: any): string {
     if (pkg === undefined) {
         return '';
     }
@@ -13,7 +11,7 @@ export function extractTitle(pkg: any) : string {
         return cache[pkg.name];
     }
 
-    if (pkg.name  === 'corifeus' ) {
+    if (pkg.name === 'corifeus') {
         cache[pkg.name] = 'Corifeus';
         return cache[pkg.name];
     }
@@ -27,7 +25,7 @@ export function extractTitle(pkg: any) : string {
         cache[pkg.name] = result.join(' ');
         return cache[pkg.name];
     } else {
-        let result : string = pkg.name.split('-').map((word: string) => {
+        let result: string = pkg.name.split('-').map((word: string) => {
             return word[0].toUpperCase() + word.substr(1)
         }).slice(1).join(' ');
         if (result !== undefined && result.startsWith('Openwrt')) {
@@ -48,7 +46,7 @@ export function extractTitle(pkg: any) : string {
     }
 }
 
-export function extractTitleWithStars(pkg: any) : string {
+export function extractTitleWithStars(pkg: any): string {
     let title = extractTitle(pkg);
     if (pkg !== undefined && pkg !== null && pkg.corifeus.stargazers_count < 1) {
         return title

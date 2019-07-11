@@ -39,8 +39,7 @@ img.emoji {
     }
 }
 
-img
-{
+img {
     max-width: 100%;
     height: auto;
 }
@@ -65,7 +64,7 @@ a code {
 .cory-mat-footer {
     .mat-button {
         text-overflow: ellipsis;
-//        overflow: hidden;
+        //        overflow: hidden;
     }
 }
 
@@ -83,40 +82,43 @@ a code {
 }
 
 
-
 .cory-mat-theme-light {
     .cory-mat-header {
-        border-bottom: 5px solid rgba(0,0,0,0.1);
+        border-bottom: 5px solid rgba(0, 0, 0, 0.1);
     }
+
     .cory-mat-footer {
-        border-top: 5px solid rgba(0,0,0,0.1);
+        border-top: 5px solid rgba(0, 0, 0, 0.1);
     }
+
     .cory-mat-header,
-    .cory-mat-footer
-    {
-        box-shadow: 0px 0px 100px 10px rgba(0,0,0,0.25);
+    .cory-mat-footer {
+        box-shadow: 0px 0px 100px 10px rgba(0, 0, 0, 0.25);
     }
 }
+
 .cory-mat-theme-dark {
     .cory-mat-header {
-        border-bottom: 5px solid rgba(255,255,255,0.1);
+        border-bottom: 5px solid rgba(255, 255, 255, 0.1);
     }
+
     .cory-mat-footer {
-        border-top: 5px solid rgba(255,255,255,0.1);
+        border-top: 5px solid rgba(255, 255, 255, 0.1);
     }
+
     .cory-mat-header,
-    .cory-mat-footer
-    {
-        box-shadow: 0px 0px 100px 10px rgba(255,255,255,0.15);
+    .cory-mat-footer {
+        box-shadow: 0px 0px 100px 10px rgba(255, 255, 255, 0.15);
     }
 }
 
 .cory-mat-theme-dark-matrix {
     .cory-mat-header {
-        border-bottom: 5px solid rgba(0,0,0,0.4);
+        border-bottom: 5px solid rgba(0, 0, 0, 0.4);
     }
+
     .cory-mat-footer {
-        border-top: 5px solid rgba(0,0,0,0.4);
+        border-top: 5px solid rgba(0, 0, 0, 0.4);
     }
 }
 
@@ -124,6 +126,7 @@ a code {
     .fas, .fab, .far {
         opacity: 0.5;
     }
+
     &:hover {
         .fas, .fab, .far {
             opacity: 1;
@@ -151,7 +154,7 @@ a code {
 */
 
 .cory-layout-markdown-reference {
-///    float: right;
+    ///    float: right;
     display: none;
 }
 
@@ -179,8 +182,8 @@ a code {
     padding-bottom: $cory-mat-fixed-height-collapsed;
 
     @media screen and (min-width: $cory-mat-size-xsmall) {
-//        padding-top: $cory-mat-fixed-height-top;
-//        padding-bottom: $cory-mat-fixed-height-bottom;
+        //        padding-top: $cory-mat-fixed-height-top;
+        //        padding-bottom: $cory-mat-fixed-height-bottom;
     }
 
     @media screen and (min-width: $cory-mat-size-medium) {
@@ -189,8 +192,6 @@ a code {
         padding-left: auto;
         padding-right: auto;
     };
-
-
 
 
 }

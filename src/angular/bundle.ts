@@ -1,6 +1,8 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
-if (process.env.ENV === 'production') {
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {enableProdMode} from '@angular/core';
+
+declare var process: any;
+if (process.env === 'production') {
     enableProdMode();
 }
 import './bundle.common';

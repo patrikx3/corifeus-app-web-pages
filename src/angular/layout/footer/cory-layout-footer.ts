@@ -15,7 +15,7 @@ import {
     MediaQueryService, MediaQuerySettingType, MediaQuerySetting
 } from "corifeus-web";
 
-import { NotifyService, ThemeService } from 'corifeus-web-material';
+import {NotifyService, ThemeService} from 'corifeus-web-material';
 
 import {
     Layout
@@ -39,11 +39,11 @@ class Tooltip {
 @Injectable()
 export class Footer {
 
-    npmSvg: SafeUrl  = require('../../../assets/npm-logo.svg');
+    npmSvg: SafeUrl = require('../../../assets/npm-logo.svg');
     jetbrainsSvg: SafeUrl = require('../../../assets/jetbrains-logo.svg');
     nosqlboosterImage: string = "https://cdn.corifeus.com/assets/png/nosqlbooster-128x128.png";
-    settings : any;
-    i18n : any;
+    settings: any;
+    i18n: any;
 
     linkJetBrains: string = "https://www.jetbrains.com/?from=patrikx3"
     linkNoSQLBooster: string = "https://www.nosqlbooster.com"
@@ -97,7 +97,7 @@ export class Footer {
             },
         ])
 
-        this.mediaQuery.subscribe((settings : MediaQuerySetting[]) => {
+        this.mediaQuery.subscribe((settings: MediaQuerySetting[]) => {
             settings.forEach((setting) => this.setTooltip(setting.name))
         })
 
@@ -105,7 +105,7 @@ export class Footer {
 
     private setTooltip(alias?: string) {
         if (alias !== undefined) {
-            this.currentWidthAlias= alias;
+            this.currentWidthAlias = alias;
         }
         switch (this.currentWidthAlias) {
             case 'pages-small':
@@ -113,7 +113,7 @@ export class Footer {
                 this.tooltip.Npm = 'NPM';
                 this.tooltip.Developer = decodeEntities(this.i18n.pages.title.developer + ' ' + this.currentYear);
                 this.tooltip.NoSQLBooster = decodeEntities(this.i18n.pages.title.sponsor.nosqlbooster);
-                this.tooltip.JetBrains= decodeEntities(this.i18n.pages.title.sponsor.jetbrains);
+                this.tooltip.JetBrains = decodeEntities(this.i18n.pages.title.sponsor.jetbrains);
 
                 break;
 
@@ -122,7 +122,7 @@ export class Footer {
                 this.tooltip.Npm = "";
                 this.tooltip.Developer = decodeEntities(this.i18n.pages.title.developer + ' ' + this.currentYear);
                 this.tooltip.NoSQLBooster = decodeEntities(this.i18n.pages.title.sponsor.nosqlbooster);
-                this.tooltip.JetBrains= decodeEntities(this.i18n.pages.title.sponsor.jetbrains);
+                this.tooltip.JetBrains = decodeEntities(this.i18n.pages.title.sponsor.jetbrains);
                 break;
 
             case 'pages-large':
@@ -136,15 +136,15 @@ export class Footer {
         }
     }
 
-    public  get linkDeveloper() {
+    public get linkDeveloper() {
         return `http://patrikx3.com/${this.locale.current}`;
     }
 
-    public  get linkNpm() {
+    public get linkNpm() {
         return `https://www.npmjs.com/package/${this.parent.packageJson.name}`;
     }
 
-    public  get linkGithub() {
+    public get linkGithub() {
         return `https://github.com/patrikx3/${this.parent.currentRepo}`;
     }
 

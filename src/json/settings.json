@@ -1,16 +1,16 @@
 {
-  "debounce": {
-    "default": 250
-  },
-  "defaultDomain": "pages.corifeus.com",
-  "p3x": {
-    "git": {
-      "url": "https://server.patrikx3.com/api/patrikx3/git/repos",
-      "url-test": "https://localhost:23501/api/patrikx3/git/repos"
+    "debounce": {
+        "default": 250
+    },
+    "defaultDomain": "pages.corifeus.com",
+    "p3x": {
+        "git": {
+            "url": "https://server.patrikx3.com/api/patrikx3/git/repos",
+            "url-test": "https://localhost:23501/api/patrikx3/git/repos"
+        }
+    },
+    "github": {
+        "defaultRepo": "corifeus",
+        "repoNames": "corifeus"
     }
-  },
-  "github": {
-    "defaultRepo": "corifeus",
-    "repoNames": "corifeus"
-  }
 }

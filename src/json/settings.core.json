@@ -1,8 +1,8 @@
 {
-  "integration": {
-    "google": {
-      "analytics": "UA-102164992-1",
-      "tag": "GTM-N4H9QTM"
+    "integration": {
+        "google": {
+            "analytics": "UA-102164992-1",
+            "tag": "GTM-N4H9QTM"
+        }
     }
-  }
 }

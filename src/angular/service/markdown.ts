@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 const hljs = require('highlight.js/lib/highlight.js');
 hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx.js'));
@@ -18,13 +18,13 @@ hljs.registerLanguage('ini', require('highlight.js/lib/languages/ini.js'));
 
 import * as marked from 'marked';
 
-import { kebabCase } from 'lodash';
+import {kebabCase} from 'lodash';
 
-import { Layout } from '../layout/cory-layout';
+import {Layout} from '../layout/cory-layout';
 
-import { htmlStrip} from "../utils/html-strip";
+import {htmlStrip} from "../utils/html-strip";
 
-import { IsBot } from 'corifeus-web';
+import {IsBot} from 'corifeus-web';
 
 const twemoji = require('twemoji').default;
 
@@ -32,11 +32,11 @@ const twemoji = require('twemoji').default;
 export class MarkdownService {
     markdownRenderer: any = new marked.Renderer();
 
-    public context : any;
+    public context: any;
 
     layout: Layout;
 
-    constructor( ) {
+    constructor() {
 
         this.markdownRenderer.heading = (text: string, level: number, raw: string) => {
 //            console.log('text', text,)
@@ -86,7 +86,7 @@ ${text}
         this.markdownRenderer.link = (href: string, title: string, text: string) => {
             let a;
             let tooltip = '';
-            if (title !== null ) {
+            if (title !== null) {
                 tooltip = `tooltip="${title}"`;
             }
             let fixed = false;
@@ -94,7 +94,7 @@ ${text}
 
             const testHref = href.toLowerCase();
 //console.log(testHref)
-            if (testHref.includes(`${this.context.settings.data.pages.defaultDomain}`) || testHref.includes('localhost:8080') ) {
+            if (testHref.includes(`${this.context.settings.data.pages.defaultDomain}`) || testHref.includes('localhost:8080')) {
                 const url = new URL(href);
                 href = url.pathname.substr(1);
                 path = `${href}`;
@@ -139,14 +139,14 @@ ${text}
             return a;
         }
 
-        this.markdownRenderer.code = (code :string, language :string) => {
+        this.markdownRenderer.code = (code: string, language: string) => {
             if (language === undefined) {
                 language = 'text';
             }
 
             language = language.toLowerCase()
 
-            if ((hljs.getLanguage(language) === 'undefined' ||  hljs.getLanguage(language) === undefined) && language !== 'text') {
+            if ((hljs.getLanguage(language) === 'undefined' || hljs.getLanguage(language) === undefined) && language !== 'text') {
                 console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}                
 We are not loading everything, since it is about 500kb`)
             }
@@ -158,12 +158,12 @@ We are not loading everything, since it is about 500kb`)
 
         this.markdownRenderer.codespan = (code: string) => {
             const lang = 'html';
-            const highlighted = hljs.highlight(lang, code).value ;
+            const highlighted = hljs.highlight(lang, code).value;
             return `<code style="display: inline; line-height: 34px;" class="hljs ${lang}">${highlighted}</code>`;
         }
     }
 
-    private extract(template: string, area: string) : string {
+    private extract(template: string, area: string): string {
         //   [//]: #@corifeus-header
         //   [//]: #corifeus-header:end
         //   [//]: #@corifeus-footer
@@ -172,12 +172,12 @@ We are not loading everything, since it is about 500kb`)
         const end = `[//]: #@${area}:end`;
         const startIndex = template.indexOf(start);
         const endIndex = template.indexOf(end);
-        let result : string = template.substring(0, startIndex);
+        let result: string = template.substring(0, startIndex);
         result += template.substring(endIndex);
         return result;
     }
 
-    public render(md: string, layout: Layout ) {
+    public render(md: string, layout: Layout) {
         this.layout = layout;
 
         md = twemoji.parse(md, {

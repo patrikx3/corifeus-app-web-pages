@@ -3,16 +3,18 @@
 
         <button mat-button (click)="parent.navigate()" class="cory-layout-header-title">
             <span [innerHTML]="generateIcon()"></span>
-            <span [matTooltip]="extractTitleWithStars(parent.packageJson)" matTooltipPosition="below" class="cory-pages-layout-header-title">{{ extractTitle(parent.packageJson) }}</span>
+            <span [matTooltip]="extractTitleWithStars(parent.packageJson)" matTooltipPosition="below"
+                  class="cory-pages-layout-header-title">{{ extractTitle(parent.packageJson) }}</span>
         </button>
         <div class="cory-layout-header-top">
             <span *ngIf="parent.packageJson.corifeus.type === undefined && parent.packageJson.name !== 'corifeus'"
                   style="text-transform: capitalize;">
                 {{ this.settings.github.repoNames }}
             </span>
-            <span *ngIf="parent.packageJson.corifeus.type !== undefined && (parent.packageJson.corifeus.type !== 'lede' || parent.packageJson.corifeus.type !== 'build')"
-                  class="cory-layout-header-top-{{ parent.packageJson.corifeus.type }}"
-                  style="text-transform: uppercase;">
+            <span
+                *ngIf="parent.packageJson.corifeus.type !== undefined && (parent.packageJson.corifeus.type !== 'lede' || parent.packageJson.corifeus.type !== 'build')"
+                class="cory-layout-header-top-{{ parent.packageJson.corifeus.type }}"
+                style="text-transform: uppercase;">
                 {{ parent.packageJson.corifeus.type }}
             </span>
             {{ parent.packageJson.corifeus.code }}
@@ -31,7 +33,8 @@
         -->
 
 
-        <button *ngIf="parent.packageJson.name !== 'corifeus'" mat-button class="cory-pages-menu-effect" (click)="parent.navigate('/');">
+        <button *ngIf="parent.packageJson.name !== 'corifeus'" mat-button class="cory-pages-menu-effect"
+                (click)="parent.navigate('/');">
             <mat-icon>home</mat-icon>
             <span class="cory-mat-hide-xsmall">
                 {{ i18n.pages.title.home }}
@@ -46,10 +49,10 @@
                 {{ i18n.material.title.menu }}
             </button>
             <button
-                    mat-menu-item
-                    *ngFor="let menu of parent.packageJson.corifeus.menu"
-                    (click)="navigateMenu(menu.link); parent.menuMenuActive = menu.link"
-                    [class.cory-mat-menu-item-active]="parent.menuMenuActive == menu.link"
+                mat-menu-item
+                *ngFor="let menu of parent.packageJson.corifeus.menu"
+                (click)="navigateMenu(menu.link); parent.menuMenuActive = menu.link"
+                [class.cory-mat-menu-item-active]="parent.menuMenuActive == menu.link"
             >
                  <span style="min-width: 24px !important; display: inline-block; text-align: center;">
                     <i class="{{ linkExternal(menu.link) ? 'fas fa-external-link-alt' : 'fas fa-caret-right' }}"></i>

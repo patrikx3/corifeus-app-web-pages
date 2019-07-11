@@ -1,10 +1,10 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
-import { Layout } from '../layout';
-import { Page } from '../modules/cory-page';
-import { OpenCollective } from '../modules/cory-open-collective';
+import {Layout} from '../layout';
+import {Page} from '../modules/cory-page';
+import {OpenCollective} from '../modules/cory-open-collective';
 
-import { Http404 } from 'corifeus-web-material';
+import {Http404} from 'corifeus-web-material';
 
 
 export const routes: Routes = [

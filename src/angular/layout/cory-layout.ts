@@ -12,7 +12,7 @@ import {
     ActivatedRoute,
 } from '@angular/router';
 
-import { debounce } from 'lodash'
+import {debounce} from 'lodash'
 
 import {
     MatSidenav
@@ -244,8 +244,7 @@ export class Layout implements OnInit {
                 const hash = `#${id.replace(/-parent$/, '')}`;
                 if (history.pushState) {
                     history.pushState(null, null, `${location.pathname}${hash}`);
-                }
-                else {
+                } else {
                     location.hash = hash;
                 }
 

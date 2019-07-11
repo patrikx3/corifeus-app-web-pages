@@ -13,10 +13,10 @@ import {
     Layout
 } from '../cory-layout';
 
-import { LocaleService, SettingsService, LocaleSubject } from "corifeus-web";
+import {LocaleService, SettingsService, LocaleSubject} from "corifeus-web";
 
-import  { extractTitle } from '../../utils/extrac-title';
-import  { extractTitleWithStars } from '../../utils/extrac-title';
+import {extractTitle} from '../../utils/extrac-title';
+import {extractTitleWithStars} from '../../utils/extrac-title';
 
 @Component({
     selector: 'cory-layout-header',
@@ -25,9 +25,9 @@ import  { extractTitleWithStars } from '../../utils/extrac-title';
 })
 export class Header {
 
-    header : string;
+    header: string;
 
-    i18n : any;
+    i18n: any;
     settings: any;
 
     extractTitle = extractTitle;
@@ -40,23 +40,23 @@ export class Header {
     ) {
         this.settings = settingsAll.data.pages;
 
-        this.locale.subscribe((data : LocaleSubject) => {
+        this.locale.subscribe((data: LocaleSubject) => {
             this.i18n = data.locale.data;
         });
 
-        this.header =  capitalize(this.settings.github.repoNames );
+        this.header = capitalize(this.settings.github.repoNames);
     }
 
 
-    linkExternal(link : string) {
+    linkExternal(link: string) {
         return link.startsWith('http');
     }
 
-    navigateMenu(link : string) {
+    navigateMenu(link: string) {
         if (this.linkExternal(link)) {
             return window.open(link);
         }
-        this.parent.navigate('github/' + this.parent.currentRepo + '/' + link );
+        this.parent.navigate('github/' + this.parent.currentRepo + '/' + link);
     }
 
     generateIcon() {
