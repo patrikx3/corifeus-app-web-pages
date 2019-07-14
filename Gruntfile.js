@@ -5,8 +5,55 @@ module.exports = (grunt) => {
     const loader = new builder.loader(grunt);
     loader.angular();
 
+    const folder = require('corifeus-builder').config.folder
+
     grunt.config.merge({
+        clean: {
+            'cory-build': [
+                folder.build.root,
+                './build-modules'
+            ]
+        },
         copy: {
+            'cory-build': {
+                files: [
+                    {
+                        cwd: 'src/public',
+                        expand: true,
+                        src: [
+                            '**',
+                        ],
+                        dest: './build/browser/'
+                    },
+                    {
+                        cwd: 'test/angular-webpack/public',
+                        expand: true,
+                        src: [
+                            '**',
+                        ],
+                        dest: './build/browser/'
+                    },
+                    {
+                        cwd: 'node_modules/corifeus-web',
+                        expand: true,
+                        src: [
+                            '**',
+                            '!**/package.json'
+                        ],
+                        dest: './build-modules/corifeus-web/'
+                    },
+                    {
+                        cwd: 'node_modules/corifeus-web-material',
+                        expand: true,
+                        src: [
+                            '**',
+                            '!**/package.json'
+                        ],
+                        dest: './build-modules/corifeus-web-material/'
+                    },
+
+                ]
+            },
             'cory-twemoji': {
                 files: [
                     {

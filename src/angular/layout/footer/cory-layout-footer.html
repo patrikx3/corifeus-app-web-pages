@@ -3,19 +3,19 @@
     <mat-toolbar class="cory-layout-menus" color="primary">
 
         <span class="cory-layout-footer-container">
-        <a *ngIf="parent.packageJson.corifeus.publish" mat-button [href]="linkNpm" target="_blank"
-           [matTooltip]="tooltip.Npm" [matTooltipPosition]="tooltipPosition" class="cory-hover-scale"
-           style="position: relative; top: 2px">
-            <img [src]="npmSvg" style="width: auto; height: 20px; min-height: 20px; min-width: 51px"/>
-        </a>
+            <a [hidden]="parent.packageJson.corifeus.publish" mat-button [href]="linkNpm" target="_blank"
+               [matTooltip]="tooltip.Npm" [matTooltipPosition]="tooltipPosition" class="cory-hover-scale"
+               style="position: relative; top: 2px">
+                <img [src]="npmSvg" style="width: auto; height: 20px; min-height: 20px; min-width: 51px"/>
+            </a>
 
-        <a mat-button [href]="linkGithub" target="_blank" [matTooltip]="tooltip.GitHub"
-           [matTooltipPosition]="tooltipPosition" class="cory-pages-menu-effect">
-            <i class="fab fa-github cory-layout-fa"></i>
-            <span class="cory-mat-hide-xsmall" style="position: relative; top: 2px">
-            GitHub
-            </span>
-        </a>
+            <a mat-button [href]="linkGithub" target="_blank" [matTooltip]="tooltip.GitHub"
+               [matTooltipPosition]="tooltipPosition" class="cory-pages-menu-effect">
+                <i class="fab fa-github cory-layout-fa"></i>
+                <span class="cory-mat-hide-xsmall" style="position: relative; top: 2px">
+                GitHub
+                </span>
+            </a>
         </span>
 
 

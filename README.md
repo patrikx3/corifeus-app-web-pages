@@ -8,7 +8,7 @@
   
  
 ---
-# 🕸️ Corifeus App Web Pages v2019.10.152  
+# 🕸️ Corifeus App Web Pages v2019.10.209  
 
   
 **Note about versioning:** Versions are cut in Major.Minor.Patch schema. Major is always the current year. Minor is either 4 (January - June) or 10 (July - December). Patch is incremental by every build. If there is a breaking change, it should be noted in the readme.
@@ -45,7 +45,8 @@ https://nodejs.org/en/download/package-manager/
                         
 [//]: #@corifeus-header:end
 
-It is the common GitHub pages for all Corifeus projects.
+It is the common GitHub pages for all Corifeus projects.  
+The Markdown rendering is off-loaded via a web worker. Non-blocking rendering, good for mobile clients.
 
 # Issues
 
@@ -61,19 +62,20 @@ Right now, NPM LINKED modules not working with ```tsconfig.json```.
 
 
 There is an error in TypeScript. The workaround is in ```tsconfig.json```:
-```js
-"skipLibCheck": true,
+```json
+{
+    "compilerOptions": {
+        "skipLibCheck": true    
+    }
+}
 ```
 
 Should remove once it works.
 
-# Node SASS errors
-```bash
-nodejs node_modules/node-sass/scripts/install.js
-npm rebuild node-sass
-```
 
-
+# `@Host()` decorator not working in Ivy
+https://github.com/angular/angular/issues/31539  
+  
 [//]: #@corifeus-footer
 
 ---
@@ -86,7 +88,7 @@ All my domains ([patrikx3.com](https://patrikx3.com) and [corifeus.com](https://
   
 ---
   
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v2019.10.152 
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v2019.10.209 
 
 [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6)  [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) 
 

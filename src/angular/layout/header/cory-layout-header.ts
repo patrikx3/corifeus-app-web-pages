@@ -9,14 +9,12 @@ import {
     Router,
 } from '@angular/router';
 
-import {
-    Layout
-} from '../cory-layout';
-
 import {LocaleService, SettingsService, LocaleSubject} from "corifeus-web";
 
 import {extractTitle} from '../../utils/extrac-title';
 import {extractTitleWithStars} from '../../utils/extrac-title';
+
+import { Globals} from "../../global";
 
 @Component({
     selector: 'cory-layout-header',
@@ -32,14 +30,16 @@ export class Header {
 
     extractTitle = extractTitle;
 
+    parent: any;
+
     constructor(
-        @Host() public parent: Layout,
+
         private router: Router,
         protected locale: LocaleService,
         protected settingsAll: SettingsService
     ) {
         this.settings = settingsAll.data.pages;
-
+        this.parent = Globals.layout
         this.locale.subscribe((data: LocaleSubject) => {
             this.i18n = data.locale.data;
         });

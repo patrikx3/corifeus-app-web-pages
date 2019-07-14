@@ -6,9 +6,9 @@ import {
 
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
-import {Layout} from '../layout/cory-layout';
 
 import {LocaleService, LocaleSubject} from "corifeus-web";
+import {Globals} from "../global";
 
 const twemoji = require('twemoji').default;
 
@@ -76,9 +76,9 @@ export class OpenCollective implements AfterContentChecked {
     public pkg: any;
     public twemojiPraise: SafeHtml;
     i18n: any
-
+    parent: any;
     constructor(
-        @Host() public parent: Layout,
+
         public sanitize: DomSanitizer,
         protected locale: LocaleService,
     ) {
@@ -86,7 +86,7 @@ export class OpenCollective implements AfterContentChecked {
             folder: 'svg',
             ext: '.svg',
         }))
-
+        this.parent = Globals.layout
         this.locale.subscribe((subject: LocaleSubject) => {
             this.i18n = subject.locale.data.pages
         });

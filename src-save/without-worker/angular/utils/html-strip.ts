@@ -3,4 +3,3 @@ export function htmlStrip(html: string): string {
     tmp.innerHTML = html;
     return tmp.textContent || tmp.innerText || "";
 }
-

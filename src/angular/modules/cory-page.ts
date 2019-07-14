@@ -19,7 +19,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {RouterService} from 'corifeus-web';
 
-import {Layout} from '../layout/cory-layout';
+
 
 import {CdnService, MarkdownService} from '../service';
 
@@ -35,6 +35,8 @@ const cache = {}
 
 let testing = false
 
+import { Globals } from "../global";
+
 @Component({
     selector: 'cory-page',
     template: `
@@ -47,8 +49,9 @@ export class Page implements AfterViewChecked {
 
     content: any;
 
+    parent: any;
+
     constructor(
-        @Host() public parent: Layout,
         private markdown: MarkdownService,
         private cdn: CdnService,
         private router: RouterService,
@@ -61,6 +64,8 @@ export class Page implements AfterViewChecked {
         private _sanitizer: DomSanitizer,
     ) {
         this.markdown.context = this;
+
+        this.parent = Globals.layout
 
         let currentUrlPathTimeout: any;
 
@@ -134,7 +139,7 @@ ${text}
 
             }
 
-            const html = this.markdown.render(text, this.parent);
+            const html = await this.markdown.render(text, this.parent);
 
             cache[cacheKey] = html
 

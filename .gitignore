@@ -14,3 +14,4 @@ node_modules/.yarn-integrity
 .npmrc
 yarn.lock
 
+build-modules

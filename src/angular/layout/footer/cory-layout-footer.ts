@@ -17,18 +17,17 @@ import {
 
 import {NotifyService, ThemeService} from 'corifeus-web-material';
 
-import {
-    Layout
-} from '../cory-layout';
+
+import {Globals} from "../../global";
 
 class Tooltip {
-    GitHub: string
-    Npm: string
-    Translation: string
-    Theme: string
-    Developer: string
-    JetBrains: string
-    NoSQLBooster: string
+    GitHub: string = '';
+    Npm: string = '';
+    Translation: string = '';
+    Theme: string = '';
+    Developer: string = '';
+    JetBrains: string = '';
+    NoSQLBooster: string = '';
 }
 
 
@@ -57,17 +56,19 @@ export class Footer {
 
     currentYear = new Date().getFullYear();
 
+    parent: any;
+
     constructor(
         private notify: NotifyService,
         private theme: ThemeService,
-        @Host() public parent: Layout,
+
         protected locale: LocaleService,
         protected settingsAll: SettingsService,
         private mediaQuery: MediaQueryService,
         private domSanitizer: DomSanitizer
     ) {
         this.settings = settingsAll.data.pages;
-
+        this.parent = Globals.layout
         this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../assets/npm-logo.svg'))
         this.jetbrainsSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../assets/jetbrains-logo.svg'))
 
@@ -126,7 +127,7 @@ export class Footer {
                 break;
 
             case 'pages-large':
-                this.tooltip.GitHub = "";
+            default:
                 this.tooltip.GitHub = "";
                 this.tooltip.Npm = "";
                 this.tooltip.Developer = "";

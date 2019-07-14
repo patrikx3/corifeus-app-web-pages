@@ -13,15 +13,17 @@ import {Layout, Header, Footer} from './layout';
 import {Status} from './component/cory-web-pages-build-status';
 import {Page, OpenCollective} from './modules';
 import {CdnService, MarkdownService} from './service';
-
 import {routes} from './routes';
+
+import {MatInputModule,} from '@angular/material/input'
 
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!
  */
-
+declare var process: any;
 @NgModule({
     imports: [
+        MatInputModule,
         MatSidenavModule,
         CorifeusMaterialModule,
         RouterModule.forRoot(routes),
@@ -54,7 +56,7 @@ export class Module {
         twemoji.folder = 'svg';
         twemoji.ext = '.svg';
 
-        if (process.env.ENV === 'production') {
+        if (process.env === 'production') {
             twemoji.base = '/assets/twemoji/';
         }
 

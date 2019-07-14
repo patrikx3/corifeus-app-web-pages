@@ -6,12 +6,12 @@ import {platformBrowser} from '@angular/platform-browser';
 import './bundle.common';
 
 /*
-import {Module} from './module';
-platformBrowser().bootstrapModule(Module)
- */
-
 import {ModuleNgFactory} from './module.ngfactory';
 platformBrowser().bootstrapModuleFactory(ModuleNgFactory);
+ */
+
+import {Module} from './module';
+platformBrowser().bootstrapModule(Module)
 
 
 

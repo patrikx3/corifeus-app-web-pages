@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "rootDir": ".",
+        "baseUrl": ".",
         "skipLibCheck": true,
         "outDir": "build/aot",
         "target": "es2015",
@@ -13,15 +15,30 @@
         "lib": [
             "es2018",
             "dom"
-        ]
+        ],
+        "paths": {
+            "corifeus-web-material": [
+                "build-modules/corifeus-web-material/index.ts"
+            ],
+            "corifeus-web": [
+                "build-modules/corifeus-web/index.ts"
+            ],
+            "corifeus-web-material/*": [
+                "build-modules/corifeus-web-material/*"
+            ],
+            "corifeus-web/*": [
+                "build-modules/corifeus-web/*"
+            ]
+        }
     },
     "include": [
+        "build-modules/**/*",
         "src/angular/**/*",
-        "test/angular-webpack/**/*",
-        "node_modules/corifeus-web",
-        "node_modules/corifeus-web-material"
+        "test/angular-webpack/**/*"
     ],
     "exclude": [
+        "src-save",
+        "*.worker.js",
         "src/angular/bundle.ts",
         "test/angular-webpack/angular/bundle.ts",
         "test/angular-karma",
@@ -34,6 +51,6 @@
         "preserveWhitespaces": false
     },
     "angularCompilerOptions": {
-        "enableIvy": false
+        "enableIvy": true
     }
 }

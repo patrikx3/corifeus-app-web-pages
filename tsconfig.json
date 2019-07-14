@@ -26,7 +26,9 @@
         "test/angular-webpack/**/*"
     ],
     "exclude": [
+        "src-save",
         "node_modules",
+        "*.worker.js",
         "src/angular/bundle.aot.ts",
         "test/angular-karma",
         "test/angular-webpack/angular/bundle.aot.ts"
