@@ -11,6 +11,8 @@ const IsBot = require('corifeus-web/src/util/is-bot.js')
 
 const hljs = require('highlight.js/lib/highlight.js');
 hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx.js'));
+
+// this is for HTML as well
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml.js'));
 hljs.registerLanguage('css', require('highlight.js/lib/languages/css.js'));
 hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss.js'));
@@ -214,6 +216,16 @@ const construct = (data) => {
 }
 
 onmessage = function (e) {
-    const result = construct(e.data);
-    postMessage(result)
+    const data = {
+        requestId: e.data.requestId
+    }
+    try {
+        data.html = construct(e.data);
+        data.success = true
+    } catch (e) {
+        data.success = false
+        data.errorMessage = error.message
+    }
+    postMessage(data)
+
 }

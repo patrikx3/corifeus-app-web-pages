@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Layout} from '../layout/cory-layout';
-const Worker = require(`../../worker/markdown.worker.js`);
+const Worker = require(`../../../../worker/markdown.worker`);
 const worker = new Worker();
+
+const nextId  = require('../utils/next-id.js')
 
 @Injectable()
 export class MarkdownService {
@@ -16,9 +18,16 @@ export class MarkdownService {
         this.layout = layout;
 
         return new Promise((resolve, reject) => {
+            const requestId = nextId()
             const message =  (event: any) => {
-                resolve(event.data)
-                worker.removeEventListener('message', message)
+                if (event.data.requestId === requestId) {
+                    worker.removeEventListener('message', message)
+                    if (event.data.success === true) {
+                        resolve(event.data.html)
+                    } else {
+                        reject(new Error(event.data.errorMessage));
+                    }
+                }
             }
 
             worker.addEventListener('message', message)
@@ -27,6 +36,7 @@ export class MarkdownService {
                 md: md,
                 settings: this.context.settings.data,
                 currentRepo: this.layout.currentRepo,
+                requestId: requestId
             });
         })
     }

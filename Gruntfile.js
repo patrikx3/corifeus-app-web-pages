@@ -87,7 +87,7 @@ module.exports = (grunt) => {
         },
         'cory-json2scss': {
             json2sass: {
-                files: ['src/json/settings.json'],
+                files: ['src/angular/modules/github/json/settings.json'],
                 dest: 'src/assets/_settings.scss',
                 prefix: 'cory-layout-settings'
             },

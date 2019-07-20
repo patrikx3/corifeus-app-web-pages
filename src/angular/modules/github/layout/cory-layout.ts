@@ -38,7 +38,6 @@ import {
     DomSanitizer,
 } from '@angular/platform-browser';
 
-import { Globals} from "../global";
 
 const twemoji = require('twemoji').default;
 
@@ -115,7 +114,7 @@ export class Layout implements OnInit {
         private zone: NgZone,
         private sanitizer: DomSanitizer,
     ) {
-        Globals.layout = this;
+
         this.isMobile = isMobile();
         this.settings = settingsAll.data.pages;
         this.currentRepo = this.settings.github.defaultRepo;

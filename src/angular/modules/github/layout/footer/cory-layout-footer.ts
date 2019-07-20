@@ -18,7 +18,8 @@ import {
 import {NotifyService, ThemeService} from 'corifeus-web-material';
 
 
-import {Globals} from "../../global";
+
+import {Layout} from "../cory-layout";
 
 class Tooltip {
     GitHub: string = '';
@@ -38,8 +39,8 @@ class Tooltip {
 @Injectable()
 export class Footer {
 
-    npmSvg: SafeUrl = require('../../../assets/npm-logo.svg');
-    jetbrainsSvg: SafeUrl = require('../../../assets/jetbrains-logo.svg');
+    npmSvg: SafeUrl = require('../../../../../assets/npm-logo.svg');
+    jetbrainsSvg: SafeUrl = require('../../../../../assets/jetbrains-logo.svg');
     nosqlboosterImage: string = "https://cdn.corifeus.com/assets/png/nosqlbooster-128x128.png";
     settings: any;
     i18n: any;
@@ -56,8 +57,6 @@ export class Footer {
 
     currentYear = new Date().getFullYear();
 
-    parent: any;
-
     constructor(
         private notify: NotifyService,
         private theme: ThemeService,
@@ -65,12 +64,12 @@ export class Footer {
         protected locale: LocaleService,
         protected settingsAll: SettingsService,
         private mediaQuery: MediaQueryService,
-        private domSanitizer: DomSanitizer
+        private domSanitizer: DomSanitizer,
+        public parent: Layout,
     ) {
         this.settings = settingsAll.data.pages;
-        this.parent = Globals.layout
-        this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../assets/npm-logo.svg'))
-        this.jetbrainsSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../assets/jetbrains-logo.svg'))
+        this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../../../assets/npm-logo.svg'))
+        this.jetbrainsSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../../../assets/jetbrains-logo.svg'))
 
         this.locale.subscribe((data: LocaleSubject) => {
             this.i18n = data.locale.data;

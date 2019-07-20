@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Layout } from '../../src/angular/layout/cory-layout';
+import { Layout } from '../../src/angular/modules/github/layout/cory-layout';
 
 describe('Layout', () => {
     beforeEach(() => {

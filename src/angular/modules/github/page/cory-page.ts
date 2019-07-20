@@ -19,7 +19,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {RouterService} from 'corifeus-web';
 
-
+import { Layout} from "../layout";
 
 import {CdnService, MarkdownService} from '../service';
 
@@ -35,7 +35,7 @@ const cache = {}
 
 let testing = false
 
-import { Globals } from "../global";
+
 
 @Component({
     selector: 'cory-page',
@@ -49,7 +49,7 @@ export class Page implements AfterViewChecked {
 
     content: any;
 
-    parent: any;
+    //parent: any;
 
     constructor(
         private markdown: MarkdownService,
@@ -62,10 +62,11 @@ export class Page implements AfterViewChecked {
         protected notify: NotifyService,
         protected locale: LocaleService,
         private _sanitizer: DomSanitizer,
+        private parent: Layout,
     ) {
         this.markdown.context = this;
 
-        this.parent = Globals.layout
+       // this.parent = Globals.layout
 
         let currentUrlPathTimeout: any;
 
@@ -155,9 +156,11 @@ ${text}
                 <div style="font-size: 3em; opacity: 0.75;">
                 <i class="fas fa-thumbs-down"></i> ${this.locale.data.material.http['404']}
                 </div>
-                <div style="text-overflow: ellipsis; overflow: hidden;">
+                <div style="text-overflow: ellipsis; overflow: hidden; opacity: 0.7">
                 ${location.toString()}
                 </div>
+                <br/>
+                <div style="opacity: 0.5">${e.message}</div>
 `
 
             console.error(e);

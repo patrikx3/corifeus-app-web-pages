@@ -8,7 +8,8 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 
 import {LocaleService, LocaleSubject} from "corifeus-web";
-import {Globals} from "../global";
+
+import {Layout} from "../layout";
 
 const twemoji = require('twemoji').default;
 
@@ -76,17 +77,16 @@ export class OpenCollective implements AfterContentChecked {
     public pkg: any;
     public twemojiPraise: SafeHtml;
     i18n: any
-    parent: any;
     constructor(
 
         public sanitize: DomSanitizer,
         protected locale: LocaleService,
+        private parent: Layout,
     ) {
         this.twemojiPraise = sanitize.bypassSecurityTrustHtml(twemoji.parse('🙏', {
             folder: 'svg',
             ext: '.svg',
         }))
-        this.parent = Globals.layout
         this.locale.subscribe((subject: LocaleSubject) => {
             this.i18n = subject.locale.data.pages
         });

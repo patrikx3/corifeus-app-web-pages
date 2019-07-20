@@ -1,78 +1,35 @@
-import {NgModule, Injectable} from '@angular/core';
+import {NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
 
-import {
-    MatSidenavModule,
-} from '@angular/material/sidenav';
-
-import {CorifeusMaterialModule, ThemeService} from 'corifeus-web-material';
-import {LocaleService, SettingsService} from 'corifeus-web';
+import {CorifeusMaterialModule } from 'corifeus-web-material';
 
 import {Application} from './application';
-import {Layout, Header, Footer} from './layout';
-import {Status} from './component/cory-web-pages-build-status';
-import {Page, OpenCollective} from './modules';
-import {CdnService, MarkdownService} from './service';
-import {routes} from './routes';
 
-import {MatInputModule,} from '@angular/material/input'
+import {  moduleRoutes } from './module.routes';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!
  */
-declare var process: any;
+
 @NgModule({
     imports: [
-        MatInputModule,
-        MatSidenavModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(moduleRoutes),
         CorifeusMaterialModule,
-        RouterModule.forRoot(routes),
     ],
     entryComponents: [],
     declarations: [
         Application,
-        Layout,
-        Header,
-        Footer,
-        Page,
-        OpenCollective,
-
-        Status
     ],
     providers: [
-        CdnService,
-        MarkdownService,
+
     ],
     bootstrap: [
         Application
     ]
 })
 export class Module {
-    constructor(
-        private loc: LocaleService,
-        private settings: SettingsService,
-    ) {
-        const twemoji = require('twemoji').default;
-        twemoji.folder = 'svg';
-        twemoji.ext = '.svg';
 
-        if (process.env === 'production') {
-            twemoji.base = '/assets/twemoji/';
-        }
-
-        let settingsExtendJson = require('../json/settings.core.json');
-        settings.extend('core', settingsExtendJson);
-        settings.afterInit();
-
-        const module = 'pages';
-
-        const settingsJson = require('../json/settings.json');
-
-        settings.register(module, settingsJson);
-
-        loc.register(module, {
-            en: require('../json/translation/english.json'),
-            hu: require('../json/translation/hungarian.json'),
-        })
-    }
 }
