@@ -1,5 +1,7 @@
 sudo: required
 dist: trusty
+cache:
+    npm: false
 addons:
   apt:
     sources:
