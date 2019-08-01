@@ -1,6 +1,6 @@
 @import "_variables";
-@import 'corifeus-web-material/src/scss/all';
-@import '@angular/material/theming';
+@import '~corifeus-web-material/src/scss/all';
+@import '~@angular/material/theming';
 
 img.emoji {
     height: 1em;
