@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+
 cache:
     npm: false
 language: node_js
