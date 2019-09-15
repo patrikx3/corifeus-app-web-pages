@@ -8,7 +8,7 @@
   
  
 ---
-# 🕸️ Corifeus App Web Pages v2019.10.282  
+# 🕸️ Corifeus App Web Pages v2019.10.287  
 
   
 
@@ -22,7 +22,7 @@
    
 ### Built on Node 
 ``` 
-v12.9.0
+v12.10.0
 ```   
    
 The ```async``` and ```await``` keywords are required.
@@ -34,7 +34,7 @@ https://nodejs.org/en/download/package-manager/
 # Built on Angular
 
 ```text
-8.2.3
+8.2.6
 ```
             
 
@@ -84,7 +84,7 @@ All my domains ([patrikx3.com](https://patrikx3.com) and [corifeus.com](https://
 
 ---
   
-[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v2019.10.282 
+[**CORIFEUS-APP-WEB-PAGES**](https://pages.corifeus.com/corifeus-app-web-pages) Build v2019.10.287 
 
 [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6)  [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software) 
 
