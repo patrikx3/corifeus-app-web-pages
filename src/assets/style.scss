@@ -204,6 +204,11 @@ a code {
     opacity: 1;
 }
 
+hr {
+    border-style: solid;
+    opacity: 0.2;
+}
+
 //corifeus-inject
 @import '../angular/modules/github/layout/cory-layout.scss';
 @import '../angular/modules/github/layout/footer/cory-layout-footer.scss';

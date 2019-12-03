@@ -1,5 +1,6 @@
 {
     "title": {
+        "searchNotFound": "A lekérdezéshez nincsenek talált csomagok.",
         "ready": "A hibák eredetiek™ - MATRIX",
         "search": "Keresés",
         "developer": "Laszlo Patrik &copy; ",

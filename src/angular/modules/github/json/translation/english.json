@@ -1,5 +1,6 @@
 {
     "title": {
+        "searchNotFound": "No packages found for the query.",
         "ready": "Bugs are evident™ - MATRIX",
         "search": "Search",
         "developer": "Patrik Laszlo &copy; ",

@@ -1,7 +1,7 @@
 <cory-mat-loading></cory-mat-loading>
 
 <mat-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
-    <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav">
+    <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav" style="min-width: 300px; ">
         <button disabled mat-menu-item>
             {{ i18n.title.packages }}
         </button>
@@ -19,6 +19,12 @@
                           (click)="searchText.value = ''; search('')" color="primary">clear
                 </mat-icon>
             </mat-form-field>
+
+
+            <span *ngIf="reposSearch?.length === 0" style="opacity: 0.5;">
+                {{ i18n.title.searchNotFound }}
+            </span>
+
         </form>
 
 
