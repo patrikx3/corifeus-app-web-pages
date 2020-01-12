@@ -6,8 +6,7 @@
         "developer": "Laszlo Patrik &copy; ",
         "packages": "Csomagok",
         "sponsor": {
-            "jetbrains": "JetBrains",
-            "nosqlbooster": "NoSQLBooster"
+            "jetbrains": "JetBrains"
         },
         "opencollective": {
             "label": "\uD83D\uDE4F️ Adományával támogathatja a fejlesztésünket. Legyen támogató vagy szponzor az Open Collective-on ...",

@@ -28,9 +28,7 @@ class Tooltip {
     Theme: string = '';
     Developer: string = '';
     JetBrains: string = '';
-    NoSQLBooster: string = '';
 }
-
 
 @Component({
     selector: 'cory-layout-footer',
@@ -39,14 +37,12 @@ class Tooltip {
 @Injectable()
 export class Footer {
 
-    npmSvg: SafeUrl = require('../../../../../assets/npm-logo.svg');
-    jetbrainsSvg: SafeUrl = require('../../../../../assets/jetbrains-logo.svg');
-    nosqlboosterImage: string = "https://cdn.corifeus.com/assets/png/nosqlbooster-128x128.png";
+    npmSvg: SafeUrl;
+    jetbrainsSvg: SafeUrl;
     settings: any;
     i18n: any;
 
     linkJetBrains: string = "https://www.jetbrains.com/?from=patrikx3"
-    linkNoSQLBooster: string = "https://www.nosqlbooster.com"
 
     decodeEntities: Function = decodeEntities;
 
@@ -68,8 +64,13 @@ export class Footer {
         public parent: Layout,
     ) {
         this.settings = settingsAll.data.pages;
-        this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../../../assets/npm-logo.svg'))
-        this.jetbrainsSvg = this.domSanitizer.bypassSecurityTrustUrl(require('../../../../../assets/jetbrains-logo.svg'))
+
+        const npmSvg = require('../../../../../assets/npm-logo.svg')
+        const jetbrainsSvg  = require('../../../../../assets/jetbrains-logo.svg')
+
+
+        this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(npmSvg.default)
+        this.jetbrainsSvg = this.domSanitizer.bypassSecurityTrustUrl(jetbrainsSvg.default)
 
         this.locale.subscribe((data: LocaleSubject) => {
             this.i18n = data.locale.data;
@@ -112,7 +113,6 @@ export class Footer {
                 this.tooltip.GitHub = 'GitHub';
                 this.tooltip.Npm = 'NPM';
                 this.tooltip.Developer = decodeEntities(this.i18n.pages.title.developer + ' ' + this.currentYear);
-                this.tooltip.NoSQLBooster = decodeEntities(this.i18n.pages.title.sponsor.nosqlbooster);
                 this.tooltip.JetBrains = decodeEntities(this.i18n.pages.title.sponsor.jetbrains);
 
                 break;
@@ -121,7 +121,6 @@ export class Footer {
                 this.tooltip.GitHub = "";
                 this.tooltip.Npm = "";
                 this.tooltip.Developer = decodeEntities(this.i18n.pages.title.developer + ' ' + this.currentYear);
-                this.tooltip.NoSQLBooster = decodeEntities(this.i18n.pages.title.sponsor.nosqlbooster);
                 this.tooltip.JetBrains = decodeEntities(this.i18n.pages.title.sponsor.jetbrains);
                 break;
 
@@ -130,7 +129,6 @@ export class Footer {
                 this.tooltip.GitHub = "";
                 this.tooltip.Npm = "";
                 this.tooltip.Developer = "";
-                this.tooltip.NoSQLBooster = "";
                 this.tooltip.JetBrains = "";
                 break;
         }
