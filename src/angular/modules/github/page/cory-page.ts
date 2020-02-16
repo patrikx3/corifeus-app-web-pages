@@ -122,20 +122,20 @@ export class Page implements AfterViewChecked {
                 text = `
 \`\`\`json
 ${text}
-\`\`\`                    
+\`\`\`
 `
             } else if (pathLower.endsWith('.yml')) {
                 text = `
 \`\`\`yaml
 ${text}
-\`\`\`                    
+\`\`\`
 `
 
             } else if (pathLower.endsWith('.conf')) {
                 text = `
 \`\`\`nginxconf
 ${text}
-\`\`\`                    
+\`\`\`
 `
 
             }
@@ -145,13 +145,15 @@ ${text}
             cache[cacheKey] = html
 
             this.content = html
+
+
         } catch (e) {
             //this.router.navigateTop(['/github/corifeus/404']);
             State.NotFound = true;
             window.corifeus.core.http.status = 404;
             this.content = `
                 <div style="margin-top: 20px; font-size: 6em; opacity: 0.25;">
-                    404                   
+                    404
                 </div>
                 <div style="font-size: 3em; opacity: 0.75;">
                 <i class="fas fa-thumbs-down"></i> ${this.locale.data.material.http['404']}
@@ -162,14 +164,10 @@ ${text}
                 <br/>
                 <div style="opacity: 0.5">${e.message}</div>
 `
-
             console.error(e);
 
         } finally {
-            if (!testing) {
-                testing = true;
-                this.notify.info(this.parent.i18n.title.ready);
-            }
+
 
         }
     }
@@ -184,6 +182,11 @@ ${text}
 
             })
         }
+        if (!testing) {
+            testing = true;
+            this.notify.info(this.parent.i18n.title.ready)
+        }
+
     }
 
     transformHtml(html: string): any {

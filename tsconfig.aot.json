@@ -4,7 +4,7 @@
         "baseUrl": ".",
         "skipLibCheck": true,
         "outDir": "build/aot",
-        "target": "es2015",
+        "target": "es2018",
         "module": "esnext",
         "moduleResolution": "node",
         "sourceMap": true,
@@ -51,6 +51,9 @@
         "preserveWhitespaces": false
     },
     "angularCompilerOptions": {
-        "enableIvy": true
+        "enableIvy": true,
+        "strictMetadataEmit": true,
+        "skipTemplateCodegen": true,
+        "annotateForClosureCompiler": true
     }
 }

@@ -29,7 +29,7 @@ import {HttpClient} from '@angular/common/http';
 import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
 import {NotifyService} from 'corifeus-web-material';
 
-import {extractTitle} from '../utils/extrac-title';
+import {extractStars, extractTitle} from '../utils/extrac-title';
 import {extractTitleWithStars} from '../utils/extrac-title';
 import {isMobile} from '../utils/is-mobile';
 //import {clearTimeout} from "timers";
@@ -349,4 +349,7 @@ export class Layout implements OnInit {
         return title;
     }
 
+    extractStars(stars: number) {
+        return extractStars(stars)
+    }
 }

@@ -1,9 +1,10 @@
+
 <div class="cory-mat-footer" *ngIf="parent.packageJson !== undefined">
 
     <mat-toolbar class="cory-layout-menus" color="primary">
 
         <span class="cory-layout-footer-container">
-            <a [hidden]="parent.packageJson.corifeus.publish" mat-button [href]="linkNpm" target="_blank"
+            <a *ngIf="parent.packageJson.corifeus.publish === true" mat-button [href]="linkNpm" target="_blank"
                [matTooltip]="tooltip.Npm" [matTooltipPosition]="tooltipPosition" class="cory-hover-scale"
                style="position: relative; top: 2px">
                 <img [src]="npmSvg" style="width: auto; height: 20px; min-height: 20px; min-width: 51px"/>
