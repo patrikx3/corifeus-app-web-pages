@@ -140,7 +140,7 @@ ${text}
 
             }
 
-            const html = await this.markdown.render(text, this.parent);
+            const html = await this.markdown.render(text, this.parent, pathLower);
 
             cache[cacheKey] = html
 

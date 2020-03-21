@@ -67,11 +67,11 @@ export class Layout implements OnInit {
 
     extractTitle = extractTitle;
 
-    @ViewChild('menuSidenav', {read: MatSidenav, static: false})
+    @ViewChild('menuSidenav', {read: MatSidenav, static: true})
     public menuSidenav: MatSidenav;
 
-    @ViewChild('searchText', {read: ElementRef, static: false})
-    public searchTextInput: ElementRef;
+    @ViewChild('searchTextInputRef', {read: ElementRef, static: true})
+    public searchTextInputRefRead: ElementRef;
 
     currentRepo: string;
 
@@ -285,7 +285,7 @@ export class Layout implements OnInit {
         this.menuSidenav.open();
         setTimeout(() => {
             if (this.isMobile) {
-                this.searchTextInput.nativeElement.blur()
+                this.searchTextInputRefRead.nativeElement.blur()
             }
 
 //            /**
@@ -327,8 +327,8 @@ export class Layout implements OnInit {
             this.zone.run(() => {
                 const navigate = `github/${repos[0]}/index.html`
                 this.debounceSearchText('');
-                this.searchTextInput.nativeElement.blur()
-                this.searchTextInput.nativeElement.value = '';
+                this.searchTextInputRefRead.nativeElement.blur()
+                this.searchTextInputRefRead.nativeElement.value = '';
                 this.packageMenuClose();
                 this.navigate(navigate);
             });

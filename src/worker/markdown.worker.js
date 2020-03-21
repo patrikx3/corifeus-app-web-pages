@@ -1,5 +1,7 @@
 import {kebabCase} from 'lodash';
 
+const  { extractStars} = require('../helper/extract-stars.function.js');
+
 function htmlStrip(html) {
 //    const tmp = document.createElement("DIV");
 //    tmp.innerHTML = html;
@@ -168,7 +170,7 @@ markdownRenderer.code = (code, language) => {
     language = language.toLowerCase()
 
     if ((hljs.getLanguage(language) === 'undefined' || hljs.getLanguage(language) === undefined) && language !== 'text') {
-        console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}                
+        console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}
 We are not loading everything, since it is about 500kb`)
     }
     language = language === 'text' || language === undefined ? 'html' : language;
@@ -193,7 +195,7 @@ const construct = (data) => {
     locationOrigin = location.origin
     locationPathname = location.pathname
     locationHref = location.href
-    let { md } = data
+    let { md, packages, path } = data
     md = md.trim()
     md = extract(md, 'corifeus-header');
     md = extract(md, 'corifeus-footer');
@@ -211,8 +213,32 @@ const construct = (data) => {
     html = html.replace(/{/g, '&#123;<span style="display: none;"></span>').replace(/}/g, '&#125;');
     html = html.replace(/&amp;/g, '&');
 
+
+    if (currentRepo === 'corifeus' && path === 'index.html') {
+        //console.info('decorated corifeus index.html')
+        for(let pkgName of Object.keys(packages)) {
+            const pkg = packages[pkgName]
+            if (pkg.corifeus.stargazers_count > 0) {
+                const hiddenStars = `<!--@star|${pkg.name}-->`;
+                const stars = `<span style="opacity: 0.5; float: right; font-weight: normal;"> <i class="fas fa-star"></i> ${extractStars(pkg.corifeus.stargazers_count)}</span>`
+                const re = new RegExp(RegExp.escape(hiddenStars));
+                html = html.replace(re, stars)
+            }
+        }
+    } else {
+        //console.info('not decorated', currentRepo, path)
+    }
+
     return html;
 
+}
+
+const escape = function (s) {
+    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
+
+if (!RegExp.escape) {
+    RegExp.escape = escape;
 }
 
 onmessage = function (e) {
@@ -224,7 +250,7 @@ onmessage = function (e) {
         data.success = true
     } catch (e) {
         data.success = false
-        data.errorMessage = error.message
+        data.errorMessage = e.message
     }
     postMessage(data)
 

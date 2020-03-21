@@ -14,7 +14,7 @@ export class MarkdownService {
     constructor() {
     }
 
-    public render(md: string, layout: Layout) {
+    public render(md: string, layout: Layout, path: string) {
         this.layout = layout;
 
         return new Promise((resolve, reject) => {
@@ -36,7 +36,9 @@ export class MarkdownService {
                 md: md,
                 settings: this.context.settings.data,
                 currentRepo: this.layout.currentRepo,
-                requestId: requestId
+                packages: this.layout.packages,
+                requestId: requestId,
+                path: path,
             });
         })
     }

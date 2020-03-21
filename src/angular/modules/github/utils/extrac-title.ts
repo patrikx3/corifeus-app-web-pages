@@ -1,5 +1,7 @@
 const cache = {};
 
+const { extractStars } = require("../../../../helper/extract-stars.function.js");
+
 export function extractTitle(pkg: any): string {
     if (pkg === undefined) {
         return '';
@@ -54,10 +56,4 @@ export function extractTitleWithStars(pkg: any): string {
     return `${title} ⭐${extractStars(pkg.corifeus.stargazers_count)}`;
 }
 
-export function extractStars(stars: number) {
-    if (stars >= 1000) {
-        const starsCount = parseFloat((stars / 1000).toFixed(1))
-        return ( starsCount === Math.ceil(starsCount) ? starsCount.toFixed(0) : starsCount.toFixed(1)) + 'k'
-    }
-    return stars
-}
+export { extractStars }
