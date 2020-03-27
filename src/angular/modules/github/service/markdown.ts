@@ -17,7 +17,7 @@ export class MarkdownService {
     public render(md: string, layout: Layout, path: string) {
         this.layout = layout;
 
-        return new Promise((resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
             const requestId = nextId()
             const message =  (event: any) => {
                 if (event.data.requestId === requestId) {
@@ -31,6 +31,20 @@ export class MarkdownService {
             }
 
             worker.addEventListener('message', message)
+
+            if (this.layout.packages === undefined) {
+                await new Promise(resolve => {
+                    const wait = () => {
+                        console.info('waiting for github repo packages')
+                        if (this.layout.packages === undefined) {
+                            setTimeout(wait, 100)
+                        } else {
+                            resolve()
+                        }
+                    }
+                    wait()
+                })
+            }
 
             worker.postMessage({
                 md: md,

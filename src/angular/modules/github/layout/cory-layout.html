@@ -1,4 +1,4 @@
-<cory-mat-loading></cory-mat-loading>
+<cory-mat-loading [cory-visible]="packages === undefined"></cory-mat-loading>
 
 <mat-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
     <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav" style="min-width: 300px; ">

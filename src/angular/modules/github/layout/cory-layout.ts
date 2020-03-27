@@ -6,6 +6,7 @@ import {
     NgZone,
     OnInit,
     ElementRef,
+    ChangeDetectorRef
 } from '@angular/core';
 
 import {
@@ -113,6 +114,7 @@ export class Layout implements OnInit {
         protected settingsAll: SettingsService,
         private zone: NgZone,
         private sanitizer: DomSanitizer,
+        private ref: ChangeDetectorRef
     ) {
 
         this.isMobile = isMobile();
@@ -193,7 +195,7 @@ export class Layout implements OnInit {
                     this.packages[item.name] = item;
                 }
             })
-
+            this.ref.markForCheck()
             this.repos = Object.keys(this.packages);
         }
         if (!this.packages.hasOwnProperty(this.currentRepo)) {
