@@ -1,6 +1,6 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2020.4.190",
+    "version": "2020.4.197",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
@@ -36,9 +36,9 @@
     "homepage": "https://pages.corifeus.com/corifeus-app-web-pages",
     "dependencies": {
         "@types/marked": "^0.7.3",
-        "corifeus-builder-angular": "^2020.4.192",
-        "corifeus-utils": "^2020.4.148",
-        "corifeus-web-material": "^2020.4.189",
+        "corifeus-builder-angular": "^2020.4.197",
+        "corifeus-utils": "^2020.4.151",
+        "corifeus-web-material": "^2020.4.192",
         "highlight.js": "^9.18.1",
         "marked": "=0.8.2",
         "twemoji": "=12.1.5"

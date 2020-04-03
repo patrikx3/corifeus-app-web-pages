@@ -162,16 +162,16 @@ export class Layout implements OnInit {
                 new RegExp('.*' + search + '.*', 'i')
             )
         })
-        return this.repos.filter(repo => {
+        return Object.values(this.packages).filter( (pkg: any) => {
             let found = false;
             for (let regex of regexes) {
-                if (regex.test(repo)) {
+                if (regex.test(pkg.name) || regex.test(pkg.corifeus.reponame) || regex.test(pkg.corifeus.code)) {
                     found = true;
                     break;
                 }
             }
             return found;
-        })
+        }).map((pkg : any) => pkg.corifeus.reponame)
     }
 
     async load() {
