@@ -11,7 +11,7 @@ function htmlStrip(html) {
 
 const IsBot = require('corifeus-web/src/util/is-bot.js')
 
-const hljs = require('highlight.js/lib/highlight.js');
+const hljs = require('highlight.js');
 hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx.js'));
 
 // this is for HTML as well
@@ -109,20 +109,32 @@ ${text}
 markdownRenderer.link = (href, title, text) => {
     let a;
     let tooltip = '';
-    if (title !== null) {
+    if (title !== null && title !== undefined) {
         tooltip = `tooltip="${title}"`;
     }
     let fixed = false;
     let path;
 
     const testHref = href.toLowerCase();
-//console.log(testHref)
-    if (testHref.includes(`${settings.pages.defaultDomain}`) || testHref.includes('localhost:8080')) {
+
+    const fixedUrl = () => {
         const url = new URL(href);
         href = url.pathname.substr(1);
         path = `${href}`;
         fixed = true;
 //console.log('fixed')
+    }
+
+    if ((typeof testHref === 'string' && (testHref.startsWith('https://') || testHref.startsWith('http://')))  ) {
+        const testUrl = new URL(testHref)
+        for(let defaultDomain of settings.pages.defaultDomain) {
+            if (testUrl.hostname === defaultDomain) {
+                fixedUrl();
+                break;
+            }
+        }
+    } else if (testHref.includes('localhost:8080')) {
+        fixedUrl()
     }
 
 //            console.log('href', href)
@@ -132,6 +144,7 @@ markdownRenderer.link = (href, title, text) => {
         } else {
             a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fas fa-external-link-alt"></i></span>`;
         }
+
     } else {
         if (!fixed) {
             if (href.endsWith('.md')) {
@@ -186,15 +199,17 @@ markdownRenderer.codespan = (code) => {
 }
 
 let currentRepo, settings
-let  locationOrigin, locationPathname, locationHref
+let  locationOrigin, locationPathname, locationHref, locationHostname
 
 
 const construct = (data) => {
     currentRepo = data.currentRepo
     settings  = data.settings
     locationOrigin = location.origin
+
     locationPathname = location.pathname
     locationHref = location.href
+    locationHostname = location.hostname
     let { md, packages, path } = data
     md = md.trim()
     md = extract(md, 'corifeus-header');

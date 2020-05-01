@@ -3,11 +3,14 @@ import {
     Host,
     NgZone,
     AfterViewChecked,
+    OnDestroy,
 } from '@angular/core';
 
 import {
     DomSanitizer
 } from '@angular/platform-browser'
+
+import { Subscription } from 'rxjs'
 
 import {
     ActivatedRoute,
@@ -43,7 +46,9 @@ let testing = false
         <span *ngIf="content" [innerHTML]="transformHtml(content)"></span>
     `
 })
-export class Page implements AfterViewChecked {
+export class Page implements AfterViewChecked, OnDestroy {
+
+    subscriptions$: Array<Subscription> = []
 
     loaded: boolean = false;
 
@@ -72,29 +77,33 @@ export class Page implements AfterViewChecked {
 
         let usingActivatedUrl = true;
 
-        this.router.events.subscribe(event => {
-            if (event instanceof NavigationStart) {
-                usingActivatedUrl = false;
-                const urlPath = event.url.substr(1)
+        this.subscriptions$.push(
+            this.router.events.subscribe(event => {
+                if (event instanceof NavigationStart) {
+                    usingActivatedUrl = false;
+                    const urlPath = event.url.substr(1)
 
-                clearTimeout(currentUrlPathTimeout);
-                currentUrlPathTimeout = setTimeout(() => {
+                    clearTimeout(currentUrlPathTimeout);
+                    currentUrlPathTimeout = setTimeout(() => {
 //                    console.log('router', urlPath, 'usingActivatedUrl', usingActivatedUrl);
-                    if (usingActivatedUrl === false) {
-                        usingActivatedUrl = true;
+                        if (usingActivatedUrl === false) {
+                            usingActivatedUrl = true;
 //                        console.log('have to navigate', urlPath)
-                        this.navigate()
-                    }
-                }, 250)
-            }
-        })
+                            this.navigate()
+                        }
+                    }, 250)
+                }
+            })
+        )
 
-        this.activatedRoute.url.subscribe((segment) => {
-            usingActivatedUrl = true;
-            const path = segment.join('/');
+        this.subscriptions$.push(
+            this.activatedRoute.url.subscribe((segment) => {
+                usingActivatedUrl = true;
+                const path = segment.join('/');
 //            console.log('update activated route', path)
-            this.navigate(path);
-        })
+                this.navigate(path);
+            })
+        )
     }
 
     async navigate(path?: string) {
@@ -191,6 +200,10 @@ ${text}
 
     transformHtml(html: string): any {
         return this._sanitizer.bypassSecurityTrustHtml(html);
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions$.forEach(subs$ => subs$.unsubscribe())
     }
 }
 

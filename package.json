@@ -1,15 +1,15 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2020.4.199",
+    "version": "2020.4.209",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
         "cdn": true,
-        "nodejs": "v12.16.2",
+        "nodejs": "v12.16.3",
         "opencollective": false,
         "reponame": "corifeus-app-web-pages",
         "build": true,
-        "angular": "9.1.2"
+        "angular": "9.1.4"
     },
     "description": "🕸️ Corifeus App Web Pages",
     "main": "src/index.js",
@@ -33,15 +33,15 @@
     "bugs": {
         "url": "https://github.com/patrikx3/corifeus-app-web-pages/issues"
     },
-    "homepage": "https://pages.corifeus.com/corifeus-app-web-pages",
+    "homepage": "https://corifeus.com/corifeus-app-web-pages",
     "dependencies": {
         "@types/marked": "^0.7.4",
-        "corifeus-builder-angular": "^2020.4.201",
-        "corifeus-utils": "^2020.4.156",
-        "corifeus-web-material": "^2020.4.196",
-        "highlight.js": "^9.18.1",
-        "marked": "=0.8.2",
-        "twemoji": "=12.1.5"
+        "corifeus-builder-angular": "^2020.4.205",
+        "corifeus-utils": "^2020.4.161",
+        "corifeus-web-material": "^2020.4.203",
+        "highlight.js": "^10.0.1",
+        "marked": "=1.0.0",
+        "twemoji": "=12.1.6"
     },
     "engines": {
         "node": ">=12.13.0"

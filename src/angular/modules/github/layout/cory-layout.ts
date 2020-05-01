@@ -6,7 +6,8 @@ import {
     NgZone,
     OnInit,
     ElementRef,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    OnDestroy,
 } from '@angular/core';
 
 import {
@@ -14,6 +15,8 @@ import {
 } from '@angular/router';
 
 import {debounce} from 'lodash'
+
+import { Subscription } from 'rxjs'
 
 import {
     MatSidenav
@@ -57,7 +60,9 @@ declare global {
 })
 
 @Injectable()
-export class Layout implements OnInit {
+export class Layout implements OnInit, OnDestroy {
+
+    subscriptions$: Array<Subscription> = []
 
     private debounceSearchText: Function;
 
@@ -121,24 +126,28 @@ export class Layout implements OnInit {
         this.settings = settingsAll.data.pages;
         this.currentRepo = this.settings.github.defaultRepo;
 
-        this.locale.subscribe((data: LocaleSubject) => {
-            this.i18n = data.locale.data.pages;
-        });
+        this.subscriptions$.push(
+            this.locale.subscribe((data: LocaleSubject) => {
+                this.i18n = data.locale.data.pages;
+            })
+        )
 
         this.noScript = document.getElementById('cory-seo');
 
-        this.route.params.subscribe((params) => {
-            this.currentRepo = params.repo
-            if (params.repo === undefined) {
-                this.currentRepo = this.settings.github.defaultRepo;
-            }
-            this.load();
-            /*
-            if (!location.pathname.endsWith('.html')) {
-                this.navigate();
-            }
-            */
-        })
+        this.subscriptions$.push(
+            this.route.params.subscribe((params) => {
+                this.currentRepo = params.repo
+                if (params.repo === undefined) {
+                    this.currentRepo = this.settings.github.defaultRepo;
+                }
+                this.load();
+                /*
+                if (!location.pathname.endsWith('.html')) {
+                    this.navigate();
+                }
+                */
+            })
+        )
     }
 
     ngOnInit() {
@@ -353,5 +362,9 @@ export class Layout implements OnInit {
 
     extractStars(stars: number) {
         return extractStars(stars)
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions$.forEach(subs$ => subs$.unsubscribe())
     }
 }

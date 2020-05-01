@@ -9,7 +9,7 @@ function htmlStrip(html) {
 
 const IsBot = require('corifeus-web/src/util/is-bot.js')
 
-const hljs = require('highlight.js/lib/highlight.js');
+const hljs = require('highlight.js');
 hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx.js'));
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml.js'));
 hljs.registerLanguage('css', require('highlight.js/lib/languages/css.js'));
@@ -166,7 +166,7 @@ markdownRenderer.code = (code, language) => {
     language = language.toLowerCase()
 
     if ((hljs.getLanguage(language) === 'undefined' || hljs.getLanguage(language) === undefined) && language !== 'text') {
-        console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}                
+        console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}
 We are not loading everything, since it is about 500kb`)
     }
     language = language === 'text' || language === undefined ? 'html' : language;

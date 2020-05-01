@@ -2,7 +2,10 @@
     "debounce": {
         "default": 250
     },
-    "defaultDomain": "pages.corifeus.com",
+    "defaultDomain": [
+        "corifeus.com",
+        "www.corifeus.com"
+    ],
     "p3x": {
         "git": {
             "url": "https://server.patrikx3.com/api/patrikx3/git/repos",

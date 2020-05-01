@@ -1,6 +1,7 @@
 import {
     Component,
-    Host
+    Host,
+    OnDestroy,
 } from '@angular/core';
 
 const capitalize = require('lodash/capitalize');
@@ -15,12 +16,16 @@ import {extractTitle} from '../../utils/extrac-title';
 
 import {Layout} from "../cory-layout";
 
+import { Subscription } from 'rxjs'
+
 @Component({
     selector: 'cory-layout-header',
     templateUrl: 'cory-layout-header.html',
 
 })
-export class Header {
+export class Header implements OnDestroy {
+
+    subscriptions$: Array<Subscription> = []
 
     header: string;
 
@@ -37,9 +42,12 @@ export class Header {
         public parent: Layout,
     ) {
         this.settings = settingsAll.data.pages;
-        this.locale.subscribe((data: LocaleSubject) => {
-            this.i18n = data.locale.data;
-        });
+
+        this.subscriptions$.push(
+            this.locale.subscribe((data: LocaleSubject) => {
+                this.i18n = data.locale.data;
+            })
+        )
 
         this.header = capitalize(this.settings.github.repoNames);
     }
@@ -62,5 +70,9 @@ export class Header {
 
     extractTitleWithStars(pkg: any) {
         return this.parent.extractTitleWithStars(pkg);
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions$.forEach(subs$ => subs$.unsubscribe())
     }
 }

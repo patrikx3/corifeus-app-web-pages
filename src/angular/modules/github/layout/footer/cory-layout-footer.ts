@@ -2,6 +2,8 @@ import {
     Component,
     Injectable,
     Host,
+    OnDestroy,
+
 } from '@angular/core';
 
 import {
@@ -9,6 +11,7 @@ import {
     SafeUrl,
 } from '@angular/platform-browser';
 
+import { Subscription } from 'rxjs'
 
 import {
     LocaleService, SettingsService, LocaleSubject, decodeEntities,
@@ -16,8 +19,6 @@ import {
 } from "corifeus-web";
 
 import {NotifyService, ThemeService} from 'corifeus-web-material';
-
-
 
 import {Layout} from "../cory-layout";
 
@@ -35,7 +36,11 @@ class Tooltip {
     templateUrl: 'cory-layout-footer.html',
 })
 @Injectable()
-export class Footer {
+export class Footer implements OnDestroy {
+
+    subscriptions$: Array<Subscription> = []
+
+    unsubscribeMediaQuery : Function
 
     npmSvg: SafeUrl;
     jetbrainsSvg: SafeUrl;
@@ -72,12 +77,14 @@ export class Footer {
         this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(npmSvg.default)
         this.jetbrainsSvg = this.domSanitizer.bypassSecurityTrustUrl(jetbrainsSvg.default)
 
-        this.locale.subscribe((data: LocaleSubject) => {
-            this.i18n = data.locale.data;
-            this.setTooltip();
-        });
+        this.subscriptions$.push(
+            this.locale.subscribe((data: LocaleSubject) => {
+                this.i18n = data.locale.data;
+                this.setTooltip();
+            })
+        )
 
-        this.mediaQuery.register([
+        this.unsubscribeMediaQuery = this.mediaQuery.register([
             <MediaQuerySetting>{
                 name: 'pages-small',
                 min: 0,
@@ -98,9 +105,13 @@ export class Footer {
             },
         ])
 
-        this.mediaQuery.subscribe((settings: MediaQuerySetting[]) => {
-            settings.forEach((setting) => this.setTooltip(setting.name))
-        })
+
+
+        this.subscriptions$.push(
+            this.mediaQuery.subscribe((settings: MediaQuerySetting[]) => {
+                settings.forEach((setting) => this.setTooltip(setting.name))
+            })
+        )
 
     }
 
@@ -146,4 +157,8 @@ export class Footer {
         return `https://github.com/patrikx3/${this.parent.currentRepo}`;
     }
 
+    ngOnDestroy(): void {
+        this.unsubscribeMediaQuery()
+        this.subscriptions$.forEach(subs$ => subs$.unsubscribe())
+    }
 }
