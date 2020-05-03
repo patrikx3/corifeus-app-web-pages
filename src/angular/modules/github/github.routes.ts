@@ -10,7 +10,7 @@ import {Http404} from 'corifeus-web-material';
 export const githubRoutes: Routes = [
 
     {
-        path: ':repo',
+        path: '',
         component: Layout,
         children: [
             {

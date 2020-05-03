@@ -5,8 +5,6 @@ import {
     MatSidenavModule,
 } from '@angular/material/sidenav';
 
-import {CorifeusMaterialModule } from 'corifeus-web-material';
-
 import {Layout, Header, Footer} from './layout';
 import {Status} from './component/cory-web-pages-build-status';
 import {Page, OpenCollective} from './page';
@@ -18,6 +16,7 @@ import {MatInputModule,} from '@angular/material/input'
 import { CommonModule } from '@angular/common'
 
 import {LocaleService, SettingsService} from 'corifeus-web';
+import {CorifeusMaterialModule} from "corifeus-web-material/index";
 
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!

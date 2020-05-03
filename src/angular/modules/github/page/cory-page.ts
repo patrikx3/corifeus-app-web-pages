@@ -81,7 +81,7 @@ export class Page implements AfterViewChecked, OnDestroy {
             this.router.events.subscribe(event => {
                 if (event instanceof NavigationStart) {
                     usingActivatedUrl = false;
-                    const urlPath = event.url.substr(1)
+                    //const urlPath = event.url.substr(1)
 
                     clearTimeout(currentUrlPathTimeout);
                     currentUrlPathTimeout = setTimeout(() => {
@@ -110,7 +110,7 @@ export class Page implements AfterViewChecked, OnDestroy {
         if (path === undefined || path === '') {
             path = `index.html`;
         }
-        ;
+
         try {
             const cacheKey = JSON.stringify({
                 repo: this.parent.currentRepo,

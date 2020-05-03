@@ -30,7 +30,7 @@
 
         <button mat-menu-item
                 *ngFor="let repo of reposSearch"
-                (click)="navigate('github/' + repo + '/index.html' ); menuRepoActive = repo; menuMenuActive = undefined; packageMenuClose()"
+                (click)="navigate('/' + repo + '/index.html' ); menuRepoActive = repo; menuMenuActive = undefined; packageMenuClose()"
                 [class.cory-mat-menu-item-active]="menuRepoActive == repo"
 
         >
@@ -67,8 +67,8 @@
             <mat-card-content style="position: relative;" *ngIf="packageJson !== undefined">
                 <cory-web-pages-build-status style="float: left;" [cory-pkg]="packageJson"
                                              *ngIf="showTitle"></cory-web-pages-build-status>
-                <div style="float: right; font-weight: bold; font-size: 125%;">
-                    <span *ngIf="showTitle">v{{ packageJson.version }}</span>
+                <div style="float: right; font-weight: bold; font-size: 125%;" *ngIf="showTitle">
+                    <span >v{{ packageJson.version }}</span>
                     <div *ngIf="packageJson.corifeus.stargazers_count > 0" style="text-align: right;">
                         <i class="fas fa-star"></i>&nbsp;<span [matTooltip]="i18n.title.githubStars"
                                                                matTooltipPosition="below">{{
@@ -104,7 +104,7 @@
 
                     <div *ngIf="packageJson.collective">
                         <br/>
-                        <a routerLink="/github/{{ packageJson.corifeus.reponame }}/open-collective"
+                        <a routerLink="/{{ packageJson.corifeus.reponame }}/open-collective"
                            style="font-weight: bold; font-size: 125%;"
                            [innerHTML]="renderTwemoji(i18n.title.opencollective.label)">
 

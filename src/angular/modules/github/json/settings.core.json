@@ -1,8 +1,10 @@
 {
+    "server": {
+        "url": "https://server.patrikx3.com"
+    },
     "integration": {
         "google": {
-            "analytics": "UA-102164992-1",
-            "tag": "GTM-N4H9QTM"
+            "analytics": "UA-102164992-1"
         }
     }
 }

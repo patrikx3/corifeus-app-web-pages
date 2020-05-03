@@ -28,7 +28,7 @@ import {
 
 import {HttpClient} from '@angular/common/http';
 
-
+const emojiRegex = require('emoji-regex/es2015/index.js');
 
 import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
 import {NotifyService} from 'corifeus-web-material';
@@ -44,6 +44,9 @@ import {
 
 
 const twemoji = require('twemoji').default;
+
+//FIXME corifeus - matrix
+const regexFixCorifeusMatrix = /^(\/)?(corifeus)([^-])(\/)?(.*)/
 
 declare global {
     interface Window {
@@ -136,7 +139,11 @@ export class Layout implements OnInit, OnDestroy {
 
         this.subscriptions$.push(
             this.route.params.subscribe((params) => {
-                this.currentRepo = params.repo
+                let repo = params.repo
+                if (repo === 'corifeus' && repo === location.pathname.slice(1)) {
+                    return this.navigate('matrix')
+                }
+                this.currentRepo = repo
                 if (params.repo === undefined) {
                     this.currentRepo = this.settings.github.defaultRepo;
                 }
@@ -213,11 +220,12 @@ export class Layout implements OnInit, OnDestroy {
         this.packageJson = this.packages[this.currentRepo];
         this.title = this.packageJson.description;
         this.icon = this.packageJson.corifeus.icon !== undefined ? `${this.packageJson.corifeus.icon}` : 'fas fa-bolt';
-        document.title = this.title;
+        document.title = this.title.replace(emojiRegex(), '');
+
         this.noScript.innerHTML = '';
         this.repos.forEach((repo: any) => {
             const a = document.createElement('a');
-            a.href = `/${repo}`;
+            a.href = `/${repo === 'corifeus' ? 'matrix' : repo}`;
             a.innerText = repo;
             this.noScript.appendChild(a)
             const a2 = document.createElement('a');
@@ -274,7 +282,15 @@ export class Layout implements OnInit, OnDestroy {
 
     async navigate(path?: string) {
         if (path === undefined) {
-            path = `github/${this.currentRepo}/index.html`;
+            path = `${this.currentRepo}/index.html`;
+        }
+        //FIXME corifeus - matrix
+        //console.log(' ')
+        //console.log(path)
+        if (regexFixCorifeusMatrix.test(path)) {
+            path = path.replace(regexFixCorifeusMatrix, 'matrix$3$5')
+            //console.log(1, RegExp.$1, 2, RegExp.$2, 3, RegExp.$3, 4, RegExp.$4, 5, RegExp.$5, 6, RegExp.$6, 7, RegExp.$7)
+            //console.log('match', path)
         }
         this.menuMenuActive = '';
 //console.log('cory-layout', path);
@@ -336,7 +352,7 @@ export class Layout implements OnInit, OnDestroy {
         const repos = this.reposSearch;
         if (event.keyCode == 13 && repos.length === 1) {
             this.zone.run(() => {
-                const navigate = `github/${repos[0]}/index.html`
+                const navigate = `/${repos[0]}/index.html`
                 this.debounceSearchText('');
                 this.searchTextInputRefRead.nativeElement.blur()
                 this.searchTextInputRefRead.nativeElement.value = '';
@@ -347,7 +363,11 @@ export class Layout implements OnInit, OnDestroy {
     }
 
     get showTitle() {
-        const showTitle = location.pathname.endsWith('index.html') || (!location.pathname.includes('.') && !location.pathname.includes('open-collective'));
+        const pathname = location.pathname.toLowerCase()
+        const pieces = pathname.split('/')
+//        console.log(pieces)
+        const showTitle = pieces.length === 2 || (pieces.length === 3 && pieces[2] === 'index.html')
+//        const showTitle = pathname.endsWith('index.html') || (!pathname.includes('.') && !pathname.includes('open-collective'));
         return showTitle;
     }
 

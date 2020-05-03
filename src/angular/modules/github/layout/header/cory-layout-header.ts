@@ -61,7 +61,7 @@ export class Header implements OnDestroy {
         if (this.linkExternal(link)) {
             return window.open(link);
         }
-        this.parent.navigate('github/' + this.parent.currentRepo + '/' + link);
+        this.parent.navigate('/' + this.parent.currentRepo + '/' + link);
     }
 
     generateIcon() {

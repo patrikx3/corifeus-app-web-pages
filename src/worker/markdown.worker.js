@@ -2,11 +2,46 @@ import {kebabCase} from 'lodash';
 
 const  { extractStars} = require('../helper/extract-stars.function.js');
 
+
+let currentRepo, settings, currentRepoPath
+let  locationOrigin, locationPathname, locationHref, locationHostname
+
 function htmlStrip(html) {
 //    const tmp = document.createElement("DIV");
 //    tmp.innerHTML = html;
 //    return tmp.textContent || tmp.innerText || "";
     return html.replace(/<\/?[^>]+(>|$)/g, "");
+}
+
+const notifyMissingMarkdownCode = ({ code, language, currentRepo, currentRepoPath, coreUrl}) => {
+    const url = `${coreUrl}/api/patrikx3/git/notify-markdown-error`
+    fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+//        mode: 'cors', // no-cors, *cors, same-origin
+//        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+//        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+//        redirect: 'follow', // manual, *follow, error
+//        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify({
+            info: `
+Repo: ${currentRepo}<br/>
+Path: ${currentRepoPath}<br/>
+Code: <br/>
+<pre>${code}</pre><br/>
+Language: ${language}<br/>
+`
+        }) // body data type must match "Content-Type" header
+    }).then(response => {
+        if (response.status !== 200) {
+            console.error(response)
+        }
+    }).catch(e => {
+        console.error(e)
+    })
 }
 
 const IsBot = require('corifeus-web/src/util/is-bot.js')
@@ -107,6 +142,7 @@ ${text}
 };
 
 markdownRenderer.link = (href, title, text) => {
+
     let a;
     let tooltip = '';
     if (title !== null && title !== undefined) {
@@ -119,7 +155,7 @@ markdownRenderer.link = (href, title, text) => {
 
     const fixedUrl = () => {
         const url = new URL(href);
-        href = url.pathname.substr(1);
+        href = url.pathname;
         path = `${href}`;
         fixed = true;
 //console.log('fixed')
@@ -160,7 +196,7 @@ markdownRenderer.link = (href, title, text) => {
                 path = `${new URL(href, base).pathname}`;
 //                        console.log(path)
             } else {
-                path = `/github/${currentRepo}/${href}`;
+                path = `/${currentRepo}/${href}`;
             }
         }
 
@@ -182,9 +218,17 @@ markdownRenderer.code = (code, language) => {
 
     language = language.toLowerCase()
 
+//    console.log('TEST', language, currentRepo, currentRepoPath, settings.core.server)
+
     if ((hljs.getLanguage(language) === 'undefined' || hljs.getLanguage(language) === undefined) && language !== 'text') {
         console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}
 We are not loading everything, since it is about 500kb`)
+        notifyMissingMarkdownCode({
+            code,
+            language,
+            currentRepo, currentRepoPath,
+            coreUrl: settings.core.server.url
+        })
     }
     language = language === 'text' || language === undefined ? 'html' : language;
     const validLang = !!(language && hljs.getLanguage(language));
@@ -198,15 +242,12 @@ markdownRenderer.codespan = (code) => {
     return `<code style="display: inline; line-height: 34px;" class="hljs ${lang}">${highlighted}</code>`;
 }
 
-let currentRepo, settings
-let  locationOrigin, locationPathname, locationHref, locationHostname
-
-
 const construct = (data) => {
     currentRepo = data.currentRepo
     settings  = data.settings
     locationOrigin = location.origin
 
+    currentRepoPath = data.path
     locationPathname = location.pathname
     locationHref = location.href
     locationHostname = location.hostname
@@ -264,9 +305,11 @@ onmessage = function (e) {
         data.html = construct(e.data);
         data.success = true
     } catch (e) {
+        console.error(e)
         data.success = false
         data.errorMessage = e.message
     }
     postMessage(data)
 
 }
+

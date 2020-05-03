@@ -17,6 +17,11 @@ export class CdnService {
     async file(repo: string, path: string) {
         const postfix = '.html';
 
+        //FIXME corifeus - matrix
+        if (repo === 'matrix') {
+            repo = 'corifeus'
+        }
+
         const index = `index${postfix}`;
         if (path.endsWith(index)) {
             path = path.substr(0, path.length - index.length) + 'README.md';

@@ -79,7 +79,7 @@
             </button>
             <button mat-menu-item
                     *ngFor="let repo of parent.repos"
-                    (click)="parent.navigate('github/' + repo + '/index.html' ); parent.menuRepoActive = repo; parent.menuMenuActive = undefined; "
+                    (click)="parent.navigate('/' + repo + '/index.html' ); parent.menuRepoActive = repo; parent.menuMenuActive = undefined; "
                     [class.cory-mat-menu-item-active]="parent.menuRepoActive == repo"
             >
                 <span *ngIf="parent.packages[repo]">
