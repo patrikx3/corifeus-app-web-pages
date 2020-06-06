@@ -48,6 +48,7 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
         <a target="_blank" href="https://paypal.me/patrikx3"><img [src]="i18n.pages.badge.donate" [matTooltip]="i18n.pages.title.donate" [matTooltipPosition]="tooltipPosition"></a>
         &nbsp;
         <a target="_blank" [href]="i18n.pages.url.contact"><img [src]="i18n.pages.badge.contact" [matTooltip]="i18n.pages.title.contact" [matTooltipPosition]="tooltipPosition"></a>
+        <!--
         <span *ngIf="pkg.collective !== undefined" >
             &nbsp;
             <a fragment="backers" routerLink="/{{ pkg.corifeus.reponame }}/open-collective"><img src="https://opencollective.com/{{pkg.name}}/backers/badge.svg" [matTooltip]="i18n.pages.title.opencollective.backers" [matTooltipPosition]="tooltipPosition"></a>
@@ -56,6 +57,7 @@ import {LocaleService, LocaleSubject} from "corifeus-web";
             &nbsp;
             <a fragment="sponsors" routerLink="/{{ pkg.corifeus.reponame }}/open-collective"><img src="https://opencollective.com/{{pkg.name}}/sponsors/badge.svg" [matTooltip]="i18n.pages.title.opencollective.sponsors" [matTooltipPosition]="tooltipPosition"></a>
         </span>
+        -->
         &nbsp;
          <a target="_blank" href="https://www.facebook.com/corifeus.software"><img [src]="i18n.pages.badge.facebook"  matTooltip="Corifeus Software Engineering" [matTooltipPosition]="tooltipPosition"></a>
     </span>

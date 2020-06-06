@@ -7,7 +7,7 @@ import {
 
 import {Layout, Header, Footer} from './layout';
 import {Status} from './component/cory-web-pages-build-status';
-import {Page, OpenCollective} from './page';
+import {Page } from './page';
 import {CdnService, MarkdownService} from './service';
 import {  githubRoutes } from './github.routes';
 
@@ -36,7 +36,7 @@ declare var process: any;
         Header,
         Footer,
         Page,
-        OpenCollective,
+//        OpenCollective,
         Status
     ],
     providers: [
