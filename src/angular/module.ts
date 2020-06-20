@@ -6,7 +6,7 @@ import {CorifeusMaterialModule } from 'corifeus-web-material';
 import {Application} from './application';
 
 import {  moduleRoutes } from './module.routes';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 /***
@@ -15,7 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         RouterModule.forRoot(moduleRoutes),
         CorifeusMaterialModule,
     ],
