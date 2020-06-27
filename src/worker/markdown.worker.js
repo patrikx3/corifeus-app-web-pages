@@ -161,7 +161,7 @@ markdownRenderer.link = (href, title, text) => {
 //console.log('fixed')
     }
 
-    if ((typeof testHref === 'string' && (testHref.startsWith('https://') || testHref.startsWith('http://')))  ) {
+    if ((typeof testHref === 'string' && (testHref.startsWith('https://') || testHref.startsWith('http://'))) ) {
         const testUrl = new URL(testHref)
         for(let defaultDomain of settings.pages.defaultDomain) {
             if (testUrl.hostname === defaultDomain) {
@@ -174,7 +174,14 @@ markdownRenderer.link = (href, title, text) => {
     }
 
 //            console.log('href', href)
-    if (!href.startsWith(locationOrigin) && (href.startsWith('https:/') || href.startsWith('http:/'))) {
+    if (!href.startsWith(locationOrigin) && (href.startsWith('https:/') || href.startsWith('http:/') || href.startsWith('mailto:'))) {
+
+        /*
+        if (href.startsWith('mailto:')) {
+            console.log(href)
+        }
+         */
+
         if (href.endsWith('#cory-non-external')) {
             a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a>`;
         } else {

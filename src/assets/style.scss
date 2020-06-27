@@ -209,6 +209,12 @@ hr {
     opacity: 0.2;
 }
 
+.cory-layout-markdown-header:hover .emoji
+{
+    transition: all 500ms !important;
+    transform: scale(1.2) rotate(360deg) !important;;
+}
+
 //corifeus-inject
 @import '../angular/modules/github/layout/cory-layout.scss';
 @import '../angular/modules/github/layout/footer/cory-layout-footer.scss';
