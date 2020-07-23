@@ -15,8 +15,8 @@ import {MatInputModule,} from '@angular/material/input'
 
 import { CommonModule } from '@angular/common'
 
-import {LocaleService, SettingsService} from 'corifeus-web';
-import {CorifeusMaterialModule} from "corifeus-web-material/index";
+import {LocaleService, SettingsService} from '../web';
+import {CorifeusMaterialModule} from "../material/index";
 
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!

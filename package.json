@@ -1,11 +1,11 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2020.4.242",
+    "version": "2020.10.104",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
         "cdn": true,
-        "nodejs": "v12.18.1",
+        "nodejs": "v12.18.3",
         "opencollective": false,
         "reponame": "corifeus-app-web-pages",
         "build": true,
@@ -38,11 +38,26 @@
         "@types/marked": "^1.1.0",
         "corifeus-builder-angular": "^2020.4.253",
         "corifeus-utils": "^2020.4.206",
-        "corifeus-web-material": "^2020.4.251",
         "emoji-regex": "^9.0.0",
         "highlight.js": "^10.1.1",
         "marked": "=1.1.0",
-        "twemoji": "=13.0.0"
+        "twemoji": "=13.0.0",
+        "@angular/router": "=10.0.1",
+        "@types/node": "^14.0.14",
+        "@types/js-cookie": "^2.2.6",
+        "@types/tinycolor2": "^1.4.2",
+        "js-cookie": "^2.2.1",
+        "tinycolor2": "^1.4.1",
+        "@angular/animations": "=10.0.1",
+        "@angular/cdk": "^10.0.0",
+        "@angular/material": "^10.0.0",
+        "@fortawesome/fontawesome-free": "^5.13.1",
+        "@types/lodash": "^4.14.157",
+        "corifeus-web": "^2020.4.253",
+        "hammerjs": "^2.0.8",
+        "lodash": "^4.17.15",
+        "material-design-icons": "^3.0.1",
+        "roboto-fontface": "^0.10.0"
     },
     "engines": {
         "node": ">=12.13.0"

@@ -10,7 +10,7 @@ import {
     Router,
 } from '@angular/router';
 
-import {LocaleService, SettingsService, LocaleSubject} from "corifeus-web";
+import {LocaleService, SettingsService, LocaleSubject} from "../../../web";
 
 import {extractTitle} from '../../utils/extrac-title';
 

@@ -44,7 +44,7 @@ Language: ${language}<br/>
     })
 }
 
-const IsBot = require('corifeus-web/src/util/is-bot.js')
+const IsBot = require('../angular/modules/web/util/is-bot.js')
 
 const hljs = require('highlight.js');
 hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx.js'));

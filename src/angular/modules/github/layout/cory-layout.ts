@@ -24,14 +24,14 @@ import {
 
 import {
     RouterService,
-} from 'corifeus-web';
+} from '../../web';
 
 import {HttpClient} from '@angular/common/http';
 
 const emojiRegex = require('emoji-regex/es2015/index.js');
 
-import {LocaleService, LocaleSubject, SettingsService} from 'corifeus-web';
-import {NotifyService} from 'corifeus-web-material';
+import {LocaleService, LocaleSubject, SettingsService} from '../../web';
+import {NotifyService} from '../../material';
 
 import {extractStars, extractTitle} from '../utils/extrac-title';
 import {extractTitleWithStars} from '../utils/extrac-title';

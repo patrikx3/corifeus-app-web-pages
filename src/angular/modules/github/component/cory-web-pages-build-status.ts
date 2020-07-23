@@ -6,7 +6,7 @@ import {
 
 import { Subscription } from 'rxjs'
 
-import {LocaleService, LocaleSubject} from "corifeus-web";
+import {LocaleService, LocaleSubject} from "../../web";
 
 @Component({
     selector: 'cory-web-pages-build-status',

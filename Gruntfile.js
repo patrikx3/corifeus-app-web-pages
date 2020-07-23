@@ -33,25 +33,6 @@ module.exports = (grunt) => {
                         ],
                         dest: './build/browser/'
                     },
-                    {
-                        cwd: 'node_modules/corifeus-web',
-                        expand: true,
-                        src: [
-                            '**',
-                            '!**/package.json'
-                        ],
-                        dest: './build-modules/corifeus-web/'
-                    },
-                    {
-                        cwd: 'node_modules/corifeus-web-material',
-                        expand: true,
-                        src: [
-                            '**',
-                            '!**/package.json'
-                        ],
-                        dest: './build-modules/corifeus-web-material/'
-                    },
-
                 ]
             },
             'cory-twemoji': {

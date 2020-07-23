@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {SettingsService} from 'corifeus-web';
+import {SettingsService} from '../../web';
 
 @Injectable()
 export class CdnService {

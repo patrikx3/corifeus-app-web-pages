@@ -4,7 +4,7 @@ import {Layout} from './layout';
 import {Page} from './page/cory-page';
 //import {OpenCollective} from './page/cory-open-collective';
 
-import {Http404} from 'corifeus-web-material';
+import {Http404} from '../material';
 
 
 export const githubRoutes: Routes = [

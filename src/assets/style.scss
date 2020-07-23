@@ -1,5 +1,5 @@
 @import "_variables";
-@import '~corifeus-web-material/src/scss/all';
+@import '../angular/modules/material/scss/all';
 @import '~@angular/material/theming';
 
 img.emoji {
@@ -219,5 +219,21 @@ hr {
 @import '../angular/modules/github/layout/cory-layout.scss';
 @import '../angular/modules/github/layout/footer/cory-layout-footer.scss';
 @import '../angular/modules/github/layout/header/cory-layout-header.scss';
+@import '../angular/modules/material/scss/_all.scss';
+@import '../angular/modules/material/scss/material/_all.scss';
+@import '../angular/modules/material/scss/material/_hover.scss';
+@import '../angular/modules/material/scss/material/_material-customization.scss';
+@import '../angular/modules/material/scss/material/_mixins.scss';
+@import '../angular/modules/material/scss/material/_toolbar.scss';
+@import '../angular/modules/material/scss/material/_variables.scss';
+@import '../angular/modules/material/scss/material/theme/_cory-mat-theme-dark-matrix.scss';
+@import '../angular/modules/material/scss/material/theme/_cory-mat-theme-dark-pink-bluegray.scss';
+@import '../angular/modules/material/scss/material/theme/_cory-mat-theme-dark-purple-green.scss';
+@import '../angular/modules/material/scss/material/theme/_cory-mat-theme-dark-wood.scss';
+@import '../angular/modules/material/scss/material/theme/_cory-mat-theme-light-beach.scss';
+@import '../angular/modules/material/scss/material/theme/_cory-mat-theme-light-deeppurple-amber.scss';
+@import '../angular/modules/material/scss/material/theme/_cory-mat-theme-light-facebook.scss';
+@import '../angular/modules/material/scss/material/theme/_cory-mat-theme-light-forest.scss';
+@import '../angular/modules/material/scss/material/theme/_cory-mat-theme-light-indigo-pink.scss';
 //corifeus-inject:end
 

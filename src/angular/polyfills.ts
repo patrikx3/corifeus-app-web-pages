@@ -1,1 +1,1 @@
-import 'corifeus-web/src/polyfills';
+import './modules/web/polyfills';

@@ -5,7 +5,7 @@ if (process.env.ENV === 'production') {
     // Development
 }
  */
-require('corifeus-web-material/src/bundle');
+require('./modules/material/bundle')
 require('../assets/style.scss')
 
 

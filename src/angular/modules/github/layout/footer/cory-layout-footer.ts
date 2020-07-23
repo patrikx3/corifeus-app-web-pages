@@ -16,9 +16,9 @@ import { Subscription } from 'rxjs'
 import {
     LocaleService, SettingsService, LocaleSubject, decodeEntities,
     MediaQueryService, MediaQuerySettingType, MediaQuerySetting
-} from "corifeus-web";
+} from "../../../web";
 
-import {NotifyService, ThemeService} from 'corifeus-web-material';
+import {NotifyService, ThemeService} from '../../../material';
 
 import {Layout} from "../cory-layout";
 

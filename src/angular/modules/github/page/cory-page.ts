@@ -20,19 +20,19 @@ import {
 
 import {HttpClient} from '@angular/common/http';
 
-import {RouterService} from 'corifeus-web';
+import {RouterService} from '../../web';
 
 import { Layout} from "../layout";
 
 import {CdnService, MarkdownService} from '../service';
 
-import {SettingsService, LocaleService} from 'corifeus-web';
+import {SettingsService, LocaleService} from '../../web';
 
 
-import {State} from 'corifeus-web';
+import {State} from '../../web';
 import {
     NotifyService
-} from 'corifeus-web-material';
+} from '../../material';
 
 const cache = {}
 
