@@ -1,6 +1,6 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2020.10.105",
+    "version": "2020.10.118",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
@@ -9,7 +9,7 @@
         "opencollective": false,
         "reponame": "corifeus-app-web-pages",
         "build": true,
-        "angular": "10.0.5"
+        "angular": "10.0.9"
     },
     "description": "🕸️ Corifeus App Web Pages",
     "main": "src/index.js",
@@ -18,7 +18,7 @@
     },
     "scripts": {
         "test": "grunt",
-        "postinstall": "node node_modules/corifeus-builder/src/utils/twemoji-install.js"
+        "postinstall": "node node_modules/corifeus-builder/src/utils/twemoji-install.js && ngcc --async false"
     },
     "license": "MIT",
     "repository": {
@@ -36,26 +36,26 @@
     "homepage": "https://corifeus.com/corifeus-app-web-pages",
     "dependencies": {
         "@types/marked": "^1.1.0",
-        "corifeus-builder-angular": "^2020.10.102",
-        "corifeus-utils": "^2020.4.206",
+        "corifeus-builder-angular": "^2020.10.109",
+        "corifeus-utils": "^2020.10.104",
         "emoji-regex": "^9.0.0",
-        "highlight.js": "^10.1.1",
-        "marked": "=1.1.0",
-        "twemoji": "=13.0.0",
-        "@angular/router": "=10.0.1",
-        "@types/node": "^14.0.14",
+        "highlight.js": "^10.1.2",
+        "marked": "=1.1.1",
+        "twemoji": "=13.0.1",
+        "@angular/router": "=10.0.9",
+        "@types/node": "^14.0.27",
         "@types/js-cookie": "^2.2.6",
         "@types/tinycolor2": "^1.4.2",
         "js-cookie": "^2.2.1",
         "tinycolor2": "^1.4.1",
-        "@angular/animations": "=10.0.1",
-        "@angular/cdk": "^10.0.0",
-        "@angular/material": "^10.0.0",
-        "@fortawesome/fontawesome-free": "^5.13.1",
-        "@types/lodash": "^4.14.157",
+        "@angular/animations": "=10.0.9",
+        "@angular/cdk": "^10.1.3",
+        "@angular/material": "^10.1.3",
+        "@fortawesome/fontawesome-free": "^5.14.0",
+        "@types/lodash": "^4.14.159",
         "corifeus-web": "^2020.4.253",
         "hammerjs": "^2.0.8",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.20",
         "material-design-icons": "^3.0.1",
         "roboto-fontface": "^0.10.0"
     },
