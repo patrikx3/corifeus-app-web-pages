@@ -1,6 +1,6 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2020.10.127",
+    "version": "2020.10.205",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
@@ -9,16 +9,17 @@
         "opencollective": false,
         "reponame": "corifeus-app-web-pages",
         "build": true,
-        "angular": "10.1.5"
+        "angular": "10.1.6"
     },
     "description": "🕸️ Corifeus App Web Pages",
-    "main": "src/index.js",
-    "directories": {
-        "test": "test"
-    },
     "scripts": {
-        "test": "grunt",
-        "postinstall": "node node_modules/corifeus-builder/src/utils/twemoji-install.js && ngcc --async false"
+        "ng": "ng",
+        "start": "ng serve",
+        "build": "grunt && ng build  --source-map=true --extract-css=true --output-hashing=all --configuration=production --deploy-url=/ --base-href=/ --aot=true --build-optimizer=true --optimization=true && grunt copy:",
+        "test": "npm run build",
+        "lint": "ng lint",
+        "e2e": "ng e2e",
+        "postinstall": "node node_modules/corifeus-builder/src/utils/twemoji-install.js"
     },
     "license": "MIT",
     "repository": {
@@ -35,29 +36,57 @@
     },
     "homepage": "https://corifeus.com/corifeus-app-web-pages",
     "dependencies": {
+        "@angular/animations": "~10.1.6",
+        "@angular/common": "~10.1.6",
+        "@angular/compiler": "~10.1.6",
+        "@angular/core": "~10.1.6",
+        "@angular/forms": "~10.1.6",
+        "@angular/platform-browser": "~10.1.6",
+        "@angular/platform-browser-dynamic": "~10.1.6",
+        "@angular/router": "~10.1.6",
+        "rxjs": "~6.6.3",
+        "tslib": "^2.0.3",
+        "zone.js": "~0.10.3",
         "@types/marked": "^1.1.0",
-        "corifeus-builder-angular": "^2020.10.132",
-        "corifeus-utils": "^2020.10.115",
-        "emoji-regex": "^9.0.0",
+        "emoji-regex": "^9.1.1",
         "highlight.js": "^10.2.1",
         "marked": "=1.2.0",
         "twemoji": "=13.0.1",
-        "@angular/router": "=10.1.5",
         "@types/node": "^14.11.8",
         "@types/js-cookie": "^2.2.6",
         "@types/tinycolor2": "^1.4.2",
         "js-cookie": "^2.2.1",
         "tinycolor2": "^1.4.2",
-        "@angular/animations": "=10.1.5",
-        "@angular/cdk": "^10.2.4",
-        "@angular/material": "^10.2.4",
+        "@angular/cdk": "^10.2.5",
+        "@angular/material": "^10.2.5",
         "@fortawesome/fontawesome-free": "^5.15.1",
         "@types/lodash": "^4.14.162",
-        "corifeus-web": "^2020.4.253",
         "hammerjs": "^2.0.8",
         "lodash": "^4.17.20",
         "material-design-icons": "^3.0.1",
         "roboto-fontface": "^0.10.0"
+    },
+    "devDependencies": {
+        "@angular-builders/custom-webpack": "^10.0.1",
+        "@angular-devkit/build-angular": "~0.1001.7",
+        "@angular/cli": "~10.1.7",
+        "@angular/compiler-cli": "~10.1.6",
+        "@types/jasmine": "~3.5.14",
+        "@types/jasminewd2": "~2.0.8",
+        "@types/node": "^14.11.8",
+        "codelyzer": "^6.0.1",
+        "corifeus-builder": "^2020.10.129",
+        "jasmine-core": "~3.6.0",
+        "jasmine-spec-reporter": "~6.0.0",
+        "karma": "~5.2.3",
+        "karma-chrome-launcher": "~3.1.0",
+        "karma-coverage-istanbul-reporter": "~3.0.3",
+        "karma-jasmine": "~4.0.1",
+        "karma-jasmine-html-reporter": "^1.5.4",
+        "protractor": "~7.0.0",
+        "ts-node": "~9.0.0",
+        "tslint": "~6.1.3",
+        "typescript": "~4.0.3"
     },
     "engines": {
         "node": ">=12.13.0"

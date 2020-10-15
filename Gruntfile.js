@@ -1,114 +1,50 @@
 module.exports = (grunt) => {
 
-    const builder = require(`corifeus-builder-angular`);
-
+    const builder = require(`corifeus-builder`);
     const loader = new builder.loader(grunt);
-    loader.angular();
-
-    const folder = require('corifeus-builder').config.folder
-
-    grunt.config.merge({
-        clean: {
-            'cory-build': [
-                folder.build.root,
-                './build-modules'
-            ]
+    loader.js({
+        replacer: {
+            type: 'p3x',
+            npmio: true,
         },
-        copy: {
-            'cory-build': {
-                files: [
-                    {
-                        cwd: 'src/public',
-                        expand: true,
-                        src: [
-                            '**',
-                        ],
-                        dest: './build/browser/'
-                    },
-                    {
-                        cwd: 'test/angular-webpack/public',
-                        expand: true,
-                        src: [
-                            '**',
-                        ],
-                        dest: './build/browser/'
-                    },
-                ]
+        config: {
+            copy: {
+                tweomji: {
+                    files: [
+                        {
+                            cwd: 'node_modules/twemoji/2/svg',
+                            expand: true,
+                            src: [
+                                '**',
+                            ],
+                            dest: `./dist/corifeus-app-web-pages/assets/twemoji/svg`
+                        },
+
+                    ]
+                },
+
             },
-            'cory-twemoji': {
-                files: [
-                    {
-                        cwd: 'node_modules/twemoji/2/svg',
-                        expand: true,
-                        src: [
-                            '**',
-                        ],
-                        dest: './build/browser/assets/twemoji/svg'
-                    },
-                    {
-                        cwd: 'test/angular-webpack/public',
-                        expand: true,
-                        src: [
-                            '**',
-                        ],
-                        dest: './build/browser/'
-                    },
-
-                ]
-            }
-        },
-        watch: {
-            wait: {
-                files: ['**/*.js'],
-                tasks: ['copy:cory-build'],
+            'cory-inject': {
+                sass: {
+                    files: [
+                        'src/app/**/*.scss',
+                        '!src/app/modules/material/scss/**/*.**'
+                    ],
+                    dest: 'src/artifacts/style.scss',
+                    template: '@import \'${file}\';'
+                }
             },
-            json2sass: {
 
-            }
-        },
-        'cory-json2scss': {
-            json2sass: {
-                files: ['src/angular/modules/github/json/settings.json'],
-                dest: 'src/assets/_settings.scss',
-                prefix: 'cory-layout-settings'
-            },
-        },
-        'cory-inject': {
-          sass: {
-              files: [
-                  'src/angular/**/*.scss'
-              ],
-              dest: 'src/assets/style.scss',
-              template: '@import \'${file}\';'
-          }
-        },
-
-
+        }
     });
 
 
-
     const defaults = [
-        'cory-json2scss',
-        'cory-inject'
+        'cory-inject',
+        'cory-raw-npm-angular'
     ];
 
-    const postProcess= [
-        'copy:cory-twemoji',
-    ]
+    const defaultTask = defaults.concat(builder.config.task.build.js)
+    grunt.registerTask('default', defaultTask);
 
-//    grunt.registerTask('default', defaults.concat(builder.config.task.build.angularAot));
-    grunt.registerTask('default', defaults.concat(builder.config.task.build.angularAot).concat(postProcess));
-
-    grunt.registerTask('dev', defaults.concat(builder.config.task.build.angular).concat(postProcess));
-    grunt.registerTask('aot', defaults.concat(builder.config.task.build.angularAot).concat(postProcess));
-    grunt.registerTask('aot-jit', defaults.concat(builder.config.task.build.angularAotJit).concat(postProcess));
-
-    grunt.registerTask('run', defaults.concat(builder.config.task.run.angular));
-    grunt.registerTask('coverage', 'karma:cory-angular');
-
-    grunt.registerTask('test-connect', [
-        'connect:cory-angular',
-        'watch:cory-wait'
-    ])
 }
