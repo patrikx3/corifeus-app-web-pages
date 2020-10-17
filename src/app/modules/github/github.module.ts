@@ -73,7 +73,7 @@ export class GitHubModule {
 
         loc.register(module, {
             en: require('./json/translation/english.json'),
-            hu: require('./json/translation/hungarian.json'),
+           // hu: require('./json/translation/hungarian.json'),
         })
     }
 }

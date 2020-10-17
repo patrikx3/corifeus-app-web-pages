@@ -38,7 +38,7 @@ export class Boot {
 
         locale.register(module, {
             en: require('./json/translation/english.json'),
-            hu: require('./json/translation/hungarian.json'),
+          //  hu: require('./json/translation/hungarian.json'),
         });
 
         this.theme.boot();
