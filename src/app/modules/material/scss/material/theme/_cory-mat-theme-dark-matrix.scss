@@ -218,21 +218,21 @@
     //  @include mat-pseudo-checkbox-theme($theme_reverse);
 
 
-    @include mat-autocomplete-theme($theme_reverse);
+//    @include mat-autocomplete-theme($theme_reverse);
 
     // card
     @include mat-card-theme($theme_reverse);
 
-    @include mat-checkbox-theme($theme_reverse);
+//    @include mat-checkbox-theme($theme_reverse);
 
-    @include mat-chips-theme($theme_reverse);
-    @include mat-dialog-theme($theme_reverse);
-    @include mat-grid-list-theme($theme_reverse);
+//    @include mat-chips-theme($theme_reverse);
+//    @include mat-dialog-theme($theme_reverse);
+//    @include mat-grid-list-theme($theme_reverse);
     @include mat-icon-theme($theme_reverse);
-    @include mat-list-theme($theme_reverse);
+//    @include mat-list-theme($theme_reverse);
     @include mat-menu-theme($theme_reverse);
-    @include mat-radio-theme($theme_reverse);
-    @include mat-select-theme($theme_reverse);
+//    @include mat-radio-theme($theme_reverse);
+//    @include mat-select-theme($theme_reverse);
 
     $background_sidenav: map-merge($background, (
         card: white
@@ -247,29 +247,29 @@
         background: $background_sidenav,
     ));
 
-    @include mat-slider-theme($theme_reverse);
+//    @include mat-slider-theme($theme_reverse);
 
-    @include mat-tabs-theme($theme_reverse);
+//    @include mat-tabs-theme($theme_reverse);
     @include mat-tooltip-theme($theme_reverse);
 
     //    background: linear-gradient(darken($color, 10%), $color);
-    @include mat-button-toggle-theme($theme_reverse);
-    @include mat-input-theme($theme_reverse);
+//    @include mat-button-toggle-theme($theme_reverse);
+//    @include mat-input-theme($theme_reverse);
 
-    @include mat-slide-toggle-theme($theme_reverse);
+  //  @include mat-slide-toggle-theme($theme_reverse);
 
 
     @include mat-progress-bar-theme($theme_highlight);
-    @include mat-progress-spinner-theme($theme_highlight);
+//    @include mat-progress-spinner-theme($theme_highlight);
     @include mat-toolbar-theme($theme_reverse);
     //@include mat-button-theme($theme_reverse);
 
-    @include mat-expansion-panel-theme($theme);
+//    @include mat-expansion-panel-theme($theme);
     @include mat-form-field-theme($theme);
-    @include mat-paginator-theme($theme);
-    @include mat-stepper-theme($theme);
+//    @include mat-paginator-theme($theme);
+//    @include mat-stepper-theme($theme);
     @include mat-snack-bar-theme($theme_highlight);
-    @include mat-datepicker-theme($theme_reverse);
+//    @include mat-datepicker-theme($theme_reverse);
 
 
     @include cory-mat-theme-container(mat-color($primary));

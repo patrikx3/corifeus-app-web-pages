@@ -1,8 +1,7 @@
 // dirs
-export * from './http';
+//export * from './http';
 
 // files
-export * from './color';
 export * from './cookie';
 export * from './locale';
 export * from './settings';

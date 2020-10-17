@@ -11,6 +11,8 @@ export {
     ThemeButton
 } from './cory-mat-theme/cory-mat-theme-button';
 
+
+/*
 export {
     TranslationMenu
 } from './cory-mat-translation/cory-mat-translation-menu';
@@ -18,6 +20,7 @@ export {
 export {
     TranslationButton
 } from './cory-mat-translation/cory-mat-translation-button';
+ */
 
 export {
     Http404

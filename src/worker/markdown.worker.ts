@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 
-import {kebabCase} from 'lodash';
+import kebabCase from 'lodash/kebabCase';
 
 const  { extractStars} = require('../helper/extract-stars.function.js');
 
@@ -39,39 +39,53 @@ Language: ${language}<br/>
     }) // body data type must match "Content-Type" header
   }).then(response => {
     if (response.status !== 200) {
-      console.error(response)
+      console.error('notifyMissingMarkdownCode invalid response', response)
+    } else {
+        console.info('notifyMissingMarkdownCode info response', response)
     }
   }).catch(e => {
-    console.error(e)
+      console.error('notifyMissingMarkdownCode error', e)
   })
 }
 
 const IsBot = require('../app/modules/web/util/is-bot.js')
 
-const hljs = require('highlight.js');
-hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx.js'));
+const hljs = require('highlight.js/lib/core');
 
 // this is for HTML as well
+hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx.js'));
+
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml.js'));
+
 hljs.registerLanguage('css', require('highlight.js/lib/languages/css.js'));
+
 hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss.js'));
+
 hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml.js'));
 hljs.registerLanguage('yml', require('highlight.js/lib/languages/yaml.js'));
+
 hljs.registerLanguage('powershell', require('highlight.js/lib/languages/powershell.js'));
+
 hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript.js'));
 hljs.registerLanguage('js', require('highlight.js/lib/languages/javascript.js'));
+
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json.js'));
+
 hljs.registerLanguage('bash', require('highlight.js/lib/languages/shell.js'));
+
 hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript.js'));
 hljs.registerLanguage('ts', require('highlight.js/lib/languages/typescript.js'));
+
 hljs.registerLanguage('ini', require('highlight.js/lib/languages/ini.js'));
 
-import { environment } from '../environments/environment';
 
+/*
+import { environment } from '../environments/environment';
 const twemoji = require('twemoji').default;
 if (environment.production) {
   twemoji.base = '/assets/twemoji/';
 }
+ */
 
 const marked = require('marked')
 
@@ -266,10 +280,12 @@ const construct = (data) => {
   md = extract(md, 'corifeus-header');
   md = extract(md, 'corifeus-footer');
 
+  /*
   md = twemoji.parse(md, {
     folder: 'svg',
     ext: '.svg',
   })
+  */
 
 
   let html = marked(md, {

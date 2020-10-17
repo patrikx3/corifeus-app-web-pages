@@ -29,7 +29,7 @@ import {CdnService, MarkdownService} from '../service';
 import {SettingsService, LocaleService} from '../../web';
 
 
-import {State} from '../../web';
+//import {State} from '../../web';
 import {
     NotifyService
 } from '../../material';
@@ -120,8 +120,8 @@ export class Page implements AfterViewChecked, OnDestroy {
                 this.content = cache[cacheKey]
                 return
             }
-            State.NotFound = false;
-            window.corifeus.core.http.status = 200;
+//            State.NotFound = false;
+//            window.corifeus.core.http.status = 200;
 
             let text = await this.cdn.file(this.parent.currentRepo, path);
 
@@ -158,8 +158,8 @@ ${text}
 
         } catch (e) {
             //this.router.navigateTop(['/github/corifeus/404']);
-            State.NotFound = true;
-            window.corifeus.core.http.status = 404;
+//            State.NotFound = true;
+//            window.corifeus.core.http.status = 404;
             this.content = `
                 <div style="margin-top: 20px; font-size: 6em; opacity: 0.25;">
                     404

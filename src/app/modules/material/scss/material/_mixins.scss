@@ -246,42 +246,42 @@
     //  @include angular-material-theme($theme);
 
     @include mat-core-theme($theme);
-    @include mat-autocomplete-theme($theme);
+//    @include mat-autocomplete-theme($theme);
 
     // card
     @include mat-card-theme($theme);
 
-    @include mat-datepicker-theme($theme);
-    @include mat-table-theme($theme);
-    @include mat-checkbox-theme($theme);
-    @include mat-chips-theme($theme);
-    @include mat-dialog-theme($theme);
-    @include mat-grid-list-theme($theme);
+//    @include mat-datepicker-theme($theme);
+//    @include mat-table-theme($theme);
+//    @include mat-checkbox-theme($theme);
+//    @include mat-chips-theme($theme);
+//    @include mat-dialog-theme($theme);
+//    @include mat-grid-list-theme($theme);
     @include mat-icon-theme($theme);
-    @include mat-list-theme($theme);
+//    @include mat-list-theme($theme);
     @include mat-menu-theme($theme);
-    @include mat-radio-theme($theme);
-    @include mat-select-theme($theme);
+//    @include mat-radio-theme($theme);
+//    @include mat-select-theme($theme);
     @include mat-sidenav-theme($reverse-theme);
-    @include mat-slider-theme($theme);
-    @include mat-tabs-theme($theme);
+//    @include mat-slider-theme($theme);
+//    @include mat-tabs-theme($theme);
     @include mat-tooltip-theme($theme);
-    @include mat-expansion-panel-theme($theme);
+//    @include mat-expansion-panel-theme($theme);
     @include mat-form-field-theme($theme);
-    @include mat-paginator-theme($theme);
-    @include mat-stepper-theme($theme);
+//    @include mat-paginator-theme($theme);
+//    @include mat-stepper-theme($theme);
     @include mat-snack-bar-theme($theme);
 
     //    background: linear-gradient(darken($color, 10%), $color);
     @include cory-mat-theme-toolbar($type, $theme);
 
     @include cory-mat-theme-button($type, $reverse-theme);
-    @include mat-button-toggle-theme($reverse-theme);
-    @include mat-input-theme($reverse-theme);
-    @include mat-slide-toggle-theme($reverse-theme);
+//    @include mat-button-toggle-theme($reverse-theme);
+//    @include mat-input-theme($reverse-theme);
+//    @include mat-slide-toggle-theme($reverse-theme);
 
     @include mat-progress-bar-theme($reverse-darker-theme);
-    @include mat-progress-spinner-theme($reverse-darker-theme);
+//    @include mat-progress-spinner-theme($reverse-darker-theme);
 
     @include cory-mat-theme-container(mat-color($primary));
 

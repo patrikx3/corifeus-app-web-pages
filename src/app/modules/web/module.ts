@@ -15,22 +15,20 @@ import {
 
 import {Boot} from './boot';
 
-import {ColorService} from './services/color'
-
 //import {JsonPipe} from '../src-save/pipe/json'
 //import {KeysPipe} from '../src-save/pipe/keys'
 //import {HtmlPipe} from '../src-save/pipe/html'
 
-import {HttpShareService} from './services/http/http-share'
-import {AuthInterceptor} from './services/http/auth-interceptor'
+//import {HttpShareService} from './services/http/http-share'
+//import {AuthInterceptor} from './services/http/auth-interceptor'
 
 import {CookieService} from './services/cookie'
 import {RouterService} from './services/router'
 import {SettingsService} from './services/settings'
 import {LocaleService} from './services/locale'
 import {MediaQueryService} from './services/media-query'
-import {IpInfoService} from './modules/ip-info'
-import {AuthService,} from './modules/auth'
+//import {IpInfoService} from './modules/ip-info'
+//import {AuthService,} from './modules/auth'
 
 
 //import {FocusDirective} from '../src-save/directive/autofocus'
@@ -62,18 +60,19 @@ let booted = false
         SettingsService,
         LocaleService,
         MediaQueryService,
-        HttpShareService,
-        ColorService,
+//        HttpShareService,
 
         // modules
-        IpInfoService,
-        AuthService,
+//        IpInfoService,
+//        AuthService,
 
+        /*
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
         },
+         */
 
         // order is important
         Boot,

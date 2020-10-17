@@ -14,7 +14,7 @@ import {
     ActivatedRoute,
 } from '@angular/router';
 
-import {debounce} from 'lodash'
+import debounce from 'lodash/debounce'
 
 import { Subscription } from 'rxjs'
 

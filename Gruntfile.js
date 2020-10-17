@@ -1,6 +1,7 @@
 module.exports = (grunt) => {
 
     const builder = require(`corifeus-builder`);
+    const gruntUtil = builder.utils;
     const loader = new builder.loader(grunt);
     loader.js({
         replacer: {
@@ -38,13 +39,46 @@ module.exports = (grunt) => {
         }
     });
 
+    grunt.registerTask('build', async function() {
+        const done = this.async()
+        const cwd = process.cwd()
+
+        try {
+
+            await gruntUtil.spawn({
+                grunt: grunt,
+                gruntThis: this,
+
+            }, {
+                cmd: `${cwd}/node_modules/.bin/ng${gruntUtil.commandAddon}`,
+                args: [
+                    'build',
+                    '--source-map=false',
+                    '--extract-css=true',
+                    '--output-hashing=all',
+                    '--configuration=production',
+                    '--deploy-url=/',
+                    '--base-href=/',
+                    '--aot=true',
+                    '--build-optimizer=true',
+                    '--optimization=true'
+                ]
+            });
+
+            done()
+        } catch(e) {
+            done(e)
+        }
+    })
 
     const defaults = [
         'cory-inject',
-        'cory-raw-npm-angular'
+        'cory-raw-npm-angular',
+        'build',
+        'copy',
     ];
 
-    const defaultTask = defaults.concat(builder.config.task.build.js)
+    const defaultTask = builder.config.task.build.js.concat(defaults)
     grunt.registerTask('default', defaultTask);
 
 }

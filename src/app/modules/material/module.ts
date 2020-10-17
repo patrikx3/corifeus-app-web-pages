@@ -24,8 +24,8 @@ import {Loading} from './component/cory-mat-loading'
 import {ThemeButton} from './component/cory-mat-theme/cory-mat-theme-button'
 import {ThemeMenu} from './component/cory-mat-theme/cory-mat-theme-menu'
 
-import {TranslationButton} from './component/cory-mat-translation/cory-mat-translation-button'
-import {TranslationMenu} from './component/cory-mat-translation/cory-mat-translation-menu'
+//import {TranslationButton} from './component/cory-mat-translation/cory-mat-translation-button'
+//import {TranslationMenu} from './component/cory-mat-translation/cory-mat-translation-menu'
 
 import { CommonModule } from '@angular/common'
 
@@ -139,8 +139,8 @@ import { CommonModule } from '@angular/common'
         Loading,
         ThemeMenu,
         ThemeButton,
-        TranslationMenu,
-        TranslationButton,
+//        TranslationMenu,
+//        TranslationButton,
         Http404,
     ],
 
@@ -198,8 +198,8 @@ import { CommonModule } from '@angular/common'
         Loading,
         ThemeMenu,
         ThemeButton,
-        TranslationMenu,
-        TranslationButton,
+//        TranslationMenu,
+//        TranslationButton,
         Http404,
     ],
     entryComponents: [

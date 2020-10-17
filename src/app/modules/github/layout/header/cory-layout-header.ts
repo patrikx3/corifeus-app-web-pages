@@ -4,7 +4,7 @@ import {
     OnDestroy,
 } from '@angular/core';
 
-const capitalize = require('lodash/capitalize');
+import capitalize from 'lodash/capitalize';
 
 import {
     Router,

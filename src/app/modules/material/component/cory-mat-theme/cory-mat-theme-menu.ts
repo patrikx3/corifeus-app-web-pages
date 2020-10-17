@@ -16,7 +16,7 @@ import {
     NotifyService
 } from '../../services/notify/notify';
 
-import {template} from 'lodash';
+import template from 'lodash/template';
 
 import { Subscription } from 'rxjs'
 

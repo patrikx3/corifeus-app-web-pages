@@ -8,7 +8,7 @@ import {
 
 import {CookieService,} from '../services/cookie';
 import {SettingsService} from '../services/settings';
-import {IpInfoService,} from '../modules/ip-info';
+//import {IpInfoService,} from '../modules/ip-info';
 
 import {log as logDefault} from '../util/log'
 
@@ -31,13 +31,13 @@ export interface LocaleSubject {
 
 let cookieEmpty = true;
 
-const IsBot = require("../util/is-bot.js");
+//const IsBot = require("../util/is-bot.js");
 
 @Injectable()
 export class LocaleService {
 
     constructor(
-        private ipInfo: IpInfoService,
+//        private ipInfo: IpInfoService,
         private settings: SettingsService,
         private cookie: CookieService,
     ) {
@@ -46,6 +46,7 @@ export class LocaleService {
 
     public async boot() {
 
+        /*
         const fromCookie = this.cookie.get(this.settings.data.core.cookie.language);
         if (fromCookie !== undefined) {
             log(`using cookie language: ${fromCookie}`)
@@ -75,6 +76,8 @@ export class LocaleService {
         } else {
             this.setTranslation(currentLanguage);
         }
+         */
+        this.setTranslation(currentLanguage);
     }
 
     public register(module: string, translations: any) {

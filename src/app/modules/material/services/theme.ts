@@ -2,7 +2,7 @@ import {
     Injectable,
 } from '@angular/core';
 
-import {kebabCase} from 'lodash';
+import kebabCase from 'lodash/kebabCase';
 
 import {SettingsService, CookieService} from '../../web';
 

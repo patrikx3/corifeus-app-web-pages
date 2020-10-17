@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 
 import {ThemeService} from '../theme'
-import {ColorService} from '../../../web'
 
 import {MAT_SNACK_BAR_DATA, MatSnackBarRef} from '@angular/material/snack-bar';
 
@@ -26,11 +25,11 @@ import {LocaleService, LocaleSubject} from '../../../web';
 
     template: `
         <div style="position: relative;">
-            <mat-icon color="accent" #elementIcon>{{ data.options.icon }}</mat-icon>
+            <mat-icon color="accent">{{ data.options.icon }}</mat-icon>
             &nbsp;
-            <span #elementMessage class="message" [innerHTML]="transformHtml(data.message)"></span>
+            <span class="message" [innerHTML]="transformHtml(data.message)"></span>
         </div>
-        <a mat-button color="accent" #elementButton class="cory-mat-notify-button" (click)="ctx.dismiss()">{{ this.i18n.title.ok }}</a>
+        <a mat-button color="accent" class="cory-mat-notify-button" (click)="ctx.dismiss()">{{ this.i18n.title.ok }}</a>
 
     `,
 
@@ -49,11 +48,11 @@ import {LocaleService, LocaleSubject} from '../../../web';
     `],
 })
 @Injectable()
-export class NotifyComponent implements AfterViewInit, OnDestroy {
+export class NotifyComponent implements OnDestroy {
 
-    @ViewChild('elementButton', {read: ElementRef, static: false}) elementButton: ElementRef;
-    @ViewChild('elementIcon', {read: ElementRef, static: false}) elementIcon: ElementRef;
-    @ViewChild('elementMessage', {read: ElementRef, static: false}) elementMessage: ElementRef;
+//    @ViewChild('elementButton', {read: ElementRef, static: false}) elementButton: ElementRef;
+//    @ViewChild('elementIcon', {read: ElementRef, static: false}) elementIcon: ElementRef;
+//    @ViewChild('elementMessage', {read: ElementRef, static: false}) elementMessage: ElementRef;
 
     inited: boolean = false;
 
@@ -67,7 +66,6 @@ export class NotifyComponent implements AfterViewInit, OnDestroy {
         public ctx: MatSnackBarRef<NotifyComponent>,
         private locale: LocaleService,
         private theme: ThemeService,
-        private color: ColorService,
         @Inject(MAT_SNACK_BAR_DATA) data: any,
         private _sanitizer: DomSanitizer,
     ) {
@@ -79,36 +77,6 @@ export class NotifyComponent implements AfterViewInit, OnDestroy {
         this.data = data;
     }
 
-
-    calculateWidth() {
-        const snackElement = <HTMLElement>document.getElementsByTagName('snack-bar-container')[0];
-        //fixme cache the colors
-        let backgroundColor = window.getComputedStyle(snackElement).getPropertyValue('background-color');
-        let color = window.getComputedStyle(snackElement).getPropertyValue('color');
-        let buttonColor = window.getComputedStyle(this.elementButton.nativeElement).color;
-        let iconColor = window.getComputedStyle(this.elementIcon.nativeElement).color;
-        buttonColor = this.color.getReadableColor(buttonColor, backgroundColor)
-        iconColor = this.color.getReadableColor(iconColor, backgroundColor);
-        color = this.color.getReadableColor(color, backgroundColor);
-        this.elementIcon.nativeElement.style.color = iconColor;
-        this.elementButton.nativeElement.style.color = buttonColor;
-        this.elementMessage.nativeElement.style.color = color;
-
-    }
-
-    ngAfterViewInit() {
-        /*
-        this.subscriptions$.push(
-            this.ctx.afterOpened().subscribe(() => {
-                this.calculateWidth();
-            })
-        )
-         */
-    }
-
-    onResize() {
-        this.ctx.dismiss();
-    }
 
     @HostListener('window:keydown', ['$event'])
     onKeyDown(event: Event) {

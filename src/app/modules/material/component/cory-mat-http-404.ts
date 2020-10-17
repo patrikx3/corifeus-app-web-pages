@@ -5,7 +5,7 @@ import {
 
 import { Subscription } from 'rxjs'
 
-import {State, LocaleService, LocaleSubject} from '../../web';
+import {LocaleService, LocaleSubject} from '../../web';
 
 @Component({
     selector: 'cory-mat-http-404',
@@ -35,8 +35,10 @@ export class Http404 implements OnDestroy {
         public locale: LocaleService
     ) {
 
-        history.replaceState({}, State.RequestPath, State.RequestPath);
 
+        //history.replaceState({}, State.RequestPath, State.RequestPath);
+
+        /*
         const its404 = () => {
             State.NotFound = true;
             window.corifeus.core.http.status = 404;
@@ -58,6 +60,7 @@ export class Http404 implements OnDestroy {
             clearInterval(this.letKeep404);
             its404();
         }, maxWait);
+         */
 
         this.subscriptions$.push(
             this.locale.subscribe((data: LocaleSubject) => {
@@ -65,7 +68,7 @@ export class Http404 implements OnDestroy {
             })
         )
 
-        this.url = State.RequestPath
+        //this.url = State.RequestPath
     }
 
     ngOnDestroy() {
