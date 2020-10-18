@@ -9,6 +9,10 @@ import {MatTooltipModule,} from '@angular/material/tooltip'
 import {MatToolbarModule,} from '@angular/material/toolbar'
 import {MatCardModule,} from '@angular/material/card'
 import {MatSnackBarModule,} from '@angular/material/snack-bar'
+import {
+    MatSidenavModule,
+} from '@angular/material/sidenav';
+import {MatInputModule,} from '@angular/material/input'
 
 import {Boot} from './boot';
 
@@ -28,6 +32,7 @@ import {ThemeMenu} from './component/cory-mat-theme/cory-mat-theme-menu'
 //import {TranslationMenu} from './component/cory-mat-translation/cory-mat-translation-menu'
 
 import { CommonModule } from '@angular/common'
+
 
 /*
  fix: allow users to disable the sanity checks
@@ -131,6 +136,9 @@ import { CommonModule } from '@angular/common'
         MatToolbarModule,
         MatCardModule,
         MatSnackBarModule,
+        MatInputModule,
+        MatSidenavModule,
+
         // material modules
     ],
     declarations: [
@@ -195,6 +203,9 @@ import { CommonModule } from '@angular/common'
         MatToolbarModule,
         MatCardModule,
         MatSnackBarModule,
+        MatInputModule,
+        MatSidenavModule,
+
         Loading,
         ThemeMenu,
         ThemeButton,

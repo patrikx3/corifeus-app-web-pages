@@ -1,9 +1,6 @@
 import {NgModule, Injectable} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
-import {
-    MatSidenavModule,
-} from '@angular/material/sidenav';
 
 import {Layout, Header, Footer} from './layout';
 import {Status} from './component/cory-web-pages-build-status';
@@ -11,7 +8,7 @@ import {Page } from './page';
 import {CdnService, MarkdownService} from './service';
 import {  githubRoutes } from './github.routes';
 
-import {MatInputModule,} from '@angular/material/input'
+
 
 import { CommonModule } from '@angular/common'
 
@@ -26,8 +23,6 @@ import { environment } from '../../../environments/environment';
 @NgModule({
     imports: [
         CommonModule,
-        MatInputModule,
-        MatSidenavModule,
         CorifeusMaterialModule,
         RouterModule.forChild(githubRoutes),
     ],

@@ -19,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     //NoopAnimationsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(moduleRoutes),
-    CorifeusMaterialModule,
   ],
   entryComponents: [],
   declarations: [

@@ -1,0 +1,29 @@
+ll public/ | grep "js\|css"
+
+2020 May 16  - self built since 2016-2017
+-r--r----- 1 www-data www-data 891K May 16 05:45 749937b58a89faf21170.worker.js
+
+-r--r----- 1 www-data www-data 150K May 16 05:45 2.5fedf88395f370ead8f9.chunk.js
+-r--r----- 1 www-data www-data  42K May 16 05:45 3.5fedf88395f370ead8f9.chunk.js
+
+-r--r----- 1 www-data www-data 2.0M May 16 05:45 bundle.5fedf88395f370ead8f9.js
+
+-r--r----- 1 www-data www-data 622K May 16 05:45 bundle.5fedf88395f370ead8f9.css
+
+-r--r----- 1 www-data www-data  58K May 16 05:45 polyfills.5fedf88395f370ead8f9.js
+3811kb
+
+2020 Okt 17  - convert using angular cli and removed a lot of unused code
+-rw-rw-r-- 1 patrikx3 patrikx3  90K Oct 17 19:48 0.171ca369b9bb50570d5a.worker.js
+
+-rw-rw-r-- 1 patrikx3 patrikx3 364K Oct 17 19:48 4.a7ac884577972514b424.js
+
+-rw-rw-r-- 1 patrikx3 patrikx3 347K Oct 17 19:48 main.5a7378c21d6cd947e41b.js
+-rw-rw-r-- 1 patrikx3 patrikx3 2,3K Oct 17 19:48 runtime.529f1c23827c0ef5c953.js
+
+-rw-rw-r-- 1 patrikx3 patrikx3 328K Oct 17 19:48 styles.a59bcada134f21237d00.css
+
+-rw-rw-r-- 1 patrikx3 patrikx3  37K Oct 17 19:48 polyfills.35a5ca1855eb057f016a.js
+1168,3kb
+
+~2642,7kb savings

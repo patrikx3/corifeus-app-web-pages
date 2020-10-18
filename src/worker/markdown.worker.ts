@@ -72,6 +72,7 @@ hljs.registerLanguage('js', require('highlight.js/lib/languages/javascript.js'))
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json.js'));
 
 hljs.registerLanguage('bash', require('highlight.js/lib/languages/shell.js'));
+hljs.registerLanguage('sh', require('highlight.js/lib/languages/shell.js'));
 
 hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript.js'));
 hljs.registerLanguage('ts', require('highlight.js/lib/languages/typescript.js'));
@@ -244,7 +245,7 @@ markdownRenderer.code = (code, language) => {
 
 //    console.log('TEST', language, currentRepo, currentRepoPath, settings.core.server)
 
-  if ((hljs.getLanguage(language) === 'undefined' || hljs.getLanguage(language) === undefined) && language !== 'text') {
+  if ((hljs.getLanguage(language) === 'undefined' || hljs.getLanguage(language) === undefined) && language !== 'text' && language !== 'txt') {
     console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}
 We are not loading everything, since it is about 500kb`)
     notifyMissingMarkdownCode({
@@ -254,10 +255,10 @@ We are not loading everything, since it is about 500kb`)
       coreUrl: settings.core.server.url
     })
   }
-  language = language === 'text' || language === undefined ? 'html' : language;
+//  language = language === 'text' || language === 'txt' || language === undefined ? 'html' : language;
   const validLang = !!(language && hljs.getLanguage(language));
   const highlighted = validLang ? hljs.highlight(language, code).value : code;
-  return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+  return `<pre><code style="font-family: 'Roboto Mono';" class="hljs ${language}">${highlighted}</code></pre>`;
 };
 
 markdownRenderer.codespan = (code) => {
