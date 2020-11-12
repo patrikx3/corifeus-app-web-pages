@@ -287,4 +287,9 @@
 
     @include cory-mat-autofill();
 
+    .mat-tooltip {
+        /* your own custom styles here */
+        /* e.g. */
+        background-color: rgba(0, 0, 0, 0.8);
+    }
 }

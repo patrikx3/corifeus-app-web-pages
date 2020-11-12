@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Layout} from '../layout/cory-layout';
 
-const worker = new Worker('../../../../worker/markdown.worker', { type: 'module' });
+const worker = new Worker('../../worker/markdown.worker', { type: 'module' });
 
 const nextId  = require('../utils/next-id.js')
 

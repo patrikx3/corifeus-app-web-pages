@@ -33,6 +33,7 @@ import {ThemeMenu} from './component/cory-mat-theme/cory-mat-theme-menu'
 
 import { CommonModule } from '@angular/common'
 
+import { GlobalService} from "../../service/global.service";
 
 /*
  fix: allow users to disable the sanity checks
@@ -154,6 +155,7 @@ import { CommonModule } from '@angular/common'
 
     // do not need export providers
     providers: [
+        GlobalService,
         Boot,
         ThemeService,
         NotifyService,

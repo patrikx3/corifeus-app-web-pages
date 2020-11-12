@@ -20,19 +20,19 @@ import {
 
 import {HttpClient} from '@angular/common/http';
 
-import {RouterService} from '../../web';
+import {RouterService} from '../modules/web';
 
 import { Layout} from "../layout";
 
 import {CdnService, MarkdownService} from '../service';
 
-import {SettingsService, LocaleService} from '../../web';
+import {SettingsService, LocaleService} from '../modules/web';
 
 
 //import {State} from '../../web';
 import {
     NotifyService
-} from '../../material';
+} from '../modules/material';
 
 const cache = {}
 

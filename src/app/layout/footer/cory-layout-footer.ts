@@ -16,9 +16,9 @@ import { Subscription } from 'rxjs'
 import {
     LocaleService, SettingsService, LocaleSubject, decodeEntities,
     MediaQueryService, MediaQuerySettingType, MediaQuerySetting
-} from "../../../web";
+} from "../../modules/web";
 
-import {NotifyService, ThemeService} from '../../../material';
+import {NotifyService, ThemeService} from '../../modules/material';
 
 import {Layout} from "../cory-layout";
 
@@ -70,8 +70,8 @@ export class Footer implements OnDestroy {
     ) {
         this.settings = settingsAll.data.pages;
 
-        const npmSvg = require('../../../../../artifacts/npm-logo.svg')
-        const jetbrainsSvg  = require('../../../../../artifacts/jetbrains-logo.svg')
+        const npmSvg = require('../../../artifacts/npm-logo.svg')
+        const jetbrainsSvg  = require('../../../artifacts/jetbrains-logo.svg')
 
 
         this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(npmSvg.default)

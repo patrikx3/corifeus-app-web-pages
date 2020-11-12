@@ -27,6 +27,7 @@ import {RouterService} from './services/router'
 import {SettingsService} from './services/settings'
 import {LocaleService} from './services/locale'
 import {MediaQueryService} from './services/media-query'
+import {CommonModule} from "@angular/common";
 //import {IpInfoService} from './modules/ip-info'
 //import {AuthService,} from './modules/auth'
 
@@ -43,6 +44,7 @@ let booted = false
     imports: [
         HttpClientModule,
         RouterModule,
+        CommonModule,
     ],
     // export
     declarations: [

@@ -54,7 +54,6 @@ module.exports = (grunt) => {
                 args: [
                     'build',
                     '--source-map=false',
-                    '--extract-css=true',
                     '--output-hashing=all',
                     '--configuration=production',
                     '--deploy-url=/',

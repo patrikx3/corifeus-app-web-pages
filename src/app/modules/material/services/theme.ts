@@ -10,6 +10,7 @@ import {SettingsService, CookieService} from '../../web';
 
 export type ThemeType = "dark" | "light";
 
+let firstThemeImport = true
 
 @Injectable()
 export class ThemeService {
@@ -60,30 +61,56 @@ export class ThemeService {
     setTheme(newTheme: string) {
         newTheme = kebabCase(newTheme);
         if (this.all.indexOf(newTheme) > -1) {
-            const body = document.getElementsByTagName("body")[0];
 
-            body.classList.remove(this.current);
+            if (firstThemeImport) {
+                document.body.style.visibility = 'hidden'
+            }
+
+            import(
+                /* webpackPrefetch: true */
+                `../scss/material/theme/_${newTheme}.scss`
+            ).then((module) => {
+                const body = document.body;
+
+                let style = document.getElementById('cory-web-app-pages-theme-style')
+                if (style) {
+                    style.remove()
+                }
+                style = document.createElement('style');
+                style.id = 'cory-web-app-pages-theme-style'
+                style.innerText = module.default
+                document.head.appendChild(style)
+
+                body.classList.remove(this.current);
 //            this.overlayContainer.getContainerElement().classList.remove(this.current);
 
-            this.current = newTheme;
-            body.classList.add(this.current);
+                this.current = newTheme;
+                body.classList.add(this.current);
 //            this.overlayContainer.getContainerElement().classList.add(this.current);
 
-            //this.overlayContainer.themeClass = newTheme;
-            this.cookies.set(this.settings.cookie.theme, this.current);
+                //this.overlayContainer.themeClass = newTheme;
+                this.cookies.set(this.settings.cookie.theme, this.current);
 
-            if (this.current.startsWith('cory-mat-theme-dark')) {
-                this.type = "dark";
-                body.classList.add('cory-mat-theme-dark');
-                body.classList.remove('cory-mat-theme-light');
-            } else {
-                this.type = "light";
-                body.classList.add('cory-mat-theme-light')
-                body.classList.remove('cory-mat-theme-dark');
-            }
-            return;
+                if (this.current.startsWith('cory-mat-theme-dark')) {
+                    this.type = "dark";
+                    body.classList.add('cory-mat-theme-dark');
+                    body.classList.remove('cory-mat-theme-light');
+                } else {
+                    this.type = "light";
+                    body.classList.add('cory-mat-theme-light')
+                    body.classList.remove('cory-mat-theme-dark');
+                }
+
+                if (firstThemeImport) {
+                    firstThemeImport = false
+                    document.body.style.visibility = 'visible'
+                }
+
+            })
+
+        } else {
+            throw new Error(`undefined ${newTheme}`);
         }
-        throw new Error(`undefined ${newTheme}`);
     }
 
 

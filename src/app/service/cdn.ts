@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {SettingsService} from '../../web';
+import {SettingsService} from '../modules/web';
 
 @Injectable()
 export class CdnService {

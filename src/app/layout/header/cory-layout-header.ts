@@ -10,7 +10,7 @@ import {
     Router,
 } from '@angular/router';
 
-import {LocaleService, SettingsService, LocaleSubject} from "../../../web";
+import {LocaleService, SettingsService, LocaleSubject} from "../../modules/web";
 
 import {extractTitle} from '../../utils/extrac-title';
 

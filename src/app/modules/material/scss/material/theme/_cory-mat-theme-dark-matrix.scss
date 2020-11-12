@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 @import "../mixins";
 
 .cory-mat-theme-dark-matrix {
@@ -136,6 +138,7 @@
         )
     );
 
+    $mat-matrixaccent: $mat-lime;
 
     $primary: mat-palette($mat-matrix);
     $accent: mat-palette($mat-matrikxlow);
@@ -285,5 +288,11 @@
     background: radial-gradient(circle, rgba(black, 0.9), rgba(black, 0.8));
 
     //  @include cory-mat-theme('dark', $primary, $accent);
+
+    .mat-tooltip {
+        /* your own custom styles here */
+        /* e.g. */
+        background-color: rgba(map_get($mat-green, 900), 0.5);
+    }
 }
 

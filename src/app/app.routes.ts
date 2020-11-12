@@ -4,13 +4,13 @@ import {Layout} from './layout';
 import {Page} from './page/cory-page';
 //import {OpenCollective} from './page/cory-open-collective';
 
-import {Http404} from '../material';
+import {Http404} from './modules/material';
 
 
-export const githubRoutes: Routes = [
+export const appRoutes: Routes = [
 
     {
-        path: '',
+        path: ':repo',
         component: Layout,
         children: [
             {
@@ -28,7 +28,11 @@ export const githubRoutes: Routes = [
                 component: Page
             }
         ]
-
     },
-
+    {
+        path: '',
+        redirectTo: `/matrix`,
+//        redirectTo: `/github/${settings.github.defaultRepo}`,
+        pathMatch: 'full'
+    },
 ];

@@ -1,6 +1,6 @@
 const cache = {};
 
-const { extractStars } = require("../../../../helper/extract-stars.function.js");
+const { extractStars } = require("../../helper/extract-stars.function.js");
 
 export function extractTitle(pkg: any): string {
     if (pkg === undefined) {
