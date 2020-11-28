@@ -6,9 +6,11 @@ import {
     OnDestroy,
 } from '@angular/core';
 
+/*
 import {
     DomSanitizer
 } from '@angular/platform-browser'
+ */
 
 import { Subscription } from 'rxjs'
 
@@ -28,6 +30,7 @@ import {CdnService, MarkdownService} from '../service';
 
 import {SettingsService, LocaleService} from '../modules/web';
 
+import twemoji from 'twemoji'
 
 //import {State} from '../../web';
 import {
@@ -43,7 +46,7 @@ let testing = false
 @Component({
     selector: 'cory-page',
     template: `
-        <span *ngIf="content" [innerHTML]="transformHtml(content)"></span>
+        <span id="cory-page-content"></span>
     `
 })
 export class Page implements AfterViewChecked, OnDestroy {
@@ -66,7 +69,7 @@ export class Page implements AfterViewChecked, OnDestroy {
         private zone: NgZone,
         protected notify: NotifyService,
         protected locale: LocaleService,
-        private _sanitizer: DomSanitizer,
+//        private _sanitizer: DomSanitizer,
         private parent: Layout,
     ) {
         this.markdown.context = this;
@@ -161,7 +164,7 @@ ${text}
 //            State.NotFound = true;
 //            window.corifeus.core.http.status = 404;
             this.content = `
-                <div style="margin-top: 20px; font-size: 6em; opacity: 0.25;">
+                <div style="margin-top: 20px; font-size: 6em; opacity: 0.25;" status-code="404">
                     404
                 </div>
                 <div style="font-size: 3em; opacity: 0.75;">
@@ -177,6 +180,10 @@ ${text}
 
         } finally {
 
+            document.getElementById('cory-page-content').innerHTML = twemoji.parse(this.content, {
+                folder: 'svg',
+                ext: '.svg',
+            })
 
         }
     }
@@ -198,9 +205,17 @@ ${text}
 
     }
 
+    /*
+    currentHtml: any
+    transformedHtml: any
     transformHtml(html: string): any {
-        return this._sanitizer.bypassSecurityTrustHtml(html);
+        if (this.currentHtml !== html) {
+            this.currentHtml = html
+            this.transformedHtml = this._sanitizer.bypassSecurityTrustHtml(html);
+        }
+        return this.transformedHtml
     }
+     */
 
     ngOnDestroy(): void {
         this.subscriptions$.forEach(subs$ => subs$.unsubscribe())

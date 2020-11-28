@@ -4,7 +4,7 @@ import {Layout} from './layout';
 import {Page} from './page/cory-page';
 //import {OpenCollective} from './page/cory-open-collective';
 
-import {Http404} from './modules/material';
+//import {Http404} from './modules/material';
 
 
 export const appRoutes: Routes = [
@@ -13,10 +13,12 @@ export const appRoutes: Routes = [
         path: ':repo',
         component: Layout,
         children: [
+            /*
             {
                 path: '404',
                 component: Http404
             },
+             */
             /*
             {
                 path: 'open-collective',

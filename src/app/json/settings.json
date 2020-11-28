@@ -8,8 +8,7 @@
     ],
     "p3x": {
         "git": {
-            "url": "https://server.patrikx3.com/api/patrikx3/git/repos",
-            "url-test": "https://localhost:23501/api/patrikx3/git/repos"
+            "url": "https://server.patrikx3.com/api/patrikx3/git/repos"
         }
     },
     "github": {

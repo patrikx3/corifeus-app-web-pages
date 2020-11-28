@@ -38,12 +38,13 @@ import {extractTitleWithStars} from '../utils/extrac-title';
 import {isMobile} from '../utils/is-mobile';
 //import {clearTimeout} from "timers";
 
+/*
 import {
     DomSanitizer,
 } from '@angular/platform-browser';
+ */
 
-
-const twemoji = require('twemoji').default;
+import twemoji from 'twemoji'
 
 //FIXME corifeus - matrix
 const regexFixCorifeusMatrix = /^(\/)?(corifeus)([^-])(\/)?(.*)/
@@ -79,7 +80,7 @@ export class Layout implements OnInit, OnDestroy {
     @ViewChild('menuSidenav', {read: MatSidenav, static: true})
     public menuSidenav: MatSidenav;
 
-    @ViewChild('searchTextInputRef', {read: ElementRef, static: true})
+    @ViewChild('searchText', {read: ElementRef, static: true})
     public searchTextInputRefRead: ElementRef;
 
     currentRepo: string;
@@ -121,7 +122,7 @@ export class Layout implements OnInit, OnDestroy {
         protected locale: LocaleService,
         protected settingsAll: SettingsService,
         private zone: NgZone,
-        private sanitizer: DomSanitizer,
+//        private sanitizer: DomSanitizer,
         private ref: ChangeDetectorRef
     ) {
 
@@ -278,6 +279,8 @@ export class Layout implements OnInit, OnDestroy {
 
             return false;
         }
+
+        document.getElementById('cory-mat-pages-title').innerHTML = this.renderTwemoji(this.packageJson.description)
     }
 
     async navigate(path?: string) {
@@ -334,18 +337,11 @@ export class Layout implements OnInit, OnDestroy {
         this.debounceSearchText(searchText);
     }
 
-    getDescription(title: string) {
-        return !title ? title : this.sanitizer.bypassSecurityTrustHtml(twemoji.parse(title, {
-            folder: 'svg',
-            ext: '.svg',
-        }))
-    }
-
     renderTwemoji(text: string) {
-        return !text ? text : this.sanitizer.bypassSecurityTrustHtml(twemoji.parse(text, {
+        return !text ? text : twemoji.parse(text, {
             folder: 'svg',
             ext: '.svg',
-        }))
+        })
     }
 
     keyDownFunction(event: any) {
@@ -371,10 +367,6 @@ export class Layout implements OnInit, OnDestroy {
         return showTitle;
     }
 
-    get counter() {
-        return window.corifeus.core.http.counter;
-    }
-
     extractTitleWithStars(pkg: any) {
         const title = extractTitleWithStars(pkg);
         return title;
@@ -388,3 +380,4 @@ export class Layout implements OnInit, OnDestroy {
         this.subscriptions$.forEach(subs$ => subs$.unsubscribe())
     }
 }
+

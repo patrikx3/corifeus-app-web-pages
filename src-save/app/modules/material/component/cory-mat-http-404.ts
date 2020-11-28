@@ -10,7 +10,7 @@ import {LocaleService, LocaleSubject} from '../../web';
 @Component({
     selector: 'cory-mat-http-404',
     template: `
-<div style="margin-top: 20px; font-size: 6em; opacity: 0.25;">
+<div style="margin-top: 20px; font-size: 6em; opacity: 0.25;" data-status-code="404">
     404
 </div>
     <div style="font-size: 3em; opacity: 0.75;">

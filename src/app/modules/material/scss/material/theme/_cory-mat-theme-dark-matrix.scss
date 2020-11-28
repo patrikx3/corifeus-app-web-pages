@@ -287,6 +287,11 @@
     background-color: rgba(0, 0, 0, 0.5);
     background: radial-gradient(circle, rgba(black, 0.9), rgba(black, 0.8));
 
+    /*
+        background-image: url("/assets/wallpaper-matrix.jpg");
+        background-repeat: repeat;
+     */
+
     //  @include cory-mat-theme('dark', $primary, $accent);
 
     .mat-tooltip {
@@ -294,5 +299,29 @@
         /* e.g. */
         background-color: rgba(map_get($mat-green, 900), 0.5);
     }
+
+
+    /*
+    .mat-button:focus {
+        outline: -webkit-focus-ring-color auto 1px;
+    }
+     */
+
+    .mat-button:focus {
+        background-color: rgba(map_get($mat-green, 900), 0.25);
+    }
+
 }
 
+
+#cory-pages-layout-theme-matrix {
+//    $toolbar-height: 62px;
+    position: absolute;
+//    top: $toolbar-height;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}

@@ -1,5 +1,7 @@
 <cory-mat-loading [cory-visible]="packages === undefined"></cory-mat-loading>
 
+<cory-layout-header></cory-layout-header>
+
 <mat-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
     <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav" style="min-width: 300px; ">
         <button disabled mat-menu-item>
@@ -92,8 +94,7 @@
 
                 <span *ngIf="showTitle">
                     <br/>
-                    <span id="cory-mat-pages-title" class="cory-layout-title"
-                          [innerHTML]="renderTwemoji(packageJson.description)"></span>
+                    <span id="cory-mat-pages-title" class="cory-layout-title"></span>
                     <br/>
 
                     <div *ngIf="packageJson.corifeus.angular">
@@ -107,6 +108,7 @@
                         <br/>
                         <a routerLink="/{{ packageJson.corifeus.reponame }}/open-collective"
                            style="font-weight: bold; font-size: 125%;"
+                           //FIXME: never use
                            [innerHTML]="renderTwemoji(i18n.title.opencollective.label)">
 
                         </a>
@@ -122,7 +124,6 @@
     </div>
 </mat-sidenav-container>
 
-<cory-layout-header></cory-layout-header>
 <cory-layout-footer></cory-layout-footer>
 
 

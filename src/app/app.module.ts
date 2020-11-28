@@ -21,6 +21,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { Application } from "./app.component";
 import {BrowserModule} from "@angular/platform-browser";
 import { PreloadAllModules } from '@angular/router';
+
+import twemoji from 'twemoji'
 /***
  * NEVER USE A EXPORT * AS, NEED THE EXACT COMPONENT FOR INJECTABLE FUNCTION!!!!
  */
@@ -31,7 +33,6 @@ import { PreloadAllModules } from '@angular/router';
         CorifeusMaterialModule,
         RouterModule.forRoot(appRoutes, {
             preloadingStrategy: PreloadAllModules,
-            relativeLinkResolution: 'legacy'
         }),
     ],
     entryComponents: [],
@@ -63,7 +64,6 @@ export class AppModule {
         private loc: LocaleService,
         private settings: SettingsService,
     ) {
-        const twemoji = require('twemoji').default;
         twemoji.folder = 'svg';
         twemoji.ext = '.svg';
 

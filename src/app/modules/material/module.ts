@@ -21,7 +21,7 @@ import {ThemeService} from './services/theme'
 import {NotifyService} from './services/notify/notify'
 import {NotifyComponent} from './services/notify/notify-component'
 
-import {Http404} from './component/cory-mat-http-404'
+//import {Http404} from './component/cory-mat-http-404'
 import {Loading} from './component/cory-mat-loading'
 
 
@@ -150,7 +150,7 @@ import { GlobalService} from "../../service/global.service";
         ThemeButton,
 //        TranslationMenu,
 //        TranslationButton,
-        Http404,
+//        Http404,
     ],
 
     // do not need export providers
@@ -213,7 +213,7 @@ import { GlobalService} from "../../service/global.service";
         ThemeButton,
 //        TranslationMenu,
 //        TranslationButton,
-        Http404,
+//        Http404,
     ],
     entryComponents: [
         NotifyComponent,
