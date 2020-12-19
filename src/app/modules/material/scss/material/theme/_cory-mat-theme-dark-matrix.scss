@@ -169,7 +169,7 @@
         status-bar: black,
         app-bar: rgba(black, 0.90), //map_get($mat-grey, 900),
         background: rgba(black, 0.80), //#303030,
-        hover: rgba(map_get($mat-matrix, A700), 0.4), //rgba(white, 0.04),
+        hover: rgba(map_get($mat-matrix, 500), 0.1), //rgba(white, 0.04),
         card: rgba(black, 0.80), //map_get($mat-grey, 800),
         dialog: rgba(black, 0.80), //map_get($mat-grey, 800),
         disabled-button: rgba(map_get($mat-matrix, A700), 0.12), // $white-12-opacity,
@@ -210,6 +210,8 @@
         foreground: $foreground,
         background: $background,
     );
+
+    $theme_reverse2: mat-light-theme($accent, $primary, $warn);
 
     // @mixin angular-material-theme($theme) {
 
@@ -279,7 +281,7 @@
 
     @include cory-mat-theme-toolbar('dark', $theme);
 
-    @include cory-mat-theme-button('dark', $theme_reverse);
+    @include cory-mat-theme-button('dark', $theme_reverse2);
     @include cory-mat-theme-link(map_get($mat-matrixaccent, 500), map_get($mat-matrixaccent, A400));
 
     @include cory-mat-autofill();
@@ -307,10 +309,17 @@
     }
      */
 
+
+    /*
     .mat-button:focus {
         background-color: rgba(map_get($mat-green, 900), 0.25);
     }
+     */
 
+
+    .cory-mat-menu-item-active, .cory-mat-menu-item-active:hover {
+        background-color: rgba(map_get($mat-matrix, 700), 0.25) !important;
+    }
 }
 
 
