@@ -201,9 +201,9 @@ markdownRenderer.link = (href, title, text) => {
      */
 
     if (href.endsWith('#cory-non-external')) {
-      a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a>`;
+      a = `<span class="cory-layout-link-external"><a color="accent" class="cory-md-link" target="_blank" ${tooltip} href="${href}">${text}</a>`;
     } else {
-      a = `<span class="cory-layout-link-external"><a color="accent" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fas fa-external-link-alt"></i></span>`;
+      a = `<span class="cory-layout-link-external"><a color="accent" class="cory-md-link" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fas fa-external-link-alt"></i></span>`;
     }
 
   } else {
@@ -229,7 +229,7 @@ markdownRenderer.link = (href, title, text) => {
     // this.context.parent.navigate
 
     const navClick = !IsBot() ? `onclick="window.coryAppWebPagesNavigate('${path}'); return false;"` : '';
-    a = `<a href="${path}" ${navClick} ${tooltip}>${text}</a>`;
+    a = `<a class="cory-md-link" href="${path}" ${navClick} ${tooltip}>${text}</a>`;
 //                console.log(path);
 //                console.log(a);
   }
