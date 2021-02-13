@@ -2,7 +2,7 @@
 
   
 
-[![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://paypal.me/patrikx3) [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Corifeus @ Facebook](https://img.shields.io/badge/Facebook-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software)  [![Build Status](https://api.travis-ci.com/patrikx3/corifeus-app-web-pages.svg?branch=master)](https://travis-ci.com/patrikx3/corifeus-app-web-pages)
+[![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://paypal.me/patrikx3) [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Corifeus @ Facebook](https://img.shields.io/badge/Facebook-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software)  [![Build Status](https://github.com/patrikx3/corifeus-app-web-pages/workflows/nodejs/badge.svg)](https://github.com/patrikx3/corifeus-app-web-pages/actions?query=workflow%3Anodejs)
 [![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m780749701-41bcade28c1ea8154eda7cca.svg)](https://uptimerobot.patrikx3.com/)
 
 
@@ -23,7 +23,7 @@
 
 ### Built on NodeJs
 ```txt
-v14.15.4
+v14.15.5
 ```
 
 The ```async``` and ```await``` keywords are required. Only the latest LTS variant is supported.
@@ -35,7 +35,7 @@ https://nodejs.org/en/download/package-manager/
 # Built on Angular
 
 ```text
-11.1.1
+11.2.0
 ```
 
 
