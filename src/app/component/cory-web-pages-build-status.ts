@@ -26,7 +26,10 @@ import {LocaleService, LocaleSubject} from "../modules/web";
     </span>
     <span  *ngIf="pkg.corifeus.build !== false" >
 
+        <a target="cory-pages-status-github-action" href="https://github.com/patrikx3/onenote/actions?query=workflow%3Anodejs"><img src="https://github.com/patrikx3/{{ pkg.corifeus.reponame }}/workflows/nodejs/badge.svg" matTooltip="Github action status" [matTooltipPosition]="tooltipPosition"></a>
+        <!--
         <a target="cory-pages-status-travis" href="https://travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://api.travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
+        -->
 
         &nbsp;
 
