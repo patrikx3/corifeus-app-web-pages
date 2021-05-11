@@ -166,29 +166,34 @@ export class Layout implements OnInit, OnDestroy {
         this.searchText = searchText.trim();
     }
 
+    reposSearchInstance : Array<any> = undefined
+
     get reposSearch(): Array<any> {
         if (this.searchText === '' || this.searchText === undefined) {
             return this.repos;
         }
-        const regexes: Array<RegExp> = [];
-        this.searchText.split(/[\s,]+/).forEach(search => {
-            if (search === '') {
-                return;
-            }
-            regexes.push(
-                new RegExp('.*' + search + '.*', 'i')
-            )
-        })
-        return Object.values(this.packages).filter( (pkg: any) => {
-            let found = false;
-            for (let regex of regexes) {
-                if (regex.test(pkg.name) || regex.test(pkg.corifeus.reponame) || regex.test(pkg.corifeus.code)) {
-                    found = true;
-                    break;
+        if (this.reposSearchInstance === undefined) {
+            const regexes: Array<RegExp> = [];
+            this.searchText.split(/[\s,]+/).forEach(search => {
+                if (search === '') {
+                    return;
                 }
-            }
-            return found;
-        }).map((pkg : any) => pkg.corifeus.reponame)
+                regexes.push(
+                    new RegExp('.*' + search + '.*', 'i')
+                )
+            })
+            this.reposSearchInstance = Object.values(this.packages).filter( (pkg: any) => {
+                let found = false;
+                for (let regex of regexes) {
+                    if (regex.test(pkg.name) || regex.test(pkg.corifeus.reponame) || regex.test(pkg.corifeus.code)) {
+                        found = true;
+                        break;
+                    }
+                }
+                return found;
+            }).map((pkg : any) => pkg.corifeus.reponame)
+        }
+        return this.reposSearchInstance
     }
 
     async load() {
@@ -334,6 +339,7 @@ export class Layout implements OnInit, OnDestroy {
     }
 
     search(searchText: string) {
+        this.reposSearchInstance = undefined
         this.debounceSearchText(searchText);
     }
 

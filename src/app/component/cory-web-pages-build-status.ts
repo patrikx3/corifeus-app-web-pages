@@ -34,7 +34,7 @@ import {LocaleService, LocaleSubject} from "../modules/web";
 
         &nbsp;
 
-        <a target="cory-pages-status-uptimerobot" href="https://uptimerobot.patrikx3.com/"><img src="https://img.shields.io/uptimerobot/ratio/m780749701-41bcade28c1ea8154eda7cca.svg" alt="{{ i18n.pages.title.uptime }}" [matTooltip]="i18n.pages.title.uptime" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="cory-pages-status-uptimerobot" href="https://stats.uptimerobot.com/9ggnzcWrw"><img src="https://img.shields.io/uptimerobot/ratio/m780749701-41bcade28c1ea8154eda7cca.svg" alt="{{ i18n.pages.title.uptime }}" [matTooltip]="i18n.pages.title.uptime" [matTooltipPosition]="tooltipPosition"></a>
 
 <!--
         &nbsp;

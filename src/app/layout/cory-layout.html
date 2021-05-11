@@ -3,7 +3,7 @@
 <cory-layout-header></cory-layout-header>
 
 <mat-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
-    <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav" style="min-width: 300px; ">
+    <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav" style="width: 360px; max-width: 100%; ">
         <button disabled mat-menu-item>
             {{ i18n.title.packages }}
         </button>
