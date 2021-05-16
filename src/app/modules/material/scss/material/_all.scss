@@ -1,6 +1,8 @@
+@use '~@angular/material' as mat;
 $mat-theme-ignore-duplication-warnings: true;
 
 /*
+@use '~@angular/material' as mat;
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -13,8 +15,7 @@ body {
 }
 
 @import '~@fortawesome/fontawesome-free/css/all.css';
-@import '~@angular/material/theming';
-@include mat-core();
+@include mat.core();
 
 @import 'variables';
 @import 'mixins';

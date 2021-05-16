@@ -70,13 +70,6 @@ export class Footer implements OnDestroy {
     ) {
         this.settings = settingsAll.data.pages;
 
-        const npmSvg = require('../../../artifacts/npm-logo.svg')
-        const jetbrainsSvg  = require('../../../artifacts/jetbrains-logo.svg')
-
-
-        this.npmSvg = this.domSanitizer.bypassSecurityTrustUrl(npmSvg.default)
-        this.jetbrainsSvg = this.domSanitizer.bypassSecurityTrustUrl(jetbrainsSvg.default)
-
         this.subscriptions$.push(
             this.locale.subscribe((data: LocaleSubject) => {
                 this.i18n = data.locale.data;

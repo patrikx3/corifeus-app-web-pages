@@ -1,5 +1,4 @@
-@import '~@angular/material/theming';
-
+@use '~@angular/material' as mat;
 @import "../mixins";
 
 .cory-mat-theme-dark-matrix {
@@ -138,19 +137,19 @@
         )
     );
 
-    $mat-matrixaccent: $mat-lime;
+    $mat-matrixaccent: mat.$lime-palette;
 
-    $primary: mat-palette($mat-matrix);
-    $accent: mat-palette($mat-matrikxlow);
-    $warn: mat-palette($mat-matrixaccent);
+    $primary: mat.define-palette($mat-matrix);
+    $accent: mat.define-palette($mat-matrikxlow);
+    $warn: mat.define-palette($mat-matrixaccent);
 
     $white: map_get($mat-matrix, 500);
     $white2: map_get($mat-matrixaccent, 500);
 
     $foreground: (
         base: $white, //white,
-        divider: rgba($white, 0.12), //$white-12-opacity,
-        dividers: rgba($white, 0.12), //$white-12-opacity,
+        divider: rgba($white, 0.12), //rgba(white, 0.12),
+        dividers: rgba($white, 0.12), //rgba(white, 0.12),
         disabled: rgba($white, 0.8), // rgba(white, 0.3),
         disabled-button: rgba($white, 0.3), // rgba(white, 0.3),
         disabled-text: rgba($white, 0.3), // rgba(white, 0.3),
@@ -167,21 +166,21 @@
 
     $background: (
         status-bar: black,
-        app-bar: rgba(black, 0.90), //map_get($mat-grey, 900),
+        app-bar: rgba(black, 0.90), //map_get(mat.$grey-palette, 900),
         background: rgba(black, 0.80), //#303030,
         hover: rgba(map_get($mat-matrix, 500), 0.1), //rgba(white, 0.04),
-        card: rgba(black, 0.80), //map_get($mat-grey, 800),
-        dialog: rgba(black, 0.80), //map_get($mat-grey, 800),
-        disabled-button: rgba(map_get($mat-matrix, A700), 0.12), // $white-12-opacity,
-        raised-button: rgba(black, 0.80), //map-get($mat-grey, 800),
-        focused-button: rgba(map_get($mat-matrix, A700), 0.06), //$white-6-opacity,
-        selected-button: rgba(black, 0.90), //map_get($mat-grey, 900),
-        selected-disabled-button: rgba(black, 0.80), //map_get($mat-grey, 800),
-        disabled-button-toggle: rgba(black, 1.00), //map_get($mat-grey, 1000),
-        //          unselected-chip: map_get($mat-grey, 700),
+        card: rgba(black, 0.80), //map_get(mat.$grey-palette, 800),
+        dialog: rgba(black, 0.80), //map_get(mat.$grey-palette, 800),
+        disabled-button: rgba(map_get($mat-matrix, A700), 0.12), // rgba(white, 0.12),
+        raised-button: rgba(black, 0.80), //map-get(mat.$grey-palette, 800),
+        focused-button: rgba(map_get($mat-matrix, A700), 0.06), //rgba(white, 0.06),
+        selected-button: rgba(black, 0.90), //map_get(mat.$grey-palette, 900),
+        selected-disabled-button: rgba(black, 0.80), //map_get(mat.$grey-palette, 800),
+        disabled-button-toggle: rgba(black, 1.00), //map_get(mat.$grey-palette, 1000),
+        //          unselected-chip: map_get(mat.$grey-palette, 700),
         //          disabled-list-option: black,
-        unselected-chip: rgba(black, 0.90), // map_get($mat-grey, 300),
-        disabled-list-option: rgba(black, 0.80), // map_get($mat-grey, 200),
+        unselected-chip: rgba(black, 0.90), // map_get(mat.$grey-palette, 300),
+        disabled-list-option: rgba(black, 0.80), // map_get(mat.$grey-palette, 200),
     );
 
     $theme_highlight: (
@@ -211,39 +210,39 @@
         background: $background,
     );
 
-    $theme_reverse2: mat-light-theme($accent, $primary, $warn);
+    $theme_reverse2: mat.define-light-theme($accent, $primary, $warn);
 
     // @mixin angular-material-theme($theme) {
 
 
     // this is new again
-    //  @include mat-ripple-theme($theme_reverse);
-    //  @include mat-option-theme($theme_reverse);
-    //  @include mat-optgroup-theme($theme_reverse);
-    //  @include mat-pseudo-checkbox-theme($theme_reverse);
+    //  @include mat.ripple-theme($theme_reverse);
+    //  @include mat.option-theme($theme_reverse);
+    //  @include mat.optgroup-theme($theme_reverse);
+    //  @include mat.pseudo-checkbox-theme($theme_reverse);
 
 
-//    @include mat-autocomplete-theme($theme_reverse);
+//    @include mat.autocomplete-theme($theme_reverse);
 
     // card
-    @include mat-card-theme($theme_reverse);
+    @include mat.card-theme($theme_reverse);
 
-//    @include mat-checkbox-theme($theme_reverse);
+//    @include mat.checkbox-theme($theme_reverse);
 
-//    @include mat-chips-theme($theme_reverse);
-//    @include mat-dialog-theme($theme_reverse);
-//    @include mat-grid-list-theme($theme_reverse);
-    @include mat-icon-theme($theme_reverse);
-//    @include mat-list-theme($theme_reverse);
-    @include mat-menu-theme($theme_reverse);
-//    @include mat-radio-theme($theme_reverse);
-//    @include mat-select-theme($theme_reverse);
+//    @include mat.chips-theme($theme_reverse);
+//    @include mat.dialog-theme($theme_reverse);
+//    @include mat.grid-list-theme($theme_reverse);
+    @include mat.icon-theme($theme_reverse);
+//    @include mat.list-theme($theme_reverse);
+    @include mat.menu-theme($theme_reverse);
+//    @include mat.radio-theme($theme_reverse);
+//    @include mat.select-theme($theme_reverse);
 
     $background_sidenav: map-merge($background, (
         card: white
     ));
 
-    @include mat-sidenav-theme((
+    @include mat.sidenav-theme((
         primary: $accent,
         accent: $primary,
         warn: $warn,
@@ -252,32 +251,32 @@
         background: $background_sidenav,
     ));
 
-//    @include mat-slider-theme($theme_reverse);
+//    @include mat.slider-theme($theme_reverse);
 
-//    @include mat-tabs-theme($theme_reverse);
-    @include mat-tooltip-theme($theme_reverse);
+//    @include mat.tabs-theme($theme_reverse);
+    @include mat.tooltip-theme($theme_reverse);
 
     //    background: linear-gradient(darken($color, 10%), $color);
-//    @include mat-button-toggle-theme($theme_reverse);
-//    @include mat-input-theme($theme_reverse);
+//    @include mat.button-toggle-theme($theme_reverse);
+//    @include mat.input-theme($theme_reverse);
 
-  //  @include mat-slide-toggle-theme($theme_reverse);
-
-
-    @include mat-progress-bar-theme($theme_highlight);
-//    @include mat-progress-spinner-theme($theme_highlight);
-    @include mat-toolbar-theme($theme_reverse);
-    //@include mat-button-theme($theme_reverse);
-
-//    @include mat-expansion-panel-theme($theme);
-    @include mat-form-field-theme($theme);
-//    @include mat-paginator-theme($theme);
-//    @include mat-stepper-theme($theme);
-    @include mat-snack-bar-theme($theme_highlight);
-//    @include mat-datepicker-theme($theme_reverse);
+  //  @include mat.slide-toggle-theme($theme_reverse);
 
 
-    @include cory-mat-theme-container(mat-color($primary));
+    @include mat.progress-bar-theme($theme_highlight);
+//    @include mat.progress-spinner-theme($theme_highlight);
+    @include mat.toolbar-theme($theme_reverse);
+    //@include mat.button-theme($theme_reverse);
+
+//    @include mat.expansion-theme($theme);
+    @include mat.form-field-theme($theme);
+//    @include mat.paginator-theme($theme);
+//    @include mat.stepper-theme($theme);
+    @include mat.snack-bar-theme($theme_highlight);
+//    @include mat.datepicker-theme($theme_reverse);
+
+
+    @include cory-mat-theme-container(mat.get-color-from-palette($primary));
 
     @include cory-mat-theme-toolbar('dark', $theme);
 
@@ -299,7 +298,7 @@
     .mat-tooltip {
         /* your own custom styles here */
         /* e.g. */
-        background-color: rgba(map_get($mat-green, 900), 0.5);
+        background-color: rgba(map_get(mat.$green-palette, 900), 0.5);
     }
 
 
@@ -312,7 +311,7 @@
 
     /*
     .mat-button:focus {
-        background-color: rgba(map_get($mat-green, 900), 0.25);
+        background-color: rgba(map_get(mat.$green-palette, 900), 0.25);
     }
      */
 

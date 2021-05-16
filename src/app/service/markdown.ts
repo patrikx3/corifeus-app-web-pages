@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Layout} from '../layout/cory-layout';
 
-const worker = new Worker('../../worker/markdown.worker', { type: 'module' });
+const worker = new Worker(new URL('../../worker/markdown.worker', import.meta.url), { type: 'module' });
 
 const nextId  = require('../utils/next-id.js')
 
@@ -39,7 +39,7 @@ export class MarkdownService {
                         if (this.layout.packages === undefined) {
                             setTimeout(wait, 100)
                         } else {
-                            resolve()
+                            resolve(undefined)
                         }
                     }
                     wait()

@@ -1,5 +1,4 @@
-@import '~@angular/material/theming';
-
+@use '~@angular/material' as mat;
 @import "../mixins";
 
 /*
@@ -51,8 +50,8 @@ Color	Hex	RGB
         )
     );
 
-    $primary: mat-palette($mat-facebook);
-    $accent: mat-palette($mat-facebook, A100, 400, A200);
+    $primary: mat.define-palette($mat-facebook);
+    $accent: mat.define-palette($mat-facebook, A100, 400, A200);
     @include cory-mat-theme('light', $primary, $accent);
 }
 

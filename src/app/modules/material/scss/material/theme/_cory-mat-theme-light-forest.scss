@@ -1,10 +1,9 @@
-@import '~@angular/material/theming';
-
+@use '~@angular/material' as mat;
 @import "../mixins";
 
 .cory-mat-theme-light-forest {
-    $primary: mat-palette($mat-green, 600);
-    $accent: mat-palette($mat-brown, 700, 500, 900);
+    $primary: mat.define-palette(mat.$green-palette, 600);
+    $accent: mat.define-palette(mat.$brown-palette, 700, 500, 900);
     @include cory-mat-theme('light', $primary, $accent);
 
 }
