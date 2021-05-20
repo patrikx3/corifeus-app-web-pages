@@ -257,13 +257,17 @@ We are not loading everything, since it is about 500kb`)
   }
 //  language = language === 'text' || language === 'txt' || language === undefined ? 'html' : language;
   const validLang = !!(language && hljs.getLanguage(language));
-  const highlighted = validLang ? hljs.highlight(language, code).value : code;
+  const highlighted = validLang ? hljs.highlight(code, {
+      language
+  }).value : code;
   return `<pre><code style="font-family: 'Roboto Mono';" class="hljs ${language}">${highlighted}</code></pre>`;
 };
 
 markdownRenderer.codespan = (code) => {
   const lang = 'html';
-  const highlighted = hljs.highlight(lang, code).value;
+  const highlighted = hljs.highlight(code, {
+      language: lang,
+  }).value;
   return `<code style="display: inline; line-height: 34px;" class="hljs ${lang}">${highlighted}</code>`;
 }
 
