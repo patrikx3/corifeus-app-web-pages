@@ -9,6 +9,18 @@ module.exports = (grunt) => {
             npmio: false,
         },
         config: {
+            htmlmin: {
+                dist: {
+                    options: {                                 // Target options
+                        removeComments: true,
+                        collapseWhitespace: true,
+                        minifyCSS: true,
+                    },
+                    files: {
+                        './dist/corifeus-app-web-pages/index.html': './dist/corifeus-app-web-pages/index.html'
+                    }
+                }
+            },
             copy: {
                 tweomji: {
                     files: [
@@ -75,6 +87,7 @@ module.exports = (grunt) => {
         'cory-raw-npm-angular',
         'build',
         'copy',
+        'htmlmin:dist',
     ];
 
     const defaultTask = builder.config.task.build.js.concat(defaults)
