@@ -53,31 +53,31 @@ const IsBot = require('../app/modules/web/util/is-bot.js')
 const hljs = require('highlight.js/lib/core');
 
 // this is for HTML as well
-hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx.js'));
+hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx'));
 
-hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml.js'));
+hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
 
-hljs.registerLanguage('css', require('highlight.js/lib/languages/css.js'));
+hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
 
-hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss.js'));
+hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
 
-hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml.js'));
-hljs.registerLanguage('yml', require('highlight.js/lib/languages/yaml.js'));
+hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+hljs.registerLanguage('yml', require('highlight.js/lib/languages/yaml'));
 
-hljs.registerLanguage('powershell', require('highlight.js/lib/languages/powershell.js'));
+hljs.registerLanguage('powershell', require('highlight.js/lib/languages/powershell'));
 
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript.js'));
-hljs.registerLanguage('js', require('highlight.js/lib/languages/javascript.js'));
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('js', require('highlight.js/lib/languages/javascript'));
 
-hljs.registerLanguage('json', require('highlight.js/lib/languages/json.js'));
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 
-hljs.registerLanguage('bash', require('highlight.js/lib/languages/shell.js'));
-hljs.registerLanguage('sh', require('highlight.js/lib/languages/shell.js'));
+hljs.registerLanguage('bash', require('highlight.js/lib/languages/shell'));
+hljs.registerLanguage('sh', require('highlight.js/lib/languages/shell'));
 
-hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript.js'));
-hljs.registerLanguage('ts', require('highlight.js/lib/languages/typescript.js'));
+hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript'));
+hljs.registerLanguage('ts', require('highlight.js/lib/languages/typescript'));
 
-hljs.registerLanguage('ini', require('highlight.js/lib/languages/ini.js'));
+hljs.registerLanguage('ini', require('highlight.js/lib/languages/ini'));
 
 
 /*

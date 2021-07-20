@@ -27,9 +27,18 @@ img.emoji {
     font-weight: bold;
 }
 
+pre > code {
+    display: block;
+    overflow-x: auto;
+}
 
 .cory-mat-theme-light {
     @import 'CSS:../../node_modules/highlight.js/styles/github';
+
+    pre > code {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+    }
+
 
     .cory-layout-title {
         text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
@@ -38,7 +47,7 @@ img.emoji {
 }
 
 .cory-mat-theme-dark {
-    @import 'CSS:../../node_modules/highlight.js/styles/vs2015';
+    @import 'CSS:../../node_modules/highlight.js/styles/github-dark';
 
     .cory-layout-title {
         text-shadow: 2px 2px rgba(255, 255, 255, 0.5);
