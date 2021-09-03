@@ -72,7 +72,7 @@
                 <div style="float: right; font-weight: bold; font-size: 125%;" *ngIf="showTitle">
                     <span >v{{ packageJson.version }}</span>
                     <div *ngIf="packageJson.corifeus.stargazers_count > 0" style="text-align: right;">
-                        <i class="fas fa-star"></i>&nbsp;<span [matTooltip]="i18n.title.githubStars"
+                        <i class="fas fa-star"></i>&nbsp;<span [matTooltip]="(packageJson.corifeus.stargazers_count > 999 ? packageJson.corifeus.stargazers_count + ' ' : '') + i18n.title.githubStars"
                                                                matTooltipPosition="below">{{
                         extractStars(packageJson.corifeus.stargazers_count) }}
                     </span>
