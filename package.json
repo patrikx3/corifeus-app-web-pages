@@ -1,6 +1,6 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2021.10.106",
+    "version": "2021.10.109",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
@@ -9,7 +9,7 @@
         "opencollective": false,
         "reponame": "corifeus-app-web-pages",
         "build": true,
-        "angular": "12.2.4"
+        "angular": "12.2.5"
     },
     "description": "🕸️ Corifeus App Web Pages",
     "scripts": {
@@ -67,7 +67,7 @@
         "@angular-eslint/builder": "^12.4.1",
         "@angular-eslint/eslint-plugin": "^12.4.1",
         "@angular-eslint/eslint-plugin-template": "^12.4.1",
-        "@angular-eslint/schematics": "12.4.1",
+        "@angular-eslint/schematics": "^12.4.1",
         "@angular-eslint/template-parser": "^12.4.1",
         "@angular/cli": "~12.2.5",
         "@angular/compiler-cli": "~12.2.5",
@@ -81,7 +81,7 @@
         "@typescript-eslint/eslint-plugin": "4.31.0",
         "@typescript-eslint/parser": "4.31.0",
         "codelyzer": "^6.0.2",
-        "corifeus-builder": "^2021.10.119",
+        "corifeus-builder": "^2021.10.122",
         "eslint": "^7.32.0",
         "eslint-plugin-import": "2.24.2",
         "eslint-plugin-jsdoc": "36.1.0",
