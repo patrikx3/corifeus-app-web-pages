@@ -1,6 +1,6 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2021.10.112",
+    "version": "2021.10.114",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
@@ -81,7 +81,7 @@
         "@typescript-eslint/eslint-plugin": "4.31.1",
         "@typescript-eslint/parser": "4.31.1",
         "codelyzer": "^6.0.2",
-        "corifeus-builder": "^2021.10.126",
+        "corifeus-builder": "^2021.10.131",
         "eslint": "^7.32.0",
         "eslint-plugin-import": "2.24.2",
         "eslint-plugin-jsdoc": "36.1.0",
