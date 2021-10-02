@@ -28,7 +28,7 @@ import {
 
 import {HttpClient} from '@angular/common/http';
 
-const emojiRegex = require('emoji-regex/es2015/index.js');
+const emojiRegex = require('emoji-regex');
 
 import {LocaleService, LocaleSubject, SettingsService} from '../modules/web';
 import {NotifyService} from '../modules/material';
