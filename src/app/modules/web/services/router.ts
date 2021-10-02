@@ -14,7 +14,8 @@ const IsBot = require("../util/is-bot.js");
 let debounceGoogleAnalyticsTimeout: any;
 
 import {SettingsService} from './settings';
-import { Subscription } from 'rxjs'
+import {Subscription} from 'rxjs'
+
 @Injectable()
 export class RouterService implements OnDestroy {
     subscriptions$: Array<Subscription> = []
@@ -24,32 +25,30 @@ export class RouterService implements OnDestroy {
     constructor(private router: AngularRouter,
                 private settings: SettingsService
     ) {
-        if (navigator.userAgent !== 'corifeus-server-renderer') {
+        if (!navigator.userAgent.toLowerCase().includes('corifeus') && !IsBot()) {
             const startGa = () => {
-                if (!IsBot()) {
 
-                    window['gtag']('config', settings.data.core.integration.google.analytics,
-                        {
-                            'page_path': location.pathname
+                window['gtag']('config', settings.data.core.integration.google.analytics,
+                    {
+                        'page_path': location.pathname
+                    }
+                );
+
+                this.subscriptions$.push(
+                    this.router.events.subscribe((event: any) => {
+                        if (event instanceof NavigationEnd) {
+                            clearTimeout(debounceGoogleAnalyticsTimeout);
+                            debounceGoogleAnalyticsTimeout = setTimeout(() => {
+                                //console.log(event.urlAfterRedirects)
+                                window['gtag']('config', settings.data.core.integration.google.analytics,
+                                    {
+                                        'page_path': event.urlAfterRedirects
+                                    }
+                                );
+                            }, 333)
                         }
-                    );
-
-                    this.subscriptions$.push(
-                        this.router.events.subscribe((event: any) => {
-                            if (event instanceof NavigationEnd) {
-                                clearTimeout(debounceGoogleAnalyticsTimeout);
-                                debounceGoogleAnalyticsTimeout = setTimeout(() => {
-                                    //console.log(event.urlAfterRedirects)
-                                    window['gtag']('config', settings.data.core.integration.google.analytics,
-                                        {
-                                            'page_path': event.urlAfterRedirects
-                                        }
-                                    );
-                                }, 333)
-                            }
-                        })
-                    )
-                }
+                    })
+                )
             }
 
             setTimeout(() => {
@@ -66,7 +65,6 @@ export class RouterService implements OnDestroy {
                     }, 333)
                 }
             })
-
         }
     };
 
@@ -102,13 +100,4 @@ export class RouterService implements OnDestroy {
         this.subscriptions$.forEach(subs$ => subs$.unsubscribe())
     }
 
-    public collectAnalytics(pagePath: string) {
-        if (this.analytics) {
-            window['gtag']('config', this.settings.data.core.integration.google.analytics,
-                {
-                    'page_path': pagePath
-                }
-            );
-        }
-    }
 }

@@ -9,6 +9,7 @@ const log = defulatLog.factory('settings');
 let totalSettings: any = {};
 let extendSettings: any = {};
 
+const IsBot = require("../util/is-bot.js");
 
 @Injectable()
 export class SettingsService {
@@ -98,7 +99,7 @@ export class SettingsService {
                 }
 
                 // google analytics
-                if (coreSettings.integration.google.hasOwnProperty('analytics')) {
+                if (coreSettings.integration.google.hasOwnProperty('analytics') && !navigator.userAgent.toLowerCase().includes('corifeus') && !IsBot()) {
                     log('afterInit - integration - google - analytics');
 
                     const script = document.createElement("script");
@@ -114,7 +115,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
-gtag('config', '${coreSettings.integration.google.analytics}');
+//gtag('config', '${coreSettings.integration.google.analytics}');
 `
                     head.appendChild(scriptInline);
 
