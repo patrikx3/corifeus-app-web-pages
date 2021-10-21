@@ -77,6 +77,8 @@ export class Layout implements OnInit, OnDestroy {
 
     extractTitle = extractTitle;
 
+    sideNavOpened = false
+
     @ViewChild('menuSidenav', {read: MatSidenav, static: true})
     public menuSidenav: MatSidenav;
 
@@ -136,6 +138,7 @@ export class Layout implements OnInit, OnDestroy {
             })
         )
 
+
         this.noScript = document.getElementById('cory-seo');
 
         this.subscriptions$.push(
@@ -160,6 +163,45 @@ export class Layout implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.debounceSearchText = debounce(this.handleSearch, this.settings.debounce.default)
+
+
+        this.menuSidenav.openedChange.subscribe(value => {
+            this.sideNavOpened = value
+            this.openedChange = value
+        })
+
+        this.menuSidenav.closedStart.subscribe(value => {
+            this.sideNavOpened = false
+        })
+    }
+
+
+    openedChange = false
+    packageMenuOpen() {
+//        this.body.style.overflowY = 'hidden';
+//        console.log('this.menuSidenav.opened', this.menuSidenav.opened, 'this.openedChange', this.openedChange)
+        if (this.menuSidenav.opened || this.openedChange) {
+            return
+        }
+        this.menuSidenav.open();
+        setTimeout(() => {
+            if (this.isMobile) {
+                this.searchTextInputRefRead.nativeElement.blur()
+            }
+
+//            /**
+            const e = document.querySelector('.cory-mat-menu-item-active')
+            if (e) {
+//                e.scrollIntoView(true);
+//                const viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+//                window.scrollBy(0, (e.getBoundingClientRect().height-viewportH)/2);
+                e.scrollIntoView({
+                    block: "center",
+                });
+            }
+//             **/
+
+        }, 500)
     }
 
     handleSearch(searchText: string) {
@@ -315,28 +357,6 @@ export class Layout implements OnInit, OnDestroy {
     }
 
 
-    packageMenuOpen() {
-//        this.body.style.overflowY = 'hidden';
-        this.menuSidenav.open();
-        setTimeout(() => {
-            if (this.isMobile) {
-                this.searchTextInputRefRead.nativeElement.blur()
-            }
-
-//            /**
-            const e = document.querySelector('.cory-mat-menu-item-active')
-            if (e) {
-//                e.scrollIntoView(true);
-//                const viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-//                window.scrollBy(0, (e.getBoundingClientRect().height-viewportH)/2);
-                e.scrollIntoView({
-                    block: "center",
-                });
-            }
-//             **/
-
-        }, 500)
-    }
 
     search(searchText: string) {
         this.reposSearchInstance = undefined
