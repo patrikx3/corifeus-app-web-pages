@@ -1,2 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./artifacts/style";
+
+.cory-markdown-code {
+    position: relative;
+    .cory-markdown-code-copy-paste {
+        visibility: hidden;
+        position: absolute;
+        top: 17px;
+        right: 10px;
+
+        .far {
+            cursor: pointer;
+        }
+    }
+
+}
+
+.cory-markdown-code:hover {
+    .cory-markdown-code-copy-paste {
+        visibility: visible;
+    }
+}

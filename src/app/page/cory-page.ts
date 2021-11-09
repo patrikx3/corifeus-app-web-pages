@@ -80,6 +80,13 @@ export class Page implements AfterViewChecked, OnDestroy {
 
         let usingActivatedUrl = true;
 
+        window['coryPageCopy'] = (code) => {
+            this.zone.run(() => {
+                navigator.clipboard.writeText(code);
+                this.notify.info('Copied!')
+            });
+        }
+
         this.subscriptions$.push(
             this.router.events.subscribe(event => {
                 if (event instanceof NavigationStart) {

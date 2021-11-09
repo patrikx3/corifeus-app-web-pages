@@ -1,4 +1,5 @@
 /// <reference lib="webworker" />
+const { marked } = require('marked')
 
 import kebabCase from 'lodash/kebabCase';
 
@@ -87,8 +88,6 @@ if (environment.production) {
   twemoji.base = '/assets/twemoji/';
 }
  */
-
-const marked = require('marked')
 
 const markdownRenderer = new marked.Renderer();
 
@@ -260,7 +259,7 @@ We are not loading everything, since it is about 500kb`)
     const highlighted = validLang ? hljs.highlight(code, {
         language
     }).value : code;
-    return `<pre><code style="font-family: 'Roboto Mono';" class="hljs ${language}">${highlighted}</code></pre>`;
+    return `<div class="cory-markdown-code"><div class="cory-markdown-code-copy-paste" onclick='window.coryPageCopy(${JSON.stringify(code)})'><i class="far fa-copy fa-lg"></i></div><pre><code style="font-family: 'Roboto Mono';" class="hljs ${language}">${highlighted}</code></pre></div>`;
 };
 
 markdownRenderer.codespan = (code) => {
