@@ -67,6 +67,25 @@
         <mat-card>
             <!-- Counter: {{ counter }} -->
             <mat-card-content style="position: relative;" *ngIf="packageJson !== undefined">
+
+
+                <!-- below is to add additional status -->
+                <!--
+                <div style="font-size: 150%; ">
+                    <div style="font-weight: bold; font-size: 200%; ">
+                        Warning on 2021 November 17
+                    </div>
+                    <div style="opacity: 0.75;">
+                        All patrikx3.com, corifeus.com and sub-domains are offline.
+                    </div>
+                    <div style="opacity: 0.5;">
+                        Will come back again on 2021 November 18.
+                    </div>
+                    <br/>
+                </div>                
+                -->
+                
+                
                 <cory-web-pages-build-status style="float: left;" [cory-pkg]="packageJson"
                                              *ngIf="showTitle"></cory-web-pages-build-status>
                 <div style="float: right; font-weight: bold; font-size: 125%;" *ngIf="showTitle">
@@ -79,8 +98,10 @@
                     </div>
 
                 </div>
-
+                
                 <div *ngIf="showTitle" style="clear: both"></div>
+
+
 
 
                 <!--

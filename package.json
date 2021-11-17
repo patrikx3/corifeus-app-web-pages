@@ -1,6 +1,6 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2021.10.155",
+    "version": "2021.10.157",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
@@ -9,7 +9,7 @@
         "opencollective": false,
         "reponame": "corifeus-app-web-pages",
         "build": true,
-        "angular": "13.0.0"
+        "angular": "13.0.1"
     },
     "description": "🕸️ Corifeus App Web Pages",
     "scripts": {
@@ -37,16 +37,16 @@
     },
     "homepage": "https://corifeus.com/corifeus-app-web-pages",
     "dependencies": {
-        "@angular/animations": "~13.0.0",
-        "@angular/cdk": "^13.0.0",
-        "@angular/common": "~13.0.0",
-        "@angular/compiler": "~13.0.0",
-        "@angular/core": "~13.0.0",
-        "@angular/forms": "~13.0.0",
-        "@angular/material": "^13.0.0",
-        "@angular/platform-browser": "~13.0.0",
-        "@angular/platform-browser-dynamic": "~13.0.0",
-        "@angular/router": "~13.0.0",
+        "@angular/animations": "~13.0.1",
+        "@angular/cdk": "^13.0.1",
+        "@angular/common": "~13.0.1",
+        "@angular/compiler": "~13.0.1",
+        "@angular/core": "~13.0.1",
+        "@angular/forms": "~13.0.1",
+        "@angular/material": "^13.0.1",
+        "@angular/platform-browser": "~13.0.1",
+        "@angular/platform-browser-dynamic": "~13.0.1",
+        "@angular/router": "~13.0.1",
         "@fortawesome/fontawesome-free": "^5.15.4",
         "@types/marked": "^4.0.0",
         "@types/node": "^16.11.7",
@@ -54,7 +54,7 @@
         "highlight.js": "^11.3.1",
         "js-cookie": "^3.0.1",
         "lodash": "^4.17.21",
-        "marked": "=4.0.0",
+        "marked": "=4.0.3",
         "material-design-icons": "^3.0.1",
         "mobile-detect": "^1.4.5",
         "rxjs": "~6.6.3",
@@ -63,20 +63,20 @@
         "zone.js": "~0.11.4"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~13.0.1",
-        "@angular/cli": "~13.0.1",
-        "@angular/compiler-cli": "~13.0.0",
+        "@angular-devkit/build-angular": "~13.0.2",
+        "@angular/cli": "~13.0.2",
+        "@angular/compiler-cli": "~13.0.1",
         "@fontsource/roboto": "^4.5.1",
         "@fontsource/roboto-mono": "^4.5.0",
         "@types/jasmine": "~3.10.2",
         "@types/jasminewd2": "~2.0.10",
-        "@types/js-cookie": "^3.0.0",
-        "@types/lodash": "^4.14.176",
+        "@types/js-cookie": "^3.0.1",
+        "@types/lodash": "^4.14.177",
         "@types/node": "^16.11.7",
-        "@typescript-eslint/eslint-plugin": "5.3.1",
-        "@typescript-eslint/parser": "5.3.1",
+        "@typescript-eslint/eslint-plugin": "5.4.0",
+        "@typescript-eslint/parser": "5.4.0",
         "codelyzer": "^6.0.2",
-        "corifeus-builder": "^2021.10.199",
+        "corifeus-builder": "^2021.10.202",
         "eslint": "^8.2.0",
         "eslint-plugin-import": "2.25.3",
         "eslint-plugin-jsdoc": "37.0.3",
@@ -92,7 +92,7 @@
         "ts-node": "~10.4.0",
         "typescript": "~4.4.4",
         "webpack-bundle-analyzer": "^4.5.0",
-        "webpack-sources": "^3.2.1"
+        "webpack-sources": "^3.2.2"
     },
     "engines": {
         "node": ">=12.13.0"
