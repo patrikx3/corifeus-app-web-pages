@@ -113,7 +113,7 @@
                 </div>
                 -->
 
-                <span *ngIf="showTitle">
+                <div [hidden]="!showTitle">
                     <br/>
                     <span id="cory-mat-pages-title" class="cory-layout-title"></span>
                     <br/>
@@ -136,7 +136,7 @@
                         <br/>
                     </div>
                     -->
-                </span>
+                </div>
 
                 <router-outlet>
                 </router-outlet>

@@ -68,7 +68,6 @@ module.exports = (grunt) => {
                     '--source-map=false',
                     '--output-hashing=all',
                     '--configuration=production',
-                    '--deploy-url=/',
                     '--base-href=/',
                     '--aot=true',
                     '--build-optimizer=true',
