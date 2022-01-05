@@ -390,7 +390,7 @@ export class Layout implements OnInit, OnDestroy {
 //        console.log(pieces)
         const showTitle = pieces.length === 2 || (pieces.length === 3 && pieces[2] === 'index.html')
 //        const showTitle = pathname.endsWith('index.html') || (!pathname.includes('.') && !pathname.includes('open-collective'));
-        console.log('showTitle', pathname, showTitle)
+        //console.log('showTitle', pathname, showTitle)
         return showTitle;
     }
 
