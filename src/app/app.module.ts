@@ -64,12 +64,7 @@ export class AppModule {
         private loc: LocaleService,
         private settings: SettingsService,
     ) {
-        twemoji.folder = 'svg';
-        twemoji.ext = '.svg';
 
-        if (environment.production) {
-            twemoji.base = '/assets/twemoji/';
-        }
 
         let settingsExtendJson = require('./json/settings.core.json');
         settings.extend('core', settingsExtendJson);

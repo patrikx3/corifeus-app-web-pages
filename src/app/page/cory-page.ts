@@ -36,6 +36,7 @@ import twemoji from 'twemoji'
 import {
     NotifyService
 } from '../modules/material';
+import {environment} from "../../environments/environment";
 
 const cache = {}
 
@@ -187,10 +188,23 @@ ${text}
 
         } finally {
 
-            document.getElementById('cory-page-content').innerHTML = twemoji.parse(this.content, {
-                folder: 'svg',
-                ext: '.svg',
-            })
+            let options
+
+            if (environment.production) {
+                options = {
+                    folder: 'svg',
+                    ext: '.svg',
+                    base: '/assets/twemoji/',
+                } 
+            } else {
+                options = {
+                    folder: 'svg',
+                    ext: '.svg',
+                }
+
+            }
+            
+            document.getElementById('cory-page-content').innerHTML = twemoji.parse(this.content, options)
 
         }
     }

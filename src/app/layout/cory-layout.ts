@@ -45,6 +45,7 @@ import {
  */
 
 import twemoji from 'twemoji'
+import {environment} from "../../environments/environment";
 
 //FIXME corifeus - matrix
 const regexFixCorifeusMatrix = /^(\/)?(corifeus)([^-])(\/)?(.*)/
@@ -364,10 +365,23 @@ export class Layout implements OnInit, OnDestroy {
     }
 
     renderTwemoji(text: string) {
-        return !text ? text : twemoji.parse(text, {
-            folder: 'svg',
-            ext: '.svg',
-        })
+        let options
+
+        if (environment.production) {
+            options = {
+                folder: 'svg',
+                ext: '.svg',
+                base: '/assets/twemoji/',
+            }
+        } else {
+            options = {
+                folder: 'svg',
+                ext: '.svg',
+            }
+
+        }
+
+        return !text ? text : twemoji.parse(text, options)
     }
 
     keyDownFunction(event: any) {
