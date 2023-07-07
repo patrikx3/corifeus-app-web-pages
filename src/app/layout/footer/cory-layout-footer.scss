@@ -1,10 +1,19 @@
+
+
+.cory-mat-theme-light {
+    cory-layout-footer * {
+        color: white;
+    }    
+}
+
 cory-layout-footer {
 
     .cory-mat-footer {
 
+
         .cory-layout-footer-container {
             position: relative;
-            top: -3px;
+            top: -2px;
         }
 
     }

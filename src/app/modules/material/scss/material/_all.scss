@@ -15,6 +15,15 @@ body {
 }
 
 @import '~@fortawesome/fontawesome-free/css/all.css';
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy(mat.define-typography-config());`
+@include mat.all-component-typographies();
 @include mat.core();
 
 @import 'variables';
@@ -35,13 +44,17 @@ body.cory-mat-theme-dark {
 .cory-mat-theme-dark {
 
     color: white;
-
+    /*
+TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.
+*/
     .cory-mat-menu-divider {
         margin-top: 3px;
         margin-bottom: 3px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
-
+    /*
+TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.
+*/
     .cory-mat-menu-item-active, .cory-mat-menu-item-active:hover {
         background-color: rgba(255, 255, 255, 0.2) !important;
     }
@@ -50,13 +63,17 @@ body.cory-mat-theme-dark {
 
 .cory-mat-theme-light {
     color: white;
-
+    /*
+TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.
+*/
     .cory-mat-menu-divider {
         margin-top: 3px;
         margin-bottom: 3px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
-
+    /*
+TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.
+*/
     .cory-mat-menu-item-active, .cory-mat-menu-item-active:hover {
         background-color: rgba(128, 128, 128, 0.2) !important;
     }
@@ -75,7 +92,7 @@ body.cory-mat-theme-dark {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
 
-    .mat-card {
+    .mat-mdc-card {
         margin-top: 10px;
         margin-bottom: 10px;
 
@@ -130,3 +147,12 @@ body {
     z-index: 1;
 }
 
+@import 'theme/cory-mat-theme-dark-matrix';
+@import 'theme/cory-mat-theme-light-forest';
+@import 'theme/cory-mat-theme-light-beach';
+@import 'theme/cory-mat-theme-light-indigo-pink';
+@import 'theme/cory-mat-theme-light-deeppurple-amber';
+@import 'theme/cory-mat-theme-dark-wood';
+@import 'theme/cory-mat-theme-dark-pink-bluegray';
+@import 'theme/cory-mat-theme-dark-purple-green';
+@import 'theme/cory-mat-theme-light-facebook';

@@ -33,7 +33,7 @@ pre > code {
 }
 
 .cory-mat-theme-light {
-    @import 'CSS:../../node_modules/highlight.js/styles/github';
+    @import '../../node_modules/highlight.js/styles/github';
 
     pre > code {
         background-color: rgba(0, 0, 0, 0.05) !important;
@@ -47,7 +47,7 @@ pre > code {
 }
 
 .cory-mat-theme-dark {
-    @import 'CSS:../../node_modules/highlight.js/styles/github-dark';
+    @import '../../node_modules/highlight.js/styles/github-dark';
 
     .cory-layout-title {
         text-shadow: 2px 2px rgba(255, 255, 255, 0.5);
@@ -84,7 +84,7 @@ a code {
 }
 
 .cory-mat-footer {
-    .mat-button {
+    .mat-mdc-button {
         text-overflow: ellipsis;
         //        overflow: hidden;
     }
@@ -94,7 +94,7 @@ a code {
     height: 56px !important;
 
     @media screen and (max-width: $cory-mat-size-xsmall) {
-        .mat-button {
+        .mat-mdc-button {
             $padding: 8px;
             min-width: 24px !important;
             padding-left: $padding;

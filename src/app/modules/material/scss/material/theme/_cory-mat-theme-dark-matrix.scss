@@ -273,6 +273,7 @@
 //    @include mat.paginator-theme($theme);
 //    @include mat.stepper-theme($theme);
     @include mat.snack-bar-theme($theme_highlight);
+    @include mat.button-theme($theme_highlight);
 //    @include mat.datepicker-theme($theme_reverse);
 
 
@@ -295,7 +296,7 @@
 
     //  @include cory-mat-theme('dark', $primary, $accent);
 
-    .mat-tooltip {
+    .mat-mdc-tooltip {
         /* your own custom styles here */
         /* e.g. */
         background-color: rgba(map_get(mat.$green-palette, 900), 0.5);
@@ -314,8 +315,7 @@
         background-color: rgba(map_get(mat.$green-palette, 900), 0.25);
     }
      */
-
-
+    /* TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.*/
     .cory-mat-menu-item-active, .cory-mat-menu-item-active:hover {
         background-color: rgba(map_get($mat-matrix, 700), 0.25) !important;
     }

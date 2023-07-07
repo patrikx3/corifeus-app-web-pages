@@ -35,14 +35,13 @@ import twemoji from 'twemoji'
             preloadingStrategy: PreloadAllModules,
         }),
     ],
-    entryComponents: [],
     declarations: [
         Application,
         Layout,
         Header,
         Footer,
         Page,
-//        OpenCollective,
+        //        OpenCollective,
         Status
     ],
     providers: [

@@ -12,6 +12,7 @@ $light-dividers: rgba(white, 0.12);
 $light-focused: rgba(white, 0.12);
 
 @mixin cory-mat-theme-link($color, $hover) {
+    /*    TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
     mat-card {
         a {
             position: relative;
@@ -152,6 +153,8 @@ $light-focused: rgba(white, 0.12);
     $warn: map-get($theme, warn);
 
     @include mat.button-theme($theme);
+    @include mat.fab-theme($theme);
+    @include mat.icon-button-theme($theme);
 
     @if ($type == 'light') {
         /*
@@ -322,7 +325,7 @@ $light-focused: rgba(white, 0.12);
 
     @include cory-mat-autofill();
 
-    .mat-tooltip {
+    .mat-mdc-tooltip {
         /* your own custom styles here */
         /* e.g. */
         background-color: rgba(0, 0, 0, 0.8);

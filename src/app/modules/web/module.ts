@@ -48,13 +48,12 @@ let booted = false
     ],
     // export
     declarations: [
-//        KeysPipe,
-//        HtmlPipe,
-//        JsonPipe,
-//        SubmittedRequired,
-//        FocusDirective
+    //        KeysPipe,
+    //        HtmlPipe,
+    //        JsonPipe,
+    //        SubmittedRequired,
+    //        FocusDirective
     ],
-
     // does not need export
     providers: [
         RouterService,
@@ -62,12 +61,10 @@ let booted = false
         SettingsService,
         LocaleService,
         MediaQueryService,
-//        HttpShareService,
-
+        //        HttpShareService,
         // modules
-//        IpInfoService,
-//        AuthService,
-
+        //        IpInfoService,
+        //        AuthService,
         /*
         {
             provide: HTTP_INTERCEPTORS,
@@ -75,22 +72,18 @@ let booted = false
             multi: true
         },
          */
-
         // order is important
         Boot,
-
     ],
     exports: [
         HttpClientModule,
         RouterModule,
-//      KeysPipe,
-//      HtmlPipe,
-//      JsonPipe,
-//      FocusDirective
-//      SubmittedRequired,
-
-    ],
-    entryComponents: [],
+        //      KeysPipe,
+        //      HtmlPipe,
+        //      JsonPipe,
+        //      FocusDirective
+        //      SubmittedRequired,
+    ]
 })
 export class CorifeusModule {
 

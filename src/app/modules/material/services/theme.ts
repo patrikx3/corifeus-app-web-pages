@@ -65,98 +65,43 @@ export class ThemeService {
     }
 
     setTheme(newTheme: string) {
-        const body = document.body;
-
         newTheme = kebabCase(newTheme);
-
-        if (newTheme === this.current && this.firstThemeImport === false) {
-            return
-        }
-
         if (this.all.indexOf(newTheme) > -1) {
+            const body = document.getElementsByTagName("body")[0];
 
-            if (this.firstThemeImport) {
-                document.body.style.visibility = 'hidden'
-            }
-
-            import(
-                /* webpackPrefetch: true */
-                `../scss/material/theme/_${newTheme}.scss`
-                ).then((module) => {
-
-                /*
-                 */
-                if (this.firstThemeImport) {
-                   window.addEventListener('resize', this.windowResize.bind(this))
-                }
-                document.getElementById("cory-pages-layout-theme-matrix").style.display = 'none'
-                //console.warn('current', this.current, 'newTheme', newTheme)
-                if (newTheme === 'cory-mat-theme-dark-matrix' && (this.current !== 'cory-mat-theme-dark-matrix' || this.firstThemeImport)) {
-                    //console.warn('run matrix effect')
-                    this.runMatrixEffect()
-                }
-
-                let style : any = document.getElementById('cory-web-app-pages-theme-style')
-                if (style) {
-                    style.remove()
-                }
-                style = document.createElement('style');
-                style.id = 'cory-web-app-pages-theme-style'
-                style.type = 'text/css';
-
-                // https://stackoverflow.com/questions/65940522/how-do-i-switch-to-chromes-dark-scrollbar-like-github-does
-                // but fixed by p3x-robot
-                document.documentElement.style.display = 'none';
-
-                document.documentElement.setAttribute(
-                    "data-color-scheme",
-                    newTheme.startsWith('cory-mat-theme-dark') ? "dark" : "light"
-                );
-                // remove scrollbars
-//                document.documentElement.style.overflow = "hidden";
-                // trigger reflow so that overflow style is applied
-                document.body.clientWidth;
-                // remove overflow style, which will bring back the scrollbar with the correct scheme
-//                document.documentElement.style.overflow = "";
-                document.documentElement.style.display = '';
-
-                const styleTxt = `
-${module.default}
-`
-                style.appendChild(document.createTextNode(styleTxt));
-                document.head.appendChild(style)
-
-                body.classList.remove(this.current);
+            body.classList.remove(this.current);
 //            this.overlayContainer.getContainerElement().classList.remove(this.current);
 
-                this.current = newTheme;
-                body.classList.add(this.current);
+            this.current = newTheme;
+            body.classList.add(this.current);
 //            this.overlayContainer.getContainerElement().classList.add(this.current);
 
-                //this.overlayContainer.themeClass = newTheme;
-                this.cookies.set(this.settings.cookie.theme, this.current);
+            //this.overlayContainer.themeClass = newTheme;
+            this.cookies.set(this.settings.cookie.theme, this.current);
 
-                if (this.current.startsWith('cory-mat-theme-dark')) {
-                    this.type = "dark";
-                    body.classList.add('cory-mat-theme-dark');
-                    body.classList.remove('cory-mat-theme-light');
-                } else {
-                    this.type = "light";
-                    body.classList.add('cory-mat-theme-light')
-                    body.classList.remove('cory-mat-theme-dark');
-                }
+            if (this.current.startsWith('cory-mat-theme-dark')) {
+                this.type = "dark";
+                body.classList.add('cory-mat-theme-dark');
+                body.classList.remove('cory-mat-theme-light');
+            } else {
+                this.type = "light";
+                body.classList.add('cory-mat-theme-light')
+                body.classList.remove('cory-mat-theme-dark');
+            }
 
-                if (this.firstThemeImport) {
-                    this.firstThemeImport = false
-                    document.body.style.visibility = 'visible'
-                }
+            if (newTheme === 'cory-mat-theme-dark-matrix' && (this.current !== 'cory-mat-theme-dark-matrix' || this.firstThemeImport)) {
+                //console.warn('run matrix effect')
+                document.getElementById('cory-pages-layout-theme-matrix').style.display = 'show';
+                this.runMatrixEffect()
+            } else {
+                document.getElementById('cory-pages-layout-theme-matrix').style.display = 'none';
+            }
 
-            })
-
-        } else {
-            throw new Error(`undefined ${newTheme}`);
+            return;
         }
+        throw new Error(`undefined ${newTheme}`);
     }
+
 
     matrixEffectData: any
 

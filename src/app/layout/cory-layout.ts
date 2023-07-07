@@ -269,7 +269,7 @@ export class Layout implements OnInit, OnDestroy {
         this.packageJson = this.packages[this.currentRepo];
         this.title = this.packageJson.description;
         this.icon = this.packageJson.corifeus.icon !== undefined ? `${this.packageJson.corifeus.icon}` : 'fas fa-bolt';
-        document.title = this.title.replace(emojiRegex(), '');
+        document.title = this.title.replace(emojiRegex.default(), '');
 
         this.noScript.innerHTML = '';
         this.repos.forEach((repo: any) => {

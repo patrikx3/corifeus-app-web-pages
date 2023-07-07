@@ -99,7 +99,6 @@ import { GlobalService} from "../../service/global.service";
     imports: [
         CorifeusModule,
         CommonModule,
-
         // material
         /*
                 MatAutocompleteModule,
@@ -127,8 +126,8 @@ import { GlobalService} from "../../service/global.service";
                 MatTabsModule,
 
                 */
-//        OverlayContainer,
-//        MatSelectionList,
+        //        OverlayContainer,
+        //        MatSelectionList,
         MatIconModule,
         MatProgressBarModule,
         MatMenuModule,
@@ -139,20 +138,18 @@ import { GlobalService} from "../../service/global.service";
         MatSnackBarModule,
         MatInputModule,
         MatSidenavModule,
-
         // material modules
     ],
     declarations: [
         NotifyComponent,
-//      OverlayContainer,
+        //      OverlayContainer,
         Loading,
         ThemeMenu,
         ThemeButton,
-//        TranslationMenu,
-//        TranslationButton,
-//        Http404,
+        //        TranslationMenu,
+        //        TranslationButton,
+        //        Http404,
     ],
-
     // do not need export providers
     providers: [
         GlobalService,
@@ -207,17 +204,12 @@ import { GlobalService} from "../../service/global.service";
         MatSnackBarModule,
         MatInputModule,
         MatSidenavModule,
-
         Loading,
         ThemeMenu,
         ThemeButton,
-//        TranslationMenu,
-//        TranslationButton,
-//        Http404,
-    ],
-    entryComponents: [
-        NotifyComponent,
-//        OverlayContainer,
+        //        TranslationMenu,
+        //        TranslationButton,
+        //        Http404,
     ]
 })
 export class CorifeusMaterialModule {
