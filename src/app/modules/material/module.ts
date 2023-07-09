@@ -138,17 +138,11 @@ import { GlobalService} from "../../service/global.service";
         MatSnackBarModule,
         MatInputModule,
         MatSidenavModule,
-        // material modules
-    ],
-    declarations: [
         NotifyComponent,
         //      OverlayContainer,
         Loading,
         ThemeMenu,
         ThemeButton,
-        //        TranslationMenu,
-        //        TranslationButton,
-        //        Http404,
     ],
     // do not need export providers
     providers: [

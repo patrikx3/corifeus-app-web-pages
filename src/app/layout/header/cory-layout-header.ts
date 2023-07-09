@@ -2,6 +2,7 @@ import {
     Component,
     Host,
     OnDestroy,
+    Input,
 } from '@angular/core';
 
 import capitalize from 'lodash/capitalize';
@@ -17,13 +18,30 @@ import {extractTitle} from '../../utils/extrac-title';
 import {Layout} from "../cory-layout";
 
 import { Subscription } from 'rxjs'
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
     selector: 'cory-layout-header',
     templateUrl: 'cory-layout-header.html',
-
+    standalone: true,
+    imports: [
+        NgIf,
+        MatToolbarModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatIconModule,
+        MatMenuModule,
+        NgFor,
+    ],
 })
 export class Header implements OnDestroy {
+
+    @Input() parent: Layout
 
     subscriptions$: Array<Subscription> = []
 
@@ -39,7 +57,7 @@ export class Header implements OnDestroy {
         private router: Router,
         protected locale: LocaleService,
         protected settingsAll: SettingsService,
-        public parent: Layout,
+
     ) {
         this.settings = settingsAll.data.pages;
 

@@ -4,6 +4,8 @@ import {
 } from '@angular/core';
 
 import { GlobalService} from "../../../service/global.service";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'cory-mat-loading',
@@ -14,6 +16,8 @@ style="position: fixed; top: 0px; left: 0px; width: 100%; z-index: 100000;"
 color="primary"
 mode="indeterminate"></mat-progress-bar>
 `,
+    standalone: true,
+    imports: [NgIf, MatProgressBarModule],
 })
 export class Loading {
 

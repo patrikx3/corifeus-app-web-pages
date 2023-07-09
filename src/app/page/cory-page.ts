@@ -48,7 +48,8 @@ let testing = false
     selector: 'cory-page',
     template: `
         <span id="cory-page-content"></span>
-    `
+    `,
+    standalone: true
 })
 export class Page implements AfterViewChecked, OnDestroy {
 

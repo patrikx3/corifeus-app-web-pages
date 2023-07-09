@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
-$mat-theme-ignore-duplication-warnings: true;
+
+mat.$theme-ignore-duplication-warnings: true;
 
 /*
 @use '@angular/material' as mat;

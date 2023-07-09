@@ -76,7 +76,7 @@ export class Boot {
     }
 
     boot() {
-        log('booted');
+        log('booted web');
         this.settings.boot();
 
         const module = 'core';

@@ -10,17 +10,13 @@ import {
     OnDestroy,
 } from '@angular/core';
 
-import {
-    ActivatedRoute,
-} from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 import debounce from 'lodash/debounce'
 
 import { Subscription } from 'rxjs'
 
-import {
-    MatSidenav
-} from '@angular/material/sidenav'
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav'
 
 import {
     RouterService,
@@ -46,6 +42,18 @@ import {
 
 import twemoji from 'twemoji'
 import {environment} from "../../environments/environment";
+import { MatButtonModule } from '@angular/material/button';
+import { Footer } from './footer/cory-layout-footer';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { Status } from '../component/cory-web-pages-build-status';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { NgIf, NgFor } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
+import { Header } from './header/cory-layout-header';
+import { Loading } from '../modules/material/component/cory-mat-loading';
 
 //FIXME corifeus - matrix
 const regexFixCorifeusMatrix = /^(\/)?(corifeus)([^-])(\/)?(.*)/
@@ -61,7 +69,9 @@ declare global {
 @Component({
     selector: 'cory-layout',
     templateUrl: 'cory-layout.html',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [Loading, Header, MatSidenavModule, MatMenuModule, MatFormFieldModule, MatInputModule, NgIf, MatIconModule, NgFor, MatCardModule, Status, MatTooltipModule, RouterOutlet, Footer, MatButtonModule]
 })
 
 @Injectable()

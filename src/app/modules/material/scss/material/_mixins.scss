@@ -242,12 +242,48 @@ $light-focused: rgba(white, 0.12);
     @if $type == "light" {
         $warn: mat.define-palette(mat.$red-palette);
 
-        $theme: mat.define-light-theme($primary, $accent, $warn);
-        $reverse-theme: mat.define-light-theme($reverse-primary, $reverse-accent, $warn);
-        $darker-theme: mat.define-light-theme($darker-primary, $darker-accent, $warn);
-        $reverse-darker-theme: mat.define-light-theme($reverse-darker-primary, $reverse-darker-accent, $warn);
+        $theme: mat.define-light-theme((
+            color: (
+                primary: $primary, 
+                accent: $accent,
+                warn: $warn
+            ),
+            typography: mat.define-typography-config(),
+            density: 0,
+        ));
+        $reverse-theme: mat.define-light-theme((
+            color: (
+                primary: $reverse-primary, 
+                accent: $reverse-accent,
+                warn: $warn
+            ),
+            typography: mat.define-typography-config(),
+            density: 0,
+
+        ));
+        $darker-theme: mat.define-light-theme((
+            color: (
+                primary: $darker-primary, 
+                accent: $darker-accent,
+                warn: $warn
+            ),
+            typography: mat.define-typography-config(),
+            density: 0,
+
+        ));
+        $reverse-darker-theme: mat.define-light-theme((
+            color: (
+                primary: $reverse-darker-primary, 
+                accent: $reverse-darker-accent,
+                warn: $warn
+            ),
+            typography: mat.define-typography-config(),
+            density: 0,
+
+        ));
 
         background-color: mat.get-color-from-palette($primary, A100);
+
         background: radial-gradient(circle, mat.get-color-from-palette($primary, A100, 0.5), mat.get-color-from-palette($primary, A400, 0.5));
 
         $link: mat.define-palette($accent, 500);
@@ -264,10 +300,45 @@ $light-focused: rgba(white, 0.12);
     } @else {
         $warn: mat.define-palette(mat.$red-palette);
 
-        $theme: mat.define-dark-theme($primary, $accent, $warn);
-        $reverse-theme: mat.define-dark-theme($reverse-primary, $reverse-accent, $warn);
-        $darker-theme: mat.define-dark-theme($darker-primary, $darker-accent, $warn);
-        $reverse-darker-theme: mat.define-dark-theme($reverse-darker-primary, $reverse-darker-accent, $warn);
+        $theme: mat.define-light-theme((
+            color: (
+                primary: $primary, 
+                accent: $accent,
+                warn: $warn
+            ),
+            typography: mat.define-typography-config(),
+            density: 0,
+        ));
+        $reverse-theme: mat.define-light-theme((
+            color: (
+                primary: $reverse-primary, 
+                accent: $reverse-accent,
+                warn: $warn
+            ),
+            typography: mat.define-typography-config(),
+            density: 0,
+
+        ));
+        $darker-theme: mat.define-light-theme((
+            color: (
+                primary: $darker-primary, 
+                accent: $darker-accent,
+                warn: $warn
+            ),
+            typography: mat.define-typography-config(),
+            density: 0,
+
+        ));
+        $reverse-darker-theme: mat.define-light-theme((
+            color: (
+                primary: $reverse-darker-primary, 
+                accent: $reverse-darker-accent,
+                warn: $warn
+            ),
+            typography: mat.define-typography-config(),
+            density: 0,
+
+        ));
 
 
         background-color: map_get(mat.$grey-palette, 900);

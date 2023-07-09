@@ -19,6 +19,8 @@ import {
 import template from 'lodash/template';
 
 import { Subscription } from 'rxjs'
+import { NgFor } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
 
 // requires to be in a mat-menu
 @Component({
@@ -44,6 +46,8 @@ import { Subscription } from 'rxjs'
         {{ i18n.themes.material[thisTheme] }}
     </button>
 `,
+    standalone: true,
+    imports: [MatMenuModule, NgFor],
 })
 export class ThemeMenu implements OnDestroy {
 

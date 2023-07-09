@@ -10,6 +10,11 @@ import {
     LocaleService, SettingsService, LocaleSubject,
     MediaQueryService, MediaQuerySettingType, MediaQuerySetting
 } from "../../../web";
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { ThemeMenu } from './cory-mat-theme-menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 // requires to be in a mat-menu
 @Component({
@@ -27,6 +32,14 @@ import {
             </span>
         </button>
 `,
+    standalone: true,
+    imports: [
+        MatMenuModule,
+        ThemeMenu,
+        MatButtonModule,
+        MatTooltipModule,
+        MatIconModule,
+    ],
 })
 export class ThemeButton implements OnDestroy {
 

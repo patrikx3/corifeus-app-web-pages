@@ -183,34 +183,49 @@
         disabled-list-option: rgba(black, 0.80), // map_get(mat.$grey-palette, 200),
     );
 
-    $theme_highlight: (
-        primary: $warn,
-        accent: $primary,
-        warn: $accent,
-        is-dark: true,
-        foreground: $foreground,
-        background: $background,
-    );
+    $theme_highlight: mat.define-dark-theme((
+        color: (
+            primary: $warn,
+            accent: $primary,
+            warn: $accent,
+        ),
+        typography: mat.define-typography-config(),
+        density: 0,
+    
+    ));
 
-    $theme: (
-        primary: $primary,
-        accent: $accent,
-        warn: $warn,
-        is-dark: true,
-        foreground: $foreground,
-        background: $background,
-    );
+    $theme: mat.define-dark-theme((
+        color: (
+            primary: $primary,
+            accent: $accent,
+            warn: $warn,
+        ),
+        typography: mat.define-typography-config(),
+        density: 0,
+    
+    ));
 
-    $theme_reverse: (
-        primary: $accent,
-        accent: $primary,
-        warn: $warn,
-        is-dark: true,
-        foreground: $foreground,
-        background: $background,
-    );
+    $theme_reverse: mat.define-dark-theme((
+        color: (
+            primary: $accent,
+            accent: $primary,
+            warn: $warn,
+        ),
+        typography: mat.define-typography-config(),
+        density: 0,
+    
+    ));        
 
-    $theme_reverse2: mat.define-light-theme($accent, $primary, $warn);
+    $theme_reverse2: mat.define-light-theme((
+        color: (
+            primary: $accent, 
+            accent: $primary,
+            warn: $warn
+        ),
+        typography: mat.define-typography-config(),
+        density: 0,
+    
+    ));
 
     // @mixin angular-material-theme($theme) {
 
@@ -226,6 +241,19 @@
 
     // card
     @include mat.card-theme($theme_reverse);
+    
+    .mat-mdc-card, .mat-mdc-menu-content, .mat-drawer, .mat-mdc-menu-item {
+        background-color: rgba(black, 0.80) !important;
+        color: rgba(0, 255, 0, 1) !important;
+    }
+
+    .mat-mdc-menu-item:hover {
+        background-color: rgba(green, 0.1) !important;
+    }
+
+    .mat-drawer-backdrop {
+        background-color: rgba(black, 0.5) !important;
+    }
 
 //    @include mat.checkbox-theme($theme_reverse);
 
@@ -242,19 +270,25 @@
         card: white
     ));
 
-    @include mat.sidenav-theme((
-        primary: $accent,
-        accent: $primary,
-        warn: $warn,
-        is-dark: true,
-        foreground: $foreground,
-        background: $background_sidenav,
-    ));
+    @include mat.sidenav-theme(mat.define-dark-theme((
+        color: (
+            primary: $accent,
+            accent: $primary,
+            warn: $warn,
+        ),
+        typography: mat.define-typography-config(),
+        density: 0,
+    
+    )));
 
 //    @include mat.slider-theme($theme_reverse);
 
 //    @include mat.tabs-theme($theme_reverse);
     @include mat.tooltip-theme($theme_reverse);
+
+    .mdc-tooltip.mat-mdc-tooltip.mdc-tooltip--shown, .mat-mdc-tooltip .mdc-tooltip__surface {
+        background-color: rgba(green, 0.2) !important;
+    }
 
     //    background: linear-gradient(darken($color, 10%), $color);
 //    @include mat.button-toggle-theme($theme_reverse);

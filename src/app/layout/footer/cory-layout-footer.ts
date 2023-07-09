@@ -3,7 +3,7 @@ import {
     Injectable,
     Host,
     OnDestroy,
-
+    Input,
 } from '@angular/core';
 
 import {
@@ -21,6 +21,12 @@ import {
 import {NotifyService, ThemeService} from '../../modules/material';
 
 import {Layout} from "../cory-layout";
+import { MatIconModule } from '@angular/material/icon';
+import { ThemeButton } from '../../modules/material/component/cory-mat-theme/cory-mat-theme-button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgIf } from '@angular/common';
 
 class Tooltip {
     GitHub: string = '';
@@ -34,9 +40,20 @@ class Tooltip {
 @Component({
     selector: 'cory-layout-footer',
     templateUrl: 'cory-layout-footer.html',
+    standalone: true,
+    imports: [
+        NgIf,
+        MatToolbarModule,
+        MatButtonModule,
+        MatTooltipModule,
+        ThemeButton,
+        MatIconModule,
+    ],
 })
 @Injectable()
 export class Footer implements OnDestroy {
+
+    @Input() parent: Layout
 
     subscriptions$: Array<Subscription> = []
 
@@ -66,7 +83,7 @@ export class Footer implements OnDestroy {
         protected settingsAll: SettingsService,
         private mediaQuery: MediaQueryService,
         private domSanitizer: DomSanitizer,
-        public parent: Layout,
+        
     ) {
         this.settings = settingsAll.data.pages;
 

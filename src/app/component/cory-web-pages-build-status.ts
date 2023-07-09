@@ -7,6 +7,8 @@ import {
 import { Subscription } from 'rxjs'
 
 import {LocaleService, LocaleSubject} from "../modules/web";
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'cory-web-pages-build-status',
@@ -67,7 +69,9 @@ import {LocaleService, LocaleSubject} from "../modules/web";
     </span>
 
 </span>
-    `
+    `,
+    standalone: true,
+    imports: [NgIf, MatTooltipModule]
 })
 export class Status implements OnDestroy {
 

@@ -30,7 +30,7 @@ export class Boot {
   //          return
   //      }
   //      booted = true
-        log('booted');
+        log('booted material');
 
 
         const module = 'material';

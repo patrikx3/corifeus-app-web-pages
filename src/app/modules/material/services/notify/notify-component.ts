@@ -20,9 +20,10 @@ import {
 
 
 import {LocaleService, LocaleSubject} from '../../../web';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-
     template: `
         <div style="position: relative;">
             <mat-icon color="accent">{{ data.options.icon }}</mat-icon>
@@ -32,7 +33,6 @@ import {LocaleService, LocaleSubject} from '../../../web';
         <a mat-button color="accent" class="cory-mat-notify-button" (click)="ctx.dismiss()">{{ this.i18n.title.ok }}</a>
 
     `,
-
     styles: [`
         .message {
             position: relative;
@@ -46,6 +46,8 @@ import {LocaleService, LocaleSubject} from '../../../web';
             min-width: auto !important;
         }
     `],
+    standalone: true,
+    imports: [MatIconModule, MatButtonModule],
 })
 @Injectable()
 export class NotifyComponent implements OnDestroy {

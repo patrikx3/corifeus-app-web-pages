@@ -293,8 +293,10 @@ const construct = (data) => {
 
 
     let html = marked(md, {
+        mangle: false,
+        headerIds: false,
         renderer: markdownRenderer
-    });
+    });    
 
     html = html.replace(/{/g, '&#123;<span style="display: none;"></span>').replace(/}/g, '&#125;');
     html = html.replace(/&amp;/g, '&');

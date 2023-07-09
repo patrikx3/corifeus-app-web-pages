@@ -1,6 +1,6 @@
 <cory-mat-loading [cory-visible]="packages === undefined"></cory-mat-loading>
 
-<cory-layout-header></cory-layout-header>
+<cory-layout-header [parent]="this"></cory-layout-header>
 
 <mat-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
     <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav" style="width: 370px; max-width: 100%; ">
@@ -145,7 +145,7 @@
     </div>
 </mat-sidenav-container>
 
-<cory-layout-footer></cory-layout-footer>
+<cory-layout-footer [parent]="this"></cory-layout-footer>
 
 
 <div *ngIf="sideNavOpened" id="cory-pages-layout-menu-main-close" style="">
