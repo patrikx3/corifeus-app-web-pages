@@ -188,6 +188,8 @@
             primary: $warn,
             accent: $primary,
             warn: $accent,
+//            foreground: $foreground,
+//            background: $background,
         ),
         typography: mat.define-typography-config(),
         density: 0,
@@ -199,6 +201,8 @@
             primary: $primary,
             accent: $accent,
             warn: $warn,
+//            foreground: $foreground,
+//            background: $background,
         ),
         typography: mat.define-typography-config(),
         density: 0,
@@ -210,6 +214,8 @@
             primary: $accent,
             accent: $primary,
             warn: $warn,
+//            foreground: $foreground,
+//            background: $background,
         ),
         typography: mat.define-typography-config(),
         density: 0,
@@ -239,11 +245,13 @@
 
 //    @include mat.autocomplete-theme($theme_reverse);
 
+        // ISSUES: https://github.com/angular/components/issues/27424
+
     // card
     @include mat.card-theme($theme_reverse);
     
     .mat-mdc-card, .mat-mdc-menu-content, .mat-drawer, .mat-mdc-menu-item {
-        background-color: rgba(black, 0.80) !important;
+        background-color: rgba(black, 0.75) !important;
         color: rgba(0, 255, 0, 1) !important;
     }
 
@@ -252,7 +260,7 @@
     }
 
     .mat-drawer-backdrop {
-        background-color: rgba(black, 0.5) !important;
+        background-color: rgba(black, 0.25) !important;
     }
 
 //    @include mat.checkbox-theme($theme_reverse);
