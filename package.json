@@ -1,11 +1,11 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2023.10.111",
+    "version": "2023.10.114",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
         "cdn": true,
-        "nodejs": "v18.16.1",
+        "nodejs": "v20.4.0",
         "opencollective": false,
         "reponame": "corifeus-app-web-pages",
         "build": true,
@@ -76,7 +76,7 @@
         "@typescript-eslint/eslint-plugin": "6.0.0",
         "@typescript-eslint/parser": "6.0.0",
         "codelyzer": "^6.0.2",
-        "corifeus-builder": "^2023.10.121",
+        "corifeus-builder": "^2023.10.125",
         "eslint": "^8.45.0",
         "eslint-plugin-import": "2.27.5",
         "eslint-plugin-jsdoc": "46.4.4",
