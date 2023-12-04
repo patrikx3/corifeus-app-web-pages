@@ -5,6 +5,7 @@ import kebabCase from 'lodash/kebabCase';
 
 const {extractStars} = require('../helper/extract-stars.function.js');
 
+let codeIndex = 0
 
 let currentRepo, settings, currentRepoPath
 let locationOrigin, locationPathname, locationHref, locationHostname
@@ -259,7 +260,10 @@ We are not loading everything, since it is about 500kb`)
     const highlighted = validLang ? hljs.highlight(code, {
         language
     }).value : code;
-    return `<div class="cory-markdown-code"><div class="cory-markdown-code-copy-paste" onclick='window.coryPageCopy(${JSON.stringify(code)})'><i class="far fa-copy fa-lg"></i></div><pre><code style="font-family: 'Roboto Mono';" class="hljs ${language}">${highlighted}</code></pre></div>`;
+
+    codeIndex++;
+
+    return `<div class="cory-markdown-code"><div class="cory-markdown-code-copy-paste" onclick="window.coryPageCopy(${codeIndex})"><i class="far fa-copy fa-lg"></i></div><pre><code style="font-family: 'Roboto Mono';" class="hljs ${language}" id="code-${codeIndex}">${highlighted}</code></pre></div>`;
 };
 
 markdownRenderer.codespan = (code) => {

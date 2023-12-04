@@ -28,13 +28,17 @@ import { NgIf } from '@angular/common';
     </span>
     <span  *ngIf="pkg.corifeus.build !== false" >
 
+
+        <!--
         <a target="cory-pages-status-github-action" href="https://github.com/patrikx3/{{ pkg.corifeus.reponame }}/actions?query=workflow%3Abuild"><img src="https://github.com/patrikx3/{{ pkg.corifeus.reponame }}/workflows/build/badge.svg" matTooltip="Github action status" [matTooltipPosition]="tooltipPosition"></a>
+        -->
 
         <!--
         <a target="cory-pages-status-travis" href="https://travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://api.travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
-        -->
 
         &nbsp;
+        -->
+
 
         <a target="cory-pages-status-uptimerobot" href="https://stats.uptimerobot.com/9ggnzcWrw"><img src="https://img.shields.io/uptimerobot/ratio/m780749701-41bcade28c1ea8154eda7cca.svg" alt="{{ i18n.pages.title.uptime }}" [matTooltip]="i18n.pages.title.uptime" [matTooltipPosition]="tooltipPosition"></a>
 

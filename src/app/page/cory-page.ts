@@ -37,6 +37,7 @@ import {
     NotifyService
 } from '../modules/material';
 import {environment} from "../../environments/environment";
+import { unescape } from 'lodash';
 
 const cache = {}
 
@@ -82,8 +83,9 @@ export class Page implements AfterViewChecked, OnDestroy {
 
         let usingActivatedUrl = true;
 
-        window['coryPageCopy'] = (code) => {
+        window['coryPageCopy'] = (codeId) => {
             this.zone.run(() => {
+                const code = document.getElementById(`code-${codeId}`).innerText;
                 navigator.clipboard.writeText(code);
                 this.notify.info('Copied!')
             });
