@@ -8,7 +8,7 @@
 
 
 
-# 🕸️ Corifeus App Web Pages v2023.10.123
+# 🕸️ Corifeus App Web Pages v2024.4.102
 
 
 
@@ -22,7 +22,7 @@
 ### Built on NodeJs version
 
 ```txt
-v20.5.1
+v20.11.0
 ```
 
 
@@ -31,7 +31,7 @@ v20.5.1
 # Built on Angular
 
 ```text
-17.0.5
+17.1.1
 ```
 
 
@@ -81,7 +81,7 @@ All my domains ([patrikx3.com](https://patrikx3.com) and [corifeus.com](https://
 
 ---
 
-[**CORIFEUS-APP-WEB-PAGES**](https://corifeus.com/corifeus-app-web-pages) Build v2023.10.123
+[**CORIFEUS-APP-WEB-PAGES**](https://corifeus.com/corifeus-app-web-pages) Build v2024.4.102
 
 [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6)  [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software)
 
