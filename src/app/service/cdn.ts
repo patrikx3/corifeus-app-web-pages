@@ -24,11 +24,11 @@ export class CdnService {
 
         const index = `index${postfix}`;
         if (path.endsWith(index)) {
-            path = path.substr(0, path.length - index.length) + 'README.md';
+            path = path.substring(0, path.length - index.length) + 'README.md';
         }
 
         if (path.endsWith(postfix)) {
-            path = path.substr(0, path.length - postfix.length) + '.md';
+            path = path.substring(0, path.length - postfix.length) + '.md';
         }
         const url = `https://cdn.corifeus.com/git/${repo}/${path}`;
         const text = await this.http.get(url, {responseType: 'text'}).toPromise();

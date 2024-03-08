@@ -116,7 +116,7 @@ export class ThemeService {
         c.height = window.innerHeight
         c.width = window.innerWidth;
 
-        let matrix: any = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        let matrix: any = "安吧八爸百北不大岛的弟地东都对多儿二方港哥个关贵国过海好很会家见叫姐京九可老李零六吗妈么没美妹们名明哪那南你您朋七起千去人认日三上谁什生师十识是四他她台天湾万王我五西息系先香想小谢姓休学也一亿英友月再张这中字";
 
         //chinese characters - taken from the unicode charset
         // https://www.chinese-tools.com/learn/characters/list.html
@@ -125,7 +125,7 @@ export class ThemeService {
         //converting the string into an array of single characters
         matrix = matrix.split("");
 
-        const font_size = 10;
+        const font_size = 8;
         ctx.font = font_size + "px Roboto Mono";
 
         const columns = c.width / font_size; //number of columns for the rain
