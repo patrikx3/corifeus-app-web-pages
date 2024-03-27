@@ -25,7 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
             <cory-mat-theme-menu></cory-mat-theme-menu>
         </mat-menu>
 
-        <button [color]="color" #buttonTheme mat-button [matMenuTriggerFor]="menuTheme" [matTooltip]="tooltip" [matTooltipPosition]="matTooltipPosition">
+        <button [color]="color" #buttonTheme mat-button [matMenuTriggerFor]="menuTheme" [matTooltip]="tooltip" matTooltipPosition="left">
             <mat-icon>color_lens</mat-icon>
             <span class="cory-mat-hide-xsmall">
             {{ i18n.material.title.theme }}
@@ -46,7 +46,6 @@ export class ThemeButton implements OnDestroy {
     subscriptions$: Array<Subscription> = []
 
     @Input('cory-tooltip-position')
-    matTooltipPosition: string = "left";
 
     @Input('color')
     color: string = 'default';

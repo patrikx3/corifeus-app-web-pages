@@ -5,13 +5,13 @@
 
         <span class="cory-layout-footer-container">
             <a *ngIf="parent.packageJson.corifeus.publish === true" mat-button [href]="linkNpm" target="_blank"
-               [matTooltip]="tooltip.Npm" [matTooltipPosition]="tooltipPosition" class="cory-hover-scale"
+               [matTooltip]="tooltip.Npm" matTooltipPosition="above" class="cory-hover-scale"
                style="position: relative; top: 2px">
                 <img src="/assets/npm-logo.svg" style="width: auto; height: 20px; min-height: 20px; min-width: 51px"/>
             </a>
 
             <a mat-button [href]="linkGithub" target="_blank" [matTooltip]="tooltip.GitHub"
-               [matTooltipPosition]="tooltipPosition" class="cory-pages-menu-effect">
+               matTooltipPosition="above" class="cory-pages-menu-effect">
                 <i class="fab fa-github cory-layout-fa"></i>
                 <span class="cory-mat-hide-xsmall" style="position: relative; top: -2px">
                 GitHub
@@ -36,7 +36,7 @@
                         <!--
 
             <a mat-button [href]="linkJetBrains" class="cory-hover-rotate cory-pages-footer-shrink-icon" target="_blank"
-               [matTooltip]="tooltip.JetBrains" [matTooltipPosition]="tooltipPosition">
+               [matTooltip]="tooltip.JetBrains" matTooltipPosition="left">
                 <img src="/assets/jetbrains-logo.svg" style="width: 20px; height: 20px; min-height: 20px; min-width: 20px; position: relative; top: 3px;"/>
                 <span class="cory-mat-hide-xsmall cory-pages-footer-shrink-text cory-pages-menu-effect">
                 &nbsp;<span [innerHTML]="i18n.pages.title.sponsor.jetbrains"></span>
@@ -46,7 +46,7 @@
 
 
             <a mat-button [href]="linkDeveloper" class="cory-pages-footer-shrink-icon cory-pages-menu-effect"
-               target="_blank" [matTooltip]="tooltip.Developer" [matTooltipPosition]="tooltipPosition">
+               target="_blank" [matTooltip]="tooltip.Developer" matTooltipPosition="left">
                 <mat-icon>flash_on</mat-icon>
                 <span class="cory-mat-hide-xsmall cory-pages-footer-shrink-text">
                 <span [innerHTML]="decodeEntities(i18n.pages.title.developer)"></span> {{ currentYear }}

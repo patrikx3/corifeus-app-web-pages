@@ -69,7 +69,6 @@ export class Footer implements OnDestroy {
     decodeEntities: Function = decodeEntities;
 
     tooltip: Tooltip = new Tooltip()
-    tooltipPosition: string = 'left'
 
     currentWidthAlias: string;
 

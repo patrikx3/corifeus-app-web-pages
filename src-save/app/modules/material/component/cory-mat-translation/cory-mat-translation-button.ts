@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs'
 <cory-mat-translation-menu></cory-mat-translation-menu>
 </mat-menu>
 
-<button  [color]="color" mat-button [matMenuTriggerFor]="menuTranslate" [matTooltip]="tooltip"  [matTooltipPosition]="matTooltipPosition">
+<button  [color]="color" mat-button [matMenuTriggerFor]="menuTranslate" [matTooltip]="tooltip"  matTooltipPosition="left">
 <mat-icon>language</mat-icon>
 <span class="cory-mat-hide-xsmall">
     {{ i18n.material.title.language }}
@@ -35,9 +35,6 @@ export class TranslationButton implements OnDestroy {
 
     @Input('color')
     color: string = 'default';
-
-    @Input('cory-tooltip-position')
-    matTooltipPosition: string = 'left';
 
     i18n: any;
 

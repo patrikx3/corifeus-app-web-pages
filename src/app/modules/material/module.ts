@@ -150,6 +150,7 @@ import { GlobalService} from "../../service/global.service";
         Boot,
         ThemeService,
         NotifyService,
+        { provide: 'Window', useFactory: () => window }
     ],
     exports: [
         CorifeusModule,

@@ -21,7 +21,7 @@ import { NgIf } from '@angular/common';
     template: `
     <span *ngIf="pkg.corifeus.reponame !== undefined" class="cory-web-pages-build-status">
     <span *ngIf="pkg.corifeus.snap === true">
-        <a href="https://snapcraft.io/{{ pkg.name }}" target="cory-pages-status-snap" matTooltip="Snap" [matTooltipPosition]="tooltipPosition">
+        <a href="https://snapcraft.io/{{ pkg.name }}" target="cory-pages-status-snap" matTooltip="Snap" matTooltipPosition="above">
             <img alt="{{ pkg.description }}" src="https://snapcraft.io/{{ pkg.name }}/badge.svg" />
         </a>
         &nbsp;
@@ -30,46 +30,46 @@ import { NgIf } from '@angular/common';
 
 
         <!--
-        <a target="cory-pages-status-github-action" href="https://github.com/patrikx3/{{ pkg.corifeus.reponame }}/actions?query=workflow%3Abuild"><img src="https://github.com/patrikx3/{{ pkg.corifeus.reponame }}/workflows/build/badge.svg" matTooltip="Github action status" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="cory-pages-status-github-action" href="https://github.com/patrikx3/{{ pkg.corifeus.reponame }}/actions?query=workflow%3Abuild"><img src="https://github.com/patrikx3/{{ pkg.corifeus.reponame }}/workflows/build/badge.svg" matTooltip="Github action status" matTooltipPosition="above"></a>
         -->
 
         <!--
-        <a target="cory-pages-status-travis" href="https://travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://api.travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="cory-pages-status-travis" href="https://travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}"><img src="https://api.travis-ci.com/patrikx3/{{ pkg.corifeus.reponame }}.svg?branch=master" [matTooltip]="i18n.pages.title.travis" matTooltipPosition="above"></a>
 
         &nbsp;
         -->
 
 
-        <a target="cory-pages-status-uptimerobot" href="https://stats.uptimerobot.com/9ggnzcWrw"><img src="https://img.shields.io/uptimerobot/ratio/m780749701-41bcade28c1ea8154eda7cca.svg" alt="{{ i18n.pages.title.uptime }}" [matTooltip]="i18n.pages.title.uptime" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="cory-pages-status-uptimerobot" href="https://stats.uptimerobot.com/9ggnzcWrw"><img src="https://img.shields.io/uptimerobot/ratio/m780749701-41bcade28c1ea8154eda7cca.svg" alt="{{ i18n.pages.title.uptime }}" [matTooltip]="i18n.pages.title.uptime" matTooltipPosition="above"></a>
 
 <!--
         &nbsp;
-        <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/build.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.build" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/build.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.build" matTooltipPosition="above"></a>
 
         &nbsp;
-        <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/quality-score.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.quality" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/quality-score.png?b=master" [matTooltip]="i18n.pages.title.scrunitizer.quality" matTooltipPosition="above"></a>
         &nbsp;
-        <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/coverage.png?b=master"  [matTooltip]="i18n.pages.title.scrunitizer.coverage" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="_blank" href="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/?branch=master"><img src="https://scrutinizer-ci.com/g/patrikx3/{{ pkg.corifeus.reponame }}/badges/coverage.png?b=master"  [matTooltip]="i18n.pages.title.scrunitizer.coverage" matTooltipPosition="above"></a>
         -->
         &nbsp;
     </span>
 
     <span>
-        <a target="_blank" href="https://paypal.me/patrikx3"><img [src]="i18n.pages.badge.donate" [matTooltip]="i18n.pages.title.donate" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="_blank" href="https://paypal.me/patrikx3"><img [src]="i18n.pages.badge.donate" [matTooltip]="i18n.pages.title.donate" matTooltipPosition="above"></a>
         &nbsp;
-        <a target="_blank" [href]="i18n.pages.url.contact"><img [src]="i18n.pages.badge.contact" [matTooltip]="i18n.pages.title.contact" [matTooltipPosition]="tooltipPosition"></a>
+        <a target="_blank" [href]="i18n.pages.url.contact"><img [src]="i18n.pages.badge.contact" [matTooltip]="i18n.pages.title.contact" matTooltipPosition="above"></a>
         <!--
         <span *ngIf="pkg.collective !== undefined" >
             &nbsp;
-            <a fragment="backers" routerLink="/{{ pkg.corifeus.reponame }}/open-collective"><img src="https://opencollective.com/{{pkg.name}}/backers/badge.svg" [matTooltip]="i18n.pages.title.opencollective.backers" [matTooltipPosition]="tooltipPosition"></a>
+            <a fragment="backers" routerLink="/{{ pkg.corifeus.reponame }}/open-collective"><img src="https://opencollective.com/{{pkg.name}}/backers/badge.svg" [matTooltip]="i18n.pages.title.opencollective.backers" matTooltipPosition="above"></a>
         </span>
         <span *ngIf="pkg.collective !== undefined" >
             &nbsp;
-            <a fragment="sponsors" routerLink="/{{ pkg.corifeus.reponame }}/open-collective"><img src="https://opencollective.com/{{pkg.name}}/sponsors/badge.svg" [matTooltip]="i18n.pages.title.opencollective.sponsors" [matTooltipPosition]="tooltipPosition"></a>
+            <a fragment="sponsors" routerLink="/{{ pkg.corifeus.reponame }}/open-collective"><img src="https://opencollective.com/{{pkg.name}}/sponsors/badge.svg" [matTooltip]="i18n.pages.title.opencollective.sponsors" matTooltipPosition="above"></a>
         </span>
         -->
         &nbsp;
-         <a target="_blank" href="https://www.facebook.com/corifeus.software"><img [src]="i18n.pages.badge.facebook"  matTooltip="Corifeus Software Engineering" [matTooltipPosition]="tooltipPosition"></a>
+         <a target="_blank" href="https://www.facebook.com/corifeus.software"><img [src]="i18n.pages.badge.facebook"  matTooltip="Corifeus Software Engineering" matTooltipPosition="above"></a>
     </span>
 
 </span>
@@ -83,7 +83,6 @@ export class Status implements OnDestroy {
 
     @Input('cory-pkg') pkg: any;
 
-    tooltipPosition: string = 'above'
     i18n: any
 
     constructor(

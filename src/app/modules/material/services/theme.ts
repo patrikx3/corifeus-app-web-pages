@@ -1,8 +1,8 @@
-import {Injectable,} from '@angular/core';
+import { Injectable, } from '@angular/core';
 
 import kebabCase from 'lodash/kebabCase';
 
-import {CookieService, SettingsService} from '../../web';
+import { CookieService, SettingsService } from '../../web';
 
 //import {OverlayContainer} from '@angular/material';
 
@@ -10,9 +10,12 @@ export type ThemeType = "dark" | "light";
 
 import debounce from 'lodash/debounce'
 
-const MobileDetect = require('mobile-detect')
-const md = new MobileDetect(window.navigator.userAgent);
-const isMobile = md.mobile() !== null || md.phone() !== null || md.tablet() !== null
+//const MobileDetect = require('mobile-detect')
+//const md = new MobileDetect(window.navigator.userAgent);
+//const isMobile = md.mobile() !== null || md.phone() !== null || md.tablet() !== null
+
+import { Inject } from '@angular/core';
+import { fromEvent, merge } from 'rxjs';
 
 @Injectable()
 export class ThemeService {
@@ -34,10 +37,23 @@ export class ThemeService {
     constructor(
         private cookies: CookieService,
         private settingsAll: SettingsService,
+        @Inject('Window') private window: Window
         //        private overlayContainer: OverlayContainer
     ) {
         this.firstThemeImport = true
         this.windowResize = debounce(this.windowResizeRaw.bind(this), 250)
+        this.listenToResize();
+    }
+
+
+    private listenToResize() {
+        const resizeObservable = fromEvent(this.window, 'resize');
+        const orientationChangeObservable = fromEvent(this.window, 'orientationchange');
+
+        merge(resizeObservable, orientationChangeObservable)
+            .subscribe(() => {
+                this.windowResize();
+            });
     }
 
     boot() {
@@ -70,11 +86,11 @@ export class ThemeService {
             const body = document.getElementsByTagName("body")[0];
 
             body.classList.remove(this.current);
-//            this.overlayContainer.getContainerElement().classList.remove(this.current);
+            //            this.overlayContainer.getContainerElement().classList.remove(this.current);
 
             this.current = newTheme;
             body.classList.add(this.current);
-//            this.overlayContainer.getContainerElement().classList.add(this.current);
+            //            this.overlayContainer.getContainerElement().classList.add(this.current);
 
             //this.overlayContainer.themeClass = newTheme;
             this.cookies.set(this.settings.cookie.theme, this.current);
@@ -225,6 +241,7 @@ export class ThemeService {
     windowResize: any
 
     windowResizeRaw() {
+        //console.warn('resize')
         if (this.current === 'cory-mat-theme-dark-matrix') {
             this.matrixEffectData = this.clearMatrixEffect()
         }
