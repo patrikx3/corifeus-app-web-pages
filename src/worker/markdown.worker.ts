@@ -114,9 +114,15 @@ const extract = (template, area) => {
 }
 
 
-markdownRenderer.heading = (text, level, raw) => {
+markdownRenderer.heading = (token) => {
 //            console.log('text', text,)
 //            console.log('raw', raw)
+
+// text, level, raw
+    const text = token.text;
+    const level = token.depth;
+    const raw = token.raw
+
     const ref = kebabCase(htmlStrip(raw)).replace(/[^\x00-\xFF]/g, "");
 //            console.log('ref', ref)
     const id = `${ref}-parent`;
@@ -132,7 +138,9 @@ markdownRenderer.heading = (text, level, raw) => {
     return element
 }
 
-markdownRenderer.image = (href, title, text) => {
+markdownRenderer.image = (token) => {
+    // href, title, text
+    let {href, title, text} = token;
     title = title || '';
     text = text || '';
     if (!href.startsWith('http')) {
@@ -159,7 +167,11 @@ ${text}
     return result;
 };
 
-markdownRenderer.link = (href, title, text) => {
+markdownRenderer.link = (token) => {
+
+    const title = token.title
+    let href = token.href
+    const text = token.text
 
     let a;
     let tooltip = '';
@@ -236,7 +248,14 @@ markdownRenderer.link = (href, title, text) => {
     return a;
 }
 
-markdownRenderer.code = (code, language) => {
+markdownRenderer.code = (token) => {
+
+    // code, language
+    //console.warn('code', token)
+
+    const code = token.text;
+    let language = token.lang;
+
     if (language === undefined) {
         language = 'text';
     }
@@ -266,7 +285,11 @@ We are not loading everything, since it is about 500kb`)
     return `<div class="cory-markdown-code"><div class="cory-markdown-code-copy-paste" onclick="window.coryPageCopy(${codeIndex})"><i class="far fa-copy fa-lg"></i></div><pre><code style="font-family: 'Roboto Mono';" class="hljs ${language}" id="code-${codeIndex}">${highlighted}</code></pre></div>`;
 };
 
-markdownRenderer.codespan = (code) => {
+markdownRenderer.codespan = (token) => {
+    
+    //console.warn('codespan', token)
+
+    const code = token.text
     const lang = 'html';
     const highlighted = hljs.highlight(code, {
         language: lang,
@@ -297,6 +320,7 @@ const construct = (data) => {
 
 
     let html = marked(md, {
+        useNewRenderer: true,
         mangle: false,
         headerIds: false,
         renderer: markdownRenderer

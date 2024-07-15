@@ -142,7 +142,7 @@ $light-focused: rgba(white, 0.12);
 
     }
 
-    @return mat.define-palette($cory-mat-color-paletta-obj);
+    @return mat.m2-define-palette($cory-mat-color-paletta-obj);
 }
 
 ;
@@ -165,13 +165,13 @@ $light-focused: rgba(white, 0.12);
         }
         */
         [mat-raised-button].mat-primary:not([disabled]):hover {
-            background-color: mat.get-color-from-palette($primary, 800);
+            background-color: mat.m2-get-color-from-palette($primary, 800);
         }
         [mat-raised-button].mat-accent:not([disabled]):hover {
-            background-color: mat.get-color-from-palette($accent, 800);
+            background-color: mat.m2-get-color-from-palette($accent, 800);
         }
         [mat-raised-button].mat-warn:not([disabled]):hover {
-            background-color: mat.get-color-from-palette($warn, 800);
+            background-color: mat.m2-get-color-from-palette($warn, 800);
         }
     } @else {
         /*
@@ -182,13 +182,13 @@ $light-focused: rgba(white, 0.12);
         }
         */
         [mat-raised-button].mat-primary:not([disabled]):hover {
-            background-color: mat.get-color-from-palette($primary, 400);
+            background-color: mat.m2-get-color-from-palette($primary, 400);
         }
         [mat-raised-button].mat-accent:not([disabled]):hover {
-            background-color: mat.get-color-from-palette($accent, 400);
+            background-color: mat.m2-get-color-from-palette($accent, 400);
         }
         [mat-raised-button].mat-warn:not([disabled]):hover {
-            background-color: mat.get-color-from-palette($warn, 400);
+            background-color: mat.m2-get-color-from-palette($warn, 400);
         }
 
     }
@@ -198,9 +198,9 @@ $light-focused: rgba(white, 0.12);
 @mixin cory-mat-theme-toolbar($type, $theme) {
     @include mat.toolbar-theme($theme);
 
-    $primary: mat.get-color-from-palette(map-get($theme, primary));
-    $accent: mat.get-color-from-palette(map-get($theme, accent));
-    $warn: mat.get-color-from-palette(map-get($theme, warn));
+    $primary: mat.m2-get-color-from-palette(map-get($theme, primary));
+    $accent: mat.m2-get-color-from-palette(map-get($theme, accent));
+    $warn: mat.m2-get-color-from-palette(map-get($theme, warn));
 
     .mat-toolbar.mat-primary {
         background: linear-gradient(to right, $primary, darken($primary, 5%));
@@ -227,127 +227,127 @@ $light-focused: rgba(white, 0.12);
 @mixin cory-mat-theme($type, $primary, $accent) {
     $theme: '';
 
-    $darker-primary: cory-mat-color-paletta($type, mat.get-color-from-palette($primary, 700));
-    $darker-accent: cory-mat-color-paletta($type, mat.get-color-from-palette($accent, 700));
+    $darker-primary: cory-mat-color-paletta($type, mat.m2-get-color-from-palette($primary, 700));
+    $darker-accent: cory-mat-color-paletta($type, mat.m2-get-color-from-palette($accent, 700));
     $darker-theme: '';
 
     $reverse-primary: $accent;
     $reverse-accent: $primary;
     $reverse-theme: '';
 
-    $reverse-darker-primary: cory-mat-color-paletta($type, mat.get-color-from-palette($accent, 700));
-    $reverse-darker-accent: cory-mat-color-paletta($type, mat.get-color-from-palette($primary, 700));
+    $reverse-darker-primary: cory-mat-color-paletta($type, mat.m2-get-color-from-palette($accent, 700));
+    $reverse-darker-accent: cory-mat-color-paletta($type, mat.m2-get-color-from-palette($primary, 700));
     $reverse-darker-theme: '';
 
     @if $type == "light" {
-        $warn: mat.define-palette(mat.$red-palette);
+        $warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-        $theme: mat.define-light-theme((
+        $theme: mat.m2-define-light-theme((
             color: (
                 primary: $primary, 
                 accent: $accent,
                 warn: $warn
             ),
-            typography: mat.define-typography-config(),
+            typography: mat.m2-define-typography-config(),
             density: 0,
         ));
-        $reverse-theme: mat.define-light-theme((
+        $reverse-theme: mat.m2-define-light-theme((
             color: (
                 primary: $reverse-primary, 
                 accent: $reverse-accent,
                 warn: $warn
             ),
-            typography: mat.define-typography-config(),
+            typography: mat.m2-define-typography-config(),
             density: 0,
 
         ));
-        $darker-theme: mat.define-light-theme((
+        $darker-theme: mat.m2-define-light-theme((
             color: (
                 primary: $darker-primary, 
                 accent: $darker-accent,
                 warn: $warn
             ),
-            typography: mat.define-typography-config(),
+            typography: mat.m2-define-typography-config(),
             density: 0,
 
         ));
-        $reverse-darker-theme: mat.define-light-theme((
+        $reverse-darker-theme: mat.m2-define-light-theme((
             color: (
                 primary: $reverse-darker-primary, 
                 accent: $reverse-darker-accent,
                 warn: $warn
             ),
-            typography: mat.define-typography-config(),
+            typography: mat.m2-define-typography-config(),
             density: 0,
 
         ));
 
-        background-color: mat.get-color-from-palette($primary, A100);
+        background-color: mat.m2-get-color-from-palette($primary, A100);
 
-        background: radial-gradient(circle, mat.get-color-from-palette($primary, A100, 0.5), mat.get-color-from-palette($primary, A400, 0.5));
+        background: radial-gradient(circle, mat.m2-get-color-from-palette($primary, A100, 0.5), mat.m2-get-color-from-palette($primary, A400, 0.5));
 
-        $link: mat.define-palette($accent, 500);
-        $link-hover: mat.define-palette($accent, A700);
-        @include cory-mat-theme-link(mat.get-color-from-palette($link), mat.get-color-from-palette($link-hover));
+        $link: mat.m2-define-palette($accent, 500);
+        $link-hover: mat.m2-define-palette($accent, A700);
+        @include cory-mat-theme-link(mat.m2-get-color-from-palette($link), mat.m2-get-color-from-palette($link-hover));
 
         //fixme this is something weird, to snackbar need black, but still it is not black :)
         .cory-mat-bg {
-            background-color: map_get(mat.$grey-palette, 900);
+            background-color: map_get(mat.$m2-grey-palette, 900);
             //    background: radial-gradient(circle, mat.get-color-from-palette(mat.$grey-palette, 1000), mat.get-color-from-palette(mat.$grey-palette, 900));
             background: radial-gradient(circle, #000000, #212121);
         }
 
     } @else {
-        $warn: mat.define-palette(mat.$red-palette);
+        $warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-        $theme: mat.define-dark-theme((
+        $theme: mat.m2-define-dark-theme((
             color: (
                 primary: $primary, 
                 accent: $accent,
                 warn: $warn
             ),
-            typography: mat.define-typography-config(),
+            typography: mat.m2-define-typography-config(),
             density: 0,
         ));
-        $reverse-theme: mat.define-dark-theme((
+        $reverse-theme: mat.m2-define-dark-theme((
             color: (
                 primary: $reverse-primary, 
                 accent: $reverse-accent,
                 warn: $warn
             ),
-            typography: mat.define-typography-config(),
+            typography: mat.m2-define-typography-config(),
             density: 0,
 
         ));
-        $darker-theme: mat.define-dark-theme((
+        $darker-theme: mat.m2-define-dark-theme((
             color: (
                 primary: $darker-primary, 
                 accent: $darker-accent,
                 warn: $warn
             ),
-            typography: mat.define-typography-config(),
+            typography: mat.m2-define-typography-config(),
             density: 0,
 
         ));
-        $reverse-darker-theme: mat.define-dark-theme((
+        $reverse-darker-theme: mat.m2-define-dark-theme((
             color: (
                 primary: $reverse-darker-primary, 
                 accent: $reverse-darker-accent,
                 warn: $warn
             ),
-            typography: mat.define-typography-config(),
+            typography: mat.m2-define-typography-config(),
             density: 0,
 
         ));
 
 
-        background-color: map_get(mat.$grey-palette, 900);
+        background-color: map_get(mat.$m2-grey-palette, 900);
         //    background: radial-gradient(circle, mat.get-color-from-palette(mat.$grey-palette, 1000), mat.get-color-from-palette(mat.$grey-palette, 900));
         background: radial-gradient(circle, #000000, #212121);
 
-        $link: mat.define-palette($accent, A400);
-        $link-hover: mat.define-palette($accent, A200);
-        @include cory-mat-theme-link(mat.get-color-from-palette($link), mat.get-color-from-palette($link-hover));
+        $link: mat.m2-define-palette($accent, A400);
+        $link-hover: mat.m2-define-palette($accent, A200);
+        @include cory-mat-theme-link(mat.m2-get-color-from-palette($link), mat.m2-get-color-from-palette($link-hover));
 
     }
 
@@ -392,7 +392,7 @@ $light-focused: rgba(white, 0.12);
     @include mat.progress-bar-theme($reverse-darker-theme);
 //    @include mat.progress-spinner-theme($reverse-darker-theme);
 
-    @include cory-mat-theme-container(mat.get-color-from-palette($primary));
+    @include cory-mat-theme-container(mat.m2-get-color-from-palette($primary));
 
     @include cory-mat-autofill();
 

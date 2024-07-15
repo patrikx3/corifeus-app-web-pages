@@ -7,10 +7,7 @@ import {
 
 import {RouterModule} from '@angular/router';
 
-import {
-    HttpClientModule,
-    HTTP_INTERCEPTORS
-} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 import {Boot} from './boot';
@@ -40,12 +37,7 @@ import {CommonModule} from "@angular/common";
 
 let booted = false
 
-@NgModule({
-    imports: [
-        HttpClientModule,
-        RouterModule,
-        CommonModule,
-    ],
+@NgModule({ 
     // export
     declarations: [
     //        KeysPipe,
@@ -54,8 +46,15 @@ let booted = false
     //        SubmittedRequired,
     //        FocusDirective
     ],
-    // does not need export
-    providers: [
+    exports: [
+        RouterModule,
+        //      KeysPipe,
+        //      HtmlPipe,
+        //      JsonPipe,
+        //      FocusDirective
+        //      SubmittedRequired,
+    ], imports: [RouterModule,
+        CommonModule], providers: [
         RouterService,
         CookieService,
         SettingsService,
@@ -74,17 +73,8 @@ let booted = false
          */
         // order is important
         Boot,
-    ],
-    exports: [
-        HttpClientModule,
-        RouterModule,
-        //      KeysPipe,
-        //      HtmlPipe,
-        //      JsonPipe,
-        //      FocusDirective
-        //      SubmittedRequired,
-    ]
-})
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class CorifeusModule {
 
     constructor(private boot: Boot) {

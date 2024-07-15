@@ -1,5 +1,5 @@
 import {Injectable, Injector, NgZone} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 
 import {tap} from "rxjs/operators";

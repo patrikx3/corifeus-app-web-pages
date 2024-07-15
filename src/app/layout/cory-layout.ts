@@ -22,7 +22,7 @@ import {
     RouterService,
 } from '../modules/web';
 
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 const emojiRegex = require('emoji-regex');
 
