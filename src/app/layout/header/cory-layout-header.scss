@@ -1,3 +1,5 @@
+@use "../../modules/material/scss/material/variables" as matcory;
+
 .cory-mat-header * {
     color: white !important; 
 }
@@ -19,7 +21,7 @@ body.cory-mat-theme-dark-matrix .cory-mat-header *{
         text-transform: uppercase;
     }
 
-    @media screen and (max-width: $cory-mat-size-small) {
+    @media screen and (max-width: matcory.$cory-mat-size-small) {
         top: 15px;
     }
 }

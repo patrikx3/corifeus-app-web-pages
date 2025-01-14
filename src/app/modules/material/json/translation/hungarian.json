@@ -17,6 +17,8 @@
     },
     "title": {
         "menu": "Menü",
+        "dark": "Sötét",
+        "light": "Világos",
         "theme": "Smink",
         "language": "Nyelv",
         "ok": "OK",

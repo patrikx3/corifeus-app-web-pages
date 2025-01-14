@@ -2,10 +2,6 @@ export {
     Loading
 } from './cory-mat-loading';
 
-export {
-    ThemeMenu
-} from './cory-mat-theme/cory-mat-theme-menu';
-
 
 export {
     ThemeButton

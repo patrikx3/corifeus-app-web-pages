@@ -26,7 +26,7 @@ export class ThemeService {
 
     private original: string;
 
-    private all: string[];
+    public all: string[];
 
     private settings: any;
 
@@ -77,45 +77,55 @@ export class ThemeService {
         } catch (e) {
             this.setTheme(this.original);
         }
+        this.runMatrixEffect()
 
     }
 
     setTheme(newTheme: string) {
         newTheme = kebabCase(newTheme);
-        if (this.all.indexOf(newTheme) > -1) {
-            const body = document.getElementsByTagName("body")[0];
-
-            body.classList.remove(this.current);
-            //            this.overlayContainer.getContainerElement().classList.remove(this.current);
-
-            this.current = newTheme;
-            body.classList.add(this.current);
-            //            this.overlayContainer.getContainerElement().classList.add(this.current);
-
-            //this.overlayContainer.themeClass = newTheme;
-            this.cookies.set(this.settings.cookie.theme, this.current);
-
-            if (this.current.startsWith('cory-mat-theme-dark')) {
-                this.type = "dark";
-                body.classList.add('cory-mat-theme-dark');
-                body.classList.remove('cory-mat-theme-light');
-            } else {
-                this.type = "light";
-                body.classList.add('cory-mat-theme-light')
-                body.classList.remove('cory-mat-theme-dark');
-            }
-
-            if (newTheme === 'cory-mat-theme-dark-matrix' && (this.current !== 'cory-mat-theme-dark-matrix' || this.firstThemeImport)) {
-                //console.warn('run matrix effect')
-                document.getElementById('cory-pages-layout-theme-matrix').style.display = 'show';
-                this.runMatrixEffect()
-            } else {
-                document.getElementById('cory-pages-layout-theme-matrix').style.display = 'none';
-            }
-
-            return;
+        console.log('setTheme', newTheme)
+        //  "cory-mat-theme-light-indigo-pink",
+        //  "cory-mat-theme-dark-matrix"
+        if (!newTheme || this.all.indexOf(newTheme) === -1) {
+            // Detect system theme using matchMedia
+            const isSystemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Set the default theme based on system theme
+            newTheme = isSystemDarkMode ? 'cory-mat-theme-dark-matrix' : 'cory-mat-theme-light-indigo-pink';
         }
-        throw new Error(`undefined ${newTheme}`);
+        
+        const body = document.getElementsByTagName("body")[0];
+
+        body.classList.remove(this.current);
+        //            this.overlayContainer.getContainerElement().classList.remove(this.current);
+
+        this.current = newTheme;
+        body.classList.add(this.current);
+        //            this.overlayContainer.getContainerElement().classList.add(this.current);
+
+        //this.overlayContainer.themeClass = newTheme;
+        this.cookies.set(this.settings.cookie.theme, this.current);
+
+        if (this.current.startsWith('cory-mat-theme-dark')) {
+            this.type = "dark";
+            body.classList.add('cory-mat-theme-dark');
+            body.classList.remove('cory-mat-theme-light');
+        } else {
+            this.type = "light";
+            body.classList.add('cory-mat-theme-light')
+            body.classList.remove('cory-mat-theme-dark');
+        }
+
+        //if (newTheme === 'cory-mat-theme-dark-matrix' && (this.current !== 'cory-mat-theme-dark-matrix' || this.firstThemeImport)) {
+        //    //console.warn('run matrix effect')
+       //     document.getElementById('cory-pages-layout-theme-matrix').style.display = 'show';
+      //      this.runMatrixEffect()
+    //    } else {
+  //          document.getElementById('cory-pages-layout-theme-matrix').style.display = 'none';
+//        }
+        //document.getElementById('cory-pages-layout-theme-matrix').style.display = 'show';
+        this.matrixEffectData = this.clearMatrixEffect()
+
     }
 
 
@@ -132,7 +142,13 @@ export class ThemeService {
         c.height = window.innerHeight
         c.width = window.innerWidth;
 
-        let matrix: any = "安吧八爸百北不大岛的弟地东都对多儿二方港哥个关贵国过海好很会家见叫姐京九可老李零六吗妈么没美妹们名明哪那南你您朋七起千去人认日三上谁什生师十识是四他她台天湾万王我五西息系先香想小谢姓休学也一亿英友月再张这中字";
+        let matrix: any
+
+        if (this.current === 'cory-mat-theme-dark-matrix') {
+            matrix = "安吧八爸百北不大岛的弟地东都对多儿二方港哥个关贵国过海好很会家见叫姐京九可老李零六吗妈么没美妹们名明哪那南你您朋七起千去人认日三上谁什生师十识是四他她台天湾万王我五西息系先香想小谢姓休学也一亿英友月再张这中字";
+        } else {
+            matrix = "▌▍▎▁▂▃▄▅▆▇█■□◆◇○●▲△▼▽▰▱◼◻◾◽";
+        }
 
         //chinese characters - taken from the unicode charset
         // https://www.chinese-tools.com/learn/characters/list.html
@@ -169,14 +185,12 @@ export class ThemeService {
         const fps = 18;
 
         this.matrixEffectData = this.clearMatrixEffect()
-
-        const colors = ['#27c027', '#00ff00', '#20b920', '#000000']
-
+        
         //const fps = 1000 / 6
 
         const draw = () => {
 
-            if (this.current === 'cory-mat-theme-dark-matrix') {
+            //if (this.current === 'cory-mat-theme-dark-matrix') {
                 // console.info('request draw')
                 //window.requestAnimationFrame(draw);
 
@@ -194,15 +208,30 @@ export class ThemeService {
                 }, 1000 / fps);
 
                 //setTimeout(draw, fps)
-            }
+            //}
 
             const { c, ctx, font_size, drops, matrix } = this.matrixEffectData
             ///console.info('draw', self.current)
 
+
+
             const inlineDraw = () => {
                 //Black BG for the canvas
                 //translucent BG to show trail
-                ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+
+                let colors : any;
+                if (this.current === 'cory-mat-theme-dark-matrix') {
+                    colors = ['#27c027', '#00ff00', '#20b920', '#000000']
+                } else {
+                    colors =  ['#262', '#6b6', '#373', '#484']
+                }
+         
+
+                if (this.current === 'cory-mat-theme-dark-matrix') {
+                    ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+                } else {
+                    ctx.fillStyle = "rgba(186, 255, 186, 0.08)";
+                }
                 ctx.fillRect(0, 0, c.width, c.height);
 
                 //looping over drops
@@ -242,9 +271,9 @@ export class ThemeService {
 
     windowResizeRaw() {
         //console.warn('resize')
-        if (this.current === 'cory-mat-theme-dark-matrix') {
+        //if (this.current === 'cory-mat-theme-dark-matrix') {
             this.matrixEffectData = this.clearMatrixEffect()
-        }
+        //}
     }
     /*
      */

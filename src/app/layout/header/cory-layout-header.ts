@@ -28,7 +28,6 @@ import { NgIf, NgFor } from '@angular/common';
 @Component({
     selector: 'cory-layout-header',
     templateUrl: 'cory-layout-header.html',
-    standalone: true,
     imports: [
         NgIf,
         MatToolbarModule,
@@ -37,7 +36,7 @@ import { NgIf, NgFor } from '@angular/common';
         MatIconModule,
         MatMenuModule,
         NgFor,
-    ],
+    ]
 })
 export class Header implements OnDestroy {
 

@@ -8,8 +8,15 @@ import {
     ElementRef,
     ChangeDetectorRef,
     OnDestroy,
+    AfterViewInit,
 } from '@angular/core';
 
+declare global {
+    interface Window {
+      adsbygoogle: any[];
+    }
+  }
+  
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 import debounce from 'lodash/debounce'
@@ -24,7 +31,7 @@ import {
 
 import { HttpClient } from '@angular/common/http';
 
-const emojiRegex = require('emoji-regex');
+import * as emojiRegex from 'emoji-regex'
 
 import {LocaleService, LocaleSubject, SettingsService} from '../modules/web';
 import {NotifyService} from '../modules/material';
@@ -70,12 +77,11 @@ declare global {
     selector: 'cory-layout',
     templateUrl: 'cory-layout.html',
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [Loading, Header, MatSidenavModule, MatMenuModule, MatFormFieldModule, MatInputModule, NgIf, MatIconModule, NgFor, MatCardModule, Status, MatTooltipModule, RouterOutlet, Footer, MatButtonModule]
 })
 
 @Injectable()
-export class Layout implements OnInit, OnDestroy {
+export class Layout implements OnInit, OnDestroy, AfterViewInit {
 
     subscriptions$: Array<Subscription> = []
 
@@ -387,6 +393,7 @@ export class Layout implements OnInit, OnDestroy {
             options = {
                 folder: 'svg',
                 ext: '.svg',
+                base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/'
             }
 
         }
@@ -430,5 +437,18 @@ export class Layout implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.subscriptions$.forEach(subs$ => subs$.unsubscribe())
     }
+
+    ngAfterViewInit() {
+        /*
+        setTimeout(() => {
+          try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          } catch (e) {
+            console.error('AdSense error:', e);
+          }
+        }, 100); // Add a small delay to ensure DOM is rendered
+        */
+      }
 }
 

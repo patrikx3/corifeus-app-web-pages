@@ -46,8 +46,7 @@ import { MatIconModule } from '@angular/material/icon';
             min-width: auto !important;
         }
     `],
-    standalone: true,
-    imports: [MatIconModule, MatButtonModule],
+    imports: [MatIconModule, MatButtonModule]
 })
 @Injectable()
 export class NotifyComponent implements OnDestroy {

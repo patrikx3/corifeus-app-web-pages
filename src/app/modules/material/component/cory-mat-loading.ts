@@ -16,8 +16,7 @@ style="position: fixed; top: 0px; left: 0px; width: 100%; z-index: 100000;"
 color="primary"
 mode="indeterminate"></mat-progress-bar>
 `,
-    standalone: true,
-    imports: [NgIf, MatProgressBarModule],
+    imports: [NgIf, MatProgressBarModule]
 })
 export class Loading {
 

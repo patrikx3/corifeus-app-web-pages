@@ -40,7 +40,6 @@ class Tooltip {
 @Component({
     selector: 'cory-layout-footer',
     templateUrl: 'cory-layout-footer.html',
-    standalone: true,
     imports: [
         NgIf,
         MatToolbarModule,
@@ -48,7 +47,7 @@ class Tooltip {
         MatTooltipModule,
         ThemeButton,
         MatIconModule,
-    ],
+    ]
 })
 @Injectable()
 export class Footer implements OnDestroy {

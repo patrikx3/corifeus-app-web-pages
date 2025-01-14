@@ -5,24 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/"/>
+  <meta name="google-adsense-account" content="ca-pub-1410073260887710">
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1410073260887710"
+     crossorigin="anonymous"></script>
+     -->
 </head>
 <body>
 
 
 <cory-web-pages-app>
 
-  <!--
-  https://codepen.io/Sixclones/pen/VBdeXL
-  -->
-  <style type="text/css">
+  <style>
     body {
       width: 100vw;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background-color: rgba(0, 0, 0, 0.1);
-
+      margin: 0;
     }
 
     .LoaderBalls {
@@ -30,6 +33,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin: 20px auto;
     }
 
     .LoaderBalls__item {
@@ -55,17 +59,49 @@
       0% {
         transform: translate3d(0, 10px, 0) scale(1.2, 0.85);
       }
+
       100% {
         transform: translate3d(0, -20px, 0) scale(0.9, 1.1);
       }
     }
   </style>
 
-
+  <!-- Loader Balls -->
   <div class="LoaderBalls">
     <div class="LoaderBalls__item"></div>
     <div class="LoaderBalls__item"></div>
     <div class="LoaderBalls__item"></div>
+  </div>
+
+  <!-- Web Development Links -->
+  <div id="web-development" style="text-align: center;">
+    <a href="https://corifeus.hu/hu"  style="opacity: 0.5; text-decoration: none;">
+      <span lang="hu">Webfejlesztés</span>
+    </a><br />
+    <a href="https://corifeus.hu/en"  style="opacity: 0.5; text-decoration: none;">
+      <span lang="en">Web Development</span>
+    </a><br />
+    <a href="https://corifeus.hu/de"  style="opacity: 0.5; text-decoration: none;">
+      <span lang="de">Webentwicklung</span>
+    </a><br />
+    <a href="https://corifeus.hu/es"  style="opacity: 0.5; text-decoration: none;">
+      <span lang="es">Desarrollo Web</span>
+    </a><br />
+    <a href="https://corifeus.hu/fr"  style="opacity: 0.5; text-decoration: none;">
+      <span lang="fr">Développement Web</span>
+    </a><br />
+    <a href="https://corifeus.hu/ja"  style="opacity: 0.5; text-decoration: none;">
+      <span lang="jp">ウェブ開発</span>
+    </a><br />
+    <a href="https://corifeus.hu/it"  style="opacity: 0.5; text-decoration: none;">
+      <span lang="it">Sviluppo Web</span>
+    </a><br />
+    <a href="https://corifeus.hu/ru"  style="opacity: 0.5; text-decoration: none;">
+      <span lang="ru">Веб-разработка</span>
+    </a><br />
+    <a href="https://corifeus.hu/zn"  style="opacity: 0.5; text-decoration: none;">
+      <span lang="zh">网页开发</span>
+    </a>
   </div>
 
 

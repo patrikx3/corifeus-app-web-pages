@@ -1,4 +1,6 @@
 @use '@angular/material' as mat;
+@use "sass:color";
+@use "sass:map";
 
 $dark-primary-text: rgba(black, 0.87);
 $dark-secondary-text: rgba(black, 0.54);
@@ -55,7 +57,7 @@ $light-focused: rgba(white, 0.12);
             background: none;
         }
 
-        background: linear-gradient(to left, $color, darken($color, 5%));
+        background: linear-gradient(to left, $color, color.adjust($color, $lightness: -5%));
         //    background-color: black;
     }
 
@@ -64,29 +66,31 @@ $light-focused: rgba(white, 0.12);
             background: none;
         }
 
-        background: linear-gradient(to right, $color, darken($color, 5%));
-        //    background-color: $color;
+            background: linear-gradient(to right, $color, color.adjust($color, $lightness: -5%));
+            //    background-color: $color;
+        }
     }
-}
 
-@function cory-mat-color-paletta($type, $color) {
-    $cory-mat-color-paletta-obj: '';
+    @function cory-mat-color-paletta($type, $color) {
+        $cory-mat-color-paletta-obj: '';
+
+
     @if ($type == 'light') {
         $cory-mat-color-paletta-obj: (
-            50: lighten($color, 50%),
-            100: lighten($color, 40%),
-            200: lighten($color, 30%),
-            300: lighten($color, 20%),
-            400: lighten($color, 10%),
+            50: color.scale($color, $lightness: 50%),
+            100: color.scale($color, $lightness: 40%),
+            200: color.scale($color, $lightness: 30%),
+            300: color.scale($color, $lightness: 20%),
+            400: color.scale($color, $lightness: 10%),
             500: $color,
-            600: darken($color, 10%),
-            700: darken($color, 20%),
-            800: darken($color, 30%),
-            900: darken($color, 40%),
-            A100: lighten($color, 40%),
-            A200: lighten($color, 30%),
-            A400: lighten($color, 10%),
-            A700: darken($color, 30%),
+            600: color.scale($color, $lightness: -10%),
+            700: color.scale($color, $lightness: -20%),
+            800: color.scale($color, $lightness: -30%),
+            900: color.scale($color, $lightness: -40%),
+            A100: color.scale($color, $lightness: 40%),
+            A200: color.scale($color, $lightness: 30%),
+            A400: color.scale($color, $lightness: 10%),
+            A700: color.scale($color, $lightness: -30%),
             contrast: (
                 50: $dark-primary-text,
                 100: $dark-primary-text,
@@ -104,23 +108,22 @@ $light-focused: rgba(white, 0.12);
                 A700: $light-primary-text,
             )
         );
-
     } @else {
         $cory-mat-color-paletta-obj: (
-            50: lighten($color, 50%),
-            100: lighten($color, 40%),
-            200: lighten($color, 30%),
-            300: lighten($color, 20%),
-            400: lighten($color, 10%),
+            50: color.scale($color, $lightness: 50%),
+            100: color.scale($color, $lightness: 40%),
+            200: color.scale($color, $lightness: 30%),
+            300: color.scale($color, $lightness: 20%),
+            400: color.scale($color, $lightness: 10%),
             500: $color,
-            600: darken($color, 10%),
-            700: darken($color, 20%),
-            800: darken($color, 30%),
-            900: darken($color, 40%),
-            A100: lighten($color, 40%),
-            A200: lighten($color, 30%),
-            A400: lighten($color, 10%),
-            A700: darken($color, 30%),
+            600: color.scale($color, $lightness: -10%),
+            700: color.scale($color, $lightness: -20%),
+            800: color.scale($color, $lightness: -30%),
+            900: color.scale($color, $lightness: -40%),
+            A100: color.scale($color, $lightness: 40%),
+            A200: color.scale($color, $lightness: 30%),
+            A400: color.scale($color, $lightness: 10%),
+            A700: color.scale($color, $lightness: -30%),
             contrast: (
                 0: $dark-primary-text,
                 50: $dark-primary-text,
@@ -139,8 +142,8 @@ $light-focused: rgba(white, 0.12);
                 A700: $light-primary-text,
             )
         );
-
     }
+
 
     @return mat.m2-define-palette($cory-mat-color-paletta-obj);
 }
@@ -148,9 +151,9 @@ $light-focused: rgba(white, 0.12);
 ;
 
 @mixin cory-mat-theme-button($type, $theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
+    $primary: map.get($theme, primary);
+    $accent: map.get($theme, accent);
+    $warn: map.get($theme, warn);
 
     @include mat.button-theme($theme);
     @include mat.fab-theme($theme);
@@ -198,12 +201,12 @@ $light-focused: rgba(white, 0.12);
 @mixin cory-mat-theme-toolbar($type, $theme) {
     @include mat.toolbar-theme($theme);
 
-    $primary: mat.m2-get-color-from-palette(map-get($theme, primary));
-    $accent: mat.m2-get-color-from-palette(map-get($theme, accent));
-    $warn: mat.m2-get-color-from-palette(map-get($theme, warn));
+    $primary: mat.m2-get-color-from-palette(map.get($theme, primary));
+    $accent: mat.m2-get-color-from-palette(map.get($theme, accent));
+    $warn: mat.m2-get-color-from-palette(map.get($theme, warn));
 
     .mat-toolbar.mat-primary {
-        background: linear-gradient(to right, $primary, darken($primary, 5%));
+        background: linear-gradient(to right, $primary, color.scale($primary, $lightness: -10%));
     }
 
 }
@@ -223,6 +226,7 @@ $light-focused: rgba(white, 0.12);
         //    background-color: mat.get-color-from-palette(mat.$yellow-palette, 500);
     }
 }
+
 
 @mixin cory-mat-theme($type, $primary, $accent) {
     $theme: '';
@@ -292,7 +296,7 @@ $light-focused: rgba(white, 0.12);
 
         //fixme this is something weird, to snackbar need black, but still it is not black :)
         .cory-mat-bg {
-            background-color: map_get(mat.$m2-grey-palette, 900);
+            background-color: map.get(mat.$m2-grey-palette, 900);
             //    background: radial-gradient(circle, mat.get-color-from-palette(mat.$grey-palette, 1000), mat.get-color-from-palette(mat.$grey-palette, 900));
             background: radial-gradient(circle, #000000, #212121);
         }
@@ -341,7 +345,7 @@ $light-focused: rgba(white, 0.12);
         ));
 
 
-        background-color: map_get(mat.$m2-grey-palette, 900);
+        background-color: map.get(mat.$m2-grey-palette, 900);
         //    background: radial-gradient(circle, mat.get-color-from-palette(mat.$grey-palette, 1000), mat.get-color-from-palette(mat.$grey-palette, 900));
         background: radial-gradient(circle, #000000, #212121);
 
@@ -354,7 +358,8 @@ $light-focused: rgba(white, 0.12);
 
     //  @include mat.all-component-themes($theme);
 
-    @include mat.core-theme($theme);
+    @include mat.elevation-classes();
+    @include mat.app-background();
 //    @include mat.autocomplete-theme($theme);
 
     // card
@@ -401,4 +406,6 @@ $light-focused: rgba(white, 0.12);
         /* e.g. */
         background-color: rgba(0, 0, 0, 0.8);
     }
+
+   
 }

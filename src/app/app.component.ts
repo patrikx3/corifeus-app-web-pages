@@ -10,7 +10,6 @@ import {LocaleService, SettingsService} from './modules/web';
     template: `
     <router-outlet></router-outlet>
   `,
-    standalone: true,
     imports: [RouterOutlet]
 })
 export class Application {

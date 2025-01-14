@@ -4,19 +4,14 @@
     },
     "themes": {
         "material": {
-            "cory-mat-theme-light-forest": "Forest",
-            "cory-mat-theme-dark-wood": "Wood",
-            "cory-mat-theme-light-beach": "Beach",
-            "cory-mat-theme-dark-matrix": "Matrix",
-            "cory-mat-theme-light-deeppurple-amber": "Deep Purple Amber",
-            "cory-mat-theme-light-indigo-pink": "Indigo pink",
-            "cory-mat-theme-dark-pink-bluegray": "Pink bluegray",
-            "cory-mat-theme-dark-purple-green": "Purple green",
-            "cory-mat-theme-light-facebook": "Facebook"
+            "cory-mat-theme-dark-matrix": "Dark",
+            "cory-mat-theme-light-indigo-pink": "Light"
         }
     },
     "title": {
         "menu": "Menu",
+        "dark": "Dark",
+        "light": "Light",
         "theme": "Theme",
         "language": "Language",
         "ok": "OK",

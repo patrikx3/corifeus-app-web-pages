@@ -8,14 +8,20 @@ mat.$theme-ignore-duplication-warnings: true;
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 */
+@use '@fortawesome/fontawesome-free/css/all.css' as *;
 
-body {
-    font-family: Roboto, Arial, sans-serif;
-    padding: 0;
-    margin: 0;
-}
+@use  'mixins' as *;
+@use  'material-customization' as *;
+@use  'hover' as *;
 
-@import '~@fortawesome/fontawesome-free/css/all.css';
+@use 'toolbar' as *;
+
+@use 'theme/cory-mat-theme-dark-matrix' as *;
+@use  'theme/cory-mat-theme-light-indigo-pink' as *;
+
+
+@use 'variables' as matcory;
+
 // TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
 //  The following line adds:
 //    1. Default typography styles for all components
@@ -25,7 +31,8 @@ body {
 //  you can delete this line and instead use:
 //    `@include mat.legacy-typography-hierarchy(mat.define-typography-config());`
 @include mat.all-component-typographies();
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 // The following mixins include base theme styles that are only needed once per application. These
 // theme styles do not depend on the color, typography, or density settings in your theme. However,
@@ -44,12 +51,12 @@ body {
 //@include mat.all-component-bases(__<<ngM2ThemingMigrationEscapedComment1>>__);
 
 
-@import 'variables';
-@import 'mixins';
-@import 'material-customization';
-@import 'hover';
 
-@import 'toolbar';
+body {
+    font-family: Roboto, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
 
 .cory-mat-fill-horizontal {
     flex: 1 1 auto;
@@ -99,7 +106,7 @@ TODO(mdc-migration): The following rule targets internal classes of menu that ma
 
 
 .cory-mat-hide-xsmall {
-    @media screen and (max-width: $cory-mat-size-xsmall) {
+    @media screen and (max-width: matcory.$cory-mat-size-xsmall) {
         display: none;
     };
 }
@@ -107,8 +114,12 @@ TODO(mdc-migration): The following rule targets internal classes of menu that ma
 
 .cory-mat-container {
 
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
+    & {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0;
+        margin-right: 0;    
+    }
 
     .mat-mdc-card {
         margin-top: 10px;
@@ -116,7 +127,7 @@ TODO(mdc-migration): The following rule targets internal classes of menu that ma
 
         box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.25) !important;
 
-        @media screen and (max-width: $cory-mat-size-xsmall) {
+        @media screen and (max-width: matcory.$cory-mat-size-xsmall) {
             margin-top: 0px;
             margin-bottom: 0px;
         };
@@ -124,18 +135,16 @@ TODO(mdc-migration): The following rule targets internal classes of menu that ma
     }
 
 
-    margin-left: 0;
-    margin-right: 0;
 
-    @media screen and (min-width: $cory-mat-size-xsmall) {
+    @media screen and (min-width: matcory.$cory-mat-size-xsmall) {
         margin-top: 20px;
         margin-bottom: 20px;
         margin-left: 20px;
         margin-right: 20px;
     }
 
-    @media screen and (min-width: $cory-mat-size-medium) {
-        width: $cory-mat-size-medium - 100;
+    @media screen and (min-width: matcory.$cory-mat-size-medium) {
+        width: matcory.$cory-mat-size-medium - 100;
         margin-left: auto;
         margin-right: auto;
     };
@@ -165,12 +174,3 @@ body {
     z-index: 1;
 }
 
-@import 'theme/cory-mat-theme-dark-matrix';
-@import 'theme/cory-mat-theme-light-forest';
-@import 'theme/cory-mat-theme-light-beach';
-@import 'theme/cory-mat-theme-light-indigo-pink';
-@import 'theme/cory-mat-theme-light-deeppurple-amber';
-@import 'theme/cory-mat-theme-dark-wood';
-@import 'theme/cory-mat-theme-dark-pink-bluegray';
-@import 'theme/cory-mat-theme-dark-purple-green';
-@import 'theme/cory-mat-theme-light-facebook';

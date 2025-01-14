@@ -1,19 +1,28 @@
-@import '~@fontsource/roboto/300.css';
-@import '~@fontsource/roboto/400.css';
-@import '~@fontsource/roboto/400-italic.css';
-@import '~@fontsource/roboto/500.css';
-@import '~@fontsource/roboto/700.css';
+@use '@fontsource/roboto/300.css' as *;
+@use '@fontsource/roboto/400.css' as *;
+@use '@fontsource/roboto/400-italic.css' as *;
+@use '@fontsource/roboto/500.css' as *;
+@use '@fontsource/roboto/700.css' as *;
 
-@import '~@fontsource/roboto-mono/300.css';
-@import '~@fontsource/roboto-mono/400.css';
-@import '~@fontsource/roboto-mono/400-italic.css';
-@import '~@fontsource/roboto-mono/500.css';
-@import '~@fontsource/roboto-mono/700.css';
+@use '@fontsource/roboto-mono/300.css' as *;
+@use '@fontsource/roboto-mono/400.css' as *;
+@use '@fontsource/roboto-mono/400-italic.css' as *;
+@use '@fontsource/roboto-mono/500.css' as *;
+@use '@fontsource/roboto-mono/700.css' as *;
 
-@import '~material-design-icons/iconfont/material-icons.css';
+@use 'material-design-icons/iconfont/material-icons.css' as *;
 
-@import "_variables";
-@import '../app/modules/material/scss/all';
+@use '../app/modules/material/scss/all' as *;
+
+//corifeus-inject
+@use '../app/layout/cory-layout.scss' as *;
+@use '../app/layout/footer/cory-layout-footer.scss' as *;
+@use '../app/layout/header/cory-layout-header.scss' as *;
+//corifeus-inject:end
+@use 'sass:meta';
+@use '../app/modules/material/scss/material/_variables' as corymat2;
+@use "_variables" as cory2;
+
 //
 img.emoji {
     height: 1em;
@@ -33,7 +42,7 @@ pre > code {
 }
 
 .cory-mat-theme-light {
-    @import '../../node_modules/highlight.js/styles/github';
+    @include meta.load-css('../../node_modules/highlight.js/styles/github.css');
 
     pre > code {
         background-color: rgba(0, 0, 0, 0.05) !important;
@@ -47,7 +56,7 @@ pre > code {
 }
 
 .cory-mat-theme-dark {
-    @import '../../node_modules/highlight.js/styles/github-dark';
+    @include meta.load-css('../../node_modules/highlight.js/styles/github-dark.css');
 
     .cory-layout-title {
         text-shadow: 2px 2px rgba(255, 255, 255, 0.5);
@@ -68,7 +77,7 @@ img {
 
 
 .mat-toolbar {
-    @media screen and (max-width: $cory-mat-size-xsmall) {
+    @media screen and (max-width: corymat2.$cory-mat-size-xsmall) {
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
@@ -93,7 +102,7 @@ a code {
 .cory-mat-header, .cory-mat-footer {
     height: 56px !important;
 
-    @media screen and (max-width: $cory-mat-size-xsmall) {
+    @media screen and (max-width: corymat2.$cory-mat-size-xsmall) {
         .mat-mdc-button {
             $padding: 8px;
             min-width: 24px !important;
@@ -156,24 +165,7 @@ a code {
     }
 }
 
-/*
-.cory-layout-container-fixed {
 
-    margin-top: $cory-mat-fixed-height-collapsed;
-    margin-bottom: $cory-mat-fixed-height-collapsed;
-
-    @media screen and (min-width: $cory-mat-size-xsmall) {
-        margin-top: $cory-mat-fixed-height;
-        margin-bottom: $cory-mat-fixed-height;
-    }
-
-    @media screen and (min-width: $cory-mat-size-medium) {
-        width: $cory-mat-size-medium - 100;
-        margin-left: auto;
-        margin-right: auto;
-    };
-}
-*/
 
 .cory-layout-markdown-reference {
     ///    float: right;
@@ -200,15 +192,15 @@ a code {
     height: 100%;
 
 
-    padding-top: $cory-mat-fixed-height-collapsed;
-    padding-bottom: $cory-mat-fixed-height-collapsed;
+    padding-top: corymat2.$cory-mat-fixed-height-collapsed;
+    padding-bottom: corymat2.$cory-mat-fixed-height-collapsed;
 
-    @media screen and (min-width: $cory-mat-size-xsmall) {
+    @media screen and (min-width: corymat2.$cory-mat-size-xsmall) {
         //        padding-top: $cory-mat-fixed-height-top;
         //        padding-bottom: $cory-mat-fixed-height-bottom;
     }
 
-    @media screen and (min-width: $cory-mat-size-medium) {
+    @media screen and (min-width: corymat2.$cory-mat-size-medium) {
         margin-left: auto;
         margin-right: auto;
         padding-left: auto;
@@ -237,9 +229,4 @@ hr {
     transform: scale(1.2) rotate(360deg) !important;;
 }
 
-//corifeus-inject
-@import '../app/layout/cory-layout.scss';
-@import '../app/layout/footer/cory-layout-footer.scss';
-@import '../app/layout/header/cory-layout-header.scss';
-//corifeus-inject:end
 

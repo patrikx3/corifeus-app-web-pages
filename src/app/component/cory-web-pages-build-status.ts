@@ -74,7 +74,6 @@ import { NgIf } from '@angular/common';
 
 </span>
     `,
-    standalone: true,
     imports: [NgIf, MatTooltipModule]
 })
 export class Status implements OnDestroy {

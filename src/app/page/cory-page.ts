@@ -48,6 +48,7 @@ let testing = false
     selector: 'cory-page',
     template: `
         <span id="cory-page-content"></span>
+        <a href="https://corifeus.hu" target="_blank" style="text-decoration: none;">Web development</a>
     `,
     standalone: true
 })

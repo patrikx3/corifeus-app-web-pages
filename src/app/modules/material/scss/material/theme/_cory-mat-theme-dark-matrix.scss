@@ -1,5 +1,9 @@
 @use '@angular/material' as mat;
-@import "../mixins";
+@use "sass:map";
+
+
+
+@use "../mixins" as *;
 
 .cory-mat-theme-dark-matrix {
     $mat-matrix: (
@@ -143,8 +147,8 @@
     $accent: mat.m2-define-palette($mat-matrikxlow);
     $warn: mat.m2-define-palette($mat-matrixaccent);
 
-    $white: map_get($mat-matrix, 500);
-    $white2: map_get($mat-matrixaccent, 500);
+    $white: map.get($mat-matrix, 500);
+    $white2: map.get($mat-matrixaccent, 500);
 
     $foreground: (
         base: $white, //white,
@@ -166,21 +170,21 @@
 
     $background: (
         status-bar: black,
-        app-bar: rgba(black, 0.90), //map_get(mat.$grey-palette, 900),
+        app-bar: rgba(black, 0.90), //map.get(mat.$grey-palette, 900),
         background: rgba(black, 0.80), //#303030,
-        hover: rgba(map_get($mat-matrix, 500), 0.1), //rgba(white, 0.04),
-        card: rgba(black, 0.80), //map_get(mat.$grey-palette, 800),
-        dialog: rgba(black, 0.80), //map_get(mat.$grey-palette, 800),
-        disabled-button: rgba(map_get($mat-matrix, A700), 0.12), // rgba(white, 0.12),
+        hover: rgba(map.get($mat-matrix, 500), 0.1), //rgba(white, 0.04),
+        card: rgba(black, 0.80), //map.get(mat.$grey-palette, 800),
+        dialog: rgba(black, 0.80), //map.get(mat.$grey-palette, 800),
+        disabled-button: rgba(map.get($mat-matrix, A700), 0.12), // rgba(white, 0.12),
         raised-button: rgba(black, 0.80), //map-get(mat.$grey-palette, 800),
-        focused-button: rgba(map_get($mat-matrix, A700), 0.06), //rgba(white, 0.06),
-        selected-button: rgba(black, 0.90), //map_get(mat.$grey-palette, 900),
-        selected-disabled-button: rgba(black, 0.80), //map_get(mat.$grey-palette, 800),
-        disabled-button-toggle: rgba(black, 1.00), //map_get(mat.$grey-palette, 1000),
-        //          unselected-chip: map_get(mat.$grey-palette, 700),
+        focused-button: rgba(map.get($mat-matrix, A700), 0.06), //rgba(white, 0.06),
+        selected-button: rgba(black, 0.90), //map.get(mat.$grey-palette, 900),
+        selected-disabled-button: rgba(black, 0.80), //map.get(mat.$grey-palette, 800),
+        disabled-button-toggle: rgba(black, 1.00), //map.get(mat.$grey-palette, 1000),
+        //          unselected-chip: map.get(mat.$grey-palette, 700),
         //          disabled-list-option: black,
-        unselected-chip: rgba(black, 0.90), // map_get(mat.$grey-palette, 300),
-        disabled-list-option: rgba(black, 0.80), // map_get(mat.$grey-palette, 200),
+        unselected-chip: rgba(black, 0.90), // map.get(mat.$grey-palette, 300),
+        disabled-list-option: rgba(black, 0.80), // map.get(mat.$grey-palette, 200),
     );
 
     $theme_highlight: mat.m2-define-dark-theme((
@@ -274,7 +278,8 @@
 //    @include mat.radio-theme($theme_reverse);
 //    @include mat.select-theme($theme_reverse);
 
-    $background_sidenav: map-merge($background, (
+
+    $background_sidenav: map.merge($background, (
         card: white
     ));
 
@@ -324,12 +329,14 @@
     @include cory-mat-theme-toolbar('dark', $theme);
 
     @include cory-mat-theme-button('dark', $theme_reverse2);
-    @include cory-mat-theme-link(map_get($mat-matrixaccent, 500), map_get($mat-matrixaccent, A400));
+    @include cory-mat-theme-link(map.get($mat-matrixaccent, 500), map.get($mat-matrixaccent, A400));
 
     @include cory-mat-autofill();
 
-    background-color: rgba(0, 0, 0, 0.5);
-    background: radial-gradient(circle, rgba(black, 0.9), rgba(black, 0.8));
+    & {
+        background-color: rgba(0, 0, 0, 0.5);
+        background: radial-gradient(circle, rgba(black, 0.9), rgba(black, 0.8));    
+    }
 
     /*
         background-image: url("/assets/wallpaper-matrix.jpg");
@@ -341,7 +348,7 @@
     .mat-mdc-tooltip {
         /* your own custom styles here */
         /* e.g. */
-        background-color: rgba(map_get(mat.$m2-green-palette, 900), 0.5);
+        background-color: rgba(map.get(mat.$m2-green-palette, 900), 0.5);
     }
 
 
@@ -354,12 +361,12 @@
 
     /*
     .mat-button:focus {
-        background-color: rgba(map_get(mat.$green-palette, 900), 0.25);
+        background-color: rgba(map.get(mat.$green-palette, 900), 0.25);
     }
      */
     /* TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.*/
     .cory-mat-menu-item-active, .cory-mat-menu-item-active:hover {
-        background-color: rgba(map_get($mat-matrix, 700), 0.25) !important;
+        background-color: rgba(map.get($mat-matrix, 700), 0.25) !important;
     }
 }
 

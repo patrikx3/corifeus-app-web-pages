@@ -46,9 +46,19 @@ export class NotifyService implements OnDestroy {
     info(message: string, coryOptions?: NotifyOptions | string, config?: MatSnackBarConfig) {
         if (config === undefined) {
             config = <MatSnackBarConfig>{
-                duration: duration
+                duration: duration,
+                panelClass: ['custom-snackbar'] // Add custom class here
+            }
+        } else {
+            // Ensure panelClass is added even if config is provided
+            config.panelClass = config.panelClass || [];
+            if (Array.isArray(config.panelClass)) {
+                config.panelClass.push('custom-snackbar');
+            } else {
+                config.panelClass += ' custom-snackbar'
             }
         }
+    
         if (typeof (coryOptions) === 'string') {
             coryOptions = <NotifyOptions>{
                 icon: coryOptions

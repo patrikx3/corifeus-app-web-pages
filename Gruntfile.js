@@ -43,7 +43,7 @@ module.exports = (grunt) => {
                         '!src/app/modules/material/scss/**/*.**'
                     ],
                     dest: 'src/artifacts/style.scss',
-                    template: '@import \'${file}\';'
+                    template: '@use \'${file}\' as *;'
                 }
             },
 
@@ -69,7 +69,7 @@ module.exports = (grunt) => {
                     '--configuration=production',
                     '--base-href=/',
                     '--aot=true',
-                    '--build-optimizer=true',
+                    //'--build-optimizer=true',
                     '--optimization=true'
                 ]
             });

@@ -1,223 +1,230 @@
 /// <reference lib="webworker" />
-const { marked } = require('marked')
+
+// Import necessary libraries
+import { marked } from 'marked';
 
 import kebabCase from 'lodash/kebabCase';
+const { extractStars } = require('../helper/extract-stars.function.js');
+const IsBot = require('../app/modules/web/util/is-bot.js');
+import hljs from 'highlight.js/lib/core';
 
-const {extractStars} = require('../helper/extract-stars.function.js');
+// Import languages using standard import syntax
+import nginx from 'highlight.js/lib/languages/nginx';
+import xml from 'highlight.js/lib/languages/xml';
+import css from 'highlight.js/lib/languages/css';
+import scss from 'highlight.js/lib/languages/scss';
+import yaml from 'highlight.js/lib/languages/yaml';
+import powershell from 'highlight.js/lib/languages/powershell';
+import javascript from 'highlight.js/lib/languages/javascript';
+import json from 'highlight.js/lib/languages/json';
+import shell from 'highlight.js/lib/languages/shell';
+import typescript from 'highlight.js/lib/languages/typescript';
+import ini from 'highlight.js/lib/languages/ini';
 
-let codeIndex = 0
+// Register languages with highlight.js
+hljs.registerLanguage('conf', nginx);
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('scss', scss);
+hljs.registerLanguage('yaml', yaml);
+hljs.registerLanguage('yml', yaml);
+hljs.registerLanguage('powershell', powershell);
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('js', javascript);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('bash', shell);
+hljs.registerLanguage('sh', shell);
+hljs.registerLanguage('typescript', typescript);
+hljs.registerLanguage('ts', typescript);
+hljs.registerLanguage('ini', ini);
 
-let currentRepo, settings, currentRepoPath
-let locationOrigin, locationPathname, locationHref, locationHostname
 
-function htmlStrip(html) {
-//    const tmp = document.createElement("DIV");
-//    tmp.innerHTML = html;
-//    return tmp.textContent || tmp.innerText || "";
+// Initialize the custom renderer
+const markdownRenderer = new marked.Renderer();
+
+// Initialize counters and variables
+let codeIndex: number = 0;
+
+let currentRepo: any;
+let settings: any;
+let currentRepoPath: any;
+let locationOrigin: any;
+let locationPathname: any;
+let locationHref: any;
+let locationHostname: any;
+
+// Helper function to strip HTML tags
+function htmlStrip(html: string): string {
     return html.replace(/<\/?[^>]+(>|$)/g, "");
 }
 
-const notifyMissingMarkdownCode = ({code, language, currentRepo, currentRepoPath, coreUrl}) => {
-    const url = `${coreUrl}/api/patrikx3/git/notify-markdown-error`
+// Helper function to sanitize strings to prevent XSS
+const sanitize = (str: any): string => {
+    if (typeof str !== 'string') return '';
+    return str.replace(/&/g, '&amp;')
+              .replace(/"/g, '&quot;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;');
+};
+
+// Helper function to notify missing markdown code
+const notifyMissingMarkdownCode = ({ code, language, currentRepo, currentRepoPath, coreUrl }: any): void => {
+    const url = `${coreUrl}/api/patrikx3/git/notify-markdown-error`;
     fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-//        mode: 'cors', // no-cors, *cors, same-origin
-//        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-//        credentials: 'same-origin', // include, *same-origin, omit
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-//        redirect: 'follow', // manual, *follow, error
-//        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: JSON.stringify({
             info: `
-Repo: ${currentRepo}<br/>
-Path: ${currentRepoPath}<br/>
+Repo: ${sanitize(currentRepo)}<br/>
+Path: ${sanitize(currentRepoPath)}<br/>
 Code: <br/>
-<pre>${code}</pre><br/>
-Language: ${language}<br/>
-`
-        }) // body data type must match "Content-Type" header
-    }).then(response => {
+<pre>${sanitize(code)}</pre><br/>
+Language: ${sanitize(language)}<br/>
+            `
+        })
+    }).then((response: any) => {
         if (response.status !== 200) {
-            console.error('notifyMissingMarkdownCode invalid response', response)
+            console.error('notifyMissingMarkdownCode invalid response', response);
         } else {
-            console.info('notifyMissingMarkdownCode info response', response)
+            console.info('notifyMissingMarkdownCode info response', response);
         }
-    }).catch(e => {
-        console.error('notifyMissingMarkdownCode error', e)
-    })
-}
+    }).catch((e: any) => {
+        console.error('notifyMissingMarkdownCode error', e);
+    });
+};
 
-const IsBot = require('../app/modules/web/util/is-bot.js')
-
-const hljs = require('highlight.js/lib/core');
-
-// this is for HTML as well
-hljs.registerLanguage('conf', require('highlight.js/lib/languages/nginx'));
-
-hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
-
-hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
-
-hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
-
-hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
-hljs.registerLanguage('yml', require('highlight.js/lib/languages/yaml'));
-
-hljs.registerLanguage('powershell', require('highlight.js/lib/languages/powershell'));
-
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
-hljs.registerLanguage('js', require('highlight.js/lib/languages/javascript'));
-
-hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
-
-hljs.registerLanguage('bash', require('highlight.js/lib/languages/shell'));
-hljs.registerLanguage('sh', require('highlight.js/lib/languages/shell'));
-
-hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript'));
-hljs.registerLanguage('ts', require('highlight.js/lib/languages/typescript'));
-
-hljs.registerLanguage('ini', require('highlight.js/lib/languages/ini'));
+// Helper function to render images from tokens
+const renderImages = (tokens: any[]): string => {
+    return tokens.map((childToken: any) => {
+        if (childToken.type === 'image') {
+            const imgTitle = childToken.title ? ` title="${sanitize(childToken.title)}"` : '';
+            const altText = sanitize(childToken.text);
+            //console.log('childToken', childToken.href)
+            if (childToken.href === 'https://snapcraft.io/static/images/badges/en/snap-store-black.svg') {
+                childToken.href = 'https://cdn.corifeus.com/assets/svg/snap-store-black.svg'
+            } 
+            return `<img src="${sanitize(childToken.href)}" alt="${altText}"${imgTitle} crossOrigin="anonymous" />`;
+        }
+        // Handle other child token types if necessary
+        return '';
+    }).join('');
+};
 
 
-/*
-import { environment } from '../environments/environment';
-const twemoji = require('twemoji').default;
-if (environment.production) {
-  twemoji.base = '/assets/twemoji/';
-}
- */
+// Custom heading renderer
+markdownRenderer.heading = (token: any): string => {
+    const text: string = token.text;
+    const level: number = token.depth;
+    const raw: string = token.raw;
 
-const markdownRenderer = new marked.Renderer();
-
-
-const extract = (template, area) => {
-    //   [//]: #@corifeus-header
-    //   [//]: #corifeus-header:end
-    //   [//]: #@corifeus-footer
-    //   [//]: #@corifeus-footer:end
-    const start = `[//]: #@${area}`;
-    const end = `[//]: #@${area}:end`;
-
-    const startIndex = template.indexOf(start);
-    const endIndex = template.indexOf(end);
-
-    //console.log('start', start, startIndex)
-    //console.log('end', end, endIndex)
-
-
-    let result = template.substring(0, startIndex + start.length);
-    result += template.substring(endIndex + end.length);
-    return result;
-}
-
-
-markdownRenderer.heading = (token) => {
-//            console.log('text', text,)
-//            console.log('raw', raw)
-
-// text, level, raw
-    const text = token.text;
-    const level = token.depth;
-    const raw = token.raw
-
-    const ref = kebabCase(htmlStrip(raw)).replace(/[^\x00-\xFF]/g, "");
-//            console.log('ref', ref)
-    const id = `${ref}-parent`;
-//console.log(ref);
-    let navClick = ''
+    const ref: string = kebabCase(htmlStrip(raw)).replace(/[^\x00-\xFF]/g, "");
+    const id: string = `${ref}-parent`;
+    let navClick: string = '';
     if (!IsBot()) {
-        navClick = `onclick="return window.coryAppWebPagesNavigateHash('${id}');"`;
+        navClick = `onclick="return window.coryAppWebPagesNavigateHash('${sanitize(id)}');"`;
     }
 
-    let element = `<h${level} id="${id}" class="cory-layout-markdown-header">${text}&nbsp;<a class="cory-layout-markdown-reference" id="${ref}" ${navClick} href="${locationOrigin}${locationPathname}#${ref}"><i class="fas fa-link"></i></a></h${level}>`;
+    const element: string = `<h${level} id="${sanitize(id)}" class="cory-layout-markdown-header">${sanitize(text)}&nbsp;<a class="cory-layout-markdown-reference" id="${sanitize(ref)}" ${navClick} href="${sanitize(locationOrigin)}${sanitize(locationPathname)}#${sanitize(ref)}"><i class="fas fa-link"></i></a></h${level}>`;
+    return element;
+};
 
-//            console.log('ref', ref)
-    return element
-}
-
-markdownRenderer.image = (token) => {
-    // href, title, text
-    let {href, title, text} = token;
+// Custom image renderer
+markdownRenderer.image = (token: any): string => {
+    let { href, title, text } = token;
     title = title || '';
     text = text || '';
     if (!href.startsWith('http')) {
-        href = `https://cdn.corifeus.com/git/${currentRepo}/${href}`;
+        href = `https://cdn.corifeus.com/git/${sanitize(currentRepo)}/${sanitize(href)}`;
     }
 
-    let result
+    let result: string;
     if (text.toLowerCase().trim() === 'link') {
-        result = `<img src="${href}"/>`;
-
+        result = `<img src="${sanitize(href)}" alt="LINK"/>`;
     } else {
         result = `
 <span style="display: block; font-size: 125%; opacity: 0.5">
-${title}
+${sanitize(title)}
 </span>
-<a href="${href}" target="_blank"><img src="${href}"/></a>
+<a href="${sanitize(href)}" target="_blank"><img src="${sanitize(href)}" alt="${sanitize(text)}"/></a>
 <span style="display: block; text-align: right; opacity: 0.5">
-${text}
+${sanitize(text)}
 </span>
 `;
-
     }
 
     return result;
 };
 
-markdownRenderer.link = (token) => {
+// Custom link renderer
+markdownRenderer.link = (token: any): string => {
+    const title: any = token.title;
+    let href: any = token.href;
+    const text: any = token.text;
 
-    const title = token.title
-    let href = token.href
-    const text = token.text
-
-    let a;
-    let tooltip = '';
+    let a: string;
+    let tooltip: string = '';
     if (title !== null && title !== undefined) {
-        tooltip = `tooltip="${title}"`;
+        tooltip = `tooltip="${sanitize(title)}"`;
     }
-    let fixed = false;
-    let path;
+    let fixed: boolean = false;
+    let path: any;
 
-    const testHref = href.toLowerCase();
+    const testHref: any = href.toLowerCase();
 
-    const fixedUrl = () => {
-        const url = new URL(href);
-        href = url.pathname;
-        path = `${href}`;
-        fixed = true;
-//console.log('fixed')
-    }
+    const fixedUrl = (): void => {
+        try {
+            const url = new URL(href);
+            href = url.pathname;
+            path = `${href}`;
+            fixed = true;
+        } catch (error: any) {
+            console.error('Invalid URL:', href, error);
+        }
+    };
 
-    if ((typeof testHref === 'string' && (testHref.startsWith('https://') || testHref.startsWith('http://')))) {
-        const testUrl = new URL(testHref)
-        for (let defaultDomain of settings.pages.defaultDomain) {
-            if (testUrl.hostname === defaultDomain) {
-                fixedUrl();
-                break;
+    if (typeof testHref === 'string' && (testHref.startsWith('https://') || testHref.startsWith('http://'))) {
+        try {
+            const testUrl = new URL(testHref);
+            for (let defaultDomain of settings.pages.defaultDomain) {
+                if (testUrl.hostname === defaultDomain) {
+                    fixedUrl();
+                    break;
+                }
             }
+        } catch (error: any) {
+            console.error('Invalid testHref URL:', testHref, error);
         }
     } else if (testHref.includes('localhost:8080')) {
-        fixedUrl()
+        fixedUrl();
     }
 
-//            console.log('href', href)
-    if (!href.startsWith(locationOrigin) && (href.startsWith('https:/') || href.startsWith('http:/') || href.startsWith('mailto:'))) {
+    // Detect if the link contains image tokens
+    const hasImage: boolean = token.tokens && token.tokens.some((childToken: any) => childToken.type === 'image');
 
-        /*
-        if (href.startsWith('mailto:')) {
-            console.log(href)
-        }
-         */
+    // Determine if the link is external
+    const isExternal: boolean = (
+        !href.startsWith(locationOrigin) &&
+        (href.startsWith('https://') || href.startsWith('http://') || href.startsWith('mailto:'))
+    );
 
+    if (isExternal) {
         if (href.endsWith('#cory-non-external')) {
-            a = `<span class="cory-layout-link-external"><a color="accent" class="cory-md-link" target="_blank" ${tooltip} href="${href}">${text}</a>`;
+            if (hasImage) {
+                // Render image inside link without external link icon
+                a = `<span class="cory-layout-link-external"><a color="accent" class="cory-md-link" target="_blank" ${tooltip} href="${sanitize(href)}">${renderImages(token.tokens)}</a></span>`;
+            } else {
+                a = `<span class="cory-layout-link-external"><a color="accent" class="cory-md-link" target="_blank" ${tooltip} href="${sanitize(href)}">${sanitize(text)}</a></span>`;
+            }
         } else {
-            a = `<span class="cory-layout-link-external"><a color="accent" class="cory-md-link" target="_blank" ${tooltip} href="${href}">${text}</a> <i class="fas fa-external-link-alt"></i></span>`;
+            if (hasImage) {
+                // Render image inside link with external link icon
+                a = `<span class="cory-layout-link-external"><a color="accent" class="cory-md-link" target="_blank" ${tooltip} href="${sanitize(href)}">${renderImages(token.tokens)}</a> <i class="fas fa-external-link-alt"></i></span>`;
+            } else {
+                a = `<span class="cory-layout-link-external"><a color="accent" class="cory-md-link" target="_blank" ${tooltip} href="${sanitize(href)}">${sanitize(text)}</a> <i class="fas fa-external-link-alt"></i></span>`;
+            }
         }
-
     } else {
         if (!fixed) {
             if (href.endsWith('.md')) {
@@ -226,88 +233,121 @@ markdownRenderer.link = (token) => {
             if (href.startsWith(locationOrigin)) {
                 path = `/${href.substring(locationOrigin.length + 1)}`;
             } else if (href.startsWith('./')) {
-                let base = locationHref
+                let base = locationHref;
                 if (!base.includes('.')) {
                     base = locationHref + '/';
                 }
-                path = `${new URL(href, base).pathname}`;
-//                        console.log(path)
+                try {
+                    path = `${new URL(href, base).pathname}`;
+                } catch (error: any) {
+                    console.error('Invalid relative URL:', href, error);
+                    path = href; // Fallback to original href
+                }
             } else {
-                path = `/${currentRepo}/${href}`;
+                path = `/${sanitize(currentRepo)}/${sanitize(href)}`;
             }
         }
 
-//                console.log(path)
-        // this.context.parent.navigate
-
-        const navClick = !IsBot() ? `onclick="window.coryAppWebPagesNavigate('${path}'); return false;"` : '';
-        a = `<a class="cory-md-link" href="${path}" ${navClick} ${tooltip}>${text}</a>`;
-//                console.log(path);
-//                console.log(a);
+        const navClick: string = !IsBot() ? `onclick="window.coryAppWebPagesNavigate('${sanitize(path)}'); return false;"` : '';
+        if (hasImage) {
+            // Render image inside link
+            a = `<a class="cory-md-link" href="${sanitize(path)}" ${navClick} ${tooltip}>${renderImages(token.tokens)}</a>`;
+        } else {
+            // Render link with text
+            a = `<a class="cory-md-link" href="${sanitize(path)}" ${navClick} ${tooltip}>${sanitize(text)}</a>`;
+        }
     }
     return a;
-}
+};
 
-markdownRenderer.code = (token) => {
+// Custom code block renderer
+markdownRenderer.code = (token: any): string => {
 
     // code, language
-    //console.warn('code', token)
-
-    const code = token.text;
-    let language = token.lang;
+    const code: string = token.text;
+    let language: any = token.lang;
 
     if (language === undefined) {
         language = 'text';
     }
 
-    language = language.toLowerCase()
-
-//    console.log('TEST', language, currentRepo, currentRepoPath, settings.core.server)
+    language = language.toLowerCase();
 
     if ((hljs.getLanguage(language) === 'undefined' || hljs.getLanguage(language) === undefined) && language !== 'text' && language !== 'txt') {
         console.error(`Please add highlight.js as a language (could be a marked error as well, sometimes it thinks a language): ${language}
-We are not loading everything, since it is about 500kb`)
+We are not loading everything, since it is about 500kb`);
         notifyMissingMarkdownCode({
             code,
             language,
-            currentRepo, currentRepoPath,
+            currentRepo,
+            currentRepoPath,
             coreUrl: settings.core.server.url
-        })
+        });
     }
-//  language = language === 'text' || language === 'txt' || language === undefined ? 'html' : language;
-    const validLang = !!(language && hljs.getLanguage(language));
-    const highlighted = validLang ? hljs.highlight(code, {
-        language
-    }).value : code;
+    // language = language === 'text' || language === 'txt' || language === undefined ? 'html' : language;
+    const validLang: boolean = !!(language && hljs.getLanguage(language));
+    const highlighted: string = validLang ? hljs.highlight(code, {
+        language: language as string
+    }).value : sanitize(code);
 
     codeIndex++;
 
-    return `<div class="cory-markdown-code"><div class="cory-markdown-code-copy-paste" onclick="window.coryPageCopy(${codeIndex})"><i class="far fa-copy fa-lg"></i></div><pre><code style="font-family: 'Roboto Mono';" class="hljs ${language}" id="code-${codeIndex}">${highlighted}</code></pre></div>`;
+    return `<div class="cory-markdown-code"><div class="cory-markdown-code-copy-paste" onclick="window.coryPageCopy(${codeIndex})"><i class="far fa-copy fa-lg"></i></div><pre><code style="font-family: 'Roboto Mono';" class="hljs ${sanitize(language)}" id="code-${codeIndex}">${highlighted}</code></pre></div>`;
 };
 
-markdownRenderer.codespan = (token) => {
+// Custom inline code renderer
+markdownRenderer.codespan = (token: any): string => {
     
     //console.warn('codespan', token)
 
-    const code = token.text
-    const lang = 'html';
-    const highlighted = hljs.highlight(code, {
+    const code: string = token.text;
+    const lang: string = 'html';
+    const highlighted: string = hljs.highlight(code, {
         language: lang,
     }).value;
-    return `<code style="display: inline; line-height: 34px;" class="hljs ${lang}">${highlighted}</code>`;
-}
+    return `<code style="display: inline; line-height: 34px;" class="hljs ${sanitize(lang)}">${highlighted}</code>`;
+};
 
-const construct = (data) => {
-    currentRepo = data.currentRepo
-    settings = data.settings
-    locationOrigin = location.origin
+// Helper function to extract specific sections from Markdown
+const extract = (template: any, area: any): string => {
+    //   [//]: #@corifeus-header
+    //   [//]: #corifeus-header:end
+    //   [//]: #@corifeus-footer
+    //   [//]: #@corifeus-footer:end
+    const start: string = `[//]: #@${area}`;
+    const end: string = `[//]: #@${area}:end`;
 
-    currentRepoPath = data.path
-    locationPathname = location.pathname
-    locationHref = location.href
-    locationHostname = location.hostname
-    let {md, packages, path} = data
-    md = md.trim()
+    const startIndex: number = template.indexOf(start);
+    const endIndex: number = template.indexOf(end);
+
+    // If start or end markers are not found, return the original template
+    if (startIndex === -1 || endIndex === -1) {
+        return template;
+    }
+
+    let result: string = template.substring(0, startIndex + start.length);
+    result += template.substring(endIndex + end.length);
+    return result;
+};
+
+// Helper function to escape regex special characters
+const RegexpEscape = (s: string): string => {
+    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
+
+
+// Construct function to process Markdown and convert to HTML
+const construct = (data: any): string => {
+    currentRepo = data.currentRepo;
+    settings = data.settings;
+    locationOrigin = location.origin;
+
+    currentRepoPath = data.path;
+    locationPathname = location.pathname;
+    locationHref = location.href;
+    locationHostname = location.hostname;
+    let { md, packages, path } = data;
+    md = md.trim();
     md = extract(md, 'corifeus-header');
     md = extract(md, 'corifeus-footer');
 
@@ -318,11 +358,7 @@ const construct = (data) => {
     })
     */
 
-
-    let html = marked(md, {
-        useNewRenderer: true,
-        mangle: false,
-        headerIds: false,
+    let html: string = marked(md, {
         renderer: markdownRenderer
     });    
 
@@ -333,45 +369,48 @@ const construct = (data) => {
     if (currentRepo === 'corifeus' && path === 'index.html') {
         //console.info('decorated corifeus index.html')
         for (let pkgName of Object.keys(packages)) {
-            const pkg = packages[pkgName]
-            if (pkg.corifeus.stargazers_count > 0) {
-                const hiddenStars = `<!--@star|${pkg.name}-->`;
-                let title = ''
-
+            const pkg: any = packages[pkgName];
+            //console.log(pkgName, pkg.corifeus.stargazers_count)
+            //if (pkg.corifeus.stargazers_count > -1) {
+                // Construct the hidden star placeholder dynamically
+                const hiddenStars: string = `&lt;!--@star|${pkg.name}--&gt;`;
+                let title: string = '';
+    
+                // Handle large star counts by adding a title
                 if (pkg.corifeus.stargazers_count > 999) {
-                    title = pkg.corifeus.stargazers_count
+                    title = pkg.corifeus.stargazers_count.toString();
+                }
+    
+                let stars: string = '';
+                if (pkg.corifeus.stargazers_count > 0) {
+                    // Construct the star count HTML element
+                    stars = `<span style="opacity: 0.5; float: right; font-weight: normal;"> <i class="fas fa-star"></i> <span title="${sanitize(title)}">${extractStars(pkg.corifeus.stargazers_count)}</span></span>`;
                 }
 
-                const stars = `<span style="opacity: 0.5; float: right; font-weight: normal;"> <i class="fas fa-star"></i> <span title="${title}">${extractStars(pkg.corifeus.stargazers_count)}</span></span>`
-                const re = new RegExp(RegexpEscape(hiddenStars));
-                html = html.replace(re, stars)
-            }
+                // Escape the placeholder string so it can be safely used in the regex
+                const re: RegExp = new RegExp(RegexpEscape(hiddenStars), 'g');
+
+                // Perform the replacement
+                html = html.replace(re, stars);
+            //}
         }
-    } else {
-        //console.info('not decorated', currentRepo, path)
     }
-
+    
     return html;
-
-}
-
-const RegexpEscape = function (s) {
-    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 };
 
-onmessage = function (e) {
+// Web Worker message handling
+onmessage = function (e: MessageEvent<any>): void {
     const data: any = {
         requestId: e.data.requestId
     }
     try {
         data.html = construct(e.data);
-        data.success = true
-    } catch (e) {
-        console.error(e)
-        data.success = false
-        data.errorMessage = e.message
+        data.success = true;
+    } catch (error: any) {
+        console.error(error);
+        data.success = false;
+        data.errorMessage = error.message;
     }
-    postMessage(data)
-
+    postMessage(data);
 }
-

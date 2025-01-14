@@ -2,9 +2,15 @@ import {
     Component,
     Input,
     OnDestroy,
+
 } from '@angular/core';
 
 import { Subscription } from 'rxjs'
+
+import {
+    ThemeService
+} from '../../services/theme';
+
 
 import {
     LocaleService, SettingsService, LocaleSubject,
@@ -13,33 +19,28 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
-import { ThemeMenu } from './cory-mat-theme-menu';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { NgIf, NgFor } from '@angular/common';
 // requires to be in a mat-menu
 @Component({
     selector: 'cory-mat-theme-button',
     template: `
-
-        <mat-menu x-position="before" #menuTheme="matMenu">
-            <cory-mat-theme-menu></cory-mat-theme-menu>
-        </mat-menu>
-
-        <button [color]="color" #buttonTheme mat-button [matMenuTriggerFor]="menuTheme" [matTooltip]="tooltip" matTooltipPosition="left">
-            <mat-icon>color_lens</mat-icon>
+        <button [color]="color" #buttonTheme mat-button [matTooltip]="tooltip" (click)="switchTheme()" matTooltipPosition="left">
+            <i class="fa-solid fa-moon" *ngIf="this.theme.current !== 'cory-mat-theme-dark-matrix'"></i>
+            <i class="fa-regular fa-lightbulb" *ngIf="this.theme.current === 'cory-mat-theme-dark-matrix'"></i>
             <span class="cory-mat-hide-xsmall">
-            {{ i18n.material.title.theme }}
+            {{ theme.current === 'cory-mat-theme-dark-matrix' ? i18n.material.title.light : i18n.material.title.dark }}
             </span>
         </button>
 `,
-    standalone: true,
     imports: [
+        NgIf,
         MatMenuModule,
-        ThemeMenu,
         MatButtonModule,
         MatTooltipModule,
         MatIconModule,
-    ],
+        NgIf,
+    ]
 })
 export class ThemeButton implements OnDestroy {
 
@@ -62,9 +63,12 @@ export class ThemeButton implements OnDestroy {
     constructor(
         protected locale: LocaleService,
         protected settingsAll: SettingsService,
+        protected theme: ThemeService,
         private mediaQuery: MediaQueryService
     ) {
         this.settings = settingsAll.data.material;
+
+        //console.log('settings', this.settings);
 
         this.subscriptions$.push(
             this.locale.subscribe((data: LocaleSubject) => {
@@ -95,6 +99,17 @@ export class ThemeButton implements OnDestroy {
                 break;
         }
 
+    }
+
+    switchTheme() {
+        // switch this.theme.all to the next theme
+        const index = this.theme.all.indexOf(this.theme.current);
+        const nextIndex = index + 1;
+        let nextTheme = this.theme.all[nextIndex];
+        if (nextTheme === undefined) {
+            nextTheme = this.theme.all[0];
+        }
+        this.theme.setTheme(nextTheme);
     }
 
     ngOnDestroy(): void {
