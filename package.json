@@ -1,6 +1,6 @@
 {
     "name": "corifeus-app-web-pages",
-    "version": "2025.4.113",
+    "version": "2025.4.115",
     "corifeus": {
         "icon": "fas fa-sitemap",
         "code": "Support",
@@ -70,7 +70,7 @@
         "@types/js-cookie": "^3.0.6",
         "@types/lodash": "^4.17.14",
         "@types/node": "^22.10.6",
-        "corifeus-builder": "^2025.4.119",
+        "corifeus-builder": "^2025.4.123",
         "ts-node": "~10.9.2",
         "typescript": "~5.6.3",
         "webpack-bundle-analyzer": "^4.10.2"
