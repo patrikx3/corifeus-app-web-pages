@@ -15,7 +15,7 @@
         },
         "home": "Matrix",
         "travis": "Travis Build status",
-        "uptime": "Uptime Robot ratio (30 days)",
+        "uptime": "Uptime ratio (90 days)",
         "githubStars": "GitHub Stars",
         "scrunitizer": {
             "quality": "Scrutinizer Code Quality",

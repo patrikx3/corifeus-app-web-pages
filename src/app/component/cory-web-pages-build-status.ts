@@ -40,7 +40,7 @@ import { NgIf } from '@angular/common';
         -->
 
 
-        <a target="cory-pages-status-uptimerobot" href="https://stats.uptimerobot.com/9ggnzcWrw"><img src="https://img.shields.io/uptimerobot/ratio/m780749701-41bcade28c1ea8154eda7cca.svg" alt="{{ i18n.pages.title.uptime }}" [matTooltip]="i18n.pages.title.uptime" matTooltipPosition="above"></a>
+        <a target="cory-pages-status-networkcorifeusmonitor" href="https://network.corifeus.com/status/31ad7a5c194347c33e5445dbaf8"><img src="https://network.corifeus.com/public/api/uptime-shield/31ad7a5c194347c33e5445dbaf8.svg" alt="{{ i18n.pages.title.uptime }}" [matTooltip]="i18n.pages.title.uptime" matTooltipPosition="above"></a>
 
 <!--
         &nbsp;

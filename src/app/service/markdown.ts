@@ -53,6 +53,7 @@ export class MarkdownService {
                 packages: this.layout.packages,
                 requestId: requestId,
                 path: path,
+                location: JSON.parse(JSON.stringify(window.location)),
             });
         })
     }

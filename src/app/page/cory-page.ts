@@ -203,6 +203,7 @@ ${text}
                 options = {
                     folder: 'svg',
                     ext: '.svg',
+                    base: 'https://twemoji.maxcdn.com/v/latest/',
                 }
 
             }

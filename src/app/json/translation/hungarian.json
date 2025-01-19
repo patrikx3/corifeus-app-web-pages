@@ -15,7 +15,7 @@
         },
         "home": "Matrix",
         "travis": "Travis Kiépítettség",
-        "uptime": "Uptime Robot hányados (30 nap)",
+        "uptime": "Uptime hányados (90 days)",
         "githubStars": "GitHub Csillagok",
         "scrunitizer": {
             "quality": "Scrutinizer kód minőség",

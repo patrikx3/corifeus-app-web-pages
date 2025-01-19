@@ -308,6 +308,36 @@ markdownRenderer.codespan = (token: any): string => {
     return `<code style="display: inline; line-height: 34px;" class="hljs ${sanitize(lang)}">${highlighted}</code>`;
 };
 
+// Customize the rendering of tables
+markdownRenderer.table = function (token: any): string {
+    console.log('table', token)
+    const header = token.header.map((cell: any) => this.tablecell(cell)).join('');
+    const rows = token.rows
+        .map((row: any[]) => this.tablerow({ text: row.map((cell: any) => this.tablecell(cell)).join('') }))
+        .join('');
+
+    return `<table class="corifeus-marked-table">
+        <thead class="corifeus-marked-table-header">${header}</thead>
+        <tbody class="corifeus-marked-table-body">${rows}</tbody>
+    </table>`;
+};
+
+// Customize the rendering of table rows
+markdownRenderer.tablerow = function (token: any): string {
+    return `<tr class="corifeus-marked-table-row">${token.text}</tr>`;
+};
+
+// Customize the rendering of table cells
+markdownRenderer.tablecell = function (token: any): string {
+    const tag = token.header ? 'th' : 'td';
+    const alignment = token.header ? ` style="text-align: ${token.header  ? 'center' : 'left'};"` : '';
+
+    // Parse markdown content in cells
+    const content = marked.parseInline(token.text);
+
+    return `<${tag} class="corifeus-marked-table-cell"${alignment}>${content}</${tag}>`;
+};
+
 // Helper function to extract specific sections from Markdown
 const extract = (template: any, area: any): string => {
     //   [//]: #@corifeus-header
@@ -340,12 +370,13 @@ const RegexpEscape = (s: string): string => {
 const construct = (data: any): string => {
     currentRepo = data.currentRepo;
     settings = data.settings;
-    locationOrigin = location.origin;
+    //console.log('data', data)   
+    locationOrigin = data.location.origin;
 
     currentRepoPath = data.path;
-    locationPathname = location.pathname;
-    locationHref = location.href;
-    locationHostname = location.hostname;
+    locationPathname = data.location.pathname;
+    locationHref = data.location.href;
+    locationHostname = data.location.hostname;
     let { md, packages, path } = data;
     md = md.trim();
     md = extract(md, 'corifeus-header');
@@ -404,6 +435,8 @@ onmessage = function (e: MessageEvent<any>): void {
     const data: any = {
         requestId: e.data.requestId
     }
+
+   
     try {
         data.html = construct(e.data);
         data.success = true;
