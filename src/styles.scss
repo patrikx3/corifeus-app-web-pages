@@ -52,3 +52,16 @@ body.cory-mat-theme-light {
 code.hljs  {
     border-radius: 12px; /* Adjust the radius as needed */
 }
+
+#cory-pages-layout-background {
+    //    $toolbar-height: 62px;
+        position: fixed;
+    //    top: $toolbar-height;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
+    

@@ -125,7 +125,9 @@ export class ThemeService {
 //        }
         //document.getElementById('cory-pages-layout-theme-matrix').style.display = 'show';
         this.matrixEffectData = this.clearMatrixEffect()
-
+        if (this.matrixEffectData) {
+            this.runMatrixEffect();
+        }
     }
 
 
@@ -133,8 +135,16 @@ export class ThemeService {
 
     clearMatrixEffect() {
         // geting canvas by Boujjou Achraf
-        const c: any = document.getElementById("cory-pages-layout-theme-matrix");
+        const c: any = document.getElementById("cory-pages-layout-background");
+
+        if (this.current !== 'cory-mat-theme-dark-matrix') {
+            c.style.display = 'none';
+            return null;
+        }
+
+        // Ensure the canvas is cleared and hidden when not in the matrix theme
         c.style.display = 'block'
+
         const ctx = c.getContext("2d");
 
         //making the canvas full screen
@@ -186,11 +196,15 @@ export class ThemeService {
 
         this.matrixEffectData = this.clearMatrixEffect()
         
+        if (!this.matrixEffectData) {
+            return; // Do nothing if the theme does not support effects
+        }
+
         //const fps = 1000 / 6
 
         const draw = () => {
 
-            //if (this.current === 'cory-mat-theme-dark-matrix') {
+            if (this.current === 'cory-mat-theme-dark-matrix') {
                 // console.info('request draw')
                 //window.requestAnimationFrame(draw);
 
@@ -208,7 +222,7 @@ export class ThemeService {
                 }, 1000 / fps);
 
                 //setTimeout(draw, fps)
-            //}
+            }
 
             const { c, ctx, font_size, drops, matrix } = this.matrixEffectData
             ///console.info('draw', self.current)

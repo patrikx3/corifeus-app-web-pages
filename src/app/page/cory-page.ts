@@ -48,7 +48,36 @@ let testing = false
     selector: 'cory-page',
     template: `
         <span id="cory-page-content"></span>
-        <a href="https://corifeus.eu" target="_blank" style="text-decoration: none;">Web development</a>
+        <hr/>
+        <div id="cory-page">
+      <!-- Quick and Affordable Web Development Services -->       
+      <section>
+        <h2>Quick and Affordable Web Development Services</h2>
+        <p>
+          If you want to quickly and affordably develop your next digital project, visit 
+          <a href="https://corifeus.eu" target="_blank" rel="noopener">corifeus.eu</a> 
+          for expert solutions tailored to your needs.
+        </p>
+      </section>
+      
+      <hr>
+
+      <!-- Powerful Online Networking Tool -->
+      <section>
+        <h2>Powerful Online Networking Tool</h2>
+        <p>
+          Discover the powerful and free online networking tool at 
+          <a href="https://network.corifeus.com" target="_blank" rel="noopener">network.corifeus.com</a>.
+        </p>
+        <ul>
+          <li><strong>Free:</strong> Designed for professionals and enthusiasts, this tool provides essential features for network analysis, troubleshooting, and management.</li>
+          <li>Monitoring TCP, HTTP, and Ping to ensure optimal network performance and reliability.</li>
+          <li>Status page management to track uptime, performance, and incidents in real-time with customizable dashboards.</li>
+        </ul>
+        <p>All these features are completely free to use.</p>
+      </section>
+     
+    </div>
     `,
     standalone: true
 })
@@ -203,7 +232,7 @@ ${text}
                 options = {
                     folder: 'svg',
                     ext: '.svg',
-                    base: 'https://twemoji.maxcdn.com/v/latest/',
+                    base: 'http://twemoji.maxcdn.com/v/latest/',
                 }
 
             }
