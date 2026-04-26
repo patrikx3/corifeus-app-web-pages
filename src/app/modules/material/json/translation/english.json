@@ -5,11 +5,12 @@
     "themes": {
         "material": {
             "cory-mat-theme-dark-matrix": "Dark",
-            "cory-mat-theme-light-indigo-pink": "Light"
+            "cory-mat-theme-light-forest": "Light"
         }
     },
     "title": {
         "menu": "Menu",
+        "auto": "Auto",
         "dark": "Dark",
         "light": "Light",
         "theme": "Theme",

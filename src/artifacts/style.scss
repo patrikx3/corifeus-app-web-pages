@@ -148,12 +148,16 @@ a code {
 }
 
 .cory-mat-theme-dark-matrix {
-    .cory-mat-header {
-        border-bottom: 5px solid rgba(0, 0, 0, 0.4);
+    .cory-mat-header mat-toolbar {
+        border-bottom: 5px solid #006600;
+    }
+
+    .cory-layout-header-top {
+        opacity: 0.5;
     }
 
     .cory-mat-footer {
-        border-top: 5px solid rgba(0, 0, 0, 0.4);
+        border-top: 5px solid #006600;
     }
 }
 

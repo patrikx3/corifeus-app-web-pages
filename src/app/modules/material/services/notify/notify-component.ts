@@ -1,25 +1,18 @@
 import {
     Injectable,
     Component,
-    AfterViewInit,
-    ViewChild,
-    ElementRef,
     HostListener,
     Inject,
-    OnDestroy,
+    effect,
 } from '@angular/core';
 
-import {ThemeService} from '../theme'
+import { ThemeService } from '../theme';
 
-import {MAT_SNACK_BAR_DATA, MatSnackBarRef} from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 
-import { Subscription } from 'rxjs'
-import {
-    DomSanitizer
-} from '@angular/platform-browser'
+import { DomSanitizer } from '@angular/platform-browser';
 
-
-import {LocaleService, LocaleSubject} from '../../../web';
+import { LocaleService } from '../../../web';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -31,7 +24,6 @@ import { MatIconModule } from '@angular/material/icon';
             <span class="message" [innerHTML]="transformHtml(data.message)"></span>
         </div>
         <a mat-button color="accent" class="cory-mat-notify-button" (click)="ctx.dismiss()">{{ this.i18n.title.ok }}</a>
-
     `,
     styles: [`
         .message {
@@ -46,22 +38,16 @@ import { MatIconModule } from '@angular/material/icon';
             min-width: auto !important;
         }
     `],
-    imports: [MatIconModule, MatButtonModule]
+    imports: [MatIconModule, MatButtonModule],
 })
 @Injectable()
-export class NotifyComponent implements OnDestroy {
-
-//    @ViewChild('elementButton', {read: ElementRef, static: false}) elementButton: ElementRef;
-//    @ViewChild('elementIcon', {read: ElementRef, static: false}) elementIcon: ElementRef;
-//    @ViewChild('elementMessage', {read: ElementRef, static: false}) elementMessage: ElementRef;
+export class NotifyComponent {
 
     inited: boolean = false;
 
     public data: { message: string, options: any };
 
     i18n: any;
-
-    subscriptions$: Array<Subscription> = []
 
     constructor(
         public ctx: MatSnackBarRef<NotifyComponent>,
@@ -70,28 +56,19 @@ export class NotifyComponent implements OnDestroy {
         @Inject(MAT_SNACK_BAR_DATA) data: any,
         private _sanitizer: DomSanitizer,
     ) {
-        this.subscriptions$.push(
-            this.locale.subscribe((subject: LocaleSubject) => {
-                this.i18n = subject.locale.data.material;
-            })
-        )
+        effect(() => {
+            this.locale.state();
+            this.i18n = this.locale.data?.material;
+        });
         this.data = data;
     }
 
-
     @HostListener('window:keydown', ['$event'])
     onKeyDown(event: Event) {
-//        if (!isDevMode()) {
         this.ctx.dismiss();
-//        }
     }
-
 
     transformHtml(html: string): any {
         return this._sanitizer.bypassSecurityTrustHtml(html);
-    }
-
-    ngOnDestroy(): void {
-        this.subscriptions$.forEach(subs$ => subs$.unsubscribe())
     }
 }

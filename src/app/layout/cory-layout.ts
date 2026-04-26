@@ -1,27 +1,30 @@
 import {
     Component,
-    Injectable,
     ViewEncapsulation,
     ViewChild,
     NgZone,
     OnInit,
     ElementRef,
     ChangeDetectorRef,
-    OnDestroy,
     AfterViewInit,
+    Renderer2,
+    Inject,
+    PLATFORM_ID,
+    effect,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Title, Meta, DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 declare global {
     interface Window {
       adsbygoogle: any[];
     }
   }
-  
+
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 import debounce from 'lodash/debounce'
-
-import { Subscription } from 'rxjs'
 
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav'
 
@@ -29,23 +32,14 @@ import {
     RouterService,
 } from '../modules/web';
 
-import { HttpClient } from '@angular/common/http';
-
 import * as emojiRegex from 'emoji-regex'
 
-import {LocaleService, LocaleSubject, SettingsService} from '../modules/web';
+import {LocaleService, SettingsService} from '../modules/web';
 import {NotifyService} from '../modules/material';
 
 import {extractStars, extractTitle} from '../utils/extrac-title';
 import {extractTitleWithStars} from '../utils/extrac-title';
 import {isMobile} from '../utils/is-mobile';
-//import {clearTimeout} from "timers";
-
-/*
-import {
-    DomSanitizer,
-} from '@angular/platform-browser';
- */
 
 import twemoji from 'twemoji'
 import {environment} from "../../environments/environment";
@@ -55,7 +49,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Status } from '../component/cory-web-pages-build-status';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { NgIf, NgFor } from '@angular/common';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
@@ -77,13 +71,9 @@ declare global {
     selector: 'cory-layout',
     templateUrl: 'cory-layout.html',
     encapsulation: ViewEncapsulation.None,
-    imports: [Loading, Header, MatSidenavModule, MatMenuModule, MatFormFieldModule, MatInputModule, NgIf, MatIconModule, NgFor, MatCardModule, Status, MatTooltipModule, RouterOutlet, Footer, MatButtonModule]
+    imports: [Loading, Header, MatSidenavModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule, Status, MatTooltipModule, RouterOutlet, Footer, MatButtonModule]
 })
-
-@Injectable()
-export class Layout implements OnInit, OnDestroy, AfterViewInit {
-
-    subscriptions$: Array<Subscription> = []
+export class Layout implements OnInit, AfterViewInit {
 
     private debounceSearchText: Function;
 
@@ -104,7 +94,7 @@ export class Layout implements OnInit, OnDestroy, AfterViewInit {
 
     currentRepo: string;
 
-    body = document.getElementsByTagName('body')[0];
+    body: HTMLElement;
 
     i18n: any;
     config: any;
@@ -126,10 +116,9 @@ export class Layout implements OnInit, OnDestroy, AfterViewInit {
 
     title: string;
     icon: string;
+    pageTitleHtml: SafeHtml = '';
 
 
-
-    noScript: any;
 
     public isMobile: boolean = false;
 
@@ -137,59 +126,58 @@ export class Layout implements OnInit, OnDestroy, AfterViewInit {
         private router: RouterService,
         private route: ActivatedRoute,
         protected notify: NotifyService,
-        private http: HttpClient,
         protected locale: LocaleService,
         protected settingsAll: SettingsService,
         private zone: NgZone,
-//        private sanitizer: DomSanitizer,
-        private ref: ChangeDetectorRef
+        private ref: ChangeDetectorRef,
+        private titleService: Title,
+        private metaService: Meta,
+        private renderer: Renderer2,
+        private sanitizer: DomSanitizer,
+        @Inject(DOCUMENT) private document: Document,
+        @Inject(PLATFORM_ID) private platformId: Object,
     ) {
 
-        this.isMobile = isMobile();
+        this.body = this.document.getElementsByTagName('body')[0];
+        this.isMobile = isPlatformBrowser(this.platformId) ? isMobile() : false;
         this.settings = settingsAll.data.pages;
         this.currentRepo = this.settings.github.defaultRepo;
 
-        this.subscriptions$.push(
-            this.locale.subscribe((data: LocaleSubject) => {
-                this.i18n = data.locale.data.pages;
-            })
-        )
+        effect(() => {
+            this.locale.state();
+            this.i18n = this.locale.data?.pages;
+        });
 
-
-        this.noScript = document.getElementById('cory-seo');
-
-        this.subscriptions$.push(
-            this.route.params.subscribe((params) => {
-                let repo = params.repo
-                if (repo === 'corifeus' && repo === location.pathname.slice(1)) {
-                    return this.navigate('matrix')
-                }
-                this.currentRepo = repo
-                if (params.repo === undefined) {
-                    this.currentRepo = this.settings.github.defaultRepo;
-                }
-                this.load();
-                /*
-                if (!location.pathname.endsWith('.html')) {
-                    this.navigate();
-                }
-                */
-            })
-        )
+        const paramsSig = toSignal(this.route.params, { initialValue: {} as any });
+        effect(() => {
+            const params = paramsSig();
+            const repo = params['repo'];
+            const pathname = isPlatformBrowser(this.platformId)
+                ? location.pathname
+                : (this.document.location?.pathname || '/');
+            if (repo === 'corifeus' && repo === pathname.slice(1)) {
+                this.navigate('matrix');
+                return;
+            }
+            this.currentRepo = repo;
+            if (repo === undefined) {
+                this.currentRepo = this.settings.github.defaultRepo;
+            }
+            this.load();
+        });
     }
 
     ngOnInit() {
-        this.debounceSearchText = debounce(this.handleSearch, this.settings.debounce.default)
+        this.debounceSearchText = debounce(this.handleSearch, this.settings.debounce.default);
+    }
 
+    onSidenavOpenedChange(value: boolean) {
+        this.sideNavOpened = value;
+        this.openedChange = value;
+    }
 
-        this.menuSidenav.openedChange.subscribe(value => {
-            this.sideNavOpened = value
-            this.openedChange = value
-        })
-
-        this.menuSidenav.closedStart.subscribe(value => {
-            this.sideNavOpened = false
-        })
+    onSidenavClosedStart() {
+        this.sideNavOpened = false;
     }
 
 
@@ -207,7 +195,7 @@ export class Layout implements OnInit, OnDestroy, AfterViewInit {
             }
 
 //            /**
-            const e = document.querySelector('.cory-mat-menu-item-active')
+            const e = this.document.querySelector('.cory-mat-menu-item-active')
             if (e) {
 //                e.scrollIntoView(true);
 //                const viewportH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -223,46 +211,50 @@ export class Layout implements OnInit, OnDestroy, AfterViewInit {
 
     handleSearch(searchText: string) {
         this.searchText = searchText.trim();
+        this.reposSearchCache = undefined;
+        this.reposSearchCacheKey = undefined;
     }
 
-    reposSearchInstance : Array<any> = undefined
+    private reposSearchCache: Array<any> = undefined;
+    private reposSearchCacheKey: string = undefined;
 
     get reposSearch(): Array<any> {
         if (this.searchText === '' || this.searchText === undefined) {
             return this.repos;
         }
-        if (this.reposSearchInstance === undefined) {
-            const regexes: Array<RegExp> = [];
-            this.searchText.split(/[\s,]+/).forEach(search => {
-                if (search === '') {
-                    return;
-                }
-                regexes.push(
-                    new RegExp('.*' + search + '.*', 'i')
-                )
-            })
-            this.reposSearchInstance = Object.values(this.packages).filter( (pkg: any) => {
-                let found = false;
-                for (let regex of regexes) {
-                    if (regex.test(pkg.name) || regex.test(pkg.corifeus.reponame) || regex.test(pkg.corifeus.code)) {
-                        found = true;
-                        break;
-                    }
-                }
-                return found;
-            }).map((pkg : any) => pkg.corifeus.reponame)
+        if (this.reposSearchCacheKey === this.searchText && this.reposSearchCache !== undefined) {
+            return this.reposSearchCache;
         }
-        return this.reposSearchInstance
+        const regexes: Array<RegExp> = [];
+        this.searchText.split(/[\s,]+/).forEach(search => {
+            if (search === '') {
+                return;
+            }
+            regexes.push(
+                new RegExp('.*' + search + '.*', 'i')
+            )
+        })
+        this.reposSearchCache = Object.values(this.packages).filter((pkg: any) => {
+            for (let regex of regexes) {
+                if (regex.test(pkg.name) || regex.test(pkg.corifeus.reponame) || regex.test(pkg.corifeus.code)) {
+                    return true;
+                }
+            }
+            return false;
+        }).map((pkg: any) => pkg.corifeus.reponame);
+        this.reposSearchCacheKey = this.searchText;
+        return this.reposSearchCache;
     }
 
     async load() {
         if (this.packages === undefined) {
-            const response: any = await this.http.get(this.settings.p3x.git.url).toPromise()
+            const httpResponse = await fetch(this.settings.p3x.git.url);
+            const response: any = await httpResponse.json();
             this.packages = response.repo;
 
             let sortedObject = {}
             sortedObject = Object.keys(this.packages).sort((a, b) => {
-                return this.packages[b].corifeus.stargazers_count - this.packages[a].corifeus.stargazers_count
+                return (this.packages[b].corifeus.stargazers_count || 0) - (this.packages[a].corifeus.stargazers_count || 0)
             }).reduce((prev, curr, i) => {
                 prev[i] = this.packages[curr]
                 return prev
@@ -285,66 +277,95 @@ export class Layout implements OnInit, OnDestroy, AfterViewInit {
         this.packageJson = this.packages[this.currentRepo];
         this.title = this.packageJson.description;
         this.icon = this.packageJson.corifeus.icon !== undefined ? `${this.packageJson.corifeus.icon}` : 'fas fa-bolt';
-        document.title = this.title.replace(emojiRegex.default(), '');
 
-        this.noScript.innerHTML = '';
-        this.repos.forEach((repo: any) => {
-            const a = document.createElement('a');
-            a.href = `/${repo === 'corifeus' ? 'matrix' : repo}`;
-            a.innerText = repo;
-            this.noScript.appendChild(a)
-            const a2 = document.createElement('a');
-            a2.href = `https://github.com/patrikx3/${repo}`;
-            a2.innerText = 'Github ' + repo;
-            this.noScript.appendChild(a2)
-        })
-        window.coryAppWebPagesNavigate = (path?: string) => {
-            this.zone.run(() => {
-                if (path.includes('#')) {
-                    const hashIndex = path.indexOf('#')
-                    const pathMainPath = path.substring(0, hashIndex)
-                    const hash = path.substring(hashIndex + 1)
-                    this.navigate(pathMainPath);
-                    window.coryAppWebPagesNavigateHash(hash)
+        const plainTitle = this.title.replace(emojiRegex.default(), '');
+        this.titleService.setTitle(plainTitle);
+
+        const canonicalRepo = this.currentRepo === 'corifeus' ? 'matrix' : this.currentRepo;
+        const canonicalUrl = `https://corifeus.com/${canonicalRepo}`;
+        const description = `${plainTitle} - Open source documentation and packages by Corifeus`;
+
+        // Update SEO meta tags dynamically
+        this.metaService.updateTag({ name: 'description', content: description });
+        this.metaService.updateTag({ property: 'og:title', content: plainTitle });
+        this.metaService.updateTag({ property: 'og:description', content: description });
+        this.metaService.updateTag({ property: 'og:url', content: canonicalUrl });
+        this.metaService.updateTag({ property: 'og:type', content: 'article' });
+        this.metaService.updateTag({ name: 'twitter:title', content: plainTitle });
+        this.metaService.updateTag({ name: 'twitter:description', content: description });
+        this.metaService.updateTag({ name: 'twitter:url', content: canonicalUrl });
+
+        // Update canonical link tag dynamically
+        this.updateCanonicalUrl(canonicalUrl);
+
+        // Update JSON-LD structured data
+        this.updateJsonLd(canonicalUrl, plainTitle, description);
+
+        const noScriptEl = this.document.getElementById('cory-seo');
+        if (noScriptEl) {
+            noScriptEl.innerHTML = '';
+            this.repos.forEach((repo: any) => {
+                const a = this.renderer.createElement('a');
+                this.renderer.setAttribute(a, 'href', `/${repo === 'corifeus' ? 'matrix' : repo}`);
+                a.innerText = repo;
+                this.renderer.appendChild(noScriptEl, a);
+                const a2 = this.renderer.createElement('a');
+                this.renderer.setAttribute(a2, 'href', `https://github.com/patrikx3/${repo}`);
+                a2.innerText = 'Github ' + repo;
+                this.renderer.appendChild(noScriptEl, a2);
+            })
+        }
+        if (isPlatformBrowser(this.platformId)) {
+            window.coryAppWebPagesNavigate = (path?: string) => {
+                this.zone.run(() => {
+                    if (path && path.includes('#')) {
+                        const hashIndex = path.indexOf('#')
+                        const pathMainPath = path.substring(0, hashIndex)
+                        const hash = path.substring(hashIndex + 1)
+                        this.navigate(pathMainPath);
+                        window.coryAppWebPagesNavigateHash(hash)
+                    } else {
+                        this.navigate(path);
+                    }
+                });
+            };
+
+            window.coryAppWebPagesNavigateHash = (id: any) => {
+
+                const scroll = (id: string) => {
+                    const el = this.document.getElementById(id);
+
+                    if (el === null) {
+                        return;
+                    }
+                    el.scrollIntoView({
+                        block: "center",
+                    })
+                }
+
+                if (typeof id === 'string') {
+                    const hash = `#${id.replace(/-parent$/, '')}`;
+                    if (history.pushState) {
+                        history.pushState(null, '', `${location.pathname}${hash}`);
+                    } else {
+                        location.hash = hash;
+                    }
+
+                    scroll(id);
                 } else {
-                    this.navigate(path);
+                    id = `${id.id}`;
+                    setTimeout(() => {
+                        scroll(id)
+                    }, 500)
                 }
-            });
-        };
 
-        window.coryAppWebPagesNavigateHash = (id: any) => {
-
-            const scroll = (id: string) => {
-                const el = document.getElementById(id);
-
-                if (el === null) {
-                    return;
-                }
-                el.scrollIntoView({
-                    block: "center",
-                })
+                return false;
             }
-
-            if (typeof id === 'string') {
-                const hash = `#${id.replace(/-parent$/, '')}`;
-                if (history.pushState) {
-                    history.pushState(null, null, `${location.pathname}${hash}`);
-                } else {
-                    location.hash = hash;
-                }
-
-                scroll(id);
-            } else {
-                id = `${id.id}`;
-                setTimeout(() => {
-                    scroll(id)
-                }, 500)
-            }
-
-            return false;
         }
 
-        document.getElementById('cory-mat-pages-title').innerHTML = this.renderTwemoji(this.packageJson.description)
+        this.pageTitleHtml = this.sanitizer.bypassSecurityTrustHtml(
+            this.renderTwemoji(this.packageJson.description),
+        );
     }
 
     async navigate(path?: string) {
@@ -376,7 +397,6 @@ export class Layout implements OnInit, OnDestroy, AfterViewInit {
 
 
     search(searchText: string) {
-        this.reposSearchInstance = undefined
         this.debounceSearchText(searchText);
     }
 
@@ -416,7 +436,10 @@ export class Layout implements OnInit, OnDestroy, AfterViewInit {
     }
 
     get showTitle() {
-        const pathname = location.pathname.toLowerCase()
+        const rawPath = typeof location !== 'undefined'
+            ? location.pathname
+            : (this.document.location?.pathname || '/' + (this.currentRepo || ''));
+        const pathname = rawPath.toLowerCase()
         const pieces = pathname.split('/')
 //        console.log(pieces)
         const showTitle = pieces.length === 2 || (pieces.length === 3 && pieces[2] === 'index.html')
@@ -434,8 +457,107 @@ export class Layout implements OnInit, OnDestroy, AfterViewInit {
         return extractStars(stars)
     }
 
-    ngOnDestroy(): void {
-        this.subscriptions$.forEach(subs$ => subs$.unsubscribe())
+    private updateCanonicalUrl(canonicalUrl: string) {
+        let linkEl = this.document.getElementById('cory-canonical') as HTMLLinkElement | null;
+        if (!linkEl) {
+            linkEl = this.renderer.createElement('link') as HTMLLinkElement;
+            this.renderer.setAttribute(linkEl, 'id', 'cory-canonical');
+            this.renderer.setAttribute(linkEl, 'rel', 'canonical');
+            this.renderer.appendChild(this.document.head, linkEl);
+
+            const legacy = this.document.querySelector('link[rel="canonical"]:not(#cory-canonical)');
+            if (legacy && legacy.parentNode) {
+                legacy.parentNode.removeChild(legacy);
+            }
+        }
+        this.renderer.setAttribute(linkEl, 'href', canonicalUrl);
+    }
+
+    private updateJsonLd(canonicalUrl: string, plainTitle: string, description: string) {
+        let scriptEl = this.document.getElementById('cory-jsonld');
+        if (!scriptEl) {
+            scriptEl = this.renderer.createElement('script');
+            this.renderer.setAttribute(scriptEl, 'id', 'cory-jsonld');
+            this.renderer.setAttribute(scriptEl, 'type', 'application/ld+json');
+            this.renderer.appendChild(this.document.head, scriptEl);
+        }
+
+        const pkg = this.packageJson || {};
+        const corifeusMeta = pkg.corifeus || {};
+        const version: string | undefined = pkg.version;
+        const timeStamp: string | undefined = corifeusMeta['time-stamp'];
+        const stargazers: number | undefined = corifeusMeta.stargazers_count;
+        const code: string | undefined = corifeusMeta.code;
+        const angularVersion: string | undefined = corifeusMeta.angular;
+        const nodeVersion: string | undefined = corifeusMeta.nodejs;
+
+        const breadcrumbs = {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Corifeus', item: 'https://corifeus.com/matrix' },
+                { '@type': 'ListItem', position: 2, name: plainTitle, item: canonicalUrl },
+            ],
+        };
+
+        const softwareSourceCode: any = {
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareSourceCode',
+            name: plainTitle,
+            alternateName: pkg.name,
+            description,
+            url: canonicalUrl,
+            codeRepository: `https://github.com/patrikx3/${this.currentRepo}`,
+            programmingLanguage: 'TypeScript',
+            inLanguage: 'en',
+            license: 'https://opensource.org/licenses/MIT',
+            author: {
+                '@type': 'Person',
+                name: 'Patrik Laszlo',
+                url: 'https://patrikx3.com',
+                sameAs: [
+                    'https://github.com/patrikx3',
+                    'https://www.npmjs.com/~patrikx3',
+                ],
+            },
+            publisher: {
+                '@type': 'Organization',
+                name: 'Corifeus',
+                url: 'https://corifeus.com',
+            },
+            image: 'https://corifeus.com/assets/favicon.ico',
+            keywords: [
+                'corifeus', 'patrikx3', 'open source', pkg.name, code,
+                'angular', 'nodejs', 'typescript',
+            ].filter(Boolean).join(', '),
+        };
+        if (version) {
+            softwareSourceCode.softwareVersion = version;
+        }
+        if (timeStamp) {
+            softwareSourceCode.dateModified = timeStamp;
+            softwareSourceCode.datePublished = timeStamp;
+        }
+        if (angularVersion || nodeVersion) {
+            const runtime: string[] = [];
+            if (angularVersion) runtime.push(`Angular ${angularVersion}`);
+            if (nodeVersion) runtime.push(`Node ${nodeVersion}`);
+            softwareSourceCode.runtimePlatform = runtime.join(', ');
+        }
+        if (typeof stargazers === 'number' && stargazers > 0) {
+            softwareSourceCode.interactionStatistic = {
+                '@type': 'InteractionCounter',
+                interactionType: 'https://schema.org/LikeAction',
+                userInteractionCount: stargazers,
+            };
+        }
+
+        const graph = {
+            '@context': 'https://schema.org',
+            '@graph': [softwareSourceCode, breadcrumbs],
+        };
+        if (scriptEl) {
+            scriptEl.textContent = JSON.stringify(graph);
+        }
     }
 
     ngAfterViewInit() {

@@ -1,8 +1,9 @@
 import {
     Injectable,
     Inject,
-
+    PLATFORM_ID,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import {
     log
@@ -25,6 +26,7 @@ export class Boot {
         private settings: SettingsService,
         private locale: LocaleService,
         private theme: ThemeService,
+        @Inject(PLATFORM_ID) private platformId: Object,
     ) {
   //      if (booted === true) {
   //          return
@@ -41,7 +43,9 @@ export class Boot {
           //  hu: require('./json/translation/hungarian.json'),
         });
 
-        this.theme.boot();
+        if (isPlatformBrowser(this.platformId)) {
+            this.theme.boot();
+        }
 
         //TODO uglify breaks CSS imports
         //FIXME material icons, roboto, font-awesome

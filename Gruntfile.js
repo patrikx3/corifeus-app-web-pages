@@ -16,7 +16,7 @@ module.exports = (grunt) => {
                         minifyCSS: true,
                     },
                     files: {
-                        './dist/corifeus-app-web-pages/index.html': './dist/corifeus-app-web-pages/index.html'
+                        './dist/corifeus-app-web-pages/browser/index.html': './dist/corifeus-app-web-pages/browser/index.html'
                     }
                 }
             },
@@ -29,7 +29,7 @@ module.exports = (grunt) => {
                             src: [
                                 '**',
                             ],
-                            dest: `./dist/corifeus-app-web-pages/assets/twemoji/svg`
+                            dest: `./dist/corifeus-app-web-pages/browser/assets/twemoji/svg`
                         },
 
                     ]

@@ -4,7 +4,8 @@
     },
     "themes": {
         "material": [
-            "cory-mat-theme-light-indigo-pink",
+            "auto",
+            "cory-mat-theme-light-forest",
             "cory-mat-theme-dark-matrix"
         ]
     },

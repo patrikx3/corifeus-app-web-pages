@@ -1,10 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Corifeus Matrix</title>
+  <title>Corifeus Matrix - Open Source Angular & Node.js Packages</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <base href="/"/>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Corifeus - Open source documentation portal for Angular, Node.js, Grunt, Electron and developer tools by Patrik Laszlo. Browse 100+ free MIT-licensed packages.">
+  <meta name="keywords" content="corifeus, angular, nodejs, node.js, npm packages, grunt, electron, open source, typescript, javascript, patrikx3, documentation, developer tools, mcp, mongodb, redis">
+  <meta name="author" content="Patrik Laszlo">
+  <meta name="publisher" content="Patrik Laszlo">
+  <meta name="copyright" content="MIT License">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot" content="index, follow">
+  <meta name="rating" content="general">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Canonical URL (updated dynamically per route) -->
+  <link rel="canonical" href="https://corifeus.com/">
+
+  <!-- DNS prefetch for performance -->
+  <link rel="dns-prefetch" href="https://cdn.corifeus.com">
+  <link rel="dns-prefetch" href="https://network.corifeus.com">
+
+  <!-- Alternate languages -->
+  <link rel="alternate" hreflang="en" href="https://corifeus.com/">
+  <link rel="alternate" hreflang="hu" href="https://corifeus.hu/hu">
+  <link rel="alternate" hreflang="de" href="https://corifeus.eu/de">
+  <link rel="alternate" hreflang="es" href="https://corifeus.eu/es">
+  <link rel="alternate" hreflang="fr" href="https://corifeus.eu/fr">
+  <link rel="alternate" hreflang="it" href="https://corifeus.eu/it">
+  <link rel="alternate" hreflang="ru" href="https://corifeus.eu/ru">
+  <link rel="alternate" hreflang="cs" href="https://corifeus.eu/cs">
+  <link rel="alternate" hreflang="ja" href="https://corifeus.eu/ja">
+  <link rel="alternate" hreflang="zh" href="https://corifeus.eu/zn">
+  <link rel="alternate" hreflang="x-default" href="https://corifeus.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Corifeus">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="hu_HU">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:title" content="Corifeus Matrix - Open Source Angular & Node.js Packages">
+  <meta property="og:description" content="Corifeus - Open source documentation portal for Angular, Node.js, Grunt, Electron and developer tools by Patrik Laszlo.">
+  <meta property="og:url" content="https://corifeus.com">
+  <meta property="og:image" content="https://corifeus.com/assets/og-image.png">
+  <meta property="og:image:secure_url" content="https://corifeus.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Corifeus open source documentation portal">
+  <meta property="og:image:type" content="image/png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@patrikx3">
+  <meta name="twitter:creator" content="@patrikx3">
+  <meta name="twitter:title" content="Corifeus Matrix - Open Source Angular & Node.js Packages">
+  <meta name="twitter:description" content="Corifeus - Open source documentation portal for Angular, Node.js, Grunt, Electron and developer tools by Patrik Laszlo.">
+  <meta name="twitter:image" content="https://corifeus.com/assets/og-image.png">
+  <meta name="twitter:image:alt" content="Corifeus open source documentation portal">
+
+  <!-- Apple / iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Corifeus">
+  <link rel="apple-touch-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Microsoft / Windows -->
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="application-name" content="Corifeus">
+
+  <!-- Structured data: Organization + Website with SearchAction -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://corifeus.com/#organization",
+        "name": "Corifeus",
+        "alternateName": "Patrikx3",
+        "url": "https://corifeus.com",
+        "logo": "https://corifeus.com/assets/favicon.ico",
+        "founder": {
+          "@type": "Person",
+          "name": "Patrik Laszlo",
+          "url": "https://patrikx3.com",
+          "sameAs": [
+            "https://github.com/patrikx3",
+            "https://www.npmjs.com/~patrikx3"
+          ]
+        },
+        "sameAs": [
+          "https://github.com/patrikx3",
+          "https://www.npmjs.com/~patrikx3",
+          "https://corifeus.eu",
+          "https://corifeus.hu"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://corifeus.com/#website",
+        "url": "https://corifeus.com",
+        "name": "Corifeus",
+        "description": "Open source documentation portal for Angular, Node.js packages and developer tools",
+        "publisher": { "@id": "https://corifeus.com/#organization" },
+        "inLanguage": "en-US",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://corifeus.com/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1b5e20">
+
   <meta name="google-adsense-account" content="ca-pub-1410073260887710">
   <!--
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1410073260887710"
@@ -67,42 +193,51 @@
   </style>
 
   <!-- Loader Balls -->
-  <div class="LoaderBalls">
+  <div class="LoaderBalls" role="status" aria-label="Loading Corifeus">
     <div class="LoaderBalls__item"></div>
     <div class="LoaderBalls__item"></div>
     <div class="LoaderBalls__item"></div>
   </div>
 
+  <!-- noscript fallback -->
+  <noscript>
+    <div style="text-align: center; padding: 2em;">
+      <h1>Corifeus - Open Source Angular &amp; Node.js Packages</h1>
+      <p>This application requires JavaScript. Please enable JavaScript to view this site.</p>
+      <p>Browse our packages on <a href="https://github.com/patrikx3">GitHub</a> or <a href="https://www.npmjs.com/~patrikx3">npm</a>.</p>
+    </div>
+  </noscript>
+
   <!-- Web Development Links -->
   <div id="web-development" style="text-align: center;">
-    <a href="https://corifeus.hu/hu"  style="opacity: 0.5; text-decoration: none;">
+    <a href="https://corifeus.hu/hu"  style="opacity: 0.5; text-decoration: none;" hreflang="hu">
       <span lang="hu">Webfejlesztés</span>
     </a><br />
-    <a href="https://corifeus.eu/en"  style="opacity: 0.5; text-decoration: none;">
+    <a href="https://corifeus.eu/en"  style="opacity: 0.5; text-decoration: none;" hreflang="en">
       <span lang="en">Web Development</span>
     </a><br />
-    <a href="https://corifeus.eu/de"  style="opacity: 0.5; text-decoration: none;">
+    <a href="https://corifeus.eu/de"  style="opacity: 0.5; text-decoration: none;" hreflang="de">
       <span lang="de">Webentwicklung</span>
     </a><br />
-    <a href="https://corifeus.eu/es"  style="opacity: 0.5; text-decoration: none;">
+    <a href="https://corifeus.eu/es"  style="opacity: 0.5; text-decoration: none;" hreflang="es">
       <span lang="es">Desarrollo Web</span>
     </a><br />
-    <a href="https://corifeus.eu/fr"  style="opacity: 0.5; text-decoration: none;">
+    <a href="https://corifeus.eu/fr"  style="opacity: 0.5; text-decoration: none;" hreflang="fr">
       <span lang="fr">Développement Web</span>
     </a><br />
-    <a href="https://corifeus.eu/ja"  style="opacity: 0.5; text-decoration: none;">
-      <span lang="jp">ウェブ開発</span>
+    <a href="https://corifeus.eu/ja"  style="opacity: 0.5; text-decoration: none;" hreflang="ja">
+      <span lang="ja">ウェブ開発</span>
     </a><br />
-    <a href="https://corifeus.eu/it"  style="opacity: 0.5; text-decoration: none;">
+    <a href="https://corifeus.eu/it"  style="opacity: 0.5; text-decoration: none;" hreflang="it">
       <span lang="it">Sviluppo Web</span>
     </a><br />
-    <a href="https://corifeus.eu/ru"  style="opacity: 0.5; text-decoration: none;">
+    <a href="https://corifeus.eu/ru"  style="opacity: 0.5; text-decoration: none;" hreflang="ru">
       <span lang="ru">Веб-разработка</span>
     </a><br />
-    <a href="https://corifeus.eu/cs"  style="opacity: 0.5; text-decoration: none;">
+    <a href="https://corifeus.eu/cs"  style="opacity: 0.5; text-decoration: none;" hreflang="cs">
       <span lang="cs">Vývoj webu</span>
     </a><br />
-    <a href="https://corifeus.eu/zn"  style="opacity: 0.5; text-decoration: none;">
+    <a href="https://corifeus.eu/zn"  style="opacity: 0.5; text-decoration: none;" hreflang="zh">
       <span lang="zh">网页开发</span>
     </a>
   </div>

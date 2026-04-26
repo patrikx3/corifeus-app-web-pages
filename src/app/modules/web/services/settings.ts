@@ -68,6 +68,9 @@ export class SettingsService {
 
         if (coreSettings.hasOwnProperty('integration')) {
             log('afterInit - integration');
+            if (typeof document === 'undefined') {
+                return;
+            }
             const head = document.getElementsByTagName("head")[0];
 
             // yandex

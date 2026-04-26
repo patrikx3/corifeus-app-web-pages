@@ -21,10 +21,7 @@
               "js-cookie",
               "lodash"
             ],
-            "outputPath": {
-              "base": "dist/corifeus-app-web-pages",
-               "browser": ""
-            },
+            "outputPath": "dist/corifeus-app-web-pages",
             "index": "src/index.html",
             "polyfills": [
               "src/polyfills.ts"
@@ -44,6 +41,7 @@
                 "output": "./"
               }
             ],
+            "serviceWorker": "ngsw-config.json",
             "styles": [
               "src/styles.scss"
             ],
@@ -53,7 +51,15 @@
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
-            "browser": "src/main.ts"
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "outputMode": "server",
+            "security": {
+              "allowedHosts": []
+            },
+            "ssr": {
+              "entry": "src/server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -143,5 +149,31 @@
   },
   "cli": {
     "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

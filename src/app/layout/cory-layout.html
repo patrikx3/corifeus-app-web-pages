@@ -3,173 +3,101 @@
 <cory-layout-header [parent]="this"></cory-layout-header>
 
 <mat-sidenav-container class="cory-layout-sidenav-container" [style.z-index]="menuSidenav.opened ? 2 : 1">
-    <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav" style="width: 370px; max-width: 100%; ">
-        <button disabled mat-menu-item>
-            {{ i18n.title.packages }}
+  <mat-sidenav #menuSidenav position="end" class="cory-layout-sindenav" style="width: 370px; max-width: 100%; "
+    (openedChange)="onSidenavOpenedChange($event)"
+    (closedStart)="onSidenavClosedStart()"
+    role="navigation" aria-label="Package navigation">
+    <div class="cory-pages-sidenav-sticky">
+      <div class="cory-pages-sidenav-heading">
+        <span class="cory-pages-sidenav-title">{{ i18n?.title?.packages }}</span>
+        <button mat-icon-button color="primary" class="cory-pages-sidenav-close"
+          (click)="packageMenuClose()" aria-label="Close package menu">
+          <mat-icon aria-hidden="true">close</mat-icon>
         </button>
+      </div>
 
+      <form class="cory-layout-sidenav-search" (keydown)="keyDownFunction($event)" role="search" aria-label="Search packages">
+      <mat-form-field appearance="outline" style="width: 100%;" class="cory-layout-search-field">
+        <input matInput #searchText (keyup)="search(searchText.value)" placeholder="{{ i18n?.title?.search }}" aria-label="Search packages"/>
+        @if (searchText.value.trim() != '') {<ng-container matSuffix><mat-icon style="cursor: pointer; position: relative; top: 3px;"
+            (click)="searchText.value = ''; search('')" color="primary" aria-label="Clear search">clear
+          </mat-icon></ng-container>}
+      </mat-form-field>
 
-        <form class="cory-layout-sidenav-search" (keydown)="keyDownFunction($event)">
-
-            <!--
-            <input type="text" style="position: absolute; top: 0; left: 0; opacity: 1.0; height: 0; border: none; padding: 0; margin: 0; line-height: 0;" tabindex="0">
-            -->
-
-            <mat-form-field appearance="outline" style="width: 100%;" class="cory-layout-search-field">
-                <input matInput #searchText (keyup)="search(searchText.value)" placeholder="{{ i18n.title.search }}"/>
-                <mat-icon *ngIf="searchText.value.trim() != ''" style="cursor: pointer; position: relative; top: 3px;" matSuffix
-                          (click)="searchText.value = ''; search('')" color="primary">clear
-                </mat-icon>
-            </mat-form-field>
-
-
-            <span *ngIf="reposSearch?.length === 0" style="opacity: 0.5;">
-                {{ i18n.title.searchNotFound }}
-            </span>
-
-        </form>
-
-
-        <button mat-menu-item style="display: block;"
-                *ngFor="let repo of reposSearch"
-                (click)="navigate('/' + repo + '/index.html' ); menuRepoActive = repo; menuMenuActive = undefined; packageMenuClose()"
-                [class.cory-mat-menu-item-active]="menuRepoActive == repo"
-
-        >
-            <!--
-                if this is enabled, we loose scrolling - tooltip not working with scrollable panels
-                [matTooltip]="extractTitleWithStars(packages[repo])"
-                matTooltipPosition="left"
-                -->
-
-            <span *ngIf="packages[repo]">
-                <span id="cory-pages-layout-menu-main-icon">
-                    <i *ngIf="packages[repo]" [class]="packages[repo].corifeus.icon||'fas fa-bolt' "></i>
-                </span>
-                <span class="cory-pages-layout-menu-main-title" >
-                    {{ extractTitle(packages[repo]) }}
-                </span>
-
-                <span *ngIf="packages[repo].corifeus.stargazers_count > 0"
-                    style="opacity: 0.25; position: relative; top: -18px; right: 0px; font-size: 10px;">
-                    <i class="fas fa-star"></i>&nbsp;{{ extractStars(packages[repo].corifeus.stargazers_count) }}
-                </span>
-
-                <div style="float: right; margin-left: 5px; opacity: 0.25;">
-                    {{ packages[repo].corifeus.code }}
-                </div>
-            </span>
-        </button>
-
-    </mat-sidenav>
-
-    <div class="cory-mat-container">
-        <mat-card appearance="outlined">
-            <!-- Counter: {{ counter }} -->
-            <mat-card-content style="position: relative;" *ngIf="packageJson !== undefined">
-
-
-                <!-- below is to add additional status -->
-                <!--
-                <div style="font-size: 150%; ">
-                    <div style="font-weight: bold; font-size: 200%; ">
-                        Warning on 2021 November 17
-                    </div>
-                    <div style="opacity: 0.75;">
-                        All patrikx3.com, corifeus.com and sub-domains are offline.
-                    </div>
-                    <div style="opacity: 0.5;">
-                        Will come back again on 2021 November 18.
-                    </div>
-                    <br/>
-                </div>                
-                -->
-                
-                
-                <cory-web-pages-build-status style="float: left;" [cory-pkg]="packageJson"
-                                             *ngIf="showTitle"></cory-web-pages-build-status>
-                <div style="float: right; font-weight: bold; font-size: 125%;" *ngIf="showTitle">
-                    <span >v{{ packageJson.version }}</span>
-                    <div *ngIf="packageJson.corifeus.stargazers_count > 0" style="text-align: right;">
-                        <i class="fas fa-star"></i>&nbsp;<span [matTooltip]="(packageJson.corifeus.stargazers_count > 999 ? packageJson.corifeus.stargazers_count + ' ' : '') + i18n.title.githubStars"
-                                                               matTooltipPosition="below">{{
-                        extractStars(packageJson.corifeus.stargazers_count) }}
-                    </span>
-                    </div>
-
-                </div>
-                
-                <div *ngIf="showTitle" style="clear: both"></div>
-
-
-
-
-                <!--
-                <div *ngIf="packageJson.corifeus.publish">
-                    <br/>
-                    <a href="https://npmjs.com/package/{{ packageJson.name }}/" target="_blank">
-                        <img src="https://nodei.co/npm/{{ packageJson.name }}.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="NPM" class="badge badge" style="max-width: 408px; width: 100%;">
-                    </a>
-                </div>
-                -->
-
-                <div [hidden]="!showTitle">
-                    <br/>
-                    <span id="cory-mat-pages-title" class="cory-layout-title"></span>
-                    <br/>
-
-                    <div *ngIf="packageJson.corifeus.angular">
-
-                        <h2>Built on Angular v{{packageJson.corifeus.angular}}</h2>
-
-                    </div>
-
-                    <!--
-                    <div *ngIf="packageJson.collective">
-                        <br/>
-                        <a routerLink="/{{ packageJson.corifeus.reponame }}/open-collective"
-                           style="font-weight: bold; font-size: 125%;"
-                           //FIXME: never use
-                           [innerHTML]="renderTwemoji(i18n.title.opencollective.label)">
-
-                        </a>
-                        <br/>
-                    </div>
-                    -->
-                </div>
-
-                                <!-- footer -->
-                                 <!--
-<ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-1410073260887710"
-data-ad-slot="3643892263"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-
--->
-
-
-                <router-outlet>
-                </router-outlet>
-
-                <!--
-                <ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-1410073260887710"
-     data-ad-slot="2072893944"></ins>
--->
-
-            </mat-card-content>
-        </mat-card>
+      @if (reposSearch?.length === 0) {
+        <span style="opacity: 0.5;" role="status">
+          {{ i18n?.title?.searchNotFound }}
+        </span>
+      }
+    </form>
     </div>
+
+    @for (repo of reposSearch; track repo) {
+      <a mat-menu-item
+        [href]="'/' + repo + '/index.html'"
+        (click)="$event.preventDefault(); navigate('/' + repo + '/index.html' ); menuRepoActive = repo; menuMenuActive = undefined; packageMenuClose()"
+        [class.cory-mat-menu-item-active]="currentRepo == repo"
+        [attr.aria-current]="currentRepo == repo ? 'page' : null"
+        >
+        @if (packages && packages[repo]) {
+          <span class="cory-pages-layout-menu-row">
+            <span id="cory-pages-layout-menu-main-icon" class="cory-pages-layout-menu-cell">
+              <i [class]="packages[repo].corifeus.icon||'fas fa-bolt'" aria-hidden="true"></i>
+            </span>
+            <span class="cory-pages-layout-menu-main-title cory-pages-layout-menu-cell">
+              {{ extractTitle(packages[repo]) }}
+            </span>
+            @if (packages[repo].corifeus.stargazers_count > 0) {
+              <span
+                class="cory-pages-layout-menu-stars cory-pages-layout-menu-cell"
+                [attr.aria-label]="packages[repo].corifeus.stargazers_count + ' GitHub stars'">
+                <i class="fas fa-star" aria-hidden="true"></i>&nbsp;{{ extractStars(packages[repo].corifeus.stargazers_count) }}
+              </span>
+            }
+            <span class="cory-pages-layout-menu-code cory-pages-layout-menu-cell">
+              {{ packages[repo].corifeus.code }}
+            </span>
+          </span>
+        }
+      </a>
+    }
+  </mat-sidenav>
+
+  <main class="cory-mat-container" role="main">
+    <mat-card appearance="outlined">
+      @if (packageJson !== undefined) {
+        <mat-card-content style="position: relative;">
+          @if (showTitle) {
+            <cory-web-pages-build-status style="float: left;" [cory-pkg]="packageJson"
+            ></cory-web-pages-build-status>
+          }
+          @if (showTitle) {
+            <div style="float: right; font-weight: bold; font-size: 125%;">
+              <span>v{{ packageJson.version }}</span>
+              @if (packageJson.corifeus.stargazers_count > 0) {
+                <div style="text-align: right;">
+                  <i class="fas fa-star" aria-hidden="true"></i>&nbsp;<span [matTooltip]="(packageJson.corifeus.stargazers_count > 999 ? packageJson.corifeus.stargazers_count + ' ' : '') + i18n.title.githubStars"
+                  matTooltipPosition="below"
+                  [attr.aria-label]="packageJson.corifeus.stargazers_count + ' GitHub stars'">{{
+                  extractStars(packageJson.corifeus.stargazers_count) }}
+                </span>
+              </div>
+            }
+          </div>
+        }
+        @if (showTitle) {
+          <div style="clear: both"></div>
+        }
+        <h1 id="cory-mat-pages-title" class="cory-layout-title">{{ title }}</h1>
+        @if (packageJson.corifeus.angular) {
+          <h2 style="margin-top: 8px;">Built on Angular v{{ packageJson.corifeus.angular }}</h2>
+        }
+        <router-outlet>
+        </router-outlet>
+      </mat-card-content>
+    }
+  </mat-card>
+</main>
 </mat-sidenav-container>
 
 <cory-layout-footer [parent]="this"></cory-layout-footer>
-
-
-<div *ngIf="sideNavOpened" id="cory-pages-layout-menu-main-close" style="">
-    <button mat-icon-button color="primary" (click)="packageMenuClose()">
-        <mat-icon>close</mat-icon>
-    </button>
-</div>

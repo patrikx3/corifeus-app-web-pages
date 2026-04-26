@@ -17,3 +17,10 @@
 /assets
 /.github
 /.vscode
+secure/
+.claude/
+.vscode/
+agents/
+CLAUDE.md
+AGENTS.md
+.codex/

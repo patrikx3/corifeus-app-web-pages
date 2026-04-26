@@ -1,0 +1,73 @@
+@use '@angular/material' as mat;
+@use "../mixins" as *;
+
+.cory-mat-theme-light-forest {
+    @include cory-mat-theme-m3(
+        light,
+        mat.$green-palette,
+        mat.$rose-palette,
+        #4caf50, // green 500 — header + footer gradient
+        #e91e63, // pink 500 — link
+        #c2185b, // pink 700 — link hover
+    );
+
+    /* Pale-mint → bright-mint backdrop (restored from the old
+       Green A100 → Green A400 radial gradient). */
+    & {
+        background-color: #b9f6ca;
+        background: radial-gradient(circle, rgba(#b9f6ca, 0.5), rgba(#69f0ae, 0.5));
+    }
+
+    .mat-mdc-card,
+    .mat-mdc-card-outlined {
+        --mdc-outlined-card-outline-color: rgba(76, 175, 80, 0.2) !important;
+        --mdc-elevated-card-container-color: rgba(255, 255, 255, 0.77);
+        --mdc-outlined-card-container-color: rgba(255, 255, 255, 0.77);
+        background-color: rgba(255, 255, 255, 0.77) !important;
+        border-color: rgba(76, 175, 80, 0.2) !important;
+        border-width: 1px !important;
+        border-style: solid !important;
+    }
+
+    /* Footer text + icons: WHITE on the green toolbar. */
+    .cory-mat-footer,
+    .cory-mat-footer *,
+    .cory-mat-footer .mat-toolbar,
+    .cory-mat-footer .mat-toolbar *,
+    .cory-mat-footer .mat-mdc-button,
+    .cory-mat-footer .mat-mdc-button *,
+    .cory-mat-footer .mat-mdc-button .mdc-button__label,
+    .cory-mat-footer .mat-mdc-icon-button,
+    .cory-mat-footer .mat-mdc-icon-button *,
+    .cory-mat-footer .mat-icon,
+    .cory-mat-footer i,
+    .cory-mat-footer a,
+    .cory-mat-footer a * {
+        color: white !important;
+    }
+
+    .cory-mat-footer,
+    .cory-mat-footer .mat-toolbar {
+        --mdc-text-button-label-text-color: white !important;
+        --mdc-filled-button-label-text-color: white !important;
+        --mdc-outlined-button-label-text-color: white !important;
+        --mdc-icon-button-icon-color: white !important;
+        --mat-toolbar-container-text-color: white !important;
+        --mat-toolbar-title-text-color: white !important;
+        --mat-icon-color: white !important;
+    }
+
+    /* Toast / snackbar: icon forest green (green 500). */
+    .mat-mdc-snack-bar-container .mat-icon,
+    .custom-snackbar .mat-icon,
+    .mat-mdc-snack-bar-container mat-icon,
+    .custom-snackbar mat-icon {
+        color: #4caf50 !important;
+    }
+
+    /* Sticky heading+search wrapper: near-opaque white so the scrolled
+       repo list doesn't bleed through. */
+    .mat-drawer .cory-pages-sidenav-sticky {
+        background-color: rgba(255, 255, 255, 0.95) !important;
+    }
+}

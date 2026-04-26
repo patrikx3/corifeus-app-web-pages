@@ -1,373 +1,231 @@
 @use '@angular/material' as mat;
-@use "sass:map";
-
-
-
 @use "../mixins" as *;
 
+/* Matrix palette mix mirrors p3xr-theme-matrix in redis-ui-material:
+   chartreuse primary (neon green-yellow) + green tertiary.
+   Intentionally minimal — no neon-green text overrides on top of the
+   Material tokens. Only the body backdrop survives so the matrix-rain
+   canvas still reads as black. */
 .cory-mat-theme-dark-matrix {
-    $mat-matrix: (
-        50 : #e0ffe0,
-        100 : #b3ffb3,
-        200 : #80ff80,
-        300 : #4dff4d,
-        400 : #26ff26,
-        500 : #00ff00,
-        600 : #00ff00,
-        700 : #00ff00,
-        800 : #00ff00,
-        900 : #00ff00,
-        A100 : #ffffff,
-        A200 : #f2fff2,
-        A400 : #bfffbf,
-        A700 : #a6ffa6,
-        contrast: (
-            50 : #000000,
-            100 : #000000,
-            200 : #000000,
-            300 : #000000,
-            400 : #000000,
-            500 : #000000,
-            600 : #000000,
-            700 : #000000,
-            800 : #000000,
-            900 : #000000,
-            A100 : #000000,
-            A200 : #000000,
-            A400 : #000000,
-            A700 : #000000,
-        )
+    @include cory-mat-theme-m3(
+        dark,
+        mat.$chartreuse-palette,
+        mat.$green-palette,
+        #00ff00, // neon green — header + footer gradient (from container mixin)
+        #c7ffc7, // very light green — link
+        #00ff00, // matrix-terminal green — link hover
     );
-
-
-    $mat-matrikxlow: (
-        50 : #e7f9e7,
-        100 : #c2f0c2,
-        200 : #99e699,
-        300 : #70db70,
-        400 : #52d452,
-        500 : #33cc33,
-        600 : #2ec72e,
-        700 : #27c027,
-        800 : #20b920,
-        900 : #14ad14,
-        A100 : #e0ffe0,
-        A200 : #adffad,
-        A400 : #7aff7a,
-        A700 : #60ff60,
-        contrast: (
-            50 : #000000,
-            100 : #000000,
-            200 : #000000,
-            300 : #000000,
-            400 : #000000,
-            500 : #000000,
-            600 : #000000,
-            700 : #000000,
-            800 : #ffffff,
-            900 : #ffffff,
-            A100 : #000000,
-            A200 : #000000,
-            A400 : #000000,
-            A700 : #000000,
-        )
-    );
-
-
-    $mat-matrixwarm: (
-        50 : #f9e0e0,
-        100 : #f0b3b3,
-        200 : #e68080,
-        300 : #db4d4d,
-        400 : #d42626,
-        500 : #cc0000,
-        600 : #c70000,
-        700 : #c00000,
-        800 : #b90000,
-        900 : #ad0000,
-        A100 : #ffd7d7,
-        A200 : #ffa4a4,
-        A400 : #ff7171,
-        A700 : #ff5858,
-        contrast: (
-            50 : #000000,
-            100 : #000000,
-            200 : #000000,
-            300 : #ffffff,
-            400 : #ffffff,
-            500 : #ffffff,
-            600 : #ffffff,
-            700 : #ffffff,
-            800 : #ffffff,
-            900 : #ffffff,
-            A100 : #000000,
-            A200 : #000000,
-            A400 : #000000,
-            A700 : #000000,
-        )
-    );
-
-
-    $mat-matrixaccent: (
-        50 : #f9e7f9,
-        100 : #f0c2f0,
-        200 : #e699e6,
-        300 : #db70db,
-        400 : #d452d4,
-        500 : #cc33cc,
-        600 : #c72ec7,
-        700 : #c027c0,
-        800 : #b920b9,
-        900 : #ad14ad,
-        A100 : #ffe0ff,
-        A200 : #ffadff,
-        A400 : #ff7aff,
-        A700 : #ff60ff,
-        contrast: (
-            50 : #000000,
-            100 : #000000,
-            200 : #000000,
-            300 : #000000,
-            400 : #000000,
-            500 : #ffffff,
-            600 : #ffffff,
-            700 : #ffffff,
-            800 : #ffffff,
-            900 : #ffffff,
-            A100 : #000000,
-            A200 : #000000,
-            A400 : #000000,
-            A700 : #000000,
-        )
-    );
-
-    $mat-matrixaccent: mat.$m2-lime-palette;
-
-    $primary: mat.m2-define-palette($mat-matrix);
-    $accent: mat.m2-define-palette($mat-matrikxlow);
-    $warn: mat.m2-define-palette($mat-matrixaccent);
-
-    $white: map.get($mat-matrix, 500);
-    $white2: map.get($mat-matrixaccent, 500);
-
-    $foreground: (
-        base: $white, //white,
-        divider: rgba($white, 0.12), //rgba(white, 0.12),
-        dividers: rgba($white, 0.12), //rgba(white, 0.12),
-        disabled: rgba($white, 0.8), // rgba(white, 0.3),
-        disabled-button: rgba($white, 0.3), // rgba(white, 0.3),
-        disabled-text: rgba($white, 0.3), // rgba(white, 0.3),
-        hint-text: rgba($white, 0.3), // rgba(white, 0.3),
-        secondary-text: rgba($white, 0.3), // rgba(white, 0.3),
-        icon: $white, // white,
-        icons: $white, // white,
-        text: $white, // white,
-        slider-min: white,
-        slider-off: $white, //rgba(white, 0.3),
-        slider-off-active: $white, //rgba(white, 0.3),
-    );
-
-
-    $background: (
-        status-bar: black,
-        app-bar: rgba(black, 0.90), //map.get(mat.$grey-palette, 900),
-        background: rgba(black, 0.80), //#303030,
-        hover: rgba(map.get($mat-matrix, 500), 0.1), //rgba(white, 0.04),
-        card: rgba(black, 0.80), //map.get(mat.$grey-palette, 800),
-        dialog: rgba(black, 0.80), //map.get(mat.$grey-palette, 800),
-        disabled-button: rgba(map.get($mat-matrix, A700), 0.12), // rgba(white, 0.12),
-        raised-button: rgba(black, 0.80), //map-get(mat.$grey-palette, 800),
-        focused-button: rgba(map.get($mat-matrix, A700), 0.06), //rgba(white, 0.06),
-        selected-button: rgba(black, 0.90), //map.get(mat.$grey-palette, 900),
-        selected-disabled-button: rgba(black, 0.80), //map.get(mat.$grey-palette, 800),
-        disabled-button-toggle: rgba(black, 1.00), //map.get(mat.$grey-palette, 1000),
-        //          unselected-chip: map.get(mat.$grey-palette, 700),
-        //          disabled-list-option: black,
-        unselected-chip: rgba(black, 0.90), // map.get(mat.$grey-palette, 300),
-        disabled-list-option: rgba(black, 0.80), // map.get(mat.$grey-palette, 200),
-    );
-
-    $theme_highlight: mat.m2-define-dark-theme((
-        color: (
-            primary: $warn,
-            accent: $primary,
-            warn: $accent,
-//            foreground: $foreground,
-//            background: $background,
-        ),
-        typography: mat.m2-define-typography-config(),
-        density: 0,
-    
-    ));
-
-    $theme: mat.m2-define-dark-theme((
-        color: (
-            primary: $primary,
-            accent: $accent,
-            warn: $warn,
-//            foreground: $foreground,
-//            background: $background,
-        ),
-        typography: mat.m2-define-typography-config(),
-        density: 0,
-    
-    ));
-
-    $theme_reverse: mat.m2-define-dark-theme((
-        color: (
-            primary: $accent,
-            accent: $primary,
-            warn: $warn,
-//            foreground: $foreground,
-//            background: $background,
-        ),
-        typography: mat.m2-define-typography-config(),
-        density: 0,
-    
-    ));        
-
-    $theme_reverse2: mat.m2-define-light-theme((
-        color: (
-            primary: $accent, 
-            accent: $primary,
-            warn: $warn
-        ),
-        typography: mat.m2-define-typography-config(),
-        density: 0,
-    
-    ));
-
-    // @mixin angular-material-theme($theme) {
-
-
-    // this is new again
-    //  @include mat.ripple-theme($theme_reverse);
-    //  @include mat.option-theme($theme_reverse);
-    //  @include mat.optgroup-theme($theme_reverse);
-    //  @include mat.pseudo-checkbox-theme($theme_reverse);
-
-
-//    @include mat.autocomplete-theme($theme_reverse);
-
-        // ISSUES: https://github.com/angular/components/issues/27424
-
-    // card
-    @include mat.card-theme($theme_reverse);
-    
-    .mat-mdc-card, .mat-mdc-menu-content, .mat-drawer, .mat-mdc-menu-item {
-        background-color: rgba(black, 0.75) !important;
-        color: rgba(0, 255, 0, 1) !important;
-    }
-
-    .mat-mdc-menu-item:hover {
-        background-color: rgba(green, 0.1) !important;
-    }
-
-    .mat-drawer-backdrop {
-        background-color: rgba(black, 0.25) !important;
-    }
-
-//    @include mat.checkbox-theme($theme_reverse);
-
-//    @include mat.chips-theme($theme_reverse);
-//    @include mat.dialog-theme($theme_reverse);
-//    @include mat.grid-list-theme($theme_reverse);
-    @include mat.icon-theme($theme_reverse);
-//    @include mat.list-theme($theme_reverse);
-    @include mat.menu-theme($theme_reverse);
-//    @include mat.radio-theme($theme_reverse);
-//    @include mat.select-theme($theme_reverse);
-
-
-    $background_sidenav: map.merge($background, (
-        card: white
-    ));
-
-    @include mat.sidenav-theme(mat.m2-define-dark-theme((
-        color: (
-            primary: $accent,
-            accent: $primary,
-            warn: $warn,
-        ),
-        typography: mat.m2-define-typography-config(),
-        density: 0,
-    
-    )));
-
-//    @include mat.slider-theme($theme_reverse);
-
-//    @include mat.tabs-theme($theme_reverse);
-    @include mat.tooltip-theme($theme_reverse);
-
-    .mdc-tooltip.mat-mdc-tooltip.mdc-tooltip--shown, .mat-mdc-tooltip .mdc-tooltip__surface {
-        background-color: rgba(green, 0.2) !important;
-    }
-
-    //    background: linear-gradient(darken($color, 10%), $color);
-//    @include mat.button-toggle-theme($theme_reverse);
-//    @include mat.input-theme($theme_reverse);
-
-  //  @include mat.slide-toggle-theme($theme_reverse);
-
-
-    @include mat.progress-bar-theme($theme_highlight);
-//    @include mat.progress-spinner-theme($theme_highlight);
-    @include mat.toolbar-theme($theme_reverse);
-    //@include mat.button-theme($theme_reverse);
-
-//    @include mat.expansion-theme($theme);
-    @include mat.form-field-theme($theme);
-//    @include mat.paginator-theme($theme);
-//    @include mat.stepper-theme($theme);
-    @include mat.snack-bar-theme($theme_highlight);
-    @include mat.button-theme($theme_highlight);
-//    @include mat.datepicker-theme($theme_reverse);
-
-
-    @include cory-mat-theme-container(mat.m2-get-color-from-palette($primary));
-
-    @include cory-mat-theme-toolbar('dark', $theme);
-
-    @include cory-mat-theme-button('dark', $theme_reverse2);
-    @include cory-mat-theme-link(map.get($mat-matrixaccent, 500), map.get($mat-matrixaccent, A400));
-
-    @include cory-mat-autofill();
 
     & {
         background-color: rgba(0, 0, 0, 0.5);
-        background: radial-gradient(circle, rgba(black, 0.9), rgba(black, 0.8));    
+        background: radial-gradient(circle, rgba(black, 0.9), rgba(black, 0.8));
     }
 
-    /*
-        background-image: url("/assets/wallpaper-matrix.jpg");
-        background-repeat: repeat;
-     */
-
-    //  @include cory-mat-theme('dark', $primary, $accent);
-
-    .mat-mdc-tooltip {
-        /* your own custom styles here */
-        /* e.g. */
-        background-color: rgba(map.get(mat.$m2-green-palette, 900), 0.5);
+    /* Paper/card: translucent black so the matrix-rain canvas shows through,
+       with a subtle neon-green outline at 0.2 opacity. Force the MDC token
+       too because `.mat-mdc-card-outlined` reads its border from the
+       custom property. */
+    .mat-mdc-card,
+    .mat-mdc-card-outlined {
+        --mdc-outlined-card-outline-color: rgba(0, 255, 0, 0.2) !important;
+        background-color: rgba(0, 0, 0, 0.75) !important;
+        border-color: rgba(0, 255, 0, 0.2) !important;
+        border-width: 1px !important;
+        border-style: solid !important;
     }
 
-
-    /*
-    .mat-button:focus {
-        outline: -webkit-focus-ring-color auto 1px;
+    /* Matrix header + footer: 75% opaque black bg so the matrix-rain
+       canvas shows faintly through. Overrides the neon-green gradient
+       the container mixin paints. */
+    .cory-mat-header,
+    .cory-mat-header .mat-toolbar,
+    .cory-mat-footer,
+    .cory-mat-footer .mat-toolbar {
+        background: rgba(0, 0, 0, 0.4) !important;
     }
-     */
 
+    .cory-mat-header,
+    .cory-mat-header *,
+    .cory-mat-header .mat-toolbar,
+    .cory-mat-header .mat-toolbar *,
+    .cory-mat-header .mat-mdc-button,
+    .cory-mat-header .mat-mdc-button *,
+    .cory-mat-header .mat-mdc-button .mdc-button__label,
+    .cory-mat-header .mat-mdc-icon-button,
+    .cory-mat-header .mat-mdc-icon-button *,
+    .cory-mat-header .mat-icon,
+    .cory-mat-header i,
+    .cory-mat-header a,
+    .cory-mat-header a *,
+    .cory-mat-footer,
+    .cory-mat-footer *,
+    .cory-mat-footer .mat-toolbar,
+    .cory-mat-footer .mat-toolbar *,
+    .cory-mat-footer .mat-mdc-button,
+    .cory-mat-footer .mat-mdc-button *,
+    .cory-mat-footer .mat-mdc-button .mdc-button__label,
+    .cory-mat-footer .mat-mdc-icon-button,
+    .cory-mat-footer .mat-mdc-icon-button *,
+    .cory-mat-footer .mat-icon,
+    .cory-mat-footer i,
+    .cory-mat-footer a,
+    .cory-mat-footer a * {
+        color: #80ff80 !important;
+    }
 
-    /*
-    .mat-button:focus {
-        background-color: rgba(map.get(mat.$green-palette, 900), 0.25);
+    .cory-mat-header,
+    .cory-mat-header .mat-toolbar,
+    .cory-mat-footer,
+    .cory-mat-footer .mat-toolbar {
+        --mdc-text-button-label-text-color: #80ff80 !important;
+        --mdc-filled-button-label-text-color: #80ff80 !important;
+        --mdc-outlined-button-label-text-color: #80ff80 !important;
+        --mdc-icon-button-icon-color: #80ff80 !important;
+        --mat-toolbar-container-text-color: #80ff80 !important;
+        --mat-toolbar-title-text-color: #80ff80 !important;
+        --mat-icon-color: #80ff80 !important;
     }
-     */
-    /* TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.*/
-    .cory-mat-menu-item-active, .cory-mat-menu-item-active:hover {
-        background-color: rgba(map.get($mat-matrix, 700), 0.25) !important;
+
+    /* Drawer + menu items: neon green text instead of Material's grey. */
+    .mat-drawer,
+    .mat-drawer .mat-mdc-menu-item,
+    .mat-drawer .mat-mdc-menu-item *,
+    .mat-drawer input,
+    .mat-drawer .mat-mdc-form-field,
+    .mat-drawer .mat-mdc-form-field * {
+        color: #00ff00 !important;
     }
+
+    /* Search field input: force neon green text + caret + placeholder
+       (belt-and-suspenders: direct element, mat-input element, and the
+       MDC text-field input class). */
+    .mat-drawer input,
+    .mat-drawer input.mat-mdc-input-element,
+    .mat-drawer .mat-mdc-input-element,
+    .mat-drawer .mdc-text-field__input {
+        color: #00ff00 !important;
+        caret-color: #00ff00 !important;
+    }
+
+    .mat-drawer input::placeholder,
+    .mat-drawer .mdc-text-field__input::placeholder {
+        color: rgba(0, 255, 0, 0.6) !important;
+    }
+
+    /* Search field outlined border + label: neon green instead of grey. */
+    .mat-drawer .mat-mdc-form-field {
+        --mdc-outlined-text-field-outline-color: rgba(0, 255, 0, 0.5);
+        --mdc-outlined-text-field-hover-outline-color: #00ff00;
+        --mdc-outlined-text-field-focus-outline-color: #80ff80;
+        --mdc-outlined-text-field-label-text-color: rgba(0, 255, 0, 0.7);
+        --mdc-outlined-text-field-focus-label-text-color: #80ff80;
+        --mdc-outlined-text-field-input-text-color: #00ff00;
+        --mdc-outlined-text-field-caret-color: #00ff00;
+    }
+
+    .mat-drawer .mdc-notched-outline__leading,
+    .mat-drawer .mdc-notched-outline__notch,
+    .mat-drawer .mdc-notched-outline__trailing {
+        border-color: rgba(0, 255, 0, 0.5) !important;
+    }
+
+    .mat-drawer .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+    .mat-drawer .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+    .mat-drawer .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+        border-color: #80ff80 !important;
+    }
+
+    /* Drawer item hover + active highlight: translucent neon green
+       instead of Material's grey. */
+    .mat-drawer .mat-mdc-menu-item:hover {
+        background-color: rgba(0, 255, 0, 0.1) !important;
+    }
+
+    .mat-drawer .cory-mat-menu-item-active,
+    .mat-drawer .cory-mat-menu-item-active:hover {
+        background-color: rgba(0, 255, 0, 0.25) !important;
+    }
+
+    /* Drawer close (X) button: neon green. */
+    .mat-drawer .cory-pages-sidenav-close,
+    .mat-drawer .cory-pages-sidenav-close .mat-icon,
+    .mat-drawer .cory-pages-sidenav-close .mat-mdc-button-touch-target {
+        color: #00ff00 !important;
+    }
+
+    /* Sticky heading+search wrapper: 0.9 opaque black — blocks the
+       scrolling repo list underneath, faint hint of matrix rain still
+       bleeds through. */
+    .mat-drawer .cory-pages-sidenav-sticky {
+        background-color: rgba(0, 0, 0, 0.8) !important;
+    }
+
+    /* Toast / snackbar: icon neon green to match theme. Snackbar is
+       portal-rendered but inside the themed body, so the theme selector
+       still reaches it. */
+    .mat-mdc-snack-bar-container .mat-icon,
+    .custom-snackbar .mat-icon,
+    .mat-mdc-snack-bar-container mat-icon,
+    .custom-snackbar mat-icon {
+        color: #00ff00 !important;
+    }
+
+    /* Header Menu + Packages dropdowns (mat-menu-panel, portal-rendered
+       but inside the themed body so the theme selector still reaches
+       them). Translucent black bg (same 0.4 as header/footer) + pure
+       matrix-green text + green hover. Force the MDC menu tokens too
+       because `.mat-mdc-menu-item` reads its label color from them. */
+    .mat-mdc-menu-panel,
+    .mat-mdc-menu-panel .mat-mdc-menu-content {
+        background-color: rgba(0, 0, 0, 0.4) !important;
+        --mat-menu-container-color: rgba(0, 0, 0, 0.4);
+        --mat-menu-item-label-text-color: #00ff00;
+        --mat-menu-item-icon-color: #00ff00;
+        --mat-menu-item-hover-state-layer-color: rgba(0, 255, 0, 0.1);
+        --mat-menu-item-focus-state-layer-color: rgba(0, 255, 0, 0.15);
+        /* MDC list tokens (mat-menu-item extends mdc-list-item). */
+        --mdc-list-item-label-text-color: #00ff00;
+        --mdc-list-item-hover-label-text-color: #00ff00;
+        --mdc-list-item-focus-label-text-color: #00ff00;
+        --mdc-list-item-disabled-label-text-color: rgba(0, 255, 0, 0.5);
+        --mdc-list-item-leading-icon-color: #00ff00;
+        --mdc-list-item-trailing-icon-color: #00ff00;
+    }
+
+    .mat-mdc-menu-panel,
+    .mat-mdc-menu-panel *,
+    .mat-mdc-menu-panel .mat-mdc-menu-item,
+    .mat-mdc-menu-panel .mat-mdc-menu-item *,
+    .mat-mdc-menu-panel .mat-mdc-menu-item .mat-icon,
+    .mat-mdc-menu-panel .mat-mdc-menu-item i,
+    .mat-mdc-menu-panel .mdc-list-item,
+    .mat-mdc-menu-panel .mdc-list-item__primary-text,
+    .mat-mdc-menu-panel .mdc-list-item__text,
+    .mat-mdc-menu-panel .mat-mdc-menu-item-text {
+        color: #00ff00 !important;
+    }
+
+    .mat-mdc-menu-panel .mat-mdc-menu-item:hover,
+    .mat-mdc-menu-panel .mat-mdc-menu-item:hover:not([disabled]) {
+        background-color: rgba(0, 255, 0, 0.1) !important;
+    }
+
+    /* Main body text: pure matrix-terminal green (classic #00ff00), not
+       faded. */
+    .mat-mdc-card,
+    .mat-mdc-card-content,
+    .mat-mdc-card p,
+    .mat-mdc-card li,
+    .mat-mdc-card td,
+    .mat-mdc-card th,
+    .mat-mdc-card span,
+    .mat-mdc-card h1,
+    .mat-mdc-card h2,
+    .mat-mdc-card h3,
+    .mat-mdc-card h4,
+    .mat-mdc-card h5,
+    .mat-mdc-card h6 {
+        color: #00ff00 !important;
+    }
+
 }
-
-

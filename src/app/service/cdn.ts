@@ -1,39 +1,23 @@
 import {Injectable} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-import {SettingsService} from '../modules/web';
 
 @Injectable()
 export class CdnService {
 
-    private settings: any;
-
-    constructor(private http: HttpClient,
-                private settingsAll: SettingsService) {
-        this.settings = settingsAll.data.pages;
-    }
-
-
-    async file(repo: string, path: string) {
+    url(repo: string, path: string): string {
         const postfix = '.html';
 
         //FIXME corifeus - matrix
         if (repo === 'matrix') {
-            repo = 'corifeus'
+            repo = 'corifeus';
         }
 
         const index = `index${postfix}`;
         if (path.endsWith(index)) {
             path = path.substring(0, path.length - index.length) + 'README.md';
-        }
-
-        if (path.endsWith(postfix)) {
+        } else if (path.endsWith(postfix)) {
             path = path.substring(0, path.length - postfix.length) + '.md';
         }
-        const url = `https://cdn.corifeus.com/git/${repo}/${path}`;
-        const text = await this.http.get(url, {responseType: 'text'}).toPromise();
-        return text;
+
+        return `https://cdn.corifeus.com/git/${repo}/${path}`;
     }
-
-
 }

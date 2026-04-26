@@ -9,15 +9,16 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2022",
-    "lib": [
-      "es2022",
-      "dom"
-    ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "strict": false,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "ignoreDeprecations": "6.0"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

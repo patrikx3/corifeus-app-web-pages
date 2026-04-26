@@ -26,6 +26,11 @@ export const appRoutes: Routes = [
             },
              */
             {
+                path: '',
+                component: Page,
+                pathMatch: 'full'
+            },
+            {
                 path: '**',
                 component: Page
             }

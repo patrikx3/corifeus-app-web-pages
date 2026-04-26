@@ -33,32 +33,34 @@ declare global {
 }
 
 
-window.corifeusLoader = 0
-window.corifeus = {
-    booted: false,
-    core: {
-        http: {
-            status: 200,
-            counter: 0,
-            counterUrlMap: {},
-            error: [],
+if (typeof window !== 'undefined') {
+    window.corifeusLoader = 0
+    window.corifeus = {
+        booted: false,
+        core: {
+            http: {
+                status: 200,
+                counter: 0,
+                counterUrlMap: {},
+                error: [],
+            }
+        },
+        app: {
+            web: {},
+            server: {}
         }
-    },
-    app: {
-        web: {},
-        server: {}
     }
-}
 
-let httpCounter = 0;
-Object.defineProperty(window.corifeus.core.http, 'counter', {
-    get: () => {
-        return httpCounter;
-    },
-    set: (value) => {
-        httpCounter = value;
-    }
-})
+    let httpCounter = 0;
+    Object.defineProperty(window.corifeus.core.http, 'counter', {
+        get: () => {
+            return httpCounter;
+        },
+        set: (value) => {
+            httpCounter = value;
+        }
+    })
+}
 
 import {SettingsService, LocaleService} from "./";
 import {RouterService} from "./services/router";
@@ -81,20 +83,26 @@ export class Boot {
 
         const module = 'core';
 
-        const body = document.getElementsByTagName("body")[0];
-        const corySeo = document.createElement('div');
-        body.appendChild(corySeo)
-        corySeo.id = 'cory-seo';
+        if (typeof document !== 'undefined') {
+            const body = document.getElementsByTagName("body")[0];
+            if (body) {
+                const corySeo = document.createElement('div');
+                body.appendChild(corySeo);
+                corySeo.id = 'cory-seo';
+                if (!IsBot()) {
+                    corySeo.style.display = 'none';
+                }
+            }
+        }
 
         this.settings.register(module, require('./json/settings.json'));
 
         // after settings
         this.locale.boot();
 
-        if (!IsBot()) {
-            corySeo.style.display = 'none';
+        if (typeof window !== 'undefined' && window.corifeus) {
+            window.corifeus.booted = true;
         }
-        window.corifeus.booted = true;
 
         this.location.onPopState(() => {
             this.routerService.scrollToTop();

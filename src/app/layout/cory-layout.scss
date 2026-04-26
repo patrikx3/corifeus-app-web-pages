@@ -1,28 +1,112 @@
+/* Match prod: inline text flow inside .mat-mdc-menu-item-text.
+   Icon + title + stars flow inline; code is float:right. */
+.cory-pages-layout-menu-row {
+    /* bare span — inline by default; nothing forced */
+}
+
 #cory-pages-layout-menu-main-icon {
+    display: block;
     float: left;
-    min-width: 24px !important;
-    display: inline-block;
-    text-align: center;
     position: relative;
     left: -7px;
+    width: 24px;
+    height: 18px;
+    text-align: center;
 }
 
 .cory-pages-layout-menu-main-title {
     display: inline-block;
-    max-width: 200px !important;
-    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
-#cory-pages-layout-menu-main-close {
-    position: fixed;
-    top: 5px;
-    right: 15px;
-    z-index: 3
+.cory-pages-layout-menu-stars {
+    opacity: 0.25;
+    position: relative;
+    top: -18px;
+    right: 0;
+    font-size: 10px;
 }
 
-/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
-.cory-layout-search-field .mat-form-field-infix {
-    border-top: 0px solid transparent;
+.cory-pages-layout-menu-code {
+    float: right;
+    margin-left: 5px;
+    opacity: 0.25;
 }
+
+h1#cory-mat-pages-title,
+h1.cory-layout-title {
+    margin: 0;
+    padding: 0;
+}
+
+.cory-pages-sidenav-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    padding: 4px 4px 4px 16px;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+.cory-pages-sidenav-title {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.65;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.cory-pages-sidenav-close.mat-mdc-icon-button,
+.cory-pages-sidenav-close {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    line-height: 32px;
+    --mdc-icon-button-state-layer-size: 32px;
+    --mat-icon-button-state-layer-size: 32px;
+}
+
+.cory-pages-sidenav-close .mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+}
+
+/* Drawer: hide horizontal scroll, force vertical scrollbar to always
+   show (explicit `scroll` not `auto`, explicit scrollbar-width + webkit
+   width so neither browser suppresses it). */
+.cory-layout-sindenav .mat-drawer-inner-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    -ms-overflow-style: auto;
+}
+
+.cory-layout-sindenav .mat-drawer-inner-container::-webkit-scrollbar {
+    width: 8px;
+    display: block;
+}
+
+.cory-layout-sindenav .mat-drawer-inner-container::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.5);
+    border-radius: 4px;
+}
+
+/* Sticky drawer heading + search wrapper so "PACKAGES / X / Search"
+   stays visible when the repo list scrolls. Single sticky container
+   avoids the two-element `top` offset fragility. Background-color is
+   per-theme (see each theme SCSS). */
+.cory-layout-sindenav .cory-pages-sidenav-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+

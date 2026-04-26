@@ -17,7 +17,7 @@ mat.$theme-ignore-duplication-warnings: true;
 @use 'toolbar' as *;
 
 @use 'theme/cory-mat-theme-dark-matrix' as *;
-@use  'theme/cory-mat-theme-light-indigo-pink' as *;
+@use  'theme/cory-mat-theme-light-forest' as *;
 
 
 @use 'variables' as matcory;
@@ -69,17 +69,11 @@ body.cory-mat-theme-dark {
 .cory-mat-theme-dark {
 
     color: white;
-    /*
-TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.
-*/
     .cory-mat-menu-divider {
         margin-top: 3px;
         margin-bottom: 3px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
-    /*
-TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.
-*/
     .cory-mat-menu-item-active, .cory-mat-menu-item-active:hover {
         background-color: rgba(255, 255, 255, 0.2) !important;
     }
@@ -88,20 +82,52 @@ TODO(mdc-migration): The following rule targets internal classes of menu that ma
 
 .cory-mat-theme-light {
     color: white;
-    /*
-TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.
-*/
     .cory-mat-menu-divider {
         margin-top: 3px;
         margin-bottom: 3px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
-    /*
-TODO(mdc-migration): The following rule targets internal classes of menu that may no longer apply for the MDC version.
-*/
     .cory-mat-menu-item-active, .cory-mat-menu-item-active:hover {
         background-color: rgba(128, 128, 128, 0.2) !important;
     }
+}
+
+/* <a mat-menu-item> normalization — don't underline, don't recolor on visited,
+   let the star floated at top:-18px render outside the menu-item overflow box.
+*/
+/* <a mat-menu-item> normalization. Suppress <a> UA styling (underline,
+   outline, tap-highlight). Color: don't force inherit — Material's default
+   rgba(0,0,0,0.87) / theme color for .mat-mdc-menu-item already wins. */
+a.mat-mdc-menu-item,
+a.mat-mdc-menu-item:link,
+a.mat-mdc-menu-item:visited,
+a.mat-mdc-menu-item:hover,
+a.mat-mdc-menu-item:focus,
+a.mat-mdc-menu-item:focus-visible,
+a.mat-mdc-menu-item:active {
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+/* Sidenav drawer: prod renders drawer items with inline style="display: block"
+   plus inline-flow children (bare <span>, float:right <div> for code). Match
+   that layout. Also force Arial (prod's <button> inherits it from the browser
+   UA; our <a> would otherwise inherit Roboto from body). */
+mat-sidenav a.mat-mdc-menu-item {
+    display: block !important;
+    font-family: Arial;
+}
+mat-sidenav .mat-mdc-menu-item-text {
+    display: inline !important;
+    position: relative;
+    top: 15px;
+}
+/* Header Menu dropdown (CDK overlay panel): prod keeps Material's default
+   flex layout — do NOT force display:block. Only override font-family so
+   <a> matches prod's <button> UA font. */
+.mat-mdc-menu-panel a.mat-mdc-menu-item {
+    font-family: Arial;
+    line-height: normal;
 }
 
 

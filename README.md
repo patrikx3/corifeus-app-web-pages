@@ -1,12 +1,12 @@
 [//]: #@corifeus-header
 
-  [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://paypal.me/patrikx3) [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Corifeus @ Facebook](https://img.shields.io/badge/Facebook-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software)  [![Uptime ratio (90 days)](https://network.corifeus.com/public/api/uptime-shield/31ad7a5c194347c33e5445dbaf8.svg)](https://network.corifeus.com/status/31ad7a5c194347c33e5445dbaf8)
+  [![Donate for PatrikX3 / P3X](https://img.shields.io/badge/Donate-PatrikX3-003087.svg)](https://paypal.me/patrikx3) [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Corifeus @ Facebook](https://img.shields.io/badge/Facebook-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software)  [![Uptime ratio (90 days)](https://network.corifeus.com/public/api/uptime-shield/31ad7a5c194347c33e5445dbaf8.svg)](https://network.corifeus.com/status/31ad7a5c194347c33e5445dbaf8)
 
 
 
 
 
-# 🕸️ Corifeus App Web Pages v2025.4.119
+# 🕸️ Corifeus App Web Pages v2026.4.104
 
 
   
@@ -22,7 +22,7 @@
 ### 🛠️ Built on NodeJs version
 
 ```txt
-v22.13.0
+v24.14.1
 ```
 
 
@@ -31,7 +31,7 @@ v22.13.0
 # 📦 Built on Angular
 
 ```text
-19.1.1
+21.2.9
 ```
 
 
@@ -70,23 +70,22 @@ Actually, I can inject the component without the `@Host` decorator.
 
 ---
 
-## 🚀 Quick and Affordable Web Development Services
+# Corifeus Network
 
-If you want to quickly and affordably develop your next digital project, visit [corifeus.eu](https://corifeus.eu) for expert solutions tailored to your needs.
+AI-powered network & email toolkit — free, no signup.
 
----
+**Web** · [network.corifeus.com](https://network.corifeus.com)  **MCP** · [`npm i -g p3x-network-mcp`](https://www.npmjs.com/package/p3x-network-mcp)
 
-## 🌐 Powerful Online Networking Tool  
-
-Discover the powerful and free online networking tool at [network.corifeus.com](https://network.corifeus.com).  
-
-**🆓 Free**  
-Designed for professionals and enthusiasts, this tool provides essential features for network analysis, troubleshooting, and management.  
-Additionally, it offers tools for:  
-- 📡 Monitoring TCP, HTTP, and Ping to ensure optimal network performance and reliability.  
-- 📊 Status page management to track uptime, performance, and incidents in real time with customizable dashboards.  
-
-All these features are completely free to use.  
+- **AI Network Assistant** — ask in plain language, get a full domain health report
+- **Network Audit** — DNS, SSL, security headers, DNSBL, BGP, IPv6, geolocation in one call
+- **Diagnostics** — DNS lookup & global propagation, WHOIS, reverse DNS, HTTP check, my-IP
+- **Mail Tester** — live SPF/DKIM/DMARC + spam score + AI fix suggestions, results emailed (localized)
+- **Monitoring** — TCP / HTTP / Ping with alerts and public status pages
+- **MCP server** — 17 tools exposed to Claude Code, Codex, Cursor, any MCP client
+- **Install** — `claude mcp add p3x-network -- npx p3x-network-mcp`
+- **Try** — *"audit example.com"*, *"why do my emails land in spam? test me@example.com"*
+- **Source** — [patrikx3/network](https://github.com/patrikx3/network) · [patrikx3/network-mcp](https://github.com/patrikx3/network-mcp)
+- **Contact** — [patrikx3.com](https://www.patrikx3.com/en/front/contact) · [donate](https://paypal.me/patrikx3)
 
 ---
 
@@ -108,13 +107,10 @@ All my domains, including [patrikx3.com](https://patrikx3.com), [corifeus.eu](ht
 
 **🚨 Important Changes:** Any breaking changes are prominently noted in the readme to keep you informed.
 
----
 
+[**CORIFEUS-APP-WEB-PAGES**](https://corifeus.com/corifeus-app-web-pages) Build v2026.4.104
 
-[**CORIFEUS-APP-WEB-PAGES**](https://corifeus.com/corifeus-app-web-pages) Build v2025.4.119
-
- [![Donate for Corifeus / P3X](https://img.shields.io/badge/Donate-Corifeus-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6)  [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software)
-
+ [![Donate for PatrikX3 / P3X](https://img.shields.io/badge/Donate-PatrikX3-003087.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QZVM4V6HVZJW6)  [![Contact Corifeus / P3X](https://img.shields.io/badge/Contact-P3X-ff9900.svg)](https://www.patrikx3.com/en/front/contact) [![Like Corifeus @ Facebook](https://img.shields.io/badge/LIKE-Corifeus-3b5998.svg)](https://www.facebook.com/corifeus.software)
 
 
 

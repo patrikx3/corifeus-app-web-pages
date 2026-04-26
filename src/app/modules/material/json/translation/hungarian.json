@@ -9,7 +9,7 @@
             "cory-mat-theme-light-beach": "Strand",
             "cory-mat-theme-dark-matrix": "Matrix",
             "cory-mat-theme-light-deeppurple-amber": "Mély lila borostyán",
-            "cory-mat-theme-light-indigo-pink": "Indigó rózsaszín",
+            "cory-mat-theme-light-forest": "Indigó rózsaszín",
             "cory-mat-theme-dark-pink-bluegray": "Rózsaszín  kék-szürke",
             "cory-mat-theme-dark-purple-green": "Lila Zöld",
             "cory-mat-theme-light-facebook": "Facebook"
@@ -17,6 +17,7 @@
     },
     "title": {
         "menu": "Menü",
+        "auto": "Automatikus",
         "dark": "Sötét",
         "light": "Világos",
         "theme": "Smink",
