@@ -155,7 +155,7 @@ function createRenderer(state: RenderState) {
             navClick = `onclick="return window.coryAppWebPagesNavigateHash('${sanitize(id)}');"`;
         }
 
-        return `<h${level} id="${sanitize(id)}" class="cory-layout-markdown-header">${sanitize(text)}&nbsp;<a class="cory-layout-markdown-reference" id="${sanitize(ref)}" ${navClick} href="${sanitize(state.locationOrigin)}${sanitize(state.locationPathname)}#${sanitize(ref)}"><i class="fas fa-link"></i></a></h${level}>`;
+        return `<h${level} id="${sanitize(id)}" class="cory-layout-markdown-header">${marked.parseInline(text)}&nbsp;<a class="cory-layout-markdown-reference" id="${sanitize(ref)}" ${navClick} href="${sanitize(state.locationOrigin)}${sanitize(state.locationPathname)}#${sanitize(ref)}"><i class="fas fa-link"></i></a></h${level}>`;
     };
 
     renderer.image = (token: any): string => {
@@ -354,10 +354,10 @@ export function constructMarkdown(data: any): string {
     html = html.replace(/{/g, '&#123;<span style="display: none;"></span>').replace(/}/g, '&#125;');
     html = html.replace(/&amp;/g, '&');
 
-    if (state.currentRepo === 'corifeus' && path === 'index.html') {
+    if ((state.currentRepo === 'corifeus' || state.currentRepo === 'matrix') && path === 'index.html') {
         for (let pkgName of Object.keys(packages)) {
             const pkg: any = packages[pkgName];
-            const hiddenStars: string = `&lt;!--@star|${pkg.name}--&gt;`;
+            const hiddenStars: string = `<!--@star|${pkg.name}-->`;
             let title: string = '';
 
             if (pkg.corifeus.stargazers_count > 999) {

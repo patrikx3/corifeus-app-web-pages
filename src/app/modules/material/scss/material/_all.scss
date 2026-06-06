@@ -109,18 +109,18 @@ a.mat-mdc-menu-item:active {
     outline: none !important;
     -webkit-tap-highlight-color: transparent !important;
 }
-/* Sidenav drawer: prod renders drawer items with inline style="display: block"
-   plus inline-flow children (bare <span>, float:right <div> for code). Match
-   that layout. Also force Arial (prod's <button> inherits it from the browser
-   UA; our <a> would otherwise inherit Roboto from body). */
+/* Sidenav drawer: row layout lives in .cory-pages-layout-menu-row (flex).
+   The .mat-mdc-menu-item-text wrapper is the flex container's parent, so
+   it must be block (Material's default `display: flex` would override flex
+   children of our row). Force Arial (prod's <button> inherits it from the
+   browser UA; our <a> would otherwise inherit Roboto from body). */
 mat-sidenav a.mat-mdc-menu-item {
     display: block !important;
     font-family: Arial;
 }
 mat-sidenav .mat-mdc-menu-item-text {
-    display: inline !important;
-    position: relative;
-    top: 15px;
+    display: block !important;
+    width: 100%;
 }
 /* Header Menu dropdown (CDK overlay panel): prod keeps Material's default
    flex layout — do NOT force display:block. Only override font-family so

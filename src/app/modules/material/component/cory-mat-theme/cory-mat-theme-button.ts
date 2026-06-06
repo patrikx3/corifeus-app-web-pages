@@ -1,7 +1,8 @@
 import {
-    Component,
-    Input,
-    effect,
+  Component,
+  Input,
+  effect,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { ThemeService } from '../../services/theme';
@@ -37,6 +38,7 @@ import { MatMenuModule } from '@angular/material/menu';
           </span>
         </button>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         MatMenuModule,
         MatButtonModule,

@@ -1,9 +1,10 @@
 import {
-    Injectable,
-    Component,
-    HostListener,
-    Inject,
-    effect,
+  Injectable,
+  Component,
+  HostListener,
+  Inject,
+  effect,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { ThemeService } from '../theme';
@@ -38,6 +39,7 @@ import { MatIconModule } from '@angular/material/icon';
             min-width: auto !important;
         }
     `],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatIconModule, MatButtonModule],
 })
 @Injectable()

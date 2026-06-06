@@ -1,16 +1,17 @@
 import {
-    Component,
-    ViewEncapsulation,
-    ViewChild,
-    NgZone,
-    OnInit,
-    ElementRef,
-    ChangeDetectorRef,
-    AfterViewInit,
-    Renderer2,
-    Inject,
-    PLATFORM_ID,
-    effect,
+  Component,
+  ViewEncapsulation,
+  ViewChild,
+  NgZone,
+  OnInit,
+  ElementRef,
+  ChangeDetectorRef,
+  AfterViewInit,
+  Renderer2,
+  Inject,
+  PLATFORM_ID,
+  effect,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Title, Meta, DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -71,6 +72,7 @@ declare global {
     selector: 'cory-layout',
     templateUrl: 'cory-layout.html',
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [Loading, Header, MatSidenavModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule, Status, MatTooltipModule, RouterOutlet, Footer, MatButtonModule]
 })
 export class Layout implements OnInit, AfterViewInit {

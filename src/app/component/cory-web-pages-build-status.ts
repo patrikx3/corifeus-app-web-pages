@@ -1,7 +1,8 @@
 import {
-    Component,
-    Input,
-    effect,
+  Component,
+  Input,
+  effect,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { LocaleService } from '../modules/web';
@@ -43,6 +44,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       </span>
     }
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatTooltipModule],
 })
 export class Status {

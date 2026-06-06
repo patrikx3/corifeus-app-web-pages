@@ -5,6 +5,8 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
+import { angularBotSsr } from 'ngx-bot-ssr';
+import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
@@ -228,16 +230,55 @@ app.use(
 );
 
 /**
- * Handle all other requests by rendering the Angular application.
+ * Cache headers for SSR-rendered pages: short browser cache + longer CDN cache,
+ * with stale-while-revalidate so visitors never see a slow render. Vary on
+ * User-Agent so the bot-SSR variant and the CSR-shell variant stay separate
+ * in any downstream cache.
+ *
+ * Skip if the handler already set Cache-Control (e.g. /sitemap.xml, /robots.txt).
  */
 app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  if (res.getHeader('Cache-Control')) return next();
+  res.setHeader(
+    'Cache-Control',
+    'public, max-age=60, s-maxage=600, stale-while-revalidate=86400',
+  );
+  const existingVary = res.getHeader('Vary');
+  res.setHeader(
+    'Vary',
+    existingVary ? `${existingVary}, User-Agent` : 'Accept-Encoding, User-Agent',
+  );
+  next();
 });
+
+/**
+ * Bots / crawlers / link-unfurlers → Angular SSR (full HTML).
+ * Real browsers → prebuilt CSR shell, client-side bootstrap.
+ * `Vary: User-Agent` set so caches keep the two responses separate.
+ *
+ * During Angular's route-extraction prerender step the server is booted
+ * before `index.csr.html` exists. The extractor sends real-browser UAs
+ * which would hit the shell branch and fail with ENOENT. Detect the
+ * missing shell and fall back to plain SSR for everything.
+ */
+const shellPath = join(browserDistFolder, 'index.csr.html');
+if (existsSync(shellPath)) {
+  app.use(
+    angularBotSsr({
+      browserDistFolder,
+      angularApp,
+      writeResponseToNodeResponse,
+    }),
+  );
+} else {
+  app.use((req, res, next) => {
+    angularApp
+      .handle(req)
+      .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
+      .catch(next);
+  });
+}
 
 /**
  * Start the server if this module is the main entry point, or it is ran via PM2.

@@ -1,6 +1,7 @@
 import {
-    Input,
-    Component,
+  Input,
+  Component,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -16,6 +17,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   mode="indeterminate"></mat-progress-bar>
 }
 `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatProgressBarModule],
 })
 export class Loading {

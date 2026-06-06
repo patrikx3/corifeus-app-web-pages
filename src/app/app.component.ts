@@ -1,5 +1,6 @@
 import {
   Component,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -10,6 +11,7 @@ import {LocaleService, SettingsService} from './modules/web';
     template: `
     <router-outlet></router-outlet>
   `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [RouterOutlet]
 })
 export class Application {

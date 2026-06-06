@@ -8,11 +8,12 @@ import {
 import { withPreloading, provideRouter, PreloadAllModules } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
-    Title,
-    Meta,
-    provideClientHydration,
-    withEventReplay,
-    withHttpTransferCacheOptions,
+  Title,
+  Meta,
+  provideClientHydration,
+  withEventReplay,
+  withHttpTransferCacheOptions,
+  withNoIncrementalHydration
 } from '@angular/platform-browser';
 import { CdnService, MarkdownService } from './service';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -66,6 +67,7 @@ export const appConfig: ApplicationConfig = {
                     req.url.startsWith('https://cdn.corifeus.com') ||
                     req.url.startsWith('https://network.corifeus.com'),
             }),
+            withNoIncrementalHydration(),
         ),
         /* Boot side-effects run before the root component renders.
            Order matters: web registers 'core' settings + boots locale,

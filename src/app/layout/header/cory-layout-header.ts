@@ -1,7 +1,8 @@
 import {
-    Component,
-    Input,
-    effect,
+  Component,
+  Input,
+  effect,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import capitalize from 'lodash/capitalize';
@@ -24,6 +25,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
     selector: 'cory-layout-header',
     templateUrl: 'cory-layout-header.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         MatToolbarModule,
         MatButtonModule,

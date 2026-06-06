@@ -1,7 +1,5 @@
 {
-    "server": {
-        "url": "https://server.patrikx3.com"
-    },
+
     "integration": {
         "google": {
             "analytics": "G-K02R3E7NHS"

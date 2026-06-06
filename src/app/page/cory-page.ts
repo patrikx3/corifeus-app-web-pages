@@ -1,11 +1,12 @@
 import {
-    Component,
-    NgZone,
-    AfterViewChecked,
-    Inject,
-    effect,
-    computed,
-    resource,
+  Component,
+  NgZone,
+  AfterViewChecked,
+  Inject,
+  effect,
+  computed,
+  resource,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { httpResource } from '@angular/common/http';
@@ -32,6 +33,7 @@ let readyNotified = false;
     template: `
         <span id="cory-page-content" [innerHTML]="safeContent"></span>
     `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: true,
 })
 export class Page implements AfterViewChecked {

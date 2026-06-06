@@ -1,8 +1,9 @@
 import {
-    Component,
-    OnDestroy,
-    Input,
-    effect,
+  Component,
+  OnDestroy,
+  Input,
+  effect,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import {
@@ -37,6 +38,7 @@ class Tooltip {
 @Component({
     selector: 'cory-layout-footer',
     templateUrl: 'cory-layout-footer.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         MatToolbarModule,
         MatButtonModule,
